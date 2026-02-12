@@ -26,10 +26,10 @@
 #ifndef OVR_Std_h
 #define OVR_Std_h
 
-#include <stdarg.h> // for va_list args
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdarg> // for va_list args
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
 #include "OVR_Compiler.h"
 
@@ -39,7 +39,7 @@
 #endif
 
 // Wide-char funcs
-#include <wchar.h>
+#include <cwchar>
 // Only include wctype.h if preprocessor configuration indicates to rely upon
 // standard library implementation for wide character type support.
 #ifdef OVR_NO_WCTYPE
@@ -346,18 +346,18 @@ inline int OVR_CDECL OVR_sprintf(char* dest, size_t destsize, const char* format
     }
     va_list argList;
     va_start(argList, format);
-    int ret;
 #if defined(OVR_CC_MSVC)
 #if defined(OVR_MSVC_SAFESTRING)
-    ret = _vsnprintf_s(dest, destsize, _TRUNCATE, format, argList);
+    int ret = _vsnprintf_s(dest, destsize, _TRUNCATE, format, argList);
 #else
     // FIXME: this is a security issue on Windows platforms that don't have _vsnprintf_s
     OVR_UNUSED(destsize);
-    ret = _vsnprintf(dest, destsize - 1, format, argList); // -1 for space for the null character
+    int ret =
+        _vsnprintf(dest, destsize - 1, format, argList); // -1 for space for the null character
     dest[destsize - 1] = 0; // may leave trash in the destination...
 #endif
 #else
-    ret = vsnprintf(dest, destsize, format, argList);
+    int ret = vsnprintf(dest, destsize, format, argList);
     // In the event of the output string being greater than the buffer size, vsnprintf should
     // return the size of the string before truncation. In that case we zero-terminate the
     // string to ensure that the result is the same as _vsnprintf_s would return for the
@@ -433,13 +433,11 @@ OVR_vsprintf(char* dest, size_t destsize, const char* format, va_list argList) {
 // OVR_vsnprintf and look at the return value and handle the uncommon case that there wasn't enough
 // space.
 inline int OVR_CDECL OVR_vscprintf(const char* format, va_list argList) {
-    int ret;
 #if defined(OVR_CC_MSVC)
-    ret = _vscprintf(format, argList);
+    return _vscprintf(format, argList);
 #else
-    ret = vsnprintf(nullptr, 0, format, argList);
+    return vsnprintf(nullptr, 0, format, argList);
 #endif
-    return ret;
 }
 
 wchar_t* OVR_CDECL OVR_wcscpy(wchar_t* dest, size_t destsize, const wchar_t* src);

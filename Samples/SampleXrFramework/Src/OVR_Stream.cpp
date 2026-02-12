@@ -29,8 +29,8 @@ Authors     :   Jonathan E. Wright
 
 #include "Misc/Log.h"
 
-#include <stdio.h>
-#include <errno.h>
+#include <cstdio>
+#include <cerrno>
 
 #include "PackageFiles.h"
 #include "OVR_Uri.h"
@@ -164,7 +164,7 @@ ovrUriScheme::ovrUriScheme(char const* schemeName) : SchemeName(), Uri(""), NumO
 
 //==============================
 // ovrUriScheme::~ovrUriScheme
-ovrUriScheme::~ovrUriScheme() {}
+ovrUriScheme::~ovrUriScheme() = default;
 
 //==============================
 // ovrUriScheme::GetSchemeName
@@ -231,12 +231,12 @@ bool ovrUriScheme::HostExists(char const* hostName) const {
 //==============================
 // ovrStream::ovrStream
 ovrStream::ovrStream(ovrUriScheme const& scheme)
-    : Scheme(scheme), Uri(""), Mode(OVR_STREAM_MODE_MAX) {}
+    : scheme_(scheme), uri_(""), mode_(OVR_STREAM_MODE_MAX) {}
 
 //==============================
 // ovrStream::~ovrStream
 ovrStream::~ovrStream() {
-    assert(Mode == OVR_STREAM_MODE_MAX); // if this hits, file was not closed first
+    assert(mode_ == OVR_STREAM_MODE_MAX); // if this hits, file was not closed first
 }
 
 //==============================
@@ -246,16 +246,16 @@ bool ovrStream::Open(char const* uri, ovrStreamMode const mode) {
         ALOG(
             "ovrStream::Open: tried to open Uri '%s' when Uri '%s' is already open",
             uri,
-            Uri.c_str());
+            uri_.c_str());
         assert(!IsOpen());
         return false;
     }
 
     bool success = Open_Internal(uri, mode);
     if (success) {
-        Uri = uri;
-        Mode = mode;
-        Scheme.StreamOpened(*this);
+        uri_ = uri;
+        mode_ = mode;
+        scheme_.StreamOpened(*this);
     }
     return success;
 }
@@ -264,8 +264,8 @@ bool ovrStream::Open(char const* uri, ovrStreamMode const mode) {
 // ovrStream::Close
 void ovrStream::Close() {
     Close_Internal();
-    Scheme.StreamClosed(*this);
-    Mode = OVR_STREAM_MODE_MAX;
+    scheme_.StreamClosed(*this);
+    mode_ = OVR_STREAM_MODE_MAX;
 }
 
 //==============================
@@ -292,9 +292,9 @@ bool ovrStream::Read(
         return false;
     }
 
-    if (Mode != OVR_STREAM_MODE_READ) {
+    if (mode_ != OVR_STREAM_MODE_READ) {
         ALOG("ovrStream::Read: stream is not open for reading!");
-        assert(Mode == OVR_STREAM_MODE_READ);
+        assert(mode_ == OVR_STREAM_MODE_READ);
         return false;
     }
     return Read_Internal(outBuffer, bytesToRead, outBytesRead);
@@ -317,9 +317,9 @@ bool ovrStream::Write(void const* inBuffer, size_t const bytesToWrite) {
         return false;
     }
 
-    if (Mode != OVR_STREAM_MODE_WRITE) {
+    if (mode_ != OVR_STREAM_MODE_WRITE) {
         ALOG("ovrStream::Read: stream is not open for writing!");
-        assert(Mode == OVR_STREAM_MODE_WRITE);
+        assert(mode_ == OVR_STREAM_MODE_WRITE);
         return false;
     }
     return Write_Internal(inBuffer, bytesToWrite);
@@ -340,13 +340,13 @@ size_t ovrStream::Length() const {
 //==============================
 // ovrStream::GetUri
 char const* ovrStream::GetUri() const {
-    return Uri.c_str();
+    return uri_.c_str();
 }
 
 //==============================
 // ovrStream::IsOpen
 bool ovrStream::IsOpen() const {
-    return Mode != OVR_STREAM_MODE_MAX;
+    return mode_ != OVR_STREAM_MODE_MAX;
 }
 
 //==============================================================================================
@@ -468,7 +468,7 @@ ovrStream_File::ovrStream_File(ovrUriScheme const& scheme) : ovrStream(scheme), 
 
 //==============================
 // ovrStream_File::~ovrStream_File
-ovrStream_File::~ovrStream_File() {}
+ovrStream_File::~ovrStream_File() = default;
 
 //==============================
 // ovrStream_File::GetLocalPathFromUri_Internal
@@ -476,7 +476,7 @@ bool ovrStream_File::GetLocalPathFromUri_Internal(const char* uri, std::string& 
     // require a fully-qualified Uri for now?
     char schemeName[128];
     char hostName[128];
-    int port;
+    int port = 0;
     char uriPath[ovrFileSys::OVR_MAX_SCHEME_LEN];
     if (!ovrUri::ParseUri(
             uri,
@@ -587,7 +587,7 @@ bool ovrStream_File::Open_Internal(char const* uri, ovrStreamMode const mode) {
     // require a fully-qualified Uri for now?
     char schemeName[128];
     char hostName[128];
-    int port;
+    int port = 0;
     char uriPath[ovrFileSys::OVR_MAX_SCHEME_LEN];
     if (!ovrUri::ParseUri(
             uri,
@@ -709,8 +709,7 @@ bool ovrStream_File::Read_Internal(
     std::vector<uint8_t>& outBuffer,
     size_t const bytesToRead,
     size_t& outBytesRead) {
-    size_t numRead;
-    numRead = fread(outBuffer.data(), bytesToRead, 1, F);
+    size_t numRead = fread(outBuffer.data(), bytesToRead, 1, F);
     outBytesRead = numRead * bytesToRead;
     if (numRead != 1) {
         ALOG(
@@ -779,7 +778,7 @@ ovrUriScheme_Apk::ovrUriScheme_Apk(char const* schemeName) : ovrUriScheme(scheme
 
 //==============================
 // ovrUriScheme_Apk::~ovrUriScheme_Apk
-ovrUriScheme_Apk::~ovrUriScheme_Apk() {}
+ovrUriScheme_Apk::~ovrUriScheme_Apk() = default;
 
 //==============================
 // ovrUriScheme_Apk::AllocStream_Internal
@@ -865,7 +864,7 @@ bool ovrUriScheme_Apk::ovrApkHost::Open() {
     char username[128];
     char password[128];
     char hostName[ovrFileSys::OVR_MAX_HOST_NAME_LEN];
-    int port;
+    int port = 0;
     char path[ovrFileSys::OVR_MAX_PATH_LEN];
     char query[1024];
     char fragment[1024];
@@ -932,7 +931,7 @@ ovrStream_Apk::ovrStream_Apk(ovrUriScheme const& scheme) : ovrStream(scheme), Is
 
 //==============================
 // ovrStream_Apk::~ovrStream_Apk
-ovrStream_Apk::~ovrStream_Apk() {}
+ovrStream_Apk::~ovrStream_Apk() = default;
 
 //==============================
 // ovrStream_Apk::GetLocalPathFromUri_Internal
@@ -957,7 +956,7 @@ bool ovrStream_Apk::Open_Internal(char const* uri, ovrStreamMode const mode) {
     }
 
     char hostName[ovrFileSys::OVR_MAX_HOST_NAME_LEN];
-    int port;
+    int port = 0;
     char path[ovrFileSys::OVR_MAX_SCHEME_LEN];
     if (!ovrUri::ParseUri(
             uri,
@@ -1019,7 +1018,7 @@ bool ovrStream_Apk::Read_Internal(
 // ovrStream_Apk::ReadFile_Internal
 bool ovrStream_Apk::ReadFile_Internal(std::vector<uint8_t>& outBuffer) {
     char hostName[ovrFileSys::OVR_MAX_HOST_NAME_LEN];
-    int port;
+    int port = 0;
     char path[ovrFileSys::OVR_MAX_SCHEME_LEN];
     if (!ovrUri::ParseUri(
             GetUri(),

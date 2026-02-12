@@ -244,7 +244,7 @@ const char* StrPair::GetStr()
 
                     if ( *(p+1) == '#' ) {
                         char buf[10] = { 0 };
-                        int len;
+                        int len = 0;
                         p = const_cast<char*>( XMLUtil::GetCharacterRef( p, buf, &len ) );
                         for( int i=0; i<len; ++i ) {
                             *q++ = buf[i];
@@ -877,7 +877,7 @@ char* XMLNode::ParseDeep( char* p, StrPair* parentEnd )
 }
 
 // --------- XMLText ---------- //
-char* XMLText::ParseDeep( char* p, StrPair* )
+char* XMLText::ParseDeep( char* p, StrPair*  /*unused*/)
 {
     const char* start = p;
     if ( this->CData() ) {
@@ -935,12 +935,10 @@ XMLComment::XMLComment( XMLDocument* doc ) : XMLNode( doc )
 }
 
 
-XMLComment::~XMLComment()
-{
-}
+XMLComment::~XMLComment() = default;
 
 
-char* XMLComment::ParseDeep( char* p, StrPair* )
+char* XMLComment::ParseDeep( char* p, StrPair*  /*unused*/)
 {
     // Comment parses as text.
     const char* start = p;
@@ -981,13 +979,10 @@ XMLDeclaration::XMLDeclaration( XMLDocument* doc ) : XMLNode( doc )
 }
 
 
-XMLDeclaration::~XMLDeclaration()
-{
-    //printf( "~XMLDeclaration\n" );
-}
+XMLDeclaration::~XMLDeclaration() = default;
 
 
-char* XMLDeclaration::ParseDeep( char* p, StrPair* )
+char* XMLDeclaration::ParseDeep( char* p, StrPair*  /*unused*/)
 {
     // Declaration parses as text.
     const char* start = p;
@@ -1028,12 +1023,10 @@ XMLUnknown::XMLUnknown( XMLDocument* doc ) : XMLNode( doc )
 }
 
 
-XMLUnknown::~XMLUnknown()
-{
-}
+XMLUnknown::~XMLUnknown() = default;
 
 
-char* XMLUnknown::ParseDeep( char* p, StrPair* )
+char* XMLUnknown::ParseDeep( char* p, StrPair*  /*unused*/)
 {
     // Unknown parses as text.
     const char* start = p;
@@ -2088,7 +2081,7 @@ bool XMLPrinter::VisitEnter( const XMLElement& element, const XMLAttribute* attr
 }
 
 
-bool XMLPrinter::VisitExit( const XMLElement& )
+bool XMLPrinter::VisitExit( const XMLElement&  /*unused*/)
 {
     CloseElement();
     return true;

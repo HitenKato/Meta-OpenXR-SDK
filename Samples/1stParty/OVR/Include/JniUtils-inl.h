@@ -147,4 +147,70 @@ inline TempJniEnv::~TempJniEnv() {
     }
 }
 
+//==============================================================
+// JavaPinnedByteArray
+//
+// Pins a Java byte[] in memory for the lifetime of this object
+// and provide access to the underlying buffer.
+//
+// When the object goes out of scope, by default the buffer is
+// discarded. Optionally, provide different modes to have the
+// native buffer be copied back to the Java byte[].
+// The JVM may decide to provide a copy of the buffer and the
+// isCopy ctor parameter can be used to get an indication of that.
+//
+// In advanced cases, one can choose a mode based on the value of
+// isCopy to optimize and copy data only when needed.
+//
+// See JNI's GetByteArrayElements and ReleaseByteArrayElements for
+// more details.
+//==============================================================
+class JavaPinnedByteArray {
+   public:
+    JavaPinnedByteArray(
+        JNIEnv* jni,
+        jbyteArray byteArray,
+        jboolean* isCopy = nullptr,
+        jint mode = JNI_ABORT)
+        : jni_(jni), byteArray_(byteArray), mode_(mode) {
+        buffer_ = jni_->GetByteArrayElements(byteArray_, isCopy);
+    }
+
+    ~JavaPinnedByteArray() {
+        jni_->ReleaseByteArrayElements(byteArray_, buffer_, mode_);
+    }
+
+    void setMode(jint mode) {
+        mode_ = mode;
+    }
+
+    uint8_t* buffer() {
+        return (uint8_t*)buffer_;
+    }
+
+    int size() {
+        return jni_->GetArrayLength(byteArray_);
+    }
+
+   private:
+    JNIEnv* jni_;
+    jbyteArray byteArray_;
+    jbyte* buffer_ = nullptr;
+    jint mode_;
+};
+
+#if defined(__cpp_exceptions)
+inline void checkAndThrow(JNIEnv* env) {
+    jthrowable exc = env->ExceptionOccurred();
+    env->ExceptionClear();
+    if (exc) {
+        jmethodID toString =
+            env->GetMethodID(env->GetObjectClass(exc), "toString", "()Ljava/lang/String;");
+        jstring message = (jstring)env->CallObjectMethod(exc, toString);
+        JavaUTFChars messageStr(env, message);
+        throw std::runtime_error(messageStr.ToStr());
+    }
+}
+#endif // __cpp_exceptions
+
 #endif // defined(OVR_OS_ANDROID)

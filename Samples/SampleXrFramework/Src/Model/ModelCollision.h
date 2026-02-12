@@ -41,7 +41,7 @@ class CollisionPolytope {
     }
 
     // Returns true if the given point is inside this polytope.
-    bool TestPoint(const OVR::Vector3f& p) const;
+    [[nodiscard]] bool TestPoint(const OVR::Vector3f& p) const;
 
     // Returns true if the ray hits the polytope.
     // The length of the ray is clipped to the point where the ray enters the polytope.
@@ -63,7 +63,7 @@ class CollisionPolytope {
 class ModelCollision {
    public:
     // Returns true if the given point is inside solid.
-    bool TestPoint(const OVR::Vector3f& p) const;
+    [[nodiscard]] bool TestPoint(const OVR::Vector3f& p) const;
 
     // Returns true if the ray hits solid.
     // The length of the ray is clipped to the point where the ray enters solid.

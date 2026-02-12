@@ -55,25 +55,25 @@ class HandMaskRenderer {
     void Render(std::vector<ovrDrawSurface>& surfaceList);
 
    public:
-    float LayerBlend;
-    float Falloff;
-    float Intensity;
-    float FadeIntensity;
-    bool UseBorderFade;
-    float BorderFadeSize;
-    float AlphaMaskSize;
-    bool RenderInverseSubtract;
-    ovrSurfaceDef HandMaskSurfaceDef;
+    float layerBlend;
+    float falloff;
+    float intensity;
+    float fadeIntensity;
+    bool useBorderFade;
+    float borderFadeSize;
+    float alphaMaskSize;
+    bool renderInverseSubtract;
+    ovrSurfaceDef handMaskSurfaceDef;
 
    private:
-    GlProgram ProgHandMaskAlphaGradient;
-    GlProgram ProgHandMaskBorderFade;
-    ovrDrawSurface HandMaskSurface;
-    std::vector<OVR::Matrix4f> HandMaskMatrices;
-    std::vector<OVR::Vector3f> HandMaskColors;
-    GlBuffer HandMaskUniformBuffer;
-    GlBuffer HandColorUniformBuffer;
-    bool IsLeftHand;
+    GlProgram progHandMaskAlphaGradient_;
+    GlProgram progHandMaskBorderFade_;
+    ovrDrawSurface handMaskSurface_;
+    std::vector<OVR::Matrix4f> handMaskMatrices_;
+    std::vector<OVR::Vector3f> handMaskColors_;
+    GlBuffer handMaskUniformBuffer_;
+    GlBuffer handColorUniformBuffer_;
+    bool isLeftHand_;
 };
 
 } // namespace OVRFW

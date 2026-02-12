@@ -37,11 +37,11 @@ BinaryReader::~BinaryReader() {
 }
 
 BinaryReader::BinaryReader(const char* path, const char** perror)
-    : Data(NULL), Size(0), Offset(0), Allocated(true) {
+    : Data(nullptr), Size(0), Offset(0), Allocated(true) {
     std::ifstream is;
     is.open(path, std::ios::binary | std::ios::in);
     if (!is.is_open()) {
-        if (perror != NULL) {
+        if (perror != nullptr) {
             *perror = "Failed to open file.";
         }
         return;
@@ -62,12 +62,12 @@ BinaryReader::BinaryReader(const char* path, const char** perror)
         // read all file
         is.read((char*)Data, Size);
         if (!is) {
-            if (perror != NULL) {
+            if (perror != nullptr) {
                 *perror = "Failed to read file.";
             }
         }
     } else {
-        if (perror != NULL) {
+        if (perror != nullptr) {
             *perror = "Failed to allocate backing buffer.";
         }
     }

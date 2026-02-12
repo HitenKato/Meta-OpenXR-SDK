@@ -49,15 +49,15 @@ enum eGazeCursorStateType {
 // OvrGazeCurorInfo
 class OvrGazeCursorInfo {
    public:
-    OvrGazeCursorInfo() : Distance(1.4f), State(CURSOR_STATE_NORMAL) {}
+    OvrGazeCursorInfo() : distance(1.4f), state(CURSOR_STATE_NORMAL) {}
 
     void Reset(float const d) {
-        Distance = d;
-        State = CURSOR_STATE_NORMAL;
+        distance = d;
+        state = CURSOR_STATE_NORMAL;
     }
 
-    float Distance; // distance from the view position, along the view direction, to the cursor
-    eGazeCursorStateType State; // state of the cursor
+    float distance; // distance from the view position, along the view direction, to the cursor
+    eGazeCursorStateType state; // state of the cursor
 };
 
 //==============================================================
@@ -94,7 +94,7 @@ class OvrGazeCursor {
     virtual void AppendSurfaceList(std::vector<ovrDrawSurface>& surfaceList) const = 0;
 
     // Returns the current info about the gaze cursor.
-    virtual OvrGazeCursorInfo GetInfo() const = 0;
+    [[nodiscard]] virtual OvrGazeCursorInfo GetInfo() const = 0;
 
     // Sets the rate at which the gaze cursor icon will spin.
     virtual void SetRotationRate(float const degreesPerSec) = 0;
@@ -103,7 +103,7 @@ class OvrGazeCursor {
     virtual void SetCursorScale(float const scale) = 0;
 
     // Returns whether the gaze cursor will be drawn this frame
-    virtual bool IsVisible() const = 0;
+    [[nodiscard]] virtual bool IsVisible() const = 0;
 
     // Hide the gaze cursor.
     virtual void HideCursor() = 0;

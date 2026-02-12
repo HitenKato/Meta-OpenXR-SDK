@@ -58,27 +58,27 @@ class MappedFile {
 
     // Opens the file for shared read-only access with other applications
     // Returns false on error (file not found, etc)
-    bool OpenRead(const char* path, bool read_ahead = false, bool no_cache = false);
+    bool OpenRead(const char* path, bool readAhead = false, bool noCache = false);
 
     // Creates and opens the file for exclusive read/write access
     bool OpenWrite(const char* path, size_t size);
 
     void Close();
 
-    bool IsReadOnly() const {
-        return ReadOnly;
+    [[nodiscard]] bool IsReadOnly() const {
+        return readOnly_;
     }
-    size_t GetLength() const {
-        return Length;
+    [[nodiscard]] size_t GetLength() const {
+        return length_;
     }
-    bool IsValid() const {
-        return (Length != 0);
+    [[nodiscard]] bool IsValid() const {
+        return (length_ != 0);
     }
 
    private:
-    int File;
-    bool ReadOnly;
-    size_t Length;
+    int file_;
+    bool readOnly_;
+    size_t length_;
 };
 
 // View of a portion of the memory mapped file
@@ -93,29 +93,29 @@ class MappedView {
         uint32_t length = 0); // Returns 0 on error, 0 length means whole file
     void Close();
 
-    bool IsValid() const {
-        return (Data != nullptr);
+    [[nodiscard]] bool IsValid() const {
+        return (data_ != nullptr);
     }
-    size_t GetOffset() const {
-        return Offset;
+    [[nodiscard]] size_t GetOffset() const {
+        return offset_;
     }
-    uint32_t GetLength() const {
-        return Length;
+    [[nodiscard]] uint32_t GetLength() const {
+        return length_;
     }
     MappedFile* GetFile() {
-        return File;
+        return file_;
     }
     uint8_t* GetFront() {
-        return Data;
+        return data_;
     }
 
    private:
-    void* Map;
+    void* map_;
 
-    MappedFile* File;
-    uint8_t* Data;
-    size_t Offset;
-    uint32_t Length;
+    MappedFile* file_;
+    uint8_t* data_;
+    size_t offset_;
+    uint32_t length_;
 };
 
 } // namespace OVRFW

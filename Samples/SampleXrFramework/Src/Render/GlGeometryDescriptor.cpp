@@ -19,6 +19,7 @@
 #include "GlGeometry.h"
 #include "Misc/Log.h"
 
+#include <array>
 #include <cassert>
 
 using OVR::Bounds3f;
@@ -442,20 +443,20 @@ GlGeometry::Descriptor BuildTesselatedCapsuleDescriptor(
 // some cases.
 GlGeometry::Descriptor BuildVignetteDescriptor(const float xFraction, const float yFraction) {
     // Leave 25% of the vignette as solid black
-    const float posx[] = {
-        -1.001f,
-        -1.0f + xFraction * 0.25f,
-        -1.0f + xFraction,
-        1.0f - xFraction,
-        1.0f - xFraction * 0.25f,
-        1.001f};
-    const float posy[] = {
-        -1.001f,
-        -1.0f + yFraction * 0.25f,
-        -1.0f + yFraction,
-        1.0f - yFraction,
-        1.0f - yFraction * 0.25f,
-        1.001f};
+    const auto posx = std::to_array<float>(
+        {-1.001f,
+         -1.0f + xFraction * 0.25f,
+         -1.0f + xFraction,
+         1.0f - xFraction,
+         1.0f - xFraction * 0.25f,
+         1.001f});
+    const auto posy = std::to_array<float>(
+        {-1.001f,
+         -1.0f + yFraction * 0.25f,
+         -1.0f + yFraction,
+         1.0f - yFraction,
+         1.0f - yFraction * 0.25f,
+         1.001f});
 
     const int vertexCount = 6 * 6;
 
@@ -720,12 +721,12 @@ GlGeometry::Descriptor BuildUnitCubeLinesDescriptor() {
         attribs.position[i][2] = static_cast<float>((i & 4) >> 2);
     }
 
-    const TriangleIndex staticIndices[24] = {0, 1, 1, 3, 3, 2, 2, 0, 4, 5, 5, 7,
-                                             7, 6, 6, 4, 0, 4, 1, 5, 3, 7, 2, 6};
+    constexpr std::array<TriangleIndex, 24> staticIndices = {0, 1, 1, 3, 3, 2, 2, 0, 4, 5, 5, 7,
+                                                             7, 6, 6, 4, 0, 4, 1, 5, 3, 7, 2, 6};
 
     std::vector<TriangleIndex> indices;
     indices.resize(24);
-    memcpy(&indices[0], staticIndices, 24 * sizeof(indices[0]));
+    memcpy(&indices[0], staticIndices.data(), staticIndices.size() * sizeof(indices[0]));
 
     return GlGeometry::Descriptor(attribs, indices, GlGeometry::geometryTransfom);
 }
@@ -919,10 +920,11 @@ GlGeometry::Descriptor BuildWedgeDescriptor(
                     attribs.position[edgeSides + 3].x - attribs.position[edgeSides + 2].x,
                     attribs.position[edgeSides + 3].y - attribs.position[edgeSides + 2].y,
                     attribs.position[edgeSides + 3].z - attribs.position[edgeSides + 2].z)
-                    .Cross(OVR::Vector3f(
-                        attribs.position[edgeSides + 2].x - attribs.position[edgeSides + 1].x,
-                        attribs.position[edgeSides + 2].y - attribs.position[edgeSides + 1].y,
-                        attribs.position[edgeSides + 2].z - attribs.position[edgeSides + 1].z))
+                    .Cross(
+                        OVR::Vector3f(
+                            attribs.position[edgeSides + 2].x - attribs.position[edgeSides + 1].x,
+                            attribs.position[edgeSides + 2].y - attribs.position[edgeSides + 1].y,
+                            attribs.position[edgeSides + 2].z - attribs.position[edgeSides + 1].z))
                     .Normalized();
             if (index == divisions) {
                 normal.x = 0 - normal.x;

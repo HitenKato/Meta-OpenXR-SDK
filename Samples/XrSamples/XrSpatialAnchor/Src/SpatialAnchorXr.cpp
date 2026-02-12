@@ -41,7 +41,6 @@ Copyright : Copyright (c) Meta Platforms, Inc. and its affiliates. All rights re
 #include <assert.h>
 
 #include <openxr/openxr.h>
-#include <meta_openxr_preview/meta_spatial_entity_discovery.h>
 
 #if defined(ANDROID)
 #include <unistd.h>
@@ -1968,7 +1967,7 @@ int main() {
                                              androidApp->destroyRequested == 0)
                 ? -1
                 : 0;
-            if (ALooper_pollAll(timeoutMilliseconds, NULL, &events, (void**)&source) < 0) {
+            if (ALooper_pollOnce(timeoutMilliseconds, NULL, &events, (void**)&source) < 0) {
                 break;
             }
 

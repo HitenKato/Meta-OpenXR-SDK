@@ -114,14 +114,14 @@ class ovrFileSys {
 
     static void PushBackSearchPathIfValid(
         xrJava const& java,
-        ovrStorageType toStorage,
-        ovrFolderType toFolder,
+        ovrStorageType storageType,
+        ovrFolderType folderType,
         const char* subfolder,
         std::vector<std::string>& searchPaths);
     static bool GetPathIfValidPermission(
         xrJava const& java,
-        ovrStorageType toStorage,
-        ovrFolderType toFolder,
+        ovrStorageType storageType,
+        ovrFolderType folderType,
         const char* subfolder,
         permissionFlags_t permission,
         std::string& outPath);
@@ -133,7 +133,7 @@ inline std::string ExtractDirectory(const std::string& s) {
         return std::string("");
     }
 
-    int end;
+    int end = 0;
     if (s[l - 1] == '/') { // directory ends in a slash
         end = l - 1;
     } else {
@@ -144,7 +144,7 @@ inline std::string ExtractDirectory(const std::string& s) {
             end = l - 1;
         }
     }
-    int start;
+    int start = 0;
     for (start = end - 1; start > -1 && s[start] != '/'; start--) {
         ;
     }

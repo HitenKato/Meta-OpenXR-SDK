@@ -50,32 +50,32 @@ class ControllerRenderer {
         bool leftController,
         OVRFW::ovrFileSys* fileSys = nullptr,
         const char* controllerModelFile = nullptr,
-        const OVR::Matrix4f& poseCorrection =
+        const OVR::Matrix4f& poseCorrectionParam =
             (OVR::Matrix4f::RotationY(OVR::DegreeToRad(180.0f)) *
              OVR::Matrix4f::RotationX(OVR::DegreeToRad(-90.0f))));
     void Shutdown();
     void Update(const OVR::Posef& pose);
     void Render(std::vector<ovrDrawSurface>& surfaceList);
 
-    bool IsLeft() const {
-        return isLeftController;
+    [[nodiscard]] bool IsLeft() const {
+        return isLeftController_;
     }
 
     void LoadModelFromResource(OVRFW::ovrFileSys* fileSys, const char* controllerModelFile);
 
    public:
-    OVR::Vector3f SpecularLightDirection;
-    OVR::Vector3f SpecularLightColor;
-    OVR::Vector3f AmbientLightColor;
-    OVR::Matrix4f PoseCorrection;
+    OVR::Vector3f specularLightDirection;
+    OVR::Vector3f specularLightColor;
+    OVR::Vector3f ambientLightColor;
+    OVR::Matrix4f poseCorrection;
 
    private:
-    bool isLeftController;
-    OVRFW::GlProgram ProgControllerTexture;
-    OVRFW::GlProgram ProgControllerColor;
-    OVRFW::ovrSurfaceDef ControllerSurfaceDef;
-    OVRFW::ovrDrawSurface ControllerSurface;
-    OVRFW::ModelFile* Model;
+    bool isLeftController_;
+    OVRFW::GlProgram progControllerTexture_;
+    OVRFW::GlProgram progControllerColor_;
+    OVRFW::ovrSurfaceDef controllerSurfaceDef_;
+    OVRFW::ovrDrawSurface controllerSurface_;
+    OVRFW::ModelFile* model_;
 };
 
 } // namespace OVRFW

@@ -488,7 +488,9 @@ typedef jobject* jobjectArray;
     } while (0)
 #else
 #define OVR_UNUSED(a) \
-    { (void)(a); }
+    {                 \
+        (void)(a);    \
+    }
 
 #endif
 

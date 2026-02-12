@@ -27,6 +27,7 @@ Authors     :   John Carmack
 
 #pragma once
 
+#include <array>
 #include <vector>
 #include "OVR_Math.h"
 
@@ -54,8 +55,8 @@ struct fontVertex_t {
     OVR::Vector3f xyz;
     float s;
     float t;
-    std::uint8_t rgba[4];
-    std::uint8_t fontParms[4];
+    std::array<std::uint8_t, 4> rgba;
+    std::array<std::uint8_t, 4> fontParms;
 };
 
 using fontIndex_t = TriangleIndex;
@@ -99,17 +100,17 @@ class GlGeometry {
     void Free();
 
    public:
-    static constexpr int32_t MAX_GEOMETRY_VERTICES = 1 << (sizeof(TriangleIndex) * 8);
-    static constexpr int32_t MAX_GEOMETRY_INDICES = 1024 * 1024 * 3;
+    static constexpr int32_t kMaxGeometryVertices = 1 << (sizeof(TriangleIndex) * 8);
+    static constexpr int32_t kMaxGeometryIndices = 1024 * 1024 * 3;
 
     static constexpr inline int32_t GetMaxGeometryVertices() {
-        return MAX_GEOMETRY_VERTICES;
+        return kMaxGeometryVertices;
     }
     static constexpr inline int32_t GetMaxGeometryIndices() {
-        return MAX_GEOMETRY_INDICES;
+        return kMaxGeometryIndices;
     }
 
-    static unsigned IndexType; // GL_UNSIGNED_SHORT, GL_UNSIGNED_INT, etc.
+    static unsigned indexType; // GL_UNSIGNED_SHORT, GL_UNSIGNED_INT, etc.
 
     class TransformScope {
        public:
@@ -126,6 +127,10 @@ class GlGeometry {
             enableGeometryTransfom = wasEnabled_;
             geometryTransfom = previousTransform_;
         }
+        TransformScope(const TransformScope&) = delete;
+        TransformScope& operator=(const TransformScope&) = delete;
+        TransformScope(TransformScope&&) = delete;
+        TransformScope& operator=(TransformScope&&) = delete;
 
        private:
         OVR::Matrix4f previousTransform_;

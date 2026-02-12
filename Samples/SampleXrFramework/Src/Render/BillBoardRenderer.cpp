@@ -53,7 +53,7 @@ inline Vector3f GetViewMatrixForward(Matrix4f const& m) {
 
 namespace OVRFW {
 
-static const char* BillBoardVertexSrc = R"glsl(
+static const char* billBoardVertexSrc = R"glsl(
 attribute vec4 Position;
 attribute vec4 VertexColor;
 attribute vec2 TexCoord;
@@ -69,7 +69,7 @@ void main()
 }
 )glsl";
 
-static const char* TextureFragmentSrc = R"glsl(
+static const char* textureFragmentSrc = R"glsl(
 uniform sampler2D Texture0;
 
 varying lowp vec4 outColor;
@@ -81,7 +81,7 @@ void main()
 }
 )glsl";
 
-static const char* ParametricFragmentSrc = R"glsl(
+static const char* parametricFragmentSrc = R"glsl(
 varying lowp vec4 outColor;
 varying highp vec2 oTexCoord;
 
@@ -118,11 +118,11 @@ void ovrBillBoardRenderer::Init(const int maxBillBoards, const bool depthTest) {
         };
         const int uniformCount = sizeof(uniformParms) / sizeof(OVRFW::ovrProgramParm);
         TextureProgram = OVRFW::GlProgram::Build(
-            BillBoardVertexSrc, TextureFragmentSrc, uniformParms, uniformCount);
+            billBoardVertexSrc, textureFragmentSrc, uniformParms, uniformCount);
     }
     if (ParametricProgram.VertexShader == 0 || ParametricProgram.FragmentShader == 0) {
         ParametricProgram =
-            OVRFW::GlProgram::Build(BillBoardVertexSrc, ParametricFragmentSrc, nullptr, 0);
+            OVRFW::GlProgram::Build(billBoardVertexSrc, parametricFragmentSrc, nullptr, 0);
     }
 
     const int numVerts = maxBillBoards * 4;
@@ -379,7 +379,7 @@ void ovrBillBoardRenderer::FrameInternal(
 
         const float t = static_cast<float>(frame.PredictedDisplayTime - cur.StartTime);
 
-        const Vector4f color = EaseFunctions[cur.EaseFunc](cur.InitialColor, t / cur.LifeTime);
+        const Vector4f color = easeFunctions[cur.EaseFunc](cur.InitialColor, t / cur.LifeTime);
         const Vector2f uvOfs(0.0f);
 
         attr.position[quadIndex * 4 + 0] = cur.Pos + up - right;

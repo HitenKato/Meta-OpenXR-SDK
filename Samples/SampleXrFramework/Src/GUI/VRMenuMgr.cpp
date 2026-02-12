@@ -416,12 +416,12 @@ class VRMenuMgrLocal : public OvrVRMenuMgr {
     static bool ShowStats; // show stats like number of draw calls
     static bool ShowWrapWidths;
 
-    static void DebugCollision(void* appPtr, const char* cmdLine);
-    static void DebugMenuBounds(void* appPtr, const char* cmdLine);
-    static void DebugMenuHierarchy(void* appPtr, const char* cmdLine);
-    static void DebugMenuPoses(void* appPtr, const char* cmdLine);
-    static void DebugShowStats(void* appPtr, const char* cmdLine);
-    static void DebugWordWrap(void* appPtr, const char* cmdLine);
+    static void DebugCollision(void* appPtr, const char* parms);
+    static void DebugMenuBounds(void* appPtr, const char* parms);
+    static void DebugMenuHierarchy(void* appPtr, const char* parms);
+    static void DebugMenuPoses(void* appPtr, const char* parms);
+    static void DebugShowStats(void* appPtr, const char* parms);
+    static void DebugWordWrap(void* appPtr, const char* parms);
 };
 
 bool VRMenuMgrLocal::ShowCollision = false;
@@ -434,7 +434,7 @@ bool VRMenuMgrLocal::ShowWrapWidths = false;
 
 void VRMenuMgrLocal::DebugCollision(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowCollision = show != 0;
     ALOG("DebugCollision( '%s' ): show = %i", parms, show);
@@ -442,7 +442,7 @@ void VRMenuMgrLocal::DebugCollision(void* appPtr, const char* parms) {
 
 void VRMenuMgrLocal::DebugMenuBounds(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowDebugBounds = show != 0;
     ALOG("DebugMenuBounds( '%s' ): show = %i", parms, show);
@@ -450,7 +450,7 @@ void VRMenuMgrLocal::DebugMenuBounds(void* appPtr, const char* parms) {
 
 void VRMenuMgrLocal::DebugMenuHierarchy(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowDebugHierarchy = show != 0;
     ALOG("DebugMenuHierarchy( '%s' ): show = %i", parms, show);
@@ -458,7 +458,7 @@ void VRMenuMgrLocal::DebugMenuHierarchy(void* appPtr, const char* parms) {
 
 void VRMenuMgrLocal::DebugMenuPoses(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowPoses = show != 0;
     ALOG("DebugMenuPoses( '%s' ): show = %i", parms, show);
@@ -466,7 +466,7 @@ void VRMenuMgrLocal::DebugMenuPoses(void* appPtr, const char* parms) {
 
 void VRMenuMgrLocal::DebugShowStats(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowStats = show != 0;
     ALOG("ShowStats( '%s' ): show = %i", parms, show);
@@ -474,7 +474,7 @@ void VRMenuMgrLocal::DebugShowStats(void* appPtr, const char* parms) {
 
 void VRMenuMgrLocal::DebugWordWrap(void* appPtr, const char* parms) {
     ovrLexer lex(parms);
-    int show;
+    int show = 0;
     lex.ParseInt(show, 0);
     ShowWrapWidths = show != 0;
     ALOG("ShowWrapWidths( '%s' ): show = %i", parms, show);
@@ -715,8 +715,8 @@ menuHandle_t VRMenuMgrLocal::CreateObject(VRMenuObjectParms const& parms) {
 // Frees a menu object.  If the object is a child of a parent object, this will
 // also remove the child from the parent.
 void VRMenuMgrLocal::FreeObject(menuHandle_t const handle) {
-    int index;
-    std::uint32_t id;
+    int index = 0;
+    std::uint32_t id = 0;
     DecomposeHandle(handle, index, id);
     if (!HandleComponentsAreValid(index, id)) {
         return;
@@ -777,8 +777,8 @@ void VRMenuMgrLocal::CondenseList() {
 //==================================
 // VRMenuMgrLocal::IsValid
 bool VRMenuMgrLocal::IsValid(menuHandle_t const handle) const {
-    int index;
-    std::uint32_t id;
+    int index = 0;
+    std::uint32_t id = 0;
     DecomposeHandle(handle, index, id);
     return HandleComponentsAreValid(index, id);
 }
@@ -787,8 +787,8 @@ bool VRMenuMgrLocal::IsValid(menuHandle_t const handle) const {
 // VRMenuMgrLocal::ToObject
 // Return the object for a menu handle.
 VRMenuObject* VRMenuMgrLocal::ToObject(menuHandle_t const handle) const {
-    int index;
-    std::uint32_t id;
+    int index = 0;
+    std::uint32_t id = 0;
     DecomposeHandle(handle, index, id);
     if (id == INVALID_MENU_OBJECT_ID) {
         return nullptr;

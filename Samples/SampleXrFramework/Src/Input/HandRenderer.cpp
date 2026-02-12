@@ -26,6 +26,7 @@ Authors     :   Federico Schliemann
 ************************************************************************************/
 
 #include "HandRenderer.h"
+#include <array>
 
 using OVR::Matrix4f;
 using OVR::Posef;
@@ -172,7 +173,7 @@ namespace OVRFW {
 
 bool HandRenderer::Init(const XrHandTrackingMeshFB* mesh, bool leftHand) {
     /// Shader
-    ovrProgramParm UniformParms[] = {
+    constexpr auto UniformParms = std::to_array<ovrProgramParm>({
         {.Name = "Texture0", .Type = ovrProgramParmType::TEXTURE_SAMPLED},
         {.Name = "SpecularLightDirection", .Type = ovrProgramParmType::FLOAT_VECTOR3},
         {.Name = "SpecularLightColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
@@ -181,14 +182,14 @@ bool HandRenderer::Init(const XrHandTrackingMeshFB* mesh, bool leftHand) {
         {.Name = "GlowColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
         {.Name = "Confidence", .Type = ovrProgramParmType::FLOAT},
         {.Name = "Solidity", .Type = ovrProgramParmType::FLOAT},
-    };
+    });
     ProgHand = GlProgram::Build(
         "",
         Hand::VertexShaderSrc,
         "",
         Hand::FragmentShaderSrc,
-        UniformParms,
-        sizeof(UniformParms) / sizeof(ovrProgramParm));
+        UniformParms.data(),
+        UniformParms.size());
 
     /// Build geometry from mesh
     VertexAttribs attribs;

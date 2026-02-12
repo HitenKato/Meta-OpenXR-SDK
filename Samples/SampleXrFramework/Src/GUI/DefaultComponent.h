@@ -49,7 +49,7 @@ class OvrDefaultComponent : public VRMenuComponent {
         bool const useSurfaceAnimator = false,
         const bool noHilight = false);
 
-    virtual int GetTypeId() const {
+    [[nodiscard]] virtual int GetTypeId() const {
         return TYPE_ID;
     }
 
@@ -114,11 +114,11 @@ class OvrSurfaceToggleComponent : public VRMenuComponent {
     void SetGroupIndex(const int index) {
         GroupIndex = index;
     }
-    int GetGroupIndex() const {
+    [[nodiscard]] int GetGroupIndex() const {
         return GroupIndex;
     }
 
-    virtual const char* GetTypeName() const {
+    [[nodiscard]] virtual const char* GetTypeName() const {
         return TYPE_NAME;
     }
 

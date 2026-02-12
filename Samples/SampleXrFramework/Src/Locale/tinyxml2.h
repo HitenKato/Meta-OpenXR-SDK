@@ -168,7 +168,7 @@ public:
 
     const char* GetStr();
 
-    bool Empty() const {
+    [[nodiscard]] bool Empty() const {
         return _start == _end;
     }
 
@@ -240,7 +240,7 @@ public:
         _size -= count;
     }
 
-    bool Empty() const					{
+    [[nodiscard]] bool Empty() const					{
         return _size == 0;
     }
 
@@ -254,15 +254,15 @@ public:
         return _mem[i];
     }
 
-    int Size() const					{
+    [[nodiscard]] int Size() const					{
         return _size;
     }
 
-    int Capacity() const				{
+    [[nodiscard]] int Capacity() const				{
         return _allocated;
     }
 
-    const T* Mem() const				{
+    [[nodiscard]] const T* Mem() const				{
         return _mem;
     }
 
@@ -301,7 +301,7 @@ public:
     MemPool() {}
     virtual ~MemPool() {}
 
-    virtual int ItemSize() const = 0;
+    [[nodiscard]] virtual int ItemSize() const = 0;
     virtual void* Alloc() = 0;
     virtual void Free( void* ) = 0;
     virtual void SetTracked() = 0;
@@ -323,10 +323,10 @@ public:
         }
     }
 
-    virtual int ItemSize() const	{
+    [[nodiscard]] virtual int ItemSize() const	{
         return SIZE;
     }
-    int CurrentAllocs() const		{
+    [[nodiscard]] int CurrentAllocs() const		{
         return _currentAllocs;
     }
 
@@ -374,7 +374,7 @@ public:
         _nUntracked--;
     }
 
-    int Untracked() const {
+    [[nodiscard]] int Untracked() const {
         return _nUntracked;
     }
 
@@ -786,10 +786,10 @@ public:
     virtual bool Accept( XMLVisitor* visitor ) const = 0;
 
     // internal
-    virtual char* ParseDeep( char*, StrPair* );
+    virtual char* ParseDeep( char* /*p*/, StrPair*  /*parentEnd*/);
 
 protected:
-    XMLNode( XMLDocument* );
+    XMLNode( XMLDocument*  /*doc*/);
     virtual ~XMLNode();
     XMLNode( const XMLNode& );	// not supported
     XMLNode& operator=( const XMLNode& );	// not supported
@@ -845,7 +845,7 @@ public:
         return _isCData;
     }
 
-    char* ParseDeep( char*, StrPair* endTag );
+    char* ParseDeep( char* /*p*/, StrPair* endTag );
     virtual XMLNode* ShallowClone( XMLDocument* document ) const;
     virtual bool ShallowEqual( const XMLNode* compare ) const;
 
@@ -874,7 +874,7 @@ public:
 
     virtual bool Accept( XMLVisitor* visitor ) const;
 
-    char* ParseDeep( char*, StrPair* endTag );
+    char* ParseDeep( char* /*p*/, StrPair* endTag );
     virtual XMLNode* ShallowClone( XMLDocument* document ) const;
     virtual bool ShallowEqual( const XMLNode* compare ) const;
 
@@ -912,7 +912,7 @@ public:
 
     virtual bool Accept( XMLVisitor* visitor ) const;
 
-    char* ParseDeep( char*, StrPair* endTag );
+    char* ParseDeep( char* /*p*/, StrPair* endTag );
     virtual XMLNode* ShallowClone( XMLDocument* document ) const;
     virtual bool ShallowEqual( const XMLNode* compare ) const;
 
@@ -944,7 +944,7 @@ public:
 
     virtual bool Accept( XMLVisitor* visitor ) const;
 
-    char* ParseDeep( char*, StrPair* endTag );
+    char* ParseDeep( char* /*p*/, StrPair* endTag );
     virtual XMLNode* ShallowClone( XMLDocument* document ) const;
     virtual bool ShallowEqual( const XMLNode* compare ) const;
 
@@ -1378,7 +1378,7 @@ class XMLDocument : public XMLNode
     friend class XMLElement;
 public:
     /// constructor
-    XMLDocument( bool processEntities = true, Whitespace = PRESERVE_WHITESPACE );
+    XMLDocument( bool processEntities = true, Whitespace  /*whitespace*/= PRESERVE_WHITESPACE );
     ~XMLDocument();
 
     virtual XMLDocument* ToDocument()				{
@@ -1414,7 +1414,7 @@ public:
     	Returns XML_NO_ERROR (0) on success, or
     	an errorID.
     */
-    XMLError LoadFile( FILE* );
+    XMLError LoadFile( FILE*  /*fp*/);
 
     /**
     	Save the XML file to disk.
@@ -1731,45 +1731,45 @@ public:
         return *this;
     }
 
-    const XMLConstHandle FirstChild() const											{
+    [[nodiscard]] XMLConstHandle FirstChild() const											{
         return XMLConstHandle( _node ? _node->FirstChild() : nullptr );
     }
-    const XMLConstHandle FirstChildElement( const char* value=nullptr ) const				{
+    XMLConstHandle FirstChildElement( const char* value=nullptr ) const				{
         return XMLConstHandle( _node ? _node->FirstChildElement( value ) : nullptr );
     }
-    const XMLConstHandle LastChild()	const										{
+    [[nodiscard]] XMLConstHandle LastChild()	const										{
         return XMLConstHandle( _node ? _node->LastChild() : nullptr );
     }
-    const XMLConstHandle LastChildElement( const char* _value=nullptr ) const				{
+    XMLConstHandle LastChildElement( const char* _value=nullptr ) const				{
         return XMLConstHandle( _node ? _node->LastChildElement( _value ) : nullptr );
     }
-    const XMLConstHandle PreviousSibling() const									{
+    [[nodiscard]] XMLConstHandle PreviousSibling() const									{
         return XMLConstHandle( _node ? _node->PreviousSibling() : nullptr );
     }
-    const XMLConstHandle PreviousSiblingElement( const char* _value=nullptr ) const		{
+    XMLConstHandle PreviousSiblingElement( const char* _value=nullptr ) const		{
         return XMLConstHandle( _node ? _node->PreviousSiblingElement( _value ) : nullptr );
     }
-    const XMLConstHandle NextSibling() const										{
+    [[nodiscard]] XMLConstHandle NextSibling() const										{
         return XMLConstHandle( _node ? _node->NextSibling() : nullptr );
     }
-    const XMLConstHandle NextSiblingElement( const char* _value=nullptr ) const			{
+    XMLConstHandle NextSiblingElement( const char* _value=nullptr ) const			{
         return XMLConstHandle( _node ? _node->NextSiblingElement( _value ) : nullptr );
     }
 
 
-    const XMLNode* ToNode() const				{
+    [[nodiscard]] const XMLNode* ToNode() const				{
         return _node;
     }
-    const XMLElement* ToElement() const			{
+    [[nodiscard]] const XMLElement* ToElement() const			{
         return ( ( _node && _node->ToElement() ) ? _node->ToElement() : nullptr );
     }
-    const XMLText* ToText() const				{
+    [[nodiscard]] const XMLText* ToText() const				{
         return ( ( _node && _node->ToText() ) ? _node->ToText() : nullptr );
     }
-    const XMLUnknown* ToUnknown() const			{
+    [[nodiscard]] const XMLUnknown* ToUnknown() const			{
         return ( ( _node && _node->ToUnknown() ) ? _node->ToUnknown() : nullptr );
     }
-    const XMLDeclaration* ToDeclaration() const	{
+    [[nodiscard]] const XMLDeclaration* ToDeclaration() const	{
         return ( ( _node && _node->ToDeclaration() ) ? _node->ToDeclaration() : nullptr );
     }
 
@@ -1883,7 +1883,7 @@ public:
     	If in print to memory mode, return a pointer to
     	the XML file in memory.
     */
-    const char* CStr() const {
+    [[nodiscard]] const char* CStr() const {
         return _buffer.Mem();
     }
     /**
@@ -1891,14 +1891,14 @@ public:
     	of the XML file in memory. (Note the size returned
     	includes the terminating null.)
     */
-    int CStrSize() const {
+    [[nodiscard]] int CStrSize() const {
         return _buffer.Size();
     }
 
 private:
     void SealElement();
     void PrintSpace( int depth );
-    void PrintString( const char*, bool restrictedEntitySet );	// prints out, after detecting entities.
+    void PrintString( const char* /*p*/, bool restrictedEntitySet );	// prints out, after detecting entities.
     void Print( const char* format, ... );
 
     bool _elementJustOpened;

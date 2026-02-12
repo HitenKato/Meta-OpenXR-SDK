@@ -84,7 +84,7 @@ static const char* GeometryFragmentShaderSrc = R"glsl(
     uniform lowp vec3 SpecularLightDirection;
     uniform lowp vec3 SpecularLightColor;
     uniform lowp vec3 AmbientLightColor;
-    uniform lowp vec3 AdditionalColor;
+    uniform lowp vec4 AdditionalColor;
 
 #ifdef HAS_VERTEX_COLORS
     varying lowp vec4 oColor;
@@ -123,10 +123,9 @@ static const char* GeometryFragmentShaderSrc = R"glsl(
         lowp vec3 color = diffuseValue * ChannelControl.x
                         + ambientValue * ChannelControl.y
                         + specularValue * ChannelControl.z
-                        + AdditionalColor;
-                        ;
+                        + AdditionalColor.xyz;
         gl_FragColor.xyz = color;
-        gl_FragColor.w = diffuse.w * ChannelControl.w;
+        gl_FragColor.w = diffuse.w * ChannelControl.w + AdditionalColor.w;
     }
 )glsl";
 
@@ -138,7 +137,7 @@ void GeometryRenderer::Init(const GlGeometry::Descriptor& d) {
         {.Name = "SpecularLightDirection", .Type = ovrProgramParmType::FLOAT_VECTOR3},
         {.Name = "SpecularLightColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
         {.Name = "AmbientLightColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
-        {.Name = "AdditionalColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
+        {.Name = "AdditionalColor", .Type = ovrProgramParmType::FLOAT_VECTOR4},
     };
 
     std::string programDefs;

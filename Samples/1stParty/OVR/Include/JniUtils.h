@@ -32,6 +32,7 @@ Authors     :   J.M.P. van Waveren, Jonathan E. Wright
 
 #if defined(OVR_OS_ANDROID)
 #include "OVR_LogUtils.h"
+#include "OVR_Asserts.h"
 #endif
 
 #include "OVR_Std.h"
@@ -834,14 +835,6 @@ ovr_GetGlobalClassReference(JNIEnv* jni, jobject activityObject, const char* cla
     OVR_UNUSED(jni);
     OVR_UNUSED(activityObject);
     OVR_UNUSED(className);
-    return nullptr;
-}
-inline jmethodID
-ovr_GetStaticMethodID(JNIEnv* jni, jclass jniclass, const char* name, const char* signature) {
-    OVR_UNUSED(jni);
-    OVR_UNUSED(jniclass);
-    OVR_UNUSED(name);
-    OVR_UNUSED(signature);
     return nullptr;
 }
 inline jfieldID

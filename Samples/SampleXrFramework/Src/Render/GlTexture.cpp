@@ -39,7 +39,9 @@ Authors     :   John Carmack
 #include "OVR_PerfTimer.h"
 #else
 #define OVR_PERF_TIMER(x) \
-    { ; }
+    {                     \
+        ;                 \
+    }
 #endif
 
 #include <algorithm>
@@ -79,8 +81,8 @@ Authors     :   John Carmack
 #define GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR 0x93DD
 
 uint32_t DecodeNextChar_Advance0(const char** putf8Buffer) {
-    uint32_t uc;
-    char c;
+    uint32_t uc = 0;
+    char c = 0;
 
     // Security considerations:
     //
@@ -696,8 +698,8 @@ static GlTexture CreateGlTexture(
     // LOG( "CreateGLTexture(): format %s", NameForTextureFormat( static_cast< TextureFormat >(
     // format ) ) );
 
-    GLenum glFormat;
-    GLenum glInternalFormat;
+    GLenum glFormat = 0;
+    GLenum glInternalFormat = 0;
     if (!TextureFormatToGlFormat(format, useSrgbFormat, glFormat, glInternalFormat)) {
         return GlTexture(0, 0, 0);
     }
@@ -713,7 +715,7 @@ static GlTexture CreateGlTexture(
         return GlTexture(0, 0, 0);
     }
 
-    GLuint texId;
+    GLuint texId = 0;
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_2D, texId);
 
@@ -818,8 +820,8 @@ static GlTexture CreateGlCubeTexture(
         return GlTexture(0, 0, 0);
     }
 
-    GLenum glFormat;
-    GLenum glInternalFormat;
+    GLenum glFormat = 0;
+    GLenum glInternalFormat = 0;
     if (!TextureFormatToGlFormat(format, useSrgbFormat, glFormat, glInternalFormat)) {
         ALOG(
             "%s: TextureFormatToGlFormat 0x%x %s failed",
@@ -829,7 +831,7 @@ static GlTexture CreateGlCubeTexture(
         return GlTexture(0, 0, 0);
     }
 
-    GLuint texId;
+    GLuint texId = 0;
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_CUBE_MAP, texId);
 
@@ -1486,7 +1488,7 @@ GlTexture LoadTextureKTX2(
     height = header.pixelHeight;
 
     // read ktx2 and transcode if necessary
-    ktxTexture* kTexture;
+    ktxTexture* kTexture = nullptr;
     KTX_error_code result = ktxTexture_CreateFromMemory(
         (const uint8_t*)buffer, bufferLength, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
     if (result != KTX_SUCCESS) {
@@ -1504,7 +1506,8 @@ GlTexture LoadTextureKTX2(
     }
 
     GLuint texid = 0;
-    GLenum target, glerror;
+    GLenum target = 0;
+    GLenum glerror = 0;
     result = ktxTexture_GLUpload(kTexture, &texid, &target, &glerror);
     if (result != KTX_SUCCESS) {
         ALOG("%s: GLUpload result failed. result is %d", fileName, result);
@@ -1530,7 +1533,7 @@ unsigned char* LoadImageToRGBABuffer(
     if (ext == ".jpg" || ext == ".tga" || ext == ".png" || ext == ".bmp" || ext == ".psd" ||
         ext == ".gif" || ext == ".hdr" || ext == ".pic") {
         // Uncompressed files loaded by stb_image
-        int comp;
+        int comp = 0;
         stbi_uc* image = stbi_load_from_memory(
             (unsigned char*)inBuffer, (int)inBufferLen, &width, &height, &comp, 4);
         return image;
@@ -1583,7 +1586,7 @@ GlTexture LoadTextureFromBuffer(
         ext == ".jpg" || ext == ".tga" || ext == ".png" || ext == ".bmp" || ext == ".psd" ||
         ext == ".gif" || ext == ".hdr" || ext == ".pic") {
         // Uncompressed files loaded by stb_image
-        int comp;
+        int comp = 0;
         stbi_uc* image = stbi_load_from_memory(buffer, bufferSize, &width, &height, &comp, 4);
         if (image != nullptr) {
             // Optionally outline the border alpha.

@@ -48,7 +48,7 @@ class ovrStream {
     virtual ~ovrStream();
 
     // Opens a stream for the specified Uri.
-    bool Open(char const* Uri, ovrStreamMode const mode);
+    bool Open(char const* uri, ovrStreamMode const mode);
 
     // Closes the currently open stream.
     void Close();
@@ -90,17 +90,17 @@ class ovrStream {
 
    protected:
     ovrUriScheme const& GetScheme() const {
-        return Scheme;
+        return scheme_;
     }
 
    private:
-    ovrUriScheme const& Scheme;
-    std::string Uri;
-    ovrStreamMode Mode;
+    ovrUriScheme const& scheme_;
+    std::string uri_;
+    ovrStreamMode mode_;
 
    private:
     virtual bool GetLocalPathFromUri_Internal(const char* uri, std::string& outputPath) = 0;
-    virtual bool Open_Internal(char const* Uri, ovrStreamMode const mode) = 0;
+    virtual bool Open_Internal(char const* uri, ovrStreamMode const mode) = 0;
     virtual void Close_Internal() = 0;
     virtual void Flush_Internal() = 0;
     virtual bool Read_Internal(

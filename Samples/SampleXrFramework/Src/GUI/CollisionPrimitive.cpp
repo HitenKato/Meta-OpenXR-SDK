@@ -32,6 +32,7 @@ Authors     :   Jonathan E. Wright
 #include "Misc/Log.h"
 
 #include <algorithm>
+#include <array>
 
 using OVR::Bounds3f;
 using OVR::Matrix4f;
@@ -157,7 +158,7 @@ bool OvrCollisionPrimitive::IntersectRayBounds(
     Vector3f const& scale,
     float& t0,
     float& t1) const {
-    Bounds3f scaledBounds = Bounds * scale;
+    Bounds3f scaledBounds = bounds_ * scale;
     if (scaledBounds.Contains(start, 0.1f)) {
         return true;
     }
@@ -172,14 +173,14 @@ bool OvrCollisionPrimitive::IntersectRayBounds(
 
 //==============================
 // OvrCollisionPrimitive::OvrCollisionPrimitive
-OvrCollisionPrimitive::~OvrCollisionPrimitive() {}
+OvrCollisionPrimitive::~OvrCollisionPrimitive() = default;
 
 //==============================================================================================
 // OvrTriCollisionPrimitive
 
 //==============================
 // OvrTriCollisionPrimitive::OvrTriCollisionPrimitive
-OvrTriCollisionPrimitive::OvrTriCollisionPrimitive() {}
+OvrTriCollisionPrimitive::OvrTriCollisionPrimitive() = default;
 
 //==============================
 // OvrTriCollisionPrimitive::OvrTriCollisionPrimitive
@@ -194,7 +195,7 @@ OvrTriCollisionPrimitive::OvrTriCollisionPrimitive(
 
 //==============================
 // OvrTriCollisionPrimitive::~OvrTriCollisionPrimitive
-OvrTriCollisionPrimitive::~OvrTriCollisionPrimitive() {}
+OvrTriCollisionPrimitive::~OvrTriCollisionPrimitive() = default;
 
 //==============================
 // OvrTriCollisionPrimitive::Init
@@ -203,14 +204,14 @@ void OvrTriCollisionPrimitive::Init(
     std::vector<TriangleIndex> const& indices,
     std::vector<Vector2f> const& uvs,
     ContentFlags_t const contents) {
-    Vertices = vertices;
-    Indices = indices;
+    vertices_ = vertices;
+    indices_ = indices;
 
     if (uvs.size() != vertices.size()) {
-        UVs.resize(vertices.size());
-        UVs.assign(vertices.size(), Vector2f(0.0f));
+        uvs_.resize(vertices.size());
+        uvs_.assign(vertices.size(), Vector2f(0.0f));
     } else {
-        UVs = uvs;
+        uvs_ = uvs;
     }
 
     SetContents(contents);
@@ -261,21 +262,21 @@ bool OvrTriCollisionPrimitive::IntersectRay(
     }
 
     // test vs bounds
-    float t0;
-    float t1;
+    float t0 = 0.0f;
+    float t1 = 0.0f;
     if (!IntersectRayBounds(localStart, localDir, scale, t0, t1)) {
         return false;
     }
 
-    result.TriIndex = -1;
-    for (int i = 0; i < static_cast<int>(Indices.size()); i += 3) {
-        float t_;
-        float u_;
-        float v_;
-        Vector3f verts[3];
-        verts[0] = Vertices[Indices[i]] * scale;
-        verts[1] = Vertices[Indices[i + 1]] * scale;
-        verts[2] = Vertices[Indices[i + 2]] * scale;
+    result.triIndex = -1;
+    for (int i = 0; i < static_cast<int>(indices_.size()); i += 3) {
+        float tIntersect = 0.0f;
+        float uCoord = 0.0f;
+        float vCoord = 0.0f;
+        std::array<Vector3f, 3> verts;
+        verts[0] = vertices_[indices_[i]] * scale;
+        verts[1] = vertices_[indices_[i + 1]] * scale;
+        verts[2] = vertices_[indices_[i + 2]] * scale;
 
         float diff = fabsf(localDir.LengthSq() - 1.0f);
         if (diff > OVR::Mathf::Tolerance()) {
@@ -289,19 +290,20 @@ bool OvrTriCollisionPrimitive::IntersectRay(
             assert(!(bool)"IsNormalized()");
         }
 
-        if (Intersect_RayTriangle(localStart, localDir, verts[0], verts[1], verts[2], t_, u_, v_)) {
-            if (t_ < result.t) {
-                result.t = t_;
+        if (Intersect_RayTriangle(
+                localStart, localDir, verts[0], verts[1], verts[2], tIntersect, uCoord, vCoord)) {
+            if (tIntersect < result.t) {
+                result.t = tIntersect;
 
-                result.TriIndex = i / 3;
-                result.uv = UVs[Indices[i + 0]] * (1.0f - u_ - v_) + UVs[Indices[i + 1]] * u_ +
-                    UVs[Indices[i + 2]] * v_;
+                result.triIndex = i / 3;
+                result.uv = uvs_[indices_[i + 0]] * (1.0f - uCoord - vCoord) +
+                    uvs_[indices_[i + 1]] * uCoord + uvs_[indices_[i + 2]] * vCoord;
 
-                result.Barycentric = Vector2f(u_, v_);
+                result.barycentric = Vector2f(uCoord, vCoord);
             }
         }
     }
-    return result.TriIndex >= 0;
+    return result.triIndex >= 0;
 }
 
 //==============================
@@ -315,13 +317,13 @@ void OvrTriCollisionPrimitive::DebugRender(
     debugLines.AddBounds(pose, bounds, Vector4f(1.0f, 0.5f, 0.0f, 1.0f));
 
     Vector4f color(1.0f, 0.0f, 1.0f, 1.0f);
-    for (int i = 0; i < static_cast<int>(Indices.size()); i += 3) {
-        int i1 = Indices[i + 0];
-        int i2 = Indices[i + 1];
-        int i3 = Indices[i + 2];
-        Vector3f v1 = pose.Translation + (pose.Rotation * Vertices[i1] * scale);
-        Vector3f v2 = pose.Translation + (pose.Rotation * Vertices[i2] * scale);
-        Vector3f v3 = pose.Translation + (pose.Rotation * Vertices[i3] * scale);
+    for (int i = 0; i < static_cast<int>(indices_.size()); i += 3) {
+        int i1 = indices_[i + 0];
+        int i2 = indices_[i + 1];
+        int i3 = indices_[i + 2];
+        Vector3f v1 = pose.Translation + (pose.Rotation * vertices_[i1] * scale);
+        Vector3f v2 = pose.Translation + (pose.Rotation * vertices_[i2] * scale);
+        Vector3f v3 = pose.Translation + (pose.Rotation * vertices_[i3] * scale);
         debugLines.AddLine(v1, v2, color, color, 0, true);
         debugLines.AddLine(v2, v3, color, color, 0, true);
         debugLines.AddLine(v3, v1, color, color, 0, true);

@@ -240,12 +240,12 @@ class MainLoopContext {
         xrApp_ = nullptr;
     }
 
-    const xrJava& GetJavaContext() const {
+    [[nodiscard]] const xrJava& GetJavaContext() const {
         return javaContext_;
     }
     virtual void HandleOsEvents() = 0;
-    virtual bool ShouldExitMainLoop() const = 0;
-    virtual bool IsExitRequested() const = 0;
+    [[nodiscard]] virtual bool ShouldExitMainLoop() const = 0;
+    [[nodiscard]] virtual bool IsExitRequested() const = 0;
 
    protected:
     const xrJava javaContext_;
@@ -262,8 +262,8 @@ class ActivityMainLoopContext : public MainLoopContext {
     }
 
     void HandleOsEvents() override;
-    bool ShouldExitMainLoop() const override;
-    bool IsExitRequested() const override;
+    [[nodiscard]] bool ShouldExitMainLoop() const override;
+    [[nodiscard]] bool IsExitRequested() const override;
 
    private:
     struct android_app* app_ = nullptr;
@@ -326,7 +326,7 @@ class XrApp {
     // public context interface
 
     // Returns the application's context
-    const xrJava* GetContext() const {
+    [[nodiscard]] const xrJava* GetContext() const {
         return &Context;
     }
 
@@ -349,7 +349,7 @@ class XrApp {
     void HandleAndroidCmd(struct android_app* app, int32_t cmd);
 #endif // defined(ANDROID)
 
-    bool GetShouldExit() const {
+    [[nodiscard]] bool GetShouldExit() const {
         return ShouldExit;
     }
     void SetShouldExit(const bool b) {
@@ -357,23 +357,23 @@ class XrApp {
     }
 
 #if defined(ANDROID)
-    bool GetResumed() const {
+    [[nodiscard]] bool GetResumed() const {
         return Resumed;
     }
-    bool GetSessionActive() const {
+    [[nodiscard]] bool GetSessionActive() const {
         return SessionActive;
     }
 #endif // ANDROID
 
    protected:
-    int GetNumFramebuffers() const {
+    [[nodiscard]] int GetNumFramebuffers() const {
         return NumFramebuffers;
     }
     ovrFramebuffer* GetFrameBuffer(int eye) {
         return &FrameBuffer[eye];
     }
 
-    std::vector<XrExtensionProperties> GetXrExtensionProperties() const;
+    [[nodiscard]] std::vector<XrExtensionProperties> GetXrExtensionProperties() const;
     //============================
     // App functions
     // All App* function can be overridden by the derived application class to
@@ -434,24 +434,24 @@ class XrApp {
         XrCompositionLayerEquirectKHR Equirect;
         XrCompositionLayerPassthroughFB Passthrough;
     };
-    virtual void PreProjectionAddLayer(xrCompositorLayerUnion*, int& /*layerCount*/) {
+    virtual void PreProjectionAddLayer(xrCompositorLayerUnion* /*unused*/, int& /*layerCount*/) {
         /// do nothing
     }
     /// Default proejction layer
-    virtual void ProjectionAddLayer(xrCompositorLayerUnion*, int& /*layerCount*/);
-    virtual void PostProjectionAddLayer(xrCompositorLayerUnion*, int& /*layerCount*/) {
+    virtual void ProjectionAddLayer(xrCompositorLayerUnion* /*layers*/, int& /*layerCount*/);
+    virtual void PostProjectionAddLayer(xrCompositorLayerUnion* /*unused*/, int& /*layerCount*/) {
         /// do nothing
     }
 
     // Add application specified SessionCreateInfo
-    virtual void PreCreateSession(XrSessionCreateInfo&) {
+    virtual void PreCreateSession(XrSessionCreateInfo& /*unused*/) {
         // do nothing
     }
-    virtual void PostCreateSession(XrSessionCreateInfo&) {
+    virtual void PostCreateSession(XrSessionCreateInfo& /*unused*/) {
         // do nothing
     }
 
-    virtual void PreLocateViews(XrViewLocateInfo&) {
+    virtual void PreLocateViews(XrViewLocateInfo& /*unused*/) {
         // do nothing
     }
 
@@ -466,7 +466,7 @@ class XrApp {
         const std::unordered_map<XrPath, std::vector<XrActionSuggestedBinding>>
             allSuggestedBindings);
 
-    virtual void PreWaitFrame(XrFrameWaitInfo&) {}
+    virtual void PreWaitFrame(XrFrameWaitInfo& /*unused*/) {}
 
     // Expose an API to allow apps to attach custom data to the xrFrameEndInfo struct,
     // such as apertureID for PC aperture usage, before the frame ends.
@@ -536,7 +536,7 @@ class XrApp {
     virtual XrInstance CreateInstance(const xrJava& context);
     virtual void DestroyInstance();
     virtual XrResult PollXrEvent(XrEventDataBuffer* eventDataBuffer);
-    XrTime GetPrevDisplayTime() const {
+    [[nodiscard]] XrTime GetPrevDisplayTime() const {
         return PrevDisplayTime;
     }
 

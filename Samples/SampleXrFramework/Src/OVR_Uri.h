@@ -27,8 +27,8 @@ Authors     :   Jonathan E. Wright
 
 #pragma once
 
-#include <stddef.h> // for size_t
-#include <stdint.h>
+#include <cstddef> // for size_t
+#include <cstdint>
 
 namespace OVRFW {
 
@@ -78,7 +78,7 @@ namespace OVRFW {
 
 class ovrUri {
    public:
-    static const int MAX_URI_SIZE = 1024;
+    static const int kMaxUriSize = 1024;
 
     // if any of the out pointers are NULL, that part of the Uri will not be returned
     static bool ParseUri(
@@ -107,7 +107,7 @@ class ovrUri {
 
     static void DoUnitTest();
 
-    static bool InUnitTest;
+    static bool inUnitTest;
 };
 
 } // namespace OVRFW

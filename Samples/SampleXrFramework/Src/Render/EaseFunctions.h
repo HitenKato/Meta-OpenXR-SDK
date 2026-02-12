@@ -46,15 +46,15 @@ enum ovrEaseFunc : uint8_t {
 
 template <typename T>
 T EaseInOut_Linear(const T t) {
-    const T HALF = static_cast<T>(0.5);
-    const T ONE = static_cast<T>(1.0);
-    const T TWO = static_cast<T>(2.0);
+    const T half = static_cast<T>(0.5);
+    const T one = static_cast<T>(1.0);
+    const T two = static_cast<T>(2.0);
 
-    if (t <= HALF) {
-        return TWO * t;
+    if (t <= half) {
+        return two * t;
     }
 
-    return ONE - (TWO * (t - HALF));
+    return one - (two * (t - half));
 }
 
 // t must be between 0 and 1
@@ -62,15 +62,15 @@ T EaseInOut_Linear(const T t) {
 // begins to approach 0 again as t goes from 0.5 to 1
 template <typename T>
 T EaseInOut_Quadratic(const T t) {
-    const T HALF = static_cast<T>(0.5);
-    const T ONE = static_cast<T>(1.0);
-    const T TWO = static_cast<T>(2.0);
+    const T half = static_cast<T>(0.5);
+    const T one = static_cast<T>(1.0);
+    const T two = static_cast<T>(2.0);
 
-    if (t <= HALF) {
-        return TWO * t * t;
+    if (t <= half) {
+        return two * t * t;
     }
 
-    return ONE - (TWO * (t - HALF) * (t - HALF));
+    return one - (two * (t - half) * (t - half));
 }
 
 // t must be between 0 and 1
@@ -78,29 +78,29 @@ T EaseInOut_Quadratic(const T t) {
 // The output changes slowly near 0.0, most rapidly at 0.5 and slowly again near 1.0
 template <typename T>
 T EaseInOut_Quadratic2(const T t) {
-    const T HALF = static_cast<T>(0.5);
-    const T ONE = static_cast<T>(1.0);
-    const T TWO = static_cast<T>(2.0);
+    const T half = static_cast<T>(0.5);
+    const T one = static_cast<T>(1.0);
+    const T two = static_cast<T>(2.0);
 
-    if (t <= HALF) {
-        return TWO * t * t;
+    if (t <= half) {
+        return two * t * t;
     }
 
     T const t2 = 1.0f - t;
-    return ONE - (TWO * (t2 * t2));
+    return one - (two * (t2 * t2));
 }
 
 template <typename T>
 T EaseInOut_Cubic(T t) {
-    const T HALF = static_cast<T>(0.5);
-    const T ONE = static_cast<T>(1.0);
-    const T TWO = static_cast<T>(2.0);
+    const T half = static_cast<T>(0.5);
+    const T one = static_cast<T>(1.0);
+    const T two = static_cast<T>(2.0);
 
-    if (t <= HALF) {
-        return TWO * t * t * t;
+    if (t <= half) {
+        return two * t * t * t;
     }
-    t -= HALF;
-    return ONE - (TWO * t * t * t);
+    t -= half;
+    return one - (two * t * t * t);
 }
 
 template <typename T>
@@ -117,15 +117,15 @@ T EaseIn_Cubic(T t) {
 // y = 1.0 - ( ( 1.0 - x )^3 )
 template <typename T>
 T EaseIn_CubicInverted(T t) {
-    const T ZERO = static_cast<T>(0.0);
-    const T ONE = static_cast<T>(1.0);
-    assert(t >= ZERO && t <= ONE);
-    T invT = ONE - t;
-    return ONE - (invT * invT * invT);
+    const T zero = static_cast<T>(0.0);
+    const T one = static_cast<T>(1.0);
+    assert(t >= zero && t <= one);
+    T invT = one - t;
+    return one - (invT * invT * invT);
 }
 
 typedef OVR::Vector4f (*EaseFunction_t)(const OVR::Vector4f& c, const float t);
 
-extern EaseFunction_t EaseFunctions[ovrEaseFunc::MAX];
+extern EaseFunction_t easeFunctions[ovrEaseFunc::MAX];
 
 } // namespace OVRFW

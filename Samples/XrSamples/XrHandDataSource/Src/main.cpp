@@ -244,7 +244,7 @@ class XrHandDataSourceApp : public OVRFW::XrApp {
                 std::vector<uint8_t> controllerBufferl;
                 std::string strToCheck = "/model_fb/controller/left";
                 controllerBufferl = renderModelLeft_->LoadRenderModel(strToCheck);
-                if (controllerBufferl.size() > 0) {
+                if (!controllerBufferl.empty()) {
                     ALOG(
                         "### Left Controller Render Model Size: %u",
                         (uint32_t)controllerBufferl.size());
@@ -271,7 +271,7 @@ class XrHandDataSourceApp : public OVRFW::XrApp {
                 std::vector<uint8_t> controllerBufferr;
                 std::string strToCheck = "/model_fb/controller/right";
                 controllerBufferr = renderModelRight_->LoadRenderModel(strToCheck);
-                if (controllerBufferr.size() > 0) {
+                if (!controllerBufferr.empty()) {
                     controllerRenderR_.Init(controllerBufferr);
                     controllerRenderR_.UseSolidTexture = true;
                     controllerRenderR_.Opacity = 1.0f;

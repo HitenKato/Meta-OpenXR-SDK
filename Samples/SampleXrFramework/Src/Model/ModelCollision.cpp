@@ -27,7 +27,7 @@ Authors     :   J.M.P. van Waveren
 
 #include "ModelCollision.h"
 
-#include <math.h>
+#include <cmath>
 
 namespace OVRFW {
 

@@ -28,7 +28,7 @@ Authors     :   John Carmack
 #pragma once
 
 #include <cstdint>
-#include <inttypes.h>
+#include <cinttypes>
 #include "OVR_BitFlags.h"
 #include "OVR_FileSys.h"
 
@@ -138,7 +138,7 @@ class GlTexture {
         return texture;
     }
 
-    bool IsValid() const {
+    [[nodiscard]] bool IsValid() const {
         return texture != 0;
     }
 

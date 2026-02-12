@@ -52,7 +52,6 @@ using namespace OVR;
 #define EGL_OPENGL_ES3_BIT_KHR 0x0040
 #endif
 
-#define DEBUG 1
 #define LOG_TAG "XrPassthroughOcclusion"
 
 #if defined(ANDROID)

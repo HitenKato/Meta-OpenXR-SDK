@@ -136,7 +136,7 @@ bool SpatialAnchorFileHandler::WriteSharedSpatialAnchorList(
     const std::vector<XrUuidEXT>& spatialAnchorList,
     const std::vector<XrSpaceUserIdFB>& userIdList) {
     ALOGV("WriteSharedSpatialAnchorList");
-    if (spatialAnchorList.size() == 0) {
+    if (spatialAnchorList.empty()) {
         ALOGE("WriteSharedSpatialAnchorList: spatialAnchorList cannot be empty");
         return false;
     }

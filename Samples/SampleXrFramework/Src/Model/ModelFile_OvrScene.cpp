@@ -45,9 +45,9 @@ using OVR::Vector4f;
 
 namespace OVRFW {
 
-template <typename _type_>
+template <typename Type>
 void ReadModelArray(
-    std::vector<_type_>& out,
+    std::vector<Type>& out,
     const char* string,
     const BinaryReader& bin,
     const int numElements) {
@@ -117,8 +117,8 @@ bool LoadModelFile_OvrScene_Json(
         // Render Model
         //
 
-        const OVR::JsonReader render_model(models.GetChildByName("render_model"));
-        if (render_model.IsObject()) {
+        const OVR::JsonReader renderModel(models.GetChildByName("render_model"));
+        if (renderModel.IsObject()) {
             LOGV("loading render model..");
 
             //
@@ -133,10 +133,10 @@ bool LoadModelFile_OvrScene_Json(
 
             std::vector<GlTexture> glTextures;
 
-            const OVR::JsonReader texture_array(render_model.GetChildByName("textures"));
-            if (texture_array.IsArray()) {
-                while (!texture_array.IsEndOfArray()) {
-                    const OVR::JsonReader texture(texture_array.GetNextArrayElement());
+            const OVR::JsonReader textureArray(renderModel.GetChildByName("textures"));
+            if (textureArray.IsArray()) {
+                while (!textureArray.IsEndOfArray()) {
+                    const OVR::JsonReader texture(textureArray.GetNextArrayElement());
                     if (texture.IsObject()) {
                         const std::string name = texture.GetChildStringByName("name");
 
@@ -185,10 +185,10 @@ bool LoadModelFile_OvrScene_Json(
             // Render Model Joints
             //
 
-            const OVR::JsonReader joint_array(render_model.GetChildByName("joints"));
-            if (joint_array.IsArray()) {
-                while (!joint_array.IsEndOfArray()) {
-                    const OVR::JsonReader joint(joint_array.GetNextArrayElement());
+            const OVR::JsonReader jointArray(renderModel.GetChildByName("joints"));
+            if (jointArray.IsArray()) {
+                while (!jointArray.IsEndOfArray()) {
+                    const OVR::JsonReader joint(jointArray.GetNextArrayElement());
                     if (joint.IsObject()) {
                         const size_t index =
                             static_cast<size_t>(modelFile.Nodes[nodeIndex].JointsOvrScene.size());
@@ -234,12 +234,12 @@ bool LoadModelFile_OvrScene_Json(
             // Render Model Tags
             //
 
-            const OVR::JsonReader tag_array(render_model.GetChildByName("tags"));
-            if (tag_array.IsArray()) {
+            const OVR::JsonReader tagArray(renderModel.GetChildByName("tags"));
+            if (tagArray.IsArray()) {
                 modelFile.Tags.clear();
 
-                while (!tag_array.IsEndOfArray()) {
-                    const OVR::JsonReader tag(tag_array.GetNextArrayElement());
+                while (!tagArray.IsEndOfArray()) {
+                    const OVR::JsonReader tag(tagArray.GetNextArrayElement());
                     if (tag.IsObject()) {
                         const size_t index = static_cast<size_t>(modelFile.Tags.size());
                         modelFile.Tags.emplace_back(ModelTag());
@@ -261,10 +261,10 @@ bool LoadModelFile_OvrScene_Json(
             // Render Model Surfaces
             //
 
-            const OVR::JsonReader surface_array(render_model.GetChildByName("surfaces"));
-            if (surface_array.IsArray()) {
-                while (!surface_array.IsEndOfArray()) {
-                    const OVR::JsonReader surface(surface_array.GetNextArrayElement());
+            const OVR::JsonReader surfaceArray(renderModel.GetChildByName("surfaces"));
+            if (surfaceArray.IsArray()) {
+                while (!surfaceArray.IsEndOfArray()) {
+                    const OVR::JsonReader surface(surfaceArray.GetNextArrayElement());
                     if (surface.IsObject()) {
                         ModelSurface modelSurface;
 
@@ -610,15 +610,15 @@ bool LoadModelFile_OvrScene_Json(
         // Collision Model
         //
 
-        const OVR::JsonReader collision_model(models.GetChildByName("collision_model"));
-        if (collision_model.IsArray()) {
+        const OVR::JsonReader collisionModel(models.GetChildByName("collision_model"));
+        if (collisionModel.IsArray()) {
             LOGV("loading collision model..");
 
-            while (!collision_model.IsEndOfArray()) {
+            while (!collisionModel.IsEndOfArray()) {
                 const size_t index = static_cast<size_t>(modelFile.Collisions.Polytopes.size());
                 modelFile.Collisions.Polytopes.emplace_back(CollisionPolytope());
 
-                const OVR::JsonReader polytope(collision_model.GetNextArrayElement());
+                const OVR::JsonReader polytope(collisionModel.GetNextArrayElement());
                 if (polytope.IsObject()) {
                     modelFile.Collisions.Polytopes[index].Name =
                         polytope.GetChildStringByName("name");
@@ -633,17 +633,16 @@ bool LoadModelFile_OvrScene_Json(
         // Ground Collision Model
         //
 
-        const OVR::JsonReader ground_collision_model(
-            models.GetChildByName("ground_collision_model"));
-        if (ground_collision_model.IsArray()) {
+        const OVR::JsonReader groundCollisionModel(models.GetChildByName("ground_collision_model"));
+        if (groundCollisionModel.IsArray()) {
             LOGV("loading ground collision model..");
 
-            while (!ground_collision_model.IsEndOfArray()) {
+            while (!groundCollisionModel.IsEndOfArray()) {
                 const size_t index =
                     static_cast<size_t>(modelFile.GroundCollisions.Polytopes.size());
                 modelFile.GroundCollisions.Polytopes.emplace_back(CollisionPolytope());
 
-                const OVR::JsonReader polytope(ground_collision_model.GetNextArrayElement());
+                const OVR::JsonReader polytope(groundCollisionModel.GetNextArrayElement());
                 if (polytope.IsObject()) {
                     modelFile.GroundCollisions.Polytopes[index].Name =
                         polytope.GetChildStringByName("name");
@@ -658,18 +657,18 @@ bool LoadModelFile_OvrScene_Json(
         // Ray-Trace Model
         //
 
-        const OVR::JsonReader raytrace_model(models.GetChildByName("raytrace_model"));
-        if (raytrace_model.IsObject()) {
+        const OVR::JsonReader raytraceModel(models.GetChildByName("raytrace_model"));
+        if (raytraceModel.IsObject()) {
             LOGV("loading ray-trace model..");
 
             ModelTrace& traceModel = modelFile.TraceModel;
 
-            traceModel.header.numVertices = raytrace_model.GetChildInt32ByName("numVertices");
-            traceModel.header.numUvs = raytrace_model.GetChildInt32ByName("numUvs");
-            traceModel.header.numIndices = raytrace_model.GetChildInt32ByName("numIndices");
-            traceModel.header.numNodes = raytrace_model.GetChildInt32ByName("numNodes");
-            traceModel.header.numLeafs = raytrace_model.GetChildInt32ByName("numLeafs");
-            traceModel.header.numOverflow = raytrace_model.GetChildInt32ByName("numOverflow");
+            traceModel.header.numVertices = raytraceModel.GetChildInt32ByName("numVertices");
+            traceModel.header.numUvs = raytraceModel.GetChildInt32ByName("numUvs");
+            traceModel.header.numIndices = raytraceModel.GetChildInt32ByName("numIndices");
+            traceModel.header.numNodes = raytraceModel.GetChildInt32ByName("numNodes");
+            traceModel.header.numLeafs = raytraceModel.GetChildInt32ByName("numLeafs");
+            traceModel.header.numOverflow = raytraceModel.GetChildInt32ByName("numOverflow");
             if (!traceModel.Validate(true)) {
                 // this is a fatal error so that a model file from an untrusted source is never able
                 // to cause out-of-bounds reads.
@@ -677,32 +676,32 @@ bool LoadModelFile_OvrScene_Json(
             }
 
             OVR::StringUtils::StringTo(
-                traceModel.header.bounds, raytrace_model.GetChildStringByName("bounds").c_str());
+                traceModel.header.bounds, raytraceModel.GetChildStringByName("bounds").c_str());
 
             ReadModelArray(
                 traceModel.vertices,
-                raytrace_model.GetChildStringByName("vertices").c_str(),
+                raytraceModel.GetChildStringByName("vertices").c_str(),
                 bin,
                 traceModel.header.numVertices);
             ReadModelArray(
                 traceModel.uvs,
-                raytrace_model.GetChildStringByName("uvs").c_str(),
+                raytraceModel.GetChildStringByName("uvs").c_str(),
                 bin,
                 traceModel.header.numUvs);
             ReadModelArray(
                 traceModel.indices,
-                raytrace_model.GetChildStringByName("indices").c_str(),
+                raytraceModel.GetChildStringByName("indices").c_str(),
                 bin,
                 traceModel.header.numIndices);
 
             if (!bin.ReadArray(traceModel.nodes, traceModel.header.numNodes)) {
-                const OVR::JsonReader nodes_array(raytrace_model.GetChildByName("nodes"));
-                if (nodes_array.IsArray()) {
-                    while (!nodes_array.IsEndOfArray()) {
+                const OVR::JsonReader nodesArray(raytraceModel.GetChildByName("nodes"));
+                if (nodesArray.IsArray()) {
+                    while (!nodesArray.IsEndOfArray()) {
                         const size_t index = static_cast<size_t>(traceModel.nodes.size());
                         traceModel.nodes.emplace_back(kdtree_node_t());
 
-                        const OVR::JsonReader node(nodes_array.GetNextArrayElement());
+                        const OVR::JsonReader node(nodesArray.GetNextArrayElement());
                         if (node.IsObject()) {
                             traceModel.nodes[index].data =
                                 (std::uint32_t)node.GetChildInt64ByName("data");
@@ -713,13 +712,13 @@ bool LoadModelFile_OvrScene_Json(
             }
 
             if (!bin.ReadArray(traceModel.leafs, traceModel.header.numLeafs)) {
-                const OVR::JsonReader leafs_array(raytrace_model.GetChildByName("leafs"));
-                if (leafs_array.IsArray()) {
-                    while (!leafs_array.IsEndOfArray()) {
+                const OVR::JsonReader leafsArray(raytraceModel.GetChildByName("leafs"));
+                if (leafsArray.IsArray()) {
+                    while (!leafsArray.IsEndOfArray()) {
                         const size_t index = static_cast<size_t>(traceModel.leafs.size());
                         traceModel.leafs.emplace_back(kdtree_leaf_t());
 
-                        const OVR::JsonReader leaf(leafs_array.GetNextArrayElement());
+                        const OVR::JsonReader leaf(leafsArray.GetNextArrayElement());
                         if (leaf.IsObject()) {
                             OVR::StringUtils::StringTo(
                                 traceModel.leafs[index].triangles,
@@ -739,7 +738,7 @@ bool LoadModelFile_OvrScene_Json(
 
             ReadModelArray(
                 traceModel.overflow,
-                raytrace_model.GetChildStringByName("overflow").c_str(),
+                raytraceModel.GetChildStringByName("overflow").c_str(),
                 bin,
                 traceModel.header.numOverflow);
         }

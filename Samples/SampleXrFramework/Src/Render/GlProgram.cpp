@@ -27,7 +27,7 @@ Authors     :   John Carmack
 
 #include "GlProgram.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "Misc/Log.h"
 
@@ -149,7 +149,7 @@ CompileShader(GLenum shaderType, const char* directives, const char* src, GLint 
     glShaderSource(shader, numSources, srcs, nullptr);
     glCompileShader(shader);
 
-    GLint r;
+    GLint r = 0;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &r);
     if (r == GL_FALSE) {
         ALOGW(
@@ -278,7 +278,7 @@ GlProgram GlProgram::Build(
 
     glLinkProgram(p.Program);
 
-    GLint linkStatus;
+    GLint linkStatus = 0;
     glGetProgramiv(p.Program, GL_LINK_STATUS, &linkStatus);
     if (linkStatus == GL_FALSE) {
         GLchar msg[1024];

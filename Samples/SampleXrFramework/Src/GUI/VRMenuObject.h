@@ -258,7 +258,7 @@ class VRMenuSurfaceParms {
     VRMenuSurfaceParms(
         char const* surfaceName,
         char const* imageNames[],
-        eSurfaceTextureType textureTypes[])
+        const eSurfaceTextureType textureTypes[])
         : SurfaceName(surfaceName),
           ImageNames(),
           TextureTypes(),

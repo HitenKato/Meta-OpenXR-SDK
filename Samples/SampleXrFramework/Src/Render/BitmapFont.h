@@ -143,7 +143,7 @@ class BitmapFont {
         VerticalJustification vjust,
         fontParms_t const* fp = nullptr) const = 0;
 
-    virtual OVR::Vector2f GetScaleFactor() const = 0;
+    [[nodiscard]] virtual OVR::Vector2f GetScaleFactor() const = 0;
     virtual void GetGlyphMetrics(
         const uint32_t charCode,
         float& width,
@@ -206,7 +206,7 @@ class BitmapFontSurface {
     virtual void AppendSurfaceList(BitmapFont const& font, std::vector<ovrDrawSurface>& surfaceList)
         const = 0;
 
-    virtual bool IsInitialized() const = 0;
+    [[nodiscard]] virtual bool IsInitialized() const = 0;
 
     virtual void SetCullEnabled(const bool enabled) = 0;
 

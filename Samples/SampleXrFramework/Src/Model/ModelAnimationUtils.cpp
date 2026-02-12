@@ -37,7 +37,7 @@ using OVR::Vector3f;
 namespace OVRFW {
 
 static Vector3f AnimationInterpolateVector3f(
-    float* buffer,
+    const float* buffer,
     int frame,
     float fraction,
     ModelAnimationInterpolation interpolationType) {
@@ -76,7 +76,7 @@ static Vector3f AnimationInterpolateVector3f(
 }
 
 static Quatf AnimationInterpolateQuatf(
-    float* buffer,
+    const float* buffer,
     int frame,
     float fraction,
     ModelAnimationInterpolation interpolationType) {

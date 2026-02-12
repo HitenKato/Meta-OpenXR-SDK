@@ -151,7 +151,7 @@ struct GlProgram {
 
     static void SetUseMultiview(const bool useMultiview_);
 
-    bool IsValid() const {
+    [[nodiscard]] bool IsValid() const {
         return Program != 0;
     }
 

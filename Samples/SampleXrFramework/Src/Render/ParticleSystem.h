@@ -47,16 +47,16 @@ namespace OVRFW {
 class ovrTextureAtlas;
 
 struct particleDerived_t {
-    OVR::Vector3f Pos;
-    OVR::Vector4f Color;
-    float Orientation; // roll angle in radians
-    float Scale;
-    uint16_t SpriteIndex;
+    OVR::Vector3f pos;
+    OVR::Vector4f color;
+    float orientation; // roll angle in radians
+    float scale;
+    uint16_t spriteIndex;
 };
 
 struct particleSort_t {
-    int ActiveIndex;
-    float DistanceSq;
+    int activeIndex;
+    float distanceSq;
 };
 
 //==============================================================
@@ -124,7 +124,7 @@ class ovrParticleSystem {
     void CreateGeometry(const int maxParticles);
 
     int GetMaxParticles() const {
-        return SurfaceDef.geo.vertexCount / 4;
+        return surfaceDef_.geo.vertexCount / 4;
     }
 
     class ovrParticle {
@@ -132,17 +132,17 @@ class ovrParticleSystem {
         // empty constructor so we don't pay the price for double initialization
         ovrParticle() {}
 
-        double StartTime; // time particle was created, negative means this particle is invalid
-        float LifeTime; // time particle should die
-        OVR::Vector3f InitialPosition; // initial position of the particle
-        float InitialOrientation; // initial orientation of the particle
-        OVR::Vector3f InitialVelocity; // initial velocity of the particle
-        OVR::Vector3f HalfAcceleration; // 1/2 the initial acceleration of the particle
-        OVR::Vector4f InitialColor; // initial color of the particle
-        float RotationRate; // rotation of the particle
-        float InitialScale; // initial scale of the particle
-        uint16_t SpriteIndex; // index of the sprite for this particle
-        ovrEaseFunc EaseFunc; // parametric function used to compute alpha
+        double startTime; // time particle was created, negative means this particle is invalid
+        float lifeTime; // time particle should die
+        OVR::Vector3f initialPosition; // initial position of the particle
+        float initialOrientation; // initial orientation of the particle
+        OVR::Vector3f initialVelocity; // initial velocity of the particle
+        OVR::Vector3f halfAcceleration; // 1/2 the initial acceleration of the particle
+        OVR::Vector4f initialColor; // initial color of the particle
+        float rotationRate; // rotation of the particle
+        float initialScale; // initial scale of the particle
+        uint16_t spriteIndex; // index of the sprite for this particle
+        ovrEaseFunc easeFunc; // parametric function used to compute alpha
     };
 
     size_t maxParticles_; // maximum allowd particles
@@ -153,10 +153,10 @@ class ovrParticleSystem {
     std::vector<particleSort_t> sortIndices_;
     std::vector<uint8_t> packedAttr_;
     OVRFW::VertexAttribs attr_;
-    GlProgram Program;
-    ovrSurfaceDef SurfaceDef;
-    OVR::Matrix4f ModelMatrix;
-    bool SortParticles;
+    GlProgram program_;
+    ovrSurfaceDef surfaceDef_;
+    OVR::Matrix4f modelMatrix_;
+    bool sortParticles_;
 };
 
 } // namespace OVRFW

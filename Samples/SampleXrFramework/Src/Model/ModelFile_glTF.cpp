@@ -34,6 +34,7 @@ Authors     :   John Carmack, J.M.P. van Waveren
 #include "Misc/Log.h"
 
 #include <unordered_map>
+#include <array>
 
 // #include "Render/Egl.h"
 
@@ -113,10 +114,11 @@ static uint8_t* ReadFileBufferFromZipFile(
     const uint8_t* fileData) {
     for (int ret = unzGoToFirstFile(zfp); ret == UNZ_OK; ret = unzGoToNextFile(zfp)) {
         unz_file_info finfo;
-        char entryName[256];
-        unzGetCurrentFileInfo(zfp, &finfo, entryName, sizeof(entryName), nullptr, 0, nullptr, 0);
+        std::array<char, 256> entryName{};
+        unzGetCurrentFileInfo(
+            zfp, &finfo, entryName.data(), entryName.size(), nullptr, 0, nullptr, 0);
 
-        if (OVR::OVR_stricmp(entryName, fileName) == 0) {
+        if (OVR::OVR_stricmp(entryName.data(), fileName) == 0) {
             bufferLength = finfo.uncompressed_size;
             uint8_t* buffer = ReadBufferFromZipFile(zfp, fileData, finfo);
             return buffer;
@@ -166,7 +168,7 @@ static size_t getComponentCount(ModelAccessorType type) {
         case ACCESSOR_VEC3:
             return 3;
         case ACCESSOR_VEC4:
-            return 4;
+            [[fallthrough]];
         case ACCESSOR_MAT2:
             return 4;
         case ACCESSOR_MAT3:
@@ -330,7 +332,7 @@ bool ReadSurfaceDataFromAccessor(
                         char* dst = (char*)&out[0];
                         for (int i = 0; i < valueCount; i++) {
                             for (int j = 0; j < (int)srcComponentCount; j++) {
-                                float value;
+                                float value = 0.0f;
                                 const char* valueSrc = src + i * readStride + j * srcComponentSize;
                                 switch (accessor->componentType) {
                                     case MODEL_COMPONENT_TYPE_BYTE:
@@ -390,7 +392,7 @@ bool ReadSurfaceDataFromAccessor(
                         char* dst = (char*)&out[0];
                         for (int i = 0; i < valueCount; i++) {
                             for (int j = 0; j < (int)srcComponentCount; j++) {
-                                int64_t value;
+                                int64_t value = 0;
                                 const char* valueSrc = src + i * readStride + j * srcComponentSize;
                                 switch (accessor->componentType) {
                                     case MODEL_COMPONENT_TYPE_BYTE:
@@ -1486,7 +1488,7 @@ bool LoadModelFile_glTF_Json(
                                     matrix.M[2][0] * matrix.M[2][0] +
                                     matrix.M[2][1] * matrix.M[2][1] +
                                     matrix.M[2][2] * matrix.M[2][2]);
-                                const float m[9] = {
+                                const std::array<float, 9> m = {
                                     matrix.M[0][0] * rcpScaleX,
                                     matrix.M[0][1] * rcpScaleX,
                                     matrix.M[0][2] * rcpScaleX,
@@ -2144,20 +2146,21 @@ bool LoadModelFile_glTF_OvrScene(
         // LOGCPUTIME( "Loading GLTF file" );
         for (int ret = unzGoToFirstFile(zfp); ret == UNZ_OK; ret = unzGoToNextFile(zfp)) {
             unz_file_info finfo;
-            char entryName[256];
+            std::array<char, 256> entryName{};
             unzGetCurrentFileInfo(
-                zfp, &finfo, entryName, sizeof(entryName), nullptr, 0, nullptr, 0);
-            const size_t entryLength = strlen(entryName);
-            const char* extension = (entryLength >= 5) ? &entryName[entryLength - 5] : entryName;
+                zfp, &finfo, entryName.data(), entryName.size(), nullptr, 0, nullptr, 0);
+            const size_t entryLength = strlen(entryName.data());
+            const char* extension =
+                (entryLength >= 5) ? &entryName[entryLength - 5] : entryName.data();
 
             if (OVR::OVR_stricmp(extension, ".gltf") == 0) {
-                LOGV("found %s", entryName);
+                LOGV("found %s", entryName.data());
                 uint8_t* buffer = ReadBufferFromZipFile(zfp, (const uint8_t*)fileData, finfo);
 
                 if (buffer == nullptr) {
                     ALOGW(
                         "LoadModelFile_glTF_OvrScene:Failed to read %s from %s",
-                        entryName,
+                        entryName.data(),
                         fileName);
                     continue;
                 }
@@ -2233,7 +2236,7 @@ bool LoadModelFile_glTF_OvrScene(
                                 loaded = false;
                             }
 
-                            const char* bufferName;
+                            const char* bufferName = nullptr;
                             if (!name.empty()) {
                                 bufferName = name.c_str();
                             } else {
@@ -2520,7 +2523,7 @@ ModelFile* LoadModelFile_glB(
                                     buffer,
                                     newGltfBuffer.byteLength);
 
-                                const char* bufferName;
+                                const char* bufferName = nullptr;
                                 if (!name.empty()) {
                                     bufferName = name.c_str();
                                 } else {

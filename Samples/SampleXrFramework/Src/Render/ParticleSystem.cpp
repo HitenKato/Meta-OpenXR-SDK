@@ -122,22 +122,22 @@ void ovrParticleSystem::Init(
         };
         const int uniformCount = sizeof(uniformParms) / sizeof(OVRFW::ovrProgramParm);
         if (atlas != nullptr) {
-            Program = OVRFW::GlProgram::Build(
+            program_ = OVRFW::GlProgram::Build(
                 particleVertexSrc, particleFragmentSrc, uniformParms, uniformCount);
-            SurfaceDef.surfaceName = std::string("particles_") + atlas->GetTextureName();
-            SurfaceDef.graphicsCommand.Textures[0] = atlas->GetTexture();
+            surfaceDef_.surfaceName = std::string("particles_") + atlas->GetTextureName();
+            surfaceDef_.graphicsCommand.Textures[0] = atlas->GetTexture();
         } else {
-            Program = OVRFW::GlProgram::Build(
+            program_ = OVRFW::GlProgram::Build(
                 particleVertexSrc, particleGeoFragmentSrc, uniformParms, uniformCount);
         }
     }
 
-    SurfaceDef.graphicsCommand.Program = Program;
-    SurfaceDef.graphicsCommand.BindUniformTextures();
+    surfaceDef_.graphicsCommand.Program = program_;
+    surfaceDef_.graphicsCommand.BindUniformTextures();
 
-    SurfaceDef.graphicsCommand.GpuState = gpuState;
+    surfaceDef_.graphicsCommand.GpuState = gpuState;
 
-    SortParticles = sortParticles;
+    sortParticles_ = sortParticles;
 
     derived_.reserve(maxParticles);
     sortIndices_.reserve(maxParticles);
@@ -159,8 +159,8 @@ ovrGpuState ovrParticleSystem::GetDefaultGpuState() {
 }
 
 int ParticleSortFn(void const* a, void const* b) {
-    if (static_cast<const particleSort_t*>(b)->DistanceSq <
-        static_cast<const particleSort_t*>(a)->DistanceSq) {
+    if (static_cast<const particleSort_t*>(b)->distanceSq <
+        static_cast<const particleSort_t*>(a)->distanceSq) {
         return -1;
     }
     return 1;
@@ -197,9 +197,9 @@ void ovrParticleSystem::Frame(
         const handle_t handle = activeParticles_[i];
         ovrParticle& p = particles_[handle.Get()];
 
-        if (frame.PredictedDisplayTime - p.StartTime > p.LifeTime) {
+        if (frame.PredictedDisplayTime - p.startTime > p.lifeTime) {
             // free expired particle
-            p.StartTime = -1.0; // mark as unused
+            p.startTime = -1.0; // mark as unused
             freeParticles_.push_back(handle);
             // Swap this slot with the last item, order doesn't matter
             activeParticles_.at(i) = activeParticles_.back();
@@ -208,23 +208,23 @@ void ovrParticleSystem::Frame(
             continue;
         }
 
-        float t = static_cast<float>(frame.PredictedDisplayTime - p.StartTime);
+        float t = static_cast<float>(frame.PredictedDisplayTime - p.startTime);
         float tSq = t * t;
 
         particleDerived_t& d = derived[activeCount];
         // x = x0 + v0 * t + 0.5f * a * t^2
-        d.Pos = p.InitialPosition + p.InitialVelocity * t + p.HalfAcceleration * tSq;
-        d.Orientation = (p.RotationRate * t) + p.InitialOrientation;
+        d.pos = p.initialPosition + p.initialVelocity * t + p.halfAcceleration * tSq;
+        d.orientation = (p.rotationRate * t) + p.initialOrientation;
 
-        d.Color = EaseFunctions[p.EaseFunc](p.InitialColor, t / p.LifeTime);
+        d.color = easeFunctions[p.easeFunc](p.initialColor, t / p.lifeTime);
 
-        d.Scale = p.InitialScale;
-        d.SpriteIndex = p.SpriteIndex;
+        d.scale = p.initialScale;
+        d.spriteIndex = p.spriteIndex;
 
         particleSort_t& ps = sortIndices[activeCount];
-        ps.ActiveIndex = activeCount;
-        ps.DistanceSq =
-            (d.Pos - viewPos).LengthSq(); // Dot( centerEyeViewMatrix.GetZBasis() );//.LengthSq();
+        ps.activeIndex = activeCount;
+        ps.distanceSq =
+            (d.pos - viewPos).LengthSq(); // Dot( centerEyeViewMatrix.GetZBasis() );//.LengthSq();
 
         activeCount++;
     }
@@ -233,7 +233,7 @@ void ovrParticleSystem::Frame(
 
     if (activeCount > 0) {
         // sort by distance to view pos
-        if (SortParticles) {
+        if (sortParticles_) {
             qsort(&sortIndices[0], activeCount, sizeof(sortIndices[0]), ParticleSortFn);
         }
 
@@ -244,30 +244,30 @@ void ovrParticleSystem::Frame(
         // transform vertices for each particle quad
         for (int i = 0; i < activeCount; ++i) {
             particleSort_t const& si = sortIndices[i];
-            particleDerived_t const& p = derived[si.ActiveIndex];
+            particleDerived_t const& p = derived[si.activeIndex];
 
             // transform vertices on the CPU
-            Matrix4f rotMatrix = Matrix4f::RotationZ(p.Orientation);
+            Matrix4f rotMatrix = Matrix4f::RotationZ(p.orientation);
             // This always aligns the particle to the direction of the particle to the view
             // position. This looks a little better but is more expensive and only really makes a
             // difference for large particles.
-            Vector3f normal = (viewPos - p.Pos).Normalized();
+            Vector3f normal = (viewPos - p.pos).Normalized();
             if (normal.LengthSq() < 0.999f) {
                 normal = GetViewMatrixForward(centerEyeViewMatrix);
             }
             Matrix4f particleTransform =
                 Matrix4f::CreateFromBasisVectors(normal, Vector3f(0.0f, 1.0f, 0.0f));
-            particleTransform.SetTranslation(p.Pos);
+            particleTransform.SetTranslation(p.pos);
 
             for (int v = 0; v < 4; ++v) {
                 attr_.position[i * 4 + v] =
-                    particleTransform.Transform(rotMatrix.Transform(quadVertPos[v] * p.Scale));
-                attr_.color[i * 4 + v] = p.Color;
+                    particleTransform.Transform(rotMatrix.Transform(quadVertPos[v] * p.scale));
+                attr_.color[i * 4 + v] = p.color;
             }
 
             if (atlas != nullptr) {
                 // set UVs of this sprite in the atlas
-                const ovrTextureAtlas::ovrSpriteDef& sd = atlas->GetSpriteDef(p.SpriteIndex);
+                const ovrTextureAtlas::ovrSpriteDef& sd = atlas->GetSpriteDef(p.spriteIndex);
                 attr_.uv0[i * 4 + 0] = Vector2f(sd.uvMins.x, sd.uvMins.y);
                 attr_.uv0[i * 4 + 1] = Vector2f(sd.uvMaxs.x, sd.uvMins.y);
                 attr_.uv0[i * 4 + 2] = Vector2f(sd.uvMaxs.x, sd.uvMaxs.y);
@@ -282,12 +282,12 @@ void ovrParticleSystem::Frame(
     }
 
     // update the geometry with new vertex attributes
-    SurfaceDef.geo.Update(attr_);
+    surfaceDef_.geo.Update(attr_);
 }
 
 void ovrParticleSystem::Shutdown() {
-    SurfaceDef.geo.Free();
-    OVRFW::GlProgram::Free(Program);
+    surfaceDef_.geo.Free();
+    OVRFW::GlProgram::Free(program_);
 }
 
 void ovrParticleSystem::RenderEyeView(
@@ -304,8 +304,8 @@ void ovrParticleSystem::RenderEyeView(
 
     // add a surface
     ovrDrawSurface surf;
-    surf.modelMatrix = ModelMatrix;
-    surf.surface = &SurfaceDef;
+    surf.modelMatrix = modelMatrix_;
+    surf.surface = &surfaceDef_;
     surfaceList.push_back(surf);
 }
 
@@ -321,7 +321,7 @@ ovrParticleSystem::handle_t ovrParticleSystem::AddParticle(
     const float scale,
     const float lifeTime,
     const uint16_t spriteIndex) {
-    ovrParticle* p;
+    ovrParticle* p = nullptr;
 
     handle_t particleHandle;
     if (!freeParticles_.empty()) {
@@ -341,17 +341,17 @@ ovrParticleSystem::handle_t ovrParticleSystem::AddParticle(
         p = &particles_[particles_.size() - 1];
     }
 
-    p->StartTime = frame.PredictedDisplayTime;
-    p->LifeTime = lifeTime;
-    p->InitialPosition = initialPosition;
-    p->InitialOrientation = initialOrientation;
-    p->InitialVelocity = initialVelocity;
-    p->HalfAcceleration = acceleration * 0.5f;
-    p->InitialColor = initialColor;
-    p->EaseFunc = easeFunc;
-    p->RotationRate = rotationRate;
-    p->InitialScale = scale;
-    p->SpriteIndex = spriteIndex;
+    p->startTime = frame.PredictedDisplayTime;
+    p->lifeTime = lifeTime;
+    p->initialPosition = initialPosition;
+    p->initialOrientation = initialOrientation;
+    p->initialVelocity = initialVelocity;
+    p->halfAcceleration = acceleration * 0.5f;
+    p->initialColor = initialColor;
+    p->easeFunc = easeFunc;
+    p->rotationRate = rotationRate;
+    p->initialScale = scale;
+    p->spriteIndex = spriteIndex;
 
     return particleHandle;
 }
@@ -374,17 +374,17 @@ void ovrParticleSystem::UpdateParticle(
         return;
     }
     ovrParticle& p = particles_[handle.Get()];
-    p.InitialPosition = position;
-    p.InitialOrientation = orientation;
-    p.InitialVelocity = velocity;
-    p.HalfAcceleration = acceleration * 0.5f;
-    p.InitialColor = color;
-    p.EaseFunc = easeFunc;
-    p.RotationRate = rotationRate;
-    p.InitialScale = scale;
-    p.SpriteIndex = spriteIndex;
-    p.StartTime = frame.PredictedDisplayTime;
-    p.LifeTime = lifeTime;
+    p.initialPosition = position;
+    p.initialOrientation = orientation;
+    p.initialVelocity = velocity;
+    p.halfAcceleration = acceleration * 0.5f;
+    p.initialColor = color;
+    p.easeFunc = easeFunc;
+    p.rotationRate = rotationRate;
+    p.initialScale = scale;
+    p.spriteIndex = spriteIndex;
+    p.startTime = frame.PredictedDisplayTime;
+    p.lifeTime = lifeTime;
 }
 
 void ovrParticleSystem::RemoveParticle(const handle_t handle) {
@@ -392,12 +392,12 @@ void ovrParticleSystem::RemoveParticle(const handle_t handle) {
         return;
     }
     // particle will get removed in the next update
-    particles_[handle.Get()].StartTime = -1.0; // mark as unused
-    particles_[handle.Get()].LifeTime = 0.0;
+    particles_[handle.Get()].startTime = -1.0; // mark as unused
+    particles_[handle.Get()].lifeTime = 0.0;
 }
 
 void ovrParticleSystem::CreateGeometry(const int maxParticles) {
-    SurfaceDef.geo.Free();
+    surfaceDef_.geo.Free();
 
     VertexAttribs attr;
     const int numVerts = maxParticles * 4;
@@ -427,7 +427,7 @@ void ovrParticleSystem::CreateGeometry(const int maxParticles) {
         indices[i * 6 + 5] = static_cast<uint16_t>(i * 4 + 2);
     }
 
-    SurfaceDef.geo.Create(attr, indices);
+    surfaceDef_.geo.Create(attr, indices);
 }
 
 } // namespace OVRFW

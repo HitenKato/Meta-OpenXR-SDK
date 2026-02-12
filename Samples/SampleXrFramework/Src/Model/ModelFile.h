@@ -48,7 +48,7 @@ class ModelFile {
     // #TODO: deprecate, we should be doing things off Nodes instead of Tags now.
     const ModelTag* FindNamedTag(const char* name) const;
 
-    OVR::Bounds3f GetBounds() const;
+    [[nodiscard]] OVR::Bounds3f GetBounds() const;
 
    public:
     std::string FileName;

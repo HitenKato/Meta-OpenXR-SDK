@@ -68,6 +68,10 @@ class OvrMetaData {
     OvrMetaData() : Version(-1.0) {}
 
     virtual ~OvrMetaData() {}
+    OvrMetaData(const OvrMetaData&) = delete;
+    OvrMetaData& operator=(const OvrMetaData&) = delete;
+    OvrMetaData(OvrMetaData&&) = delete;
+    OvrMetaData& operator=(OvrMetaData&&) = delete;
 
     // Init meta data from contents on disk
     void InitFromDirectory(
@@ -186,11 +190,13 @@ class OvrMetaData {
 
     std::shared_ptr<OVR::JSON> MetaDataToJson() const;
     void WriteMetaFile(const char* metaFile) const;
-    bool ShouldAddFile(const char* filename, const OvrMetaDataFileExtensions& fileExtensions) const;
-    void ExtractVersion(std::shared_ptr<OVR::JSON> dataFile, double& outVersion) const;
-    void ExtractCategories(
+    static bool ShouldAddFile(
+        const char* filename,
+        const OvrMetaDataFileExtensions& fileExtensions);
+    static void ExtractVersion(std::shared_ptr<OVR::JSON> dataFile, double& outVersion);
+    static void ExtractCategories(
         std::shared_ptr<OVR::JSON> dataFile,
-        std::vector<Category>& outCategories) const;
+        std::vector<Category>& outCategories);
     void ExtractMetaData(
         std::shared_ptr<OVR::JSON> dataFile,
         const std::vector<std::string>& searchPaths,

@@ -204,7 +204,7 @@ ovrParseResult ParseTypesafeNumber_int(
     size_t const MAX_TOKEN = 128;
     char token[MAX_TOKEN];
 
-    int value;
+    int value = 0;
     ovrLexer::ovrResult res = lex.ParseInt(value, 0);
     if (res != ovrLexer::LEX_RESULT_OK) {
         return ovrParseResult(res, "Error parsing '%s': expected int, got '%s'", name, token);
@@ -253,14 +253,14 @@ ovrParseResult ParseBitFlags(
 
     out = 0;
 
-    ovrLexer::ovrResult res;
+    ovrLexer::ovrResult res = ovrLexer::LEX_RESULT_OK;
     for (;;) {
         res = lex.NextToken(token, MAX_TOKEN);
         if (res != ovrLexer::LEX_RESULT_OK) {
             return ovrParseResult(res, "Error parsing '%s': expected enum, got '%s'", name, token);
         }
 
-        int e;
+        int e = 0;
         bool ok = EnumForName(atomicInfo->EnumInfos, token, e);
         if (!ok) {
             return ovrParseResult(
@@ -449,7 +449,7 @@ ovrParseResult ParseArray(
         return ovrParseResult(result, "Error parsing '%s'", name);
     }
 
-    int count;
+    int count = 0;
     if (!OVR::OVR_strcmp(token, "{")) {
         // a count of 0 for dynamic arrays means grow as items are added
         count = static_cast<int>(
@@ -782,7 +782,7 @@ ovrMemberInfo const* ovrReflection::FindMemberReflectionInfo(
 }
 
 ovrTypeInfo const* ovrReflection::FindTypeInfo(char const* typeName) {
-    assert(TypeInfoLists.size() > 0);
+    assert(!TypeInfoLists.empty());
     if (typeName == nullptr || typeName[0] == '\0') {
         return nullptr;
     }

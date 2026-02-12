@@ -135,7 +135,7 @@ void XrApp::HandleSessionStateChanges(XrSessionState state) {
         XrSessionBeginInfo sessionBeginInfo = {XR_TYPE_SESSION_BEGIN_INFO};
         sessionBeginInfo.primaryViewConfigurationType = ViewportConfig.viewConfigurationType;
 
-        XrResult result;
+        XrResult result = XR_SUCCESS;
         OXR(result = xrBeginSession(Session, &sessionBeginInfo));
         SessionActive = (result == XR_SUCCESS);
 
@@ -227,7 +227,7 @@ void XrApp::HandleXrEvents() {
         XrEventDataBaseHeader* baseEventHeader = (XrEventDataBaseHeader*)(&eventDataBuffer);
         baseEventHeader->type = XR_TYPE_EVENT_DATA_BUFFER;
         baseEventHeader->next = nullptr;
-        XrResult r;
+        XrResult r = XR_SUCCESS;
         OXR(r = PollXrEvent(&eventDataBuffer));
         if (r != XR_SUCCESS) {
             break;
@@ -331,7 +331,7 @@ XrAction XrApp::CreateAction(
 XrActionSuggestedBinding XrApp::ActionSuggestedBinding(XrAction action, const char* bindingString) {
     XrActionSuggestedBinding asb;
     asb.action = action;
-    XrPath bindingPath;
+    XrPath bindingPath = XR_NULL_PATH;
     OXR(xrStringToPath(Instance, bindingString, &bindingPath));
     asb.binding = bindingPath;
     return asb;
@@ -410,8 +410,8 @@ std::vector<const char*> XrApp::GetExtensions() {
 }
 
 std::vector<XrExtensionProperties> XrApp::GetXrExtensionProperties() const {
-    XrResult result;
-    PFN_xrEnumerateInstanceExtensionProperties xrEnumerateInstanceExtensionProperties;
+    XrResult result = XR_SUCCESS;
+    PFN_xrEnumerateInstanceExtensionProperties xrEnumerateInstanceExtensionProperties = nullptr;
     OXR(result = xrGetInstanceProcAddr(
             XR_NULL_HANDLE,
             "xrEnumerateInstanceExtensionProperties",
@@ -575,7 +575,7 @@ void XrApp::GetInitialSceneUri(std::string& sceneUri) const {
 XrInstance XrApp::CreateInstance(const xrJava& context) {
 #if defined(ANDROID)
     // Loader
-    PFN_xrInitializeLoaderKHR xrInitializeLoaderKHR;
+    PFN_xrInitializeLoaderKHR xrInitializeLoaderKHR = nullptr;
     xrGetInstanceProcAddr(
         XR_NULL_HANDLE, "xrInitializeLoaderKHR", (PFN_xrVoidFunction*)&xrInitializeLoaderKHR);
     if (xrInitializeLoaderKHR != nullptr) {
@@ -589,9 +589,9 @@ XrInstance XrApp::CreateInstance(const xrJava& context) {
 
     // Log available layers.
     {
-        XrResult result;
+        XrResult result = XR_SUCCESS;
 
-        PFN_xrEnumerateApiLayerProperties xrEnumerateApiLayerProperties;
+        PFN_xrEnumerateApiLayerProperties xrEnumerateApiLayerProperties = nullptr;
         OXR(result = xrGetInstanceProcAddr(
                 XR_NULL_HANDLE,
                 "xrEnumerateApiLayerProperties",
@@ -686,8 +686,8 @@ XrInstance XrApp::CreateInstance(const xrJava& context) {
     instanceCreateInfo.enabledExtensionCount = extensions.size();
     instanceCreateInfo.enabledExtensionNames = extensions.data();
 
-    XrInstance instance;
-    XrResult initResult;
+    XrInstance instance = XR_NULL_HANDLE;
+    XrResult initResult = XR_SUCCESS;
     OXR(initResult = xrCreateInstance(&instanceCreateInfo, &instance));
     if (initResult != XR_SUCCESS) {
         ALOGE("Failed to create XR instance: %d.", initResult);
@@ -715,8 +715,8 @@ bool XrApp::Init(const xrJava& context) {
     XrSystemGetInfo systemGetInfo = {XR_TYPE_SYSTEM_GET_INFO};
     systemGetInfo.formFactor = XR_FORM_FACTOR_HEAD_MOUNTED_DISPLAY;
 
-    XrResult initResult;
-    XrSystemId systemId;
+    XrResult initResult = XR_SUCCESS;
+    XrSystemId systemId = XR_NULL_SYSTEM_ID;
     OXR(initResult = xrGetSystem(Instance, &systemGetInfo, &systemId));
     if (initResult != XR_SUCCESS) {
         if (initResult == XR_ERROR_FORM_FACTOR_UNAVAILABLE) {
@@ -952,7 +952,7 @@ bool XrApp::InitSession() {
     sessionCreateInfo.systemId = SystemId;
 
     PreCreateSession(sessionCreateInfo);
-    XrResult initResult;
+    XrResult initResult = XR_SUCCESS;
     OXR(initResult = xrCreateSession(Instance, &sessionCreateInfo, &Session));
     if (initResult != XR_SUCCESS) {
         ALOGE("Failed to create XR session: %d.", initResult);
@@ -996,7 +996,7 @@ bool XrApp::InitSession() {
                 viewportConfig.fovMutable ? "true" : "false",
                 viewportConfig.viewConfigurationType);
 
-            uint32_t viewCount;
+            uint32_t viewCount = 0;
             OXR(xrEnumerateViewConfigurationViews(
                 Instance, SystemId, viewportConfigType, 0, &viewCount, nullptr));
 
@@ -1443,7 +1443,7 @@ bool XrApp::SessionInit() {
 
 void XrApp::SessionEnd() {}
 
-void XrApp::SessionStateChanged(XrSessionState) {}
+void XrApp::SessionStateChanged(XrSessionState /*unused*/) {}
 
 void XrApp::Update(const ovrApplFrameIn& in) {}
 
@@ -1453,8 +1453,8 @@ void XrApp::Render(const ovrApplFrameIn& in, ovrRendererOutput& out) {}
 void ActivityMainLoopContext::HandleOsEvents() {
     // Read all pending events.
     for (;;) {
-        int events;
-        struct android_poll_source* source;
+        int events = 0;
+        struct android_poll_source* source = nullptr;
         // If the timeout is zero, returns immediately without blocking.
         // If the timeout is negative, waits indefinitely until an event appears.
         const int timeoutMilliseconds =
@@ -1462,7 +1462,7 @@ void ActivityMainLoopContext::HandleOsEvents() {
              app_->destroyRequested == 0)
             ? -1
             : 0;
-        if (ALooper_pollAll(timeoutMilliseconds, nullptr, &events, (void**)&source) < 0) {
+        if (ALooper_pollOnce(timeoutMilliseconds, nullptr, &events, (void**)&source) < 0) {
             break;
         }
 
@@ -1536,7 +1536,7 @@ void XrApp::MainLoop(MainLoopContext& loopContext) {
 
         if (stageBoundsDirty) {
             XrExtent2Df stageBounds = {};
-            XrResult result;
+            XrResult result = XR_SUCCESS;
             OXR(result = xrGetReferenceSpaceBoundsRect(
                     Session, XR_REFERENCE_SPACE_TYPE_STAGE, &stageBounds));
             stageBoundsDirty = false;
@@ -1694,7 +1694,7 @@ void XrApp::Run(struct android_app* app) {
     // TODO: We should make this not required for OOPC apps.
     ANativeActivity_setWindowFlags(app->activity, AWINDOW_FLAG_KEEP_SCREEN_ON, 0);
 
-    JNIEnv* Env;
+    JNIEnv* Env = nullptr;
     (*app->activity->vm).AttachCurrentThread(&Env, nullptr);
 
     // Note that AttachCurrentThread will reset the thread name.

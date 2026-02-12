@@ -53,7 +53,7 @@ class ovrParseResult {
         return Result == ovrLexer::LEX_RESULT_OK;
     }
 
-    char const* GetErrorText() const {
+    [[nodiscard]] char const* GetErrorText() const {
         return Error.c_str();
     }
 
@@ -158,7 +158,7 @@ ovrParseResult ParseArray(
     const char* name,
     ovrLexer& lex,
     ovrTypeInfo const* arrayTypeInfo,
-    void* objPtr,
+    void* arrayPtr,
     size_t const arraySize);
 ovrParseResult ParseObject(
     ovrReflection& refl,
@@ -236,17 +236,17 @@ class ovrReflectionOverload {
         : Type(type), Scope(scope), Name(name) {}
     virtual ~ovrReflectionOverload() {}
 
-    ovrOverloadType GetType() const {
+    [[nodiscard]] ovrOverloadType GetType() const {
         return Type;
     }
-    char const* GetScope() const {
+    [[nodiscard]] char const* GetScope() const {
         return Scope.c_str();
     }
-    char const* GetName() const {
+    [[nodiscard]] char const* GetName() const {
         return Name.c_str();
     }
 
-    virtual bool OverloadsMemberVar() const {
+    [[nodiscard]] virtual bool OverloadsMemberVar() const {
         return false;
     }
 
@@ -262,10 +262,10 @@ class ovrReflectionOverload_FloatDefaultValue : public ovrReflectionOverload {
         : ovrReflectionOverload(ovrReflectionOverload::OVERLOAD_FLOAT_DEFAULT_VALUE, scope, name),
           Value(value) {}
 
-    float GetValue() const {
+    [[nodiscard]] float GetValue() const {
         return Value;
     }
-    virtual bool OverloadsMemberVar() const override {
+    [[nodiscard]] virtual bool OverloadsMemberVar() const override {
         return true;
     }
 
@@ -286,7 +286,7 @@ class ovrReflection {
     ovrMemberInfo const* FindMemberReflectionInfoRecursive(
         ovrTypeInfo const* objectTypeInfo,
         const char* memberName);
-    ovrMemberInfo const* FindMemberReflectionInfo(
+    static ovrMemberInfo const* FindMemberReflectionInfo(
         ovrMemberInfo const* arrayOfMemberType,
         const char* memberName);
     ovrTypeInfo const* FindTypeInfo(char const* typeName);
@@ -304,7 +304,7 @@ class ovrReflection {
     std::vector<ovrReflectionOverload*> Overloads;
 
     // can only be allocated and deleted by ovrReflection::Create and ovrReflection::Destroy
-    ovrReflection(){};
+    ovrReflection() {};
     virtual ~ovrReflection() {}
 };
 

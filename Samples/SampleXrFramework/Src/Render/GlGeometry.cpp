@@ -42,7 +42,7 @@ using OVR::Vector4f;
  */
 namespace OVRFW {
 
-unsigned GlGeometry::IndexType = (sizeof(TriangleIndex) == 2) ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
+unsigned GlGeometry::indexType = (sizeof(TriangleIndex) == 2) ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
 
 template <typename _attrib_type_>
 void PackVertexAttribute(
@@ -51,7 +51,7 @@ void PackVertexAttribute(
     const int glLocation,
     const int glType,
     const int glComponents) {
-    if (attrib.size() > 0) {
+    if (!attrib.empty()) {
         const size_t offset = packed.size();
         const size_t size = attrib.size() * sizeof(attrib[0]);
 
@@ -60,7 +60,13 @@ void PackVertexAttribute(
 
         glEnableVertexAttribArray(glLocation);
         glVertexAttribPointer(
-            glLocation, glComponents, glType, false, sizeof(attrib[0]), (void*)(offset));
+            glLocation,
+            glComponents,
+            glType,
+            false,
+            sizeof(attrib[0]),
+            (void*)(offset)); // NOLINT(performance-no-int-to-ptr): OpenGL API requires void* for
+                              // byte offsets in VBO
     } else {
         glDisableVertexAttribArray(glLocation);
     }
@@ -227,7 +233,7 @@ GlGeometry FontGeometryCreate(fontVertex_t* verts, int numVerts, OVR::Bounds3f& 
         GL_FLOAT,
         GL_FALSE,
         sizeof(fontVertex_t),
-        (void*)offsetof(fontVertex_t, s));
+        (void*)offsetof(fontVertex_t, s)); // NOLINT(performance-no-int-to-ptr): OpenGL API requires void* for byte offsets in VBO
 
     glEnableVertexAttribArray(VERTEX_ATTRIBUTE_LOCATION_COLOR); // color
     glVertexAttribPointer(
@@ -236,7 +242,7 @@ GlGeometry FontGeometryCreate(fontVertex_t* verts, int numVerts, OVR::Bounds3f& 
         GL_UNSIGNED_BYTE,
         GL_TRUE,
         sizeof(fontVertex_t),
-        (void*)offsetof(fontVertex_t, rgba));
+        (void*)offsetof(fontVertex_t, rgba)); // NOLINT(performance-no-int-to-ptr): OpenGL API requires void* for byte offsets in VBO
 
     glDisableVertexAttribArray(VERTEX_ATTRIBUTE_LOCATION_UV1);
 
@@ -247,7 +253,7 @@ GlGeometry FontGeometryCreate(fontVertex_t* verts, int numVerts, OVR::Bounds3f& 
         GL_UNSIGNED_BYTE,
         GL_TRUE,
         sizeof(fontVertex_t),
-        (void*)offsetof(fontVertex_t, fontParms));
+        (void*)offsetof(fontVertex_t, fontParms)); // NOLINT(performance-no-int-to-ptr): OpenGL API requires void* for byte offsets in VBO
 
     fontIndex_t* indices = new fontIndex_t[Geo.indexCount];
     const int indexByteCount = Geo.indexCount * sizeof(fontIndex_t);

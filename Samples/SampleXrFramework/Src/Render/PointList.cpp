@@ -26,7 +26,7 @@ Authors     :   Jonathan E. Wright
 ************************************************************************************/
 
 #include "PointList.h"
-#include <assert.h>
+#include <cassert>
 
 using OVR::Vector3f;
 

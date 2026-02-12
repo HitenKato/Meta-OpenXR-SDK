@@ -121,7 +121,7 @@ class ovrTextureManagerImpl : public ovrTextureManager {
 
     int FindTextureIndex(char const* uri) const;
     int FindTextureIndex(int const iconId) const;
-    int IndexForHandle(textureHandle_t const handle) const;
+    static int IndexForHandle(textureHandle_t const handle);
     textureHandle_t AllocTexture();
 
     static void SetTextureWrapping(GlTexture& tex, ovrTextureWrap const wrapType);
@@ -238,8 +238,8 @@ textureHandle_t ovrTextureManagerImpl::LoadTexture(
         return Textures[idx].GetHandle();
     }
 
-    int w;
-    int h;
+    int w = 0;
+    int h = 0;
     GlTexture tex = LoadTextureFromUri(fileSys, uri, TextureFlags_t(TEXTUREFLAG_NO_DEFAULT), w, h);
     if (!tex.IsValid()) {
         ALOG("LoadTextureFromUri( '%s' ) failed!", uri);
@@ -459,7 +459,7 @@ int ovrTextureManagerImpl::FindTextureIndex(char const* uri) const {
     // texture file loads to be eliminated during perf testing for purposes
     // of comparison
 #if 0
-	if ( Textures.size() > 0 )
+	if ( !Textures.empty() )
 	{
 		return 0;
 	}
@@ -494,7 +494,7 @@ int ovrTextureManagerImpl::FindTextureIndex(int const iconId) const {
 
 //==============================
 // ovrTextureManagerImpl::IndexForHandle
-int ovrTextureManagerImpl::IndexForHandle(textureHandle_t const handle) const {
+int ovrTextureManagerImpl::IndexForHandle(textureHandle_t const handle) {
     if (!handle.IsValid()) {
         return -1;
     }

@@ -41,14 +41,14 @@ Authors     :   Jonathan E. Wright
 #define URI_LOG(_fmt_, ...) ALOG(_fmt_, __VA_ARGS__)
 #else
 #define URI_LOG(_fmt_, ...)       \
-    if (!InUnitTest) {            \
+    if (!inUnitTest) {            \
         ALOG(_fmt_, __VA_ARGS__); \
     }
 #endif
 
 namespace OVRFW {
 
-bool ovrUri::InUnitTest = false;
+bool ovrUri::inUnitTest = false;
 
 //==============================================================
 // UTF8Decoder
@@ -99,7 +99,7 @@ class UTF8Decoder {
         PrevPrev = nullptr;
     }
 
-    char const* GetCur() const {
+    [[nodiscard]] char const* GetCur() const {
         return Cur;
     }
     void Reset() {
@@ -555,7 +555,7 @@ bool ovrUri::IsValidUri(char const* uri) {
     char username[128];
     char password[128];
     char host[256];
-    int port;
+    int port = 0;
     char path[1024];
     char query[1024];
     char fragment[1024];
@@ -633,7 +633,7 @@ static void Test(char const* testName, char const* uri, bool const isValid) {
     char username[128];
     char password[128];
     char host[256];
-    int port;
+    int port = 0;
     char path[1024];
     char query[1024];
     char fragment[1024];
@@ -671,7 +671,7 @@ static void Test(char const* testName, char const* uri, bool const isValid) {
 }
 
 void ovrUri::DoUnitTest() {
-    InUnitTest = true; // don't show debug info in release
+    inUnitTest = true; // don't show debug info in release
 
     Test("1", "file:///sdcard/oculus/360Photos/pic.jpg", true);
     Test("2", "http://puzz.s3.amazonaws.com/2008/07/galerija_equirectangular.jpg", true);
@@ -694,7 +694,7 @@ void ovrUri::DoUnitTest() {
     Test("http scheme missing host", "http://", false);
     Test("http scheme with empty host and empty path", "http:///", false);
 
-    InUnitTest = false;
+    inUnitTest = false;
 }
 
 } // namespace OVRFW

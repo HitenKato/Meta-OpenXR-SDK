@@ -371,7 +371,7 @@ void VRMenuObject::BuildDrawSurface(
     VRMenuRenderFlags_t const& flags,
     Bounds3f const& localBounds,
     std::vector<ovrDrawSurface>& surfaceList) {
-    int n;
+    int n = 0;
     if (surfaceIndex < 0) {
         // this means we're only submitting an instanced text surface
         n = 1;
@@ -1170,7 +1170,7 @@ bool VRMenuObject::IntersectRay(
         }
     }
 
-    return result.TriIndex >= 0;
+    return result.triIndex >= 0;
 }
 
 static void TransformByParentPose(
@@ -1223,8 +1223,8 @@ bool VRMenuObject::HitTest_r(
             ALOG("CullBounds are inverted!!");
             return false;
         }
-        float cullT0;
-        float cullT1;
+        float cullT0 = 0.0f;
+        float cullT1 = 0.0f;
         // any contents will hit cull bounds
         ContentFlags_t allContents(OVR::ALL_BITS);
         bool hitCullBounds = IntersectRayBounds(
@@ -1249,8 +1249,8 @@ bool VRMenuObject::HitTest_r(
         if (Flags & VRMENUOBJECT_BOUND_ALL) {
             // local bounds are the union of surface bounds and text bounds
             Bounds3f localBounds = GetLocalBounds(guiSys.GetDefaultFont()) * parentScale;
-            float t0;
-            float t1;
+            float t0 = 0.0f;
+            float t1 = 0.0f;
             bool hit = IntersectRayBounds(
                 localStart,
                 localDir,
@@ -1265,8 +1265,8 @@ bool VRMenuObject::HitTest_r(
                 result.uv = Vector2f(0.0f); // unknown
             }
         } else {
-            float selfT0;
-            float selfT1;
+            float selfT0 = 0.0f;
+            float selfT1 = 0.0f;
             OvrCollisionResult cresult;
             Bounds3f const& localBounds = GetLocalBounds(guiSys.GetDefaultFont()) * parentScale;
             assert(!localBounds.IsInverted());
@@ -1281,7 +1281,7 @@ bool VRMenuObject::HitTest_r(
                 testContents,
                 cresult);
             if (hit) {
-                // app->ShowInfoText( 0.0f, "tri: %i", (int)cresult.TriIndex );
+                // app->ShowInfoText( 0.0f, "tri: %i", (int)cresult.triIndex );
                 result = cresult;
                 result.HitHandle = Handle;
             }
@@ -1289,8 +1289,8 @@ bool VRMenuObject::HitTest_r(
             // also check vs. the text bounds if there is any text
             if (!Text.empty() && GetType() != VRMENU_CONTAINER &&
                 (Flags & VRMENUOBJECT_DONT_HIT_TEXT) == 0) {
-                float textT0;
-                float textT1;
+                float textT0 = 0.0f;
+                float textT1 = 0.0f;
                 Bounds3f bounds = GetTextLocalBounds(guiSys.GetDefaultFont()) * parentScale;
                 bool textHit = IntersectRayBounds(
                     localStart,
@@ -1401,7 +1401,7 @@ Bounds3f VRMenuObject::GetTextLocalBounds(BitmapFont const& font) const {
         if (Text.empty()) {
             TextMetrics = textMetrics_t();
         } else {
-            size_t len;
+            size_t len = 0;
 
             int const MAX_LINES = 16;
             float lineWidths[MAX_LINES];
@@ -1519,17 +1519,17 @@ Bounds3f VRMenuObject::CalcLocalBoundsForText(BitmapFont const& font, std::strin
     float localWrapScale = 1.0f;
     float scale = localScale.x * textLocalScale.x * FontParms.Scale * localWrapScale;
 
-    size_t len;
+    size_t len = 0;
     int const MAX_LINES = 16;
     float lineWidths[MAX_LINES];
     int numLines = 0;
     int requestedLines = std::clamp<int>(FontParms.MaxLines, 1, 16);
 
-    float w;
-    float h;
-    float ascent;
-    float descent;
-    float fontHeight;
+    float w = 0.0f;
+    float h = 0.0f;
+    float ascent = 0.0f;
+    float descent = 0.0f;
+    float fontHeight = 0.0f;
 
     // word-wrap the text if wrapping is specified
     if (FontParms.WrapWidth >= 0.0f && FontParms.MultiLine) {
@@ -2004,9 +2004,8 @@ void VRMenuObject::SetLocalBoundsExpand(Vector3f const mins, Vector3f const& max
 //==============================
 // VRMenuObject::SetCollisionPrimitive
 void VRMenuObject::SetCollisionPrimitive(OvrCollisionPrimitive* c) {
-    if (CollisionPrimitive != nullptr) {
-        delete CollisionPrimitive;
-    }
+    delete CollisionPrimitive;
+
     CollisionPrimitive = c;
 }
 
@@ -2291,7 +2290,7 @@ ovrParseResult VRMenuObject::ParseItemParms(
                         scope += nameToken;
                     }
 
-                    float value;
+                    float value = 0.0f;
                     res = lex.ParseFloat(value, 0.0f);
                     if (res != ovrLexer::LEX_RESULT_OK) {
                         return ovrParseResult(res, "Expected float value.");

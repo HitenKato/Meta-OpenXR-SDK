@@ -63,10 +63,10 @@ class SimpleCollisionRenderer {
         std::vector<int> noBeamIds = {},
         bool randomizeNoBeamParticleColor = false,
         bool showNoBeamParticles = true) {
-        PointerParticleColor = particleColor;
-        Scale = scale;
-        RandomizeNoBeamParticleColor = randomizeNoBeamParticleColor;
-        ShowNoBeamParticles = showNoBeamParticles;
+        pointerParticleColor = particleColor;
+        scale_ = scale;
+        randomizeNoBeamParticleColor_ = randomizeNoBeamParticleColor;
+        showNoBeamParticles_ = showNoBeamParticles;
         beamRenderer_.Init(256, true);
         UpdateNoBeamIds(noBeamIds);
 
@@ -87,11 +87,11 @@ class SimpleCollisionRenderer {
     }
 
     void ShowRandomParticleColor(bool makeRandom) {
-        RandomizeNoBeamParticleColor = makeRandom;
+        randomizeNoBeamParticleColor_ = makeRandom;
     }
 
     void ShowParticlesForSpecifiedIds(bool show) {
-        ShowNoBeamParticles = show;
+        showNoBeamParticles_ = show;
     }
 
     void UpdateNoBeamIds(const std::vector<int>& noBeamIds) {
@@ -123,13 +123,13 @@ class SimpleCollisionRenderer {
                     ((device.pointerEnd - device.pointerStart) * 0.5f).Normalized();
                 const OVR::Vector3f beamEnd = device.pointerStart + beamDir * beamLength;
                 const auto& beam =
-                    beamRenderer_.AddBeam(in, 0.015f, device.pointerStart, beamEnd, BeamColor);
+                    beamRenderer_.AddBeam(in, 0.015f, device.pointerStart, beamEnd, beamColor);
                 beams_.push_back(beam);
             }
-            if (device.hitObject && (showBeam || ShowNoBeamParticles)) {
+            if (device.hitObject && (showBeam || showNoBeamParticles_)) {
                 OVR::Vector4f currentPointerParticleColor =
-                    showBeam || !RandomizeNoBeamParticleColor
-                    ? PointerParticleColor
+                    showBeam || !randomizeNoBeamParticleColor_
+                    ? pointerParticleColor
                     : beamlessDeviceIds_[device.deviceNum];
                 const auto& particle = particleSystem_.AddParticle(
                     in,
@@ -140,7 +140,7 @@ class SimpleCollisionRenderer {
                     currentPointerParticleColor,
                     ovrEaseFunc::NONE,
                     0.0f,
-                    0.05f * Scale,
+                    0.05f * scale_,
                     0.1f,
                     0);
                 particles_.push_back(particle);
@@ -157,8 +157,8 @@ class SimpleCollisionRenderer {
     }
 
    public:
-    OVR::Vector4f PointerParticleColor = {0.5f, 0.8f, 1.0f, 1.0f};
-    OVR::Vector4f BeamColor = {0.5f, 0.8f, 1.0f, 1.0f};
+    OVR::Vector4f pointerParticleColor = {0.5f, 0.8f, 1.0f, 1.0f};
+    OVR::Vector4f beamColor = {0.5f, 0.8f, 1.0f, 1.0f};
 
    private:
     OVRFW::ovrBeamRenderer beamRenderer_;
@@ -167,9 +167,9 @@ class SimpleCollisionRenderer {
     std::unordered_map<int, OVR::Vector4f> beamlessDeviceIds_;
     std::vector<OVRFW::ovrBeamRenderer::handle_t> beams_;
     std::vector<OVRFW::ovrParticleSystem::handle_t> particles_;
-    float Scale;
-    bool RandomizeNoBeamParticleColor;
-    bool ShowNoBeamParticles;
+    float scale_;
+    bool randomizeNoBeamParticleColor_;
+    bool showNoBeamParticles_;
 };
 
 } // namespace OVRFW

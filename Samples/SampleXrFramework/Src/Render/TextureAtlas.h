@@ -82,23 +82,23 @@ class ovrTextureAtlas {
     bool
     BuildSpritesFromGrid(const int numSpriteColumns, const int numSpriteRows, const int numSprites);
 
-    int GetNumSprites() const {
+    [[nodiscard]] int GetNumSprites() const {
         return static_cast<int>(Sprites.size());
     }
-    const GlTexture& GetTexture() const {
+    [[nodiscard]] const GlTexture& GetTexture() const {
         return AtlasTexture;
     }
-    const ovrSpriteDef& GetSpriteDef(const int index) const {
+    [[nodiscard]] const ovrSpriteDef& GetSpriteDef(const int index) const {
         return Sprites[index];
     }
     const ovrSpriteDef& GetSpriteDef(const char* spriteName) const;
-    const std::string& GetTextureName() const {
+    [[nodiscard]] const std::string& GetTextureName() const {
         return TextureName;
     }
-    int GetTextureWidth() const {
+    [[nodiscard]] int GetTextureWidth() const {
         return TextureWidth;
     }
-    int GetTextureHeight() const {
+    [[nodiscard]] int GetTextureHeight() const {
         return TextureHeight;
     }
 

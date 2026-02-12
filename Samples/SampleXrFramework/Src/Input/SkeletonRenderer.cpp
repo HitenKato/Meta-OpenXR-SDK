@@ -41,7 +41,7 @@ bool ovrSkeletonRenderer::Init(OVRFW::ovrFileSys* fs) {
         ALOG("ovrSkeletonRenderer::Init FAILED -> NULL ovrFileSys.");
         return false;
     }
-    OVRFW::ovrFileSys& FileSys = *fs;
+    OVRFW::ovrFileSys& fileSys = *fs;
 
     /// Defaults
     BoneColor = OVR::Vector4f(0.0f, 0.0f, 1.0f, 1.0f);
@@ -52,7 +52,7 @@ bool ovrSkeletonRenderer::Init(OVRFW::ovrFileSys* fs) {
     /// Create Beam & Particle Renderers
     SpriteAtlas = std::make_unique<OVRFW::ovrTextureAtlas>();
     if (SpriteAtlas) {
-        SpriteAtlas->Init(FileSys, "apk:///assets/particles2.ktx");
+        SpriteAtlas->Init(fileSys, "apk:///assets/particles2.ktx");
         SpriteAtlas->BuildSpritesFromGrid(4, 2, 8);
         ParticleSystem = std::make_unique<OVRFW::ovrParticleSystem>();
         ParticleSystem->Init(
@@ -63,7 +63,7 @@ bool ovrSkeletonRenderer::Init(OVRFW::ovrFileSys* fs) {
     }
     BeamAtlas = std::make_unique<OVRFW::ovrTextureAtlas>();
     if (BeamAtlas) {
-        BeamAtlas->Init(FileSys, "apk:///assets/beams.ktx");
+        BeamAtlas->Init(fileSys, "apk:///assets/beams.ktx");
         BeamAtlas->BuildSpritesFromGrid(2, 1, 2);
         BeamRenderer = std::make_unique<OVRFW::ovrBeamRenderer>();
         BeamRenderer->Init(256, true);
@@ -130,7 +130,7 @@ void ovrSkeletonRenderer::RenderBones(
     const uint16_t beamAtlasIndex = 0;
     OVRFW::ovrParticleSystem* ps = ParticleSystem.get();
     OVRFW::ovrBeamRenderer* br = BeamRenderer.get();
-    OVRFW::ovrTextureAtlas& beamAtlas = *BeamAtlas.get();
+    OVRFW::ovrTextureAtlas& beamAtlas = *BeamAtlas;
 
     for (int i = 0; i < static_cast<int>(joints.size()); ++i) {
         const ovrJoint& joint = joints[i];

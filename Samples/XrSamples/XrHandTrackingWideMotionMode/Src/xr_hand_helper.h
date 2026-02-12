@@ -132,10 +132,6 @@ class XrHandHelper : public XrHelper {
         if (xrLocateHandJointsEXT_) {
             /// aim
             aimState_.next = nullptr;
-            /// BEGIN_SDK_REMOVE
-            wideMotionModeSource_.next = nullptr;
-            aimState_.next = &wideMotionModeSource_;
-            /// END_SDK_REMOVE
             /// scale
             scale_.next = &aimState_;
             scale_.sensorOutput = 1.0f;
@@ -165,7 +161,7 @@ class XrHandHelper : public XrHelper {
             XR_FB_HAND_TRACKING_MESH_EXTENSION_NAME,
             XR_FB_HAND_TRACKING_AIM_EXTENSION_NAME,
             XR_META_HAND_TRACKING_WIDE_MOTION_MODE_EXTENSION_NAME
-                    };
+        };
     }
 
    public:
@@ -210,7 +206,7 @@ class XrHandHelper : public XrHelper {
     const XrHandTrackingAimStateFB& AimState() const {
         return aimState_;
     }
-    
+
    private:
     bool isLeft_;
     HandType handType_;
@@ -242,4 +238,4 @@ class XrHandHelper : public XrHelper {
     XrHandTrackingAimStateFB aimState_{XR_TYPE_HAND_TRACKING_AIM_STATE_FB};
     /// location
     XrHandJointLocationsEXT locations_{XR_TYPE_HAND_JOINT_LOCATIONS_EXT};
-    };
+};

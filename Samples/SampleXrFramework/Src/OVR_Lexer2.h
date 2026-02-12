@@ -36,7 +36,7 @@ Authors     :   Jonathan E. Wright
 
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 #include <vector>
 
 namespace OVRFW {
@@ -95,8 +95,8 @@ class ovrLexer {
     ovrResult ParsePointer(unsigned char*& ptr, unsigned char* defaultVal);
     ovrResult ParseToEndOfLine(char* buffer, size_t const maxBufferSize);
 
-    ovrResult GetError() const {
-        return Error;
+    [[nodiscard]] ovrResult GetError() const {
+        return error_;
     }
 
    private:
@@ -111,20 +111,20 @@ class ovrLexer {
     uint32_t PeekNextChar();
     ovrResult SkipToEndOfLine();
 
-    void EmitCodePoint(
+    static void EmitCodePoint(
         uint32_t const ch,
         char* buffer,
         ptrdiff_t& bufferOfs,
         size_t const bufferSize,
         char* token,
-        size_t const maxTokenSize) const;
+        size_t const maxTokenSize);
 
    private:
-    const char* Source;
-    size_t SourceLength;
-    const char* p; // pointer to current position
-    ovrResult Error;
-    char* Punctuation; // UTF-8 string holding characters to lex as punctuation (may be empty)
+    const char* source_;
+    size_t sourceLength_;
+    const char* p_; // pointer to current position
+    ovrResult error_;
+    char* punctuation_; // UTF-8 string holding characters to lex as punctuation (may be empty)
 };
 
 } // namespace OVRFW

@@ -152,29 +152,29 @@ namespace OVRFW {
 void ControllerRenderer::LoadModelFromResource(
     OVRFW::ovrFileSys* fileSys,
     const char* controllerModelFile) {
-    if (Model) {
-        delete Model;
-        Model = nullptr;
+    if (model_) {
+        delete model_;
+        model_ = nullptr;
     }
     if (controllerModelFile && fileSys) {
-        ModelGlPrograms programs(&ProgControllerTexture);
+        ModelGlPrograms programs(&progControllerTexture_);
         MaterialParms materials;
-        Model = LoadModelFile(*fileSys, controllerModelFile, programs, materials);
-        if (Model != nullptr) {
-            for (auto& model : Model->Models) {
+        model_ = LoadModelFile(*fileSys, controllerModelFile, programs, materials);
+        if (model_ != nullptr) {
+            for (auto& model : model_->Models) {
                 auto& gc = model.surfaces[0].surfaceDef.graphicsCommand;
-                gc.UniformData[0].Data = &SpecularLightDirection;
-                gc.UniformData[1].Data = &SpecularLightColor;
-                gc.UniformData[2].Data = &AmbientLightColor;
+                gc.UniformData[0].Data = &specularLightDirection;
+                gc.UniformData[1].Data = &specularLightColor;
+                gc.UniformData[2].Data = &ambientLightColor;
                 gc.UniformData[3].Data = &gc.Textures[0];
                 /// gpu state needs alpha blending
                 gc.GpuState.depthEnable = gc.GpuState.depthMaskEnable = true;
                 gc.GpuState.blendEnable = ovrGpuState::BLEND_ENABLE;
                 gc.GpuState.blendSrc = ovrGpuState::kGL_SRC_ALPHA;
                 gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
-                ControllerSurfaceDef = model.surfaces[0].surfaceDef;
+                controllerSurfaceDef_ = model.surfaces[0].surfaceDef;
             }
-            ControllerSurface.surface = &(ControllerSurfaceDef);
+            controllerSurface_.surface = &(controllerSurfaceDef_);
         }
     }
 }
@@ -183,10 +183,10 @@ bool ControllerRenderer::Init(
     bool leftController,
     OVRFW::ovrFileSys* fileSys,
     const char* controllerModelFile,
-    const OVR::Matrix4f& poseCorrection) {
-    Model = nullptr;
+    const OVR::Matrix4f& poseCorrectionParam) {
+    model_ = nullptr;
 
-    PoseCorrection = poseCorrection;
+    this->poseCorrection = poseCorrectionParam;
 
     /// Shader
     auto UniformParms = std::to_array<ovrProgramParm>({
@@ -195,7 +195,7 @@ bool ControllerRenderer::Init(
         {.Name = "AmbientLightColor", .Type = ovrProgramParmType::FLOAT_VECTOR3},
         {.Name = "Texture0", .Type = ovrProgramParmType::TEXTURE_SAMPLED},
     });
-    ProgControllerTexture = GlProgram::Build(
+    progControllerTexture_ = GlProgram::Build(
         "#define USE_TEXTURE 1\n",
         Controller::VertexShaderSrc,
         "#define USE_TEXTURE 1\n",
@@ -203,7 +203,7 @@ bool ControllerRenderer::Init(
         UniformParms.data(),
         4);
 
-    ProgControllerColor = GlProgram::Build(
+    progControllerColor_ = GlProgram::Build(
         "#define USE_COLOR 1\n",
         Controller::VertexShaderSrc,
         "#define USE_COLOR 1\n",
@@ -212,13 +212,14 @@ bool ControllerRenderer::Init(
         3);
 
     /// Create surface definition
-    ControllerSurfaceDef.surfaceName = leftController ? "ControllerSurfaceL" : "ControllerSurfaceR";
+    controllerSurfaceDef_.surfaceName =
+        leftController ? "ControllerSurfaceL" : "ControllerSurfaceR";
 
     /// Atempt to load a resource if passed in
     LoadModelFromResource(fileSys, controllerModelFile);
 
     /// Build geometry from mesh
-    if (Model == nullptr) {
+    if (model_ == nullptr) {
         /// We didn't get a resource, build using gemetry primitives
         OVRFW::GeometryBuilder gb;
 
@@ -242,22 +243,22 @@ bool ControllerRenderer::Init(
             {0.6f, 0.8f, 0.25f, 1.0f},
             ringMatrix);
 
-        ControllerSurfaceDef.geo = gb.ToGeometry();
+        controllerSurfaceDef_.geo = gb.ToGeometry();
 
-        ovrGraphicsCommand& gc = ControllerSurfaceDef.graphicsCommand;
+        ovrGraphicsCommand& gc = controllerSurfaceDef_.graphicsCommand;
         gc.GpuState.cullEnable = false; // Double sided
     }
 
     /// Build the graphics command
-    ovrGraphicsCommand& gc = ControllerSurfaceDef.graphicsCommand;
+    ovrGraphicsCommand& gc = controllerSurfaceDef_.graphicsCommand;
 
     /// Program
-    gc.Program = (Model == nullptr) ? ProgControllerColor : ProgControllerTexture;
+    gc.Program = (model_ == nullptr) ? progControllerColor_ : progControllerTexture_;
     /// Uniforms to match UniformParms abovve
-    gc.UniformData[0].Data = &SpecularLightDirection;
-    gc.UniformData[1].Data = &SpecularLightColor;
-    gc.UniformData[2].Data = &AmbientLightColor;
-    if (Model != nullptr) {
+    gc.UniformData[0].Data = &specularLightDirection;
+    gc.UniformData[1].Data = &specularLightColor;
+    gc.UniformData[2].Data = &ambientLightColor;
+    if (model_ != nullptr) {
         gc.UniformData[3].Data = &gc.Textures[0];
     }
     /// gpu state needs alpha blending
@@ -267,38 +268,38 @@ bool ControllerRenderer::Init(
     gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
 
     /// Add surface
-    ControllerSurface.surface = &(ControllerSurfaceDef);
+    controllerSurface_.surface = &(controllerSurfaceDef_);
 
     /// Set defaults
-    SpecularLightDirection = OVR::Vector3f{1.0f, 1.0f, 0.0f}.Normalized();
-    SpecularLightColor = {1.0f, 0.95f, 0.8f};
-    AmbientLightColor = {0.15f, 0.15f, 0.15f};
+    specularLightDirection = OVR::Vector3f{1.0f, 1.0f, 0.0f}.Normalized();
+    specularLightColor = {1.0f, 0.95f, 0.8f};
+    ambientLightColor = {0.15f, 0.15f, 0.15f};
 
     /// Set hand
-    isLeftController = leftController;
+    isLeftController_ = leftController;
 
     /// all good
     return true;
 }
 
 void ControllerRenderer::Shutdown() {
-    OVRFW::GlProgram::Free(ProgControllerTexture);
-    OVRFW::GlProgram::Free(ProgControllerColor);
-    ControllerSurfaceDef.geo.Free();
-    if (Model != nullptr) {
-        delete Model;
-        Model = nullptr;
+    OVRFW::GlProgram::Free(progControllerTexture_);
+    OVRFW::GlProgram::Free(progControllerColor_);
+    controllerSurfaceDef_.geo.Free();
+    if (model_ != nullptr) {
+        delete model_;
+        model_ = nullptr;
     }
 }
 
 void ControllerRenderer::Update(const OVR::Posef& pose) {
     const OVR::Posef controllerPose = pose;
-    const OVR::Matrix4f matDeviceModel = OVR::Matrix4f(controllerPose) * PoseCorrection;
-    ControllerSurface.modelMatrix = matDeviceModel;
+    const OVR::Matrix4f matDeviceModel = OVR::Matrix4f(controllerPose) * poseCorrection;
+    controllerSurface_.modelMatrix = matDeviceModel;
 }
 
 void ControllerRenderer::Render(std::vector<ovrDrawSurface>& surfaceList) {
-    surfaceList.push_back(ControllerSurface);
+    surfaceList.push_back(controllerSurface_);
 }
 
 } // namespace OVRFW

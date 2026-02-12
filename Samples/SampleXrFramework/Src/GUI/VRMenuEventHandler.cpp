@@ -47,11 +47,11 @@ namespace OVRFW {
 
 //==============================
 // VRMenuEventHandler::VRMenuEventHandler
-VRMenuEventHandler::VRMenuEventHandler() {}
+VRMenuEventHandler::VRMenuEventHandler() = default;
 
 //==============================
 // VRMenuEventHandler::~VRMenuEventHandler
-VRMenuEventHandler::~VRMenuEventHandler() {}
+VRMenuEventHandler::~VRMenuEventHandler() = default;
 
 //==============================
 // VRMenuEventHandler::Frame
@@ -320,7 +320,7 @@ bool VRMenuEventHandler::DispatchToComponents(
     OvrGuiSys& guiSys,
     ovrApplFrameIn const& vrFrame,
     VRMenuEvent const& event,
-    VRMenuObject* receiver) const {
+    VRMenuObject* receiver) {
     /// assert_WITH_TAG( receiver != NULL, "VrMenu" );
 
     std::vector<VRMenuComponent*> const& list = receiver->GetComponentList();
@@ -350,7 +350,7 @@ bool VRMenuEventHandler::DispatchToPath(
     ovrApplFrameIn const& vrFrame,
     VRMenuEvent const& event,
     std::vector<menuHandle_t> const& path,
-    bool const log) const {
+    bool const log) {
     // send to the focus path only -- this list should be parent -> child order
     for (int i = 0; i < static_cast<int>(path.size()); ++i) {
         VRMenuObject* obj = guiSys.GetVRMenuMgr().ToObject(path[i]);

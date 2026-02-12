@@ -29,7 +29,7 @@ Authors     :   Jonathan E. Wright
 
 namespace OVRFW {
 
-char const* VRMenuEvent::EventTypeNames[] = {
+std::array<char const*, VRMENU_EVENT_MAX> VRMenuEvent::EventTypeNames = {
     "VRMENU_EVENT_FOCUS_GAINED",
     "VRMENU_EVENT_FOCUS_LOST",
     "VRMENU_EVENT_TOUCH_DOWN",

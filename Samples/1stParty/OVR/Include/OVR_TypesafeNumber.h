@@ -133,7 +133,7 @@ class TypesafeNumberT {
         Value = InitialValue;
     }
 
-    bool IsValid() const {
+    [[nodiscard]] bool IsValid() const {
         return Value != InitialValue;
     }
 

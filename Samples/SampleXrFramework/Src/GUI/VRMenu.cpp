@@ -57,7 +57,7 @@ inline Vector3f GetViewMatrixForward(Matrix4f const& m) {
 
 namespace OVRFW {
 
-char const* VRMenu::MenuStateNames[MENUSTATE_MAX] = {
+char const* VRMenu::menuStateNames[MENUSTATE_MAX] = {
     "MENUSTATE_OPENING",
     "MENUSTATE_OPEN",
     "MENUSTATE_CLOSING",
@@ -72,22 +72,22 @@ VRMenuId_t VRMenu::GetRootId() {
 //==============================
 // VRMenu::VRMenu
 VRMenu::VRMenu(char const* name)
-    : CurMenuState(MENUSTATE_CLOSED),
-      NextMenuState(MENUSTATE_CLOSED),
-      EventHandler(nullptr),
-      Name(name),
-      MenuDistance(1.45f),
-      IsInitialized(false),
-      ComponentsInitialized(false),
-      PostInitialized(false) {
-    EventHandler = new VRMenuEventHandler;
+    : curMenuState_(MENUSTATE_CLOSED),
+      nextMenuState_(MENUSTATE_CLOSED),
+      eventHandler_(nullptr),
+      name_(name),
+      menuDistance_(1.45f),
+      isInitialized_(false),
+      componentsInitialized_(false),
+      postInitialized_(false) {
+    eventHandler_ = new VRMenuEventHandler;
 }
 
 //==============================
 // VRMenu::~VRMenu
 VRMenu::~VRMenu() {
-    delete EventHandler;
-    EventHandler = nullptr;
+    delete eventHandler_;
+    eventHandler_ = nullptr;
 }
 
 //==============================
@@ -103,11 +103,11 @@ void VRMenu::Init(
     float const menuDistance,
     VRMenuFlags_t const& flags,
     std::vector<VRMenuComponent*> comps /*= std::vector< VRMenuComponent* >()*/) {
-    assert(!RootHandle.IsValid());
-    assert(!Name.empty());
+    assert(!rootHandle_.IsValid());
+    assert(!name_.empty());
 
-    Flags = flags;
-    MenuDistance = menuDistance;
+    flags_ = flags;
+    menuDistance_ = menuDistance;
 
     // create an empty root item
     VRMenuObjectParms rootParms(
@@ -121,15 +121,15 @@ void VRMenu::Init(
         GetRootId(),
         VRMenuObjectFlags_t(),
         VRMenuObjectInitFlags_t());
-    RootHandle = guiSys.GetVRMenuMgr().CreateObject(rootParms);
-    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(RootHandle);
+    rootHandle_ = guiSys.GetVRMenuMgr().CreateObject(rootParms);
+    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(rootHandle_);
     if (root == nullptr) {
-        ALOGW("RootHandle (%" PRIu64 ") is invalid!", RootHandle.Get());
+        ALOGW("rootHandle_ (%" PRIu64 ") is invalid!", rootHandle_.Get());
         return;
     }
 
-    IsInitialized = true;
-    ComponentsInitialized = false;
+    isInitialized_ = true;
+    componentsInitialized_ = false;
 }
 
 void VRMenu::InitWithItems(
@@ -277,7 +277,7 @@ void VRMenu::AddItems(
     }
 
     // make sure VRMENU_EVENT_INIT is sent for any new components
-    ComponentsInitialized = false;
+    componentsInitialized_ = false;
 
 #if 0
  OVR_PERF_REPORT( VerifyImageParms );
@@ -295,19 +295,19 @@ void VRMenu::Shutdown(OvrGuiSys& guiSys) {
     Shutdown_Impl(guiSys);
 
     // this will free the root and all children
-    if (RootHandle.IsValid()) {
-        guiSys.GetVRMenuMgr().FreeObject(RootHandle);
-        RootHandle.Release();
+    if (rootHandle_.IsValid()) {
+        guiSys.GetVRMenuMgr().FreeObject(rootHandle_);
+        rootHandle_.Release();
     }
 }
 
 //==============================
 // VRMenu::RepositionMenu
 void VRMenu::RepositionMenu(Matrix4f const& viewMatrix) {
-    if (Flags & VRMENU_FLAG_TRACK_GAZE) {
-        MenuPose = CalcMenuPosition(viewMatrix);
-    } else if (Flags & VRMENU_FLAG_PLACE_ON_HORIZON) {
-        MenuPose = CalcMenuPositionOnHorizon(viewMatrix);
+    if (flags_ & VRMENU_FLAG_TRACK_GAZE) {
+        menuPose_ = CalcMenuPosition(viewMatrix);
+    } else if (flags_ & VRMENU_FLAG_PLACE_ON_HORIZON) {
+        menuPose_ = CalcMenuPositionOnHorizon(viewMatrix);
     }
 }
 
@@ -323,125 +323,125 @@ void VRMenu::Frame(
     std::vector<VRMenuEvent> events;
     events.reserve(1024);
     // copy any pending events
-    for (const auto& pendingEvent : PendingEvents) {
+    for (const auto& pendingEvent : pendingEvents_) {
         events.push_back(pendingEvent);
     }
-    PendingEvents.resize(0);
+    pendingEvents_.resize(0);
 
-    if (!ComponentsInitialized) {
-        EventHandler->InitComponents(events);
-        ComponentsInitialized = true;
+    if (!componentsInitialized_) {
+        eventHandler_->InitComponents(events);
+        componentsInitialized_ = true;
     }
 
     // note we never enter this block unless our next state is different -- the switch statement
     // inside this block is dependent on this.
-    if (NextMenuState != CurMenuState) {
-        ALOG("NextMenuState for '%s': %s", GetName(), MenuStateNames[NextMenuState]);
-        switch (NextMenuState) {
+    if (nextMenuState_ != curMenuState_) {
+        ALOG("NextMenuState for '%s': %s", GetName(), menuStateNames[nextMenuState_]);
+        switch (nextMenuState_) {
             case MENUSTATE_OPENING:
-                assert(CurMenuState != NextMenuState); // logic below is dependent on this!!
-                if (CurMenuState == MENUSTATE_OPEN) {
+                assert(curMenuState_ != nextMenuState_); // logic below is dependent on this!!
+                if (curMenuState_ == MENUSTATE_OPEN) {
                     // we're already open, so just set next to OPEN, too so we don't do any
                     // transition
-                    NextMenuState = MENUSTATE_OPEN;
+                    nextMenuState_ = MENUSTATE_OPEN;
                 } else {
                     RepositionMenu(centerViewMatrix);
-                    EventHandler->Opening(events);
+                    eventHandler_->Opening(events);
                     Open_Impl(guiSys);
                 }
                 break;
             case MENUSTATE_OPEN: {
-                assert(CurMenuState != NextMenuState); // logic below is dependent on this!!
-                if (CurMenuState != MENUSTATE_OPENING) {
+                assert(curMenuState_ != nextMenuState_); // logic below is dependent on this!!
+                if (curMenuState_ != MENUSTATE_OPENING) {
                     ALOG("Instant open");
                 }
-                OpenSoundLimiter.PlayMenuSound(guiSys, Name.c_str(), "sv_release_active", 0.1);
-                EventHandler->Opened(events);
+                openSoundLimiter_.PlayMenuSound(guiSys, name_.c_str(), "sv_release_active", 0.1);
+                eventHandler_->Opened(events);
             } break;
             case MENUSTATE_CLOSING:
-                assert(CurMenuState != NextMenuState); // logic below is dependent on this!!
-                if (CurMenuState == MENUSTATE_CLOSED) {
+                assert(curMenuState_ != nextMenuState_); // logic below is dependent on this!!
+                if (curMenuState_ == MENUSTATE_CLOSED) {
                     // we're already closed, so just set next to CLOSED, too so we don't do any
                     // transition
-                    NextMenuState = MENUSTATE_CLOSED;
+                    nextMenuState_ = MENUSTATE_CLOSED;
                 } else {
-                    EventHandler->Closing(events);
+                    eventHandler_->Closing(events);
                 }
                 break;
             case MENUSTATE_CLOSED: {
-                assert(CurMenuState != NextMenuState); // logic below is dependent on this!!
-                if (CurMenuState != MENUSTATE_CLOSING) {
+                assert(curMenuState_ != nextMenuState_); // logic below is dependent on this!!
+                if (curMenuState_ != MENUSTATE_CLOSING) {
                     ALOG("Instant close");
                 }
-                CloseSoundLimiter.PlayMenuSound(guiSys, Name.c_str(), "sv_deselect", 0.1);
-                EventHandler->Closed(events);
+                closeSoundLimiter_.PlayMenuSound(guiSys, name_.c_str(), "sv_deselect", 0.1);
+                eventHandler_->Closed(events);
                 Close_Impl(guiSys);
             } break;
             default:
                 assert(!(bool)"Unhandled menu state!");
                 break;
         }
-        CurMenuState = NextMenuState;
+        curMenuState_ = nextMenuState_;
     }
 
-    switch (CurMenuState) {
+    switch (curMenuState_) {
         case MENUSTATE_OPENING:
             if (IsFinishedOpening()) {
-                NextMenuState = MENUSTATE_OPEN;
+                nextMenuState_ = MENUSTATE_OPEN;
             }
             break;
         case MENUSTATE_OPEN:
             break;
         case MENUSTATE_CLOSING:
             if (IsFinishedClosing()) {
-                NextMenuState = MENUSTATE_CLOSED;
+                nextMenuState_ = MENUSTATE_CLOSED;
             }
             break;
         case MENUSTATE_CLOSED:
             // handle remaining events -- note focus path is empty right now, but this may still
             // broadcast messages to controls
-            EventHandler->HandleEvents(guiSys, vrFrame, RootHandle, events);
-            /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame, Name.c_str() );
+            eventHandler_->HandleEvents(guiSys, vrFrame, rootHandle_, events);
+            /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame, name_.c_str() );
             return;
         default:
             assert(!(bool)"Unhandled menu state!");
             break;
     }
 
-    if (Flags & VRMENU_FLAG_TRACK_GAZE) {
-        MenuPose = CalcMenuPosition(centerViewMatrix);
-    } else if (Flags & VRMENU_FLAG_TRACK_GAZE_HORIZONTAL) {
-        MenuPose = CalcMenuPositionOnHorizon(centerViewMatrix);
+    if (flags_ & VRMENU_FLAG_TRACK_GAZE) {
+        menuPose_ = CalcMenuPosition(centerViewMatrix);
+    } else if (flags_ & VRMENU_FLAG_TRACK_GAZE_HORIZONTAL) {
+        menuPose_ = CalcMenuPositionOnHorizon(centerViewMatrix);
     }
 
     Frame_Impl(guiSys, vrFrame);
 
     {
         // OVR_PERF_TIMER( VRMenu_Frame_EventHandler_Frame );
-        EventHandler->Frame(guiSys, vrFrame, RootHandle, MenuPose, traceMat, events);
-        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_EventHandler_Frame, Name.c_str() );
+        eventHandler_->Frame(guiSys, vrFrame, rootHandle_, menuPose_, traceMat, events);
+        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_EventHandler_Frame, name_.c_str() );
     }
     {
         // OVR_PERF_TIMER( VRMenu_Frame_EventHandler_HandleEvents );
-        EventHandler->HandleEvents(guiSys, vrFrame, RootHandle, events);
-        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_EventHandler_HandleEvents, Name.c_str() );
+        eventHandler_->HandleEvents(guiSys, vrFrame, rootHandle_, events);
+        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_EventHandler_HandleEvents, name_.c_str() );
     }
 
-    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(RootHandle);
+    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(rootHandle_);
     if (root != nullptr) {
         // OVR_PERF_TIMER( VRMenu_Frame_SubmitForRendering );
         VRMenuRenderFlags_t renderFlags;
         guiSys.GetVRMenuMgr().SubmitForRendering(
-            guiSys, centerViewMatrix, RootHandle, MenuPose, renderFlags);
-        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_SubmitForRendering, Name.c_str() );
+            guiSys, centerViewMatrix, rootHandle_, menuPose_, renderFlags);
+        /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame_SubmitForRendering, name_.c_str() );
     }
 
-    if (!PostInitialized) {
+    if (!postInitialized_) {
         PostInit_Impl(guiSys, vrFrame);
-        PostInitialized = true;
+        postInitialized_ = true;
     }
 
-    /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame, Name.c_str() );
+    /// OVR_PERF_TIMER_STOP_MSG( VRMenu_Frame, name_.c_str() );
 }
 
 //==============================
@@ -460,19 +460,19 @@ void VRMenu::Open(OvrGuiSys& guiSys) {
     ALOG(
         "VRMenu::Open - '%s', pre - c: %s n: %s",
         GetName(),
-        MenuStateNames[CurMenuState],
-        MenuStateNames[NextMenuState]);
-    if (CurMenuState == MENUSTATE_OPENING) {
+        menuStateNames[curMenuState_],
+        menuStateNames[nextMenuState_]);
+    if (curMenuState_ == MENUSTATE_OPENING) {
         // this is a NOP, never allow transitioning back to the same state
         return;
     }
-    NextMenuState = MENUSTATE_OPENING;
+    nextMenuState_ = MENUSTATE_OPENING;
     guiSys.MakeActive(this);
     ALOG(
         "VRMenu::Open - %s, post - c: %s n: %s",
         GetName(),
-        MenuStateNames[CurMenuState],
-        MenuStateNames[NextMenuState]);
+        menuStateNames[curMenuState_],
+        menuStateNames[nextMenuState_]);
 }
 
 //==============================
@@ -481,24 +481,24 @@ void VRMenu::Close(OvrGuiSys& guiSys, bool const instant) {
     ALOG(
         "VRMenu::Close - %s, pre - c: %s n: %s",
         GetName(),
-        MenuStateNames[CurMenuState],
-        MenuStateNames[NextMenuState]);
-    if (CurMenuState == MENUSTATE_CLOSING) {
+        menuStateNames[curMenuState_],
+        menuStateNames[nextMenuState_]);
+    if (curMenuState_ == MENUSTATE_CLOSING) {
         // this is a NOP, never allow transitioning back to the same state
         return;
     }
-    NextMenuState = instant ? MENUSTATE_CLOSED : MENUSTATE_CLOSING;
+    nextMenuState_ = instant ? MENUSTATE_CLOSED : MENUSTATE_CLOSING;
     ALOG(
         "VRMenu::Close - %s, post - c: %s n: %s",
         GetName(),
-        MenuStateNames[CurMenuState],
-        MenuStateNames[NextMenuState]);
+        menuStateNames[curMenuState_],
+        menuStateNames[nextMenuState_]);
 }
 
 //==============================
 // VRMenu::HandleForId
 menuHandle_t VRMenu::HandleForId(OvrVRMenuMgr const& menuMgr, VRMenuId_t const id) const {
-    VRMenuObject* root = menuMgr.ToObject(RootHandle);
+    VRMenuObject* root = menuMgr.ToObject(rootHandle_);
     assert(root != nullptr);
     return root->ChildHandleForId(menuMgr, id);
 }
@@ -506,7 +506,7 @@ menuHandle_t VRMenu::HandleForId(OvrVRMenuMgr const& menuMgr, VRMenuId_t const i
 //==============================
 // VRMenu::ObjectForId
 VRMenuObject* VRMenu::ObjectForId(OvrGuiSys const& guiSys, VRMenuId_t const id) const {
-    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(RootHandle);
+    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(rootHandle_);
     assert(root != nullptr);
     menuHandle_t handle = root->ChildHandleForId(guiSys.GetVRMenuMgr(), id);
     return guiSys.GetVRMenuMgr().ToObject(handle);
@@ -515,7 +515,7 @@ VRMenuObject* VRMenu::ObjectForId(OvrGuiSys const& guiSys, VRMenuId_t const id) 
 //==============================
 // VRMenu::HandleForName
 menuHandle_t VRMenu::HandleForName(OvrVRMenuMgr const& menuMgr, char const* name) const {
-    VRMenuObject* root = menuMgr.ToObject(RootHandle);
+    VRMenuObject* root = menuMgr.ToObject(rootHandle_);
     assert(root != nullptr);
     return root->ChildHandleForName(menuMgr, name);
 }
@@ -523,7 +523,7 @@ menuHandle_t VRMenu::HandleForName(OvrVRMenuMgr const& menuMgr, char const* name
 //==============================
 // VRMenu::ObjectForName
 VRMenuObject* VRMenu::ObjectForName(OvrGuiSys const& guiSys, char const* name) const {
-    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(RootHandle);
+    VRMenuObject* root = guiSys.GetVRMenuMgr().ToObject(rootHandle_);
     assert(root != nullptr);
     menuHandle_t handle = root->ChildHandleForName(guiSys.GetVRMenuMgr(), name);
     return guiSys.GetVRMenuMgr().ToObject(handle);
@@ -552,7 +552,7 @@ Posef VRMenu::CalcMenuPosition(Matrix4f const& viewMatrix) const {
     Quatf fullRotation = rotation * viewRot;
     fullRotation.Normalize();
 
-    Vector3f position(viewPos + viewFwd * MenuDistance);
+    Vector3f position(viewPos + viewFwd * menuDistance_);
 
     return Posef(fullRotation, position);
 }
@@ -581,7 +581,7 @@ Posef VRMenu::CalcMenuPositionOnHorizon(Matrix4f const& viewMatrix) const {
     Quatf fullRotation = /*rotation * */ viewRot;
     fullRotation.Normalize();
 
-    Vector3f position(viewPos + horizontalFwd * MenuDistance);
+    Vector3f position(viewPos + horizontalFwd * menuDistance_);
 
     return Posef(fullRotation, position);
 }
@@ -643,8 +643,8 @@ void VRMenu::OnItemEvent_Impl(
 //==============================
 // VRMenu::GetFocusedHandle()
 menuHandle_t VRMenu::GetFocusedHandle() const {
-    if (EventHandler != nullptr) {
-        return EventHandler->GetFocusedHandle();
+    if (eventHandler_ != nullptr) {
+        return eventHandler_->GetFocusedHandle();
     }
     return menuHandle_t();
 }
@@ -675,7 +675,7 @@ void VRMenu::SetSelected(VRMenuObject* obj, bool const selected) {
                 Vector3f(0.0f),
                 HitTestResult(),
                 "");
-            PendingEvents.push_back(ev);
+            pendingEvents_.push_back(ev);
         }
     }
 }

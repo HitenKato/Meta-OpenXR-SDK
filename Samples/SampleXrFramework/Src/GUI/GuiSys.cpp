@@ -100,7 +100,7 @@ class OvrPointTracker {
         Rate = r;
     }
 
-    Vector3f const& GetCurPosition() const {
+    [[nodiscard]] Vector3f const& GetCurPosition() const {
         return CurPosition;
     }
 
@@ -167,12 +167,13 @@ class OvrGuiSysLocal : public OvrGuiSys {
 
     virtual void ResetMenuOrientations(Matrix4f const& viewMatrix) override;
 
-    virtual HitTestResult TestRayIntersection(const Vector3f& start, const Vector3f& dir)
-        const override;
+    [[nodiscard]] virtual HitTestResult TestRayIntersection(
+        const Vector3f& start,
+        const Vector3f& dir) const override;
 
     virtual void AddMenu(VRMenu* menu) override;
     virtual VRMenu* GetMenu(char const* menuName) const override;
-    virtual std::vector<std::string> GetAllMenuNames() const override;
+    [[nodiscard]] virtual std::vector<std::string> GetAllMenuNames() const override;
     virtual void DestroyMenu(VRMenu* menu) override;
 
     virtual void OpenMenu(char const* name) override;
@@ -181,8 +182,8 @@ class OvrGuiSysLocal : public OvrGuiSys {
     virtual void CloseMenu(VRMenu* menu, bool const closeInstantly) override;
 
     virtual bool IsMenuActive(char const* menuName) const override;
-    virtual bool IsAnyMenuActive() const override;
-    virtual bool IsAnyMenuOpen() const override;
+    [[nodiscard]] virtual bool IsAnyMenuActive() const override;
+    [[nodiscard]] virtual bool IsAnyMenuOpen() const override;
 
     virtual void ShowInfoText(float const duration, const char* fmt, ...) override;
     virtual void ShowInfoText(
@@ -201,7 +202,7 @@ class OvrGuiSysLocal : public OvrGuiSys {
     virtual OvrVRMenuMgr& GetVRMenuMgr() override {
         return *MenuMgr;
     }
-    virtual OvrVRMenuMgr const& GetVRMenuMgr() const override {
+    [[nodiscard]] virtual OvrVRMenuMgr const& GetVRMenuMgr() const override {
         return *MenuMgr;
     };
     virtual OvrGazeCursor& GetGazeCursor() override {
@@ -210,7 +211,7 @@ class OvrGuiSysLocal : public OvrGuiSys {
     virtual BitmapFont& GetDefaultFont() override {
         return *DefaultFont;
     }
-    virtual BitmapFont const& GetDefaultFont() const override {
+    [[nodiscard]] virtual BitmapFont const& GetDefaultFont() const override {
         return *DefaultFont;
     }
     virtual BitmapFontSurface& GetDefaultFontSurface() override {
@@ -229,7 +230,7 @@ class OvrGuiSysLocal : public OvrGuiSys {
     virtual ovrReflection& GetReflection() override {
         return *Reflection;
     }
-    virtual ovrReflection const& GetReflection() const override {
+    [[nodiscard]] virtual ovrReflection const& GetReflection() const override {
         return *Reflection;
     }
 

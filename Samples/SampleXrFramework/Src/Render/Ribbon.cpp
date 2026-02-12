@@ -90,7 +90,7 @@ static GlTexture CreateRibbonTexture() {
 }
 
 ovrRibbon::ovrRibbon(const ovrPointList& pointList, const float width, const Vector4f& color)
-    : HalfWidth(width), Color(color) {
+    : halfWidth_(width), color_(color) {
     // initialize the surface geometry
     const int maxPoints = pointList.GetMaxPoints();
     const int maxQuads = (maxPoints - 1);
@@ -117,19 +117,19 @@ ovrRibbon::ovrRibbon(const ovrPointList& pointList, const float width, const Vec
         v += 4;
     }
 
-    Surface.geo.Create(attr, indices);
-    Surface.geo.primitiveType = GlGeometry::kPrimitiveTypeTriangles;
-    Surface.geo.indexCount = 0;
+    surface_.geo.Create(attr, indices);
+    surface_.geo.primitiveType = GlGeometry::kPrimitiveTypeTriangles;
+    surface_.geo.indexCount = 0;
 
     // initialize the rest of the surface
-    Surface.surfaceName = "ribbon";
-    Surface.numInstances = 1;
+    surface_.surfaceName = "ribbon";
+    surface_.numInstances = 1;
 
-    ovrGraphicsCommand& gc = Surface.graphicsCommand;
+    ovrGraphicsCommand& gc = surface_.graphicsCommand;
 
-    Texture = CreateRibbonTexture();
+    texture_ = CreateRibbonTexture();
 #if 1
-    gc.UniformData[0].Data = &Texture;
+    gc.UniformData[0].Data = &texture_;
 
     constexpr auto parms = std::to_array<ovrProgramParm>({
         {.Name = "Texture0", .Type = ovrProgramParmType::TEXTURE_SAMPLED},
@@ -141,7 +141,7 @@ ovrRibbon::ovrRibbon(const ovrPointList& pointList, const float width, const Vec
     gc.Program = GlProgram::Build(ribbonVertexShader, ribbonFragmentShader, nullptr, 0);
 #endif
 
-    if (!Surface.graphicsCommand.Program.IsValid()) {
+    if (!surface_.graphicsCommand.Program.IsValid()) {
         ALOG("Error building ribbon gpu program");
     }
 
@@ -157,9 +157,9 @@ ovrRibbon::ovrRibbon(const ovrPointList& pointList, const float width, const Vec
 }
 
 ovrRibbon::~ovrRibbon() {
-    DeleteTexture(Texture);
-    GlProgram::Free(Surface.graphicsCommand.Program);
-    Surface.geo.Free();
+    DeleteTexture(texture_);
+    GlProgram::Free(surface_.graphicsCommand.Program);
+    surface_.geo.Free();
 }
 
 void ovrRibbon::AddPoint(ovrPointList& pointList, const OVR::Vector3f& point) {
@@ -179,11 +179,11 @@ void ovrRibbon::AddPoint(ovrPointList& pointList, const OVR::Vector3f& point) {
 }
 
 void ovrRibbon::SetColor(const OVR::Vector4f& color) {
-    Color = color;
+    color_ = color;
 }
 
 void ovrRibbon::SetWidth(const float width) {
-    HalfWidth = width;
+    halfWidth_ = width;
 }
 
 void ovrRibbon::Update(
@@ -229,10 +229,10 @@ void ovrRibbon::Update(
     float alpha = calcAlpha(curEdge, pointList.GetCurPoints(), invertAlpha);
 
     // cur edge
-    attr.position[(numQuads * 4) + 0] = *curPoint + (edgeDir * HalfWidth);
-    attr.color[(numQuads * 4) + 0] = Vector4f(Color.x, Color.y, Color.z, alpha);
-    attr.position[(numQuads * 4) + 1] = *curPoint - (edgeDir * HalfWidth);
-    attr.color[(numQuads * 4) + 1] = Vector4f(Color.x, Color.y, Color.z, alpha);
+    attr.position[(numQuads * 4) + 0] = *curPoint + (edgeDir * halfWidth_);
+    attr.color[(numQuads * 4) + 0] = Vector4f(color_.x, color_.y, color_.z, alpha);
+    attr.position[(numQuads * 4) + 1] = *curPoint - (edgeDir * halfWidth_);
+    attr.color[(numQuads * 4) + 1] = Vector4f(color_.x, color_.y, color_.z, alpha);
     attr.uv0[(numQuads * 4) + 0] = OVR::Vector2f(0.0f, 0.0f);
     attr.uv0[(numQuads * 4) + 1] = OVR::Vector2f(0.0f, 1.0f);
 
@@ -245,10 +245,10 @@ void ovrRibbon::Update(
         alpha = calcAlpha(curEdge, pointList.GetCurPoints(), invertAlpha);
 
         // current quad next edge
-        attr.position[(numQuads * 4) + 2] = *nextPoint + (edgeDir * HalfWidth * alpha);
-        attr.color[(numQuads * 4) + 2] = Vector4f(Color.x, Color.y, Color.z, alpha);
-        attr.position[(numQuads * 4) + 3] = *nextPoint - (edgeDir * HalfWidth * alpha);
-        attr.color[(numQuads * 4) + 3] = Vector4f(Color.x, Color.y, Color.z, alpha);
+        attr.position[(numQuads * 4) + 2] = *nextPoint + (edgeDir * halfWidth_ * alpha);
+        attr.color[(numQuads * 4) + 2] = Vector4f(color_.x, color_.y, color_.z, alpha);
+        attr.position[(numQuads * 4) + 3] = *nextPoint - (edgeDir * halfWidth_ * alpha);
+        attr.color[(numQuads * 4) + 3] = Vector4f(color_.x, color_.y, color_.z, alpha);
 
         attr.uv0[(numQuads * 4) + 2] = OVR::Vector2f(1.0f, 0.0f);
         attr.uv0[(numQuads * 4) + 3] = OVR::Vector2f(1.0f, 1.0f);
@@ -264,28 +264,28 @@ void ovrRibbon::Update(
         alpha = calcAlpha(curEdge, pointList.GetCurPoints(), invertAlpha);
 
         // next quad first edge
-        attr.position[(numQuads * 4) + 0] = *nextPoint + (edgeDir * HalfWidth * alpha);
-        attr.color[(numQuads * 4) + 0] = Vector4f(Color.x, Color.y, Color.z, alpha);
-        attr.position[(numQuads * 4) + 1] = *nextPoint - (edgeDir * HalfWidth * alpha);
-        attr.color[(numQuads * 4) + 1] = Vector4f(Color.x, Color.y, Color.z, alpha);
+        attr.position[(numQuads * 4) + 0] = *nextPoint + (edgeDir * halfWidth_ * alpha);
+        attr.color[(numQuads * 4) + 0] = Vector4f(color_.x, color_.y, color_.z, alpha);
+        attr.position[(numQuads * 4) + 1] = *nextPoint - (edgeDir * halfWidth_ * alpha);
+        attr.color[(numQuads * 4) + 1] = Vector4f(color_.x, color_.y, color_.z, alpha);
         attr.uv0[(numQuads * 4) + 0] = OVR::Vector2f(0.0f, 0.0f);
         attr.uv0[(numQuads * 4) + 1] = OVR::Vector2f(0.0f, 1.0f);
     }
 
     // ALOG( "Ribbon: %i points, %i edges, %i quads", pointList.GetCurPoints(), curEdge, numQuads );
     // update the vertices
-    Surface.geo.Update(attr, false);
-    Surface.geo.indexCount = numQuads * 6;
+    surface_.geo.Update(attr, false);
+    surface_.geo.indexCount = numQuads * 6;
 }
 
 void ovrRibbon::GenerateSurfaceList(std::vector<ovrDrawSurface>& surfaceList) const {
-    if (Surface.geo.indexCount == 0) {
+    if (surface_.geo.indexCount == 0) {
         return;
     }
 
     ovrDrawSurface drawSurf;
     drawSurf.modelMatrix = Matrix4f::Identity();
-    drawSurf.surface = &Surface;
+    drawSurf.surface = &surface_;
 
     surfaceList.push_back(drawSurf);
 }

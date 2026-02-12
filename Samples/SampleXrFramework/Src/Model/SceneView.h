@@ -82,7 +82,7 @@ class OvrSceneView {
     ovrSurfaceDef* FindNamedSurface(const char* name) const;
     const ModelTexture* FindNamedTexture(const char* name) const;
     const ModelTag* FindNamedTag(const char* name) const;
-    OVR::Bounds3f GetBounds() const;
+    [[nodiscard]] OVR::Bounds3f GetBounds() const;
 
     // Returns the new modelIndex
     int AddModel(ModelInScene* model);
@@ -114,17 +114,17 @@ class OvrSceneView {
         return EmitSurfaces;
     }
 
-    float GetEyeYaw() const {
+    [[nodiscard]] float GetEyeYaw() const {
         return EyeYaw;
     }
-    float GetEyePitch() const {
+    [[nodiscard]] float GetEyePitch() const {
         return EyePitch;
     }
-    float GetEyeRoll() const {
+    [[nodiscard]] float GetEyeRoll() const {
         return EyeRoll;
     }
 
-    float GetYawOffset() const {
+    [[nodiscard]] float GetYawOffset() const {
         return SceneYaw;
     }
     void SetYawOffset(const float yaw) {
@@ -132,7 +132,7 @@ class OvrSceneView {
         SceneYaw = yaw;
     }
 
-    float GetZnear() const {
+    [[nodiscard]] float GetZnear() const {
         return Znear;
     }
     void SetZnear(float z) {
@@ -142,7 +142,7 @@ class OvrSceneView {
     void SetMoveSpeed(const float speed) {
         MoveSpeed = speed;
     }
-    float GetMoveSpeed() const {
+    [[nodiscard]] float GetMoveSpeed() const {
         return MoveSpeed;
     }
 
@@ -151,27 +151,27 @@ class OvrSceneView {
     }
 
     // Derived from state after last Frame()
-    const OVR::Vector3f& GetFootPos() const {
+    [[nodiscard]] const OVR::Vector3f& GetFootPos() const {
         return FootPos;
     }
     void SetFootPos(const OVR::Vector3f& pos, bool updateCenterEye = true);
 
-    OVR::Vector3f GetNeutralHeadCenter() const; // FootPos + EyeHeight
-    OVR::Vector3f GetCenterEyePosition() const;
-    OVR::Vector3f GetCenterEyeForward() const;
-    OVR::Matrix4f GetCenterEyeTransform() const;
-    OVR::Matrix4f GetCenterEyeViewMatrix() const;
-    OVR::Matrix4f GetSceneCoordinateTransform() const;
+    [[nodiscard]] OVR::Vector3f GetNeutralHeadCenter() const; // FootPos + EyeHeight
+    [[nodiscard]] OVR::Vector3f GetCenterEyePosition() const;
+    [[nodiscard]] OVR::Vector3f GetCenterEyeForward() const;
+    [[nodiscard]] OVR::Matrix4f GetCenterEyeTransform() const;
+    [[nodiscard]] OVR::Matrix4f GetCenterEyeViewMatrix() const;
+    [[nodiscard]] OVR::Matrix4f GetSceneCoordinateTransform() const;
 
-    OVR::Matrix4f GetEyeViewMatrix(const int eye) const;
-    OVR::Matrix4f
+    [[nodiscard]] OVR::Matrix4f GetEyeViewMatrix(const int eye) const;
+    [[nodiscard]] OVR::Matrix4f
     GetEyeProjectionMatrix(const int eye, const float fovDegreesX, const float fovDegreesY) const;
-    OVR::Matrix4f GetEyeViewProjectionMatrix(
+    [[nodiscard]] OVR::Matrix4f GetEyeViewProjectionMatrix(
         const int eye,
         const float fovDegreesX,
         const float fovDegreesY) const;
 
-    float GetEyeHeight() const;
+    [[nodiscard]] float GetEyeHeight() const;
 
     // When head tracking is reset, any joystick offsets should be cleared
     // so the viewer is looking ehere the application wants.

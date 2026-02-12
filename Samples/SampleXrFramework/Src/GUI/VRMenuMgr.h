@@ -58,10 +58,10 @@ class OvrVRMenuMgr {
     // also remove the child from the parent.
     virtual void FreeObject(menuHandle_t const handle) = 0;
     // Returns true if the handle is valid.
-    virtual bool IsValid(menuHandle_t const handle) const = 0;
+    [[nodiscard]] virtual bool IsValid(menuHandle_t const handle) const = 0;
     // Return the object for a menu handle or NULL if the object does not exist or the
     // handle is invalid;
-    virtual VRMenuObject* ToObject(menuHandle_t const handle) const = 0;
+    [[nodiscard]] virtual VRMenuObject* ToObject(menuHandle_t const handle) const = 0;
 
     // Submits the specified menu object and its children
     virtual void SubmitForRendering(
@@ -78,7 +78,8 @@ class OvrVRMenuMgr {
         OVR::Matrix4f const& centerViewMatrix,
         std::vector<ovrDrawSurface>& surfaceList) = 0;
 
-    virtual GlProgram const* GetGUIGlProgram(eGUIProgramType const programType) const = 0;
+    [[nodiscard]] virtual GlProgram const* GetGUIGlProgram(
+        eGUIProgramType const programType) const = 0;
 
    private:
     // Called only from VRMenuObject.

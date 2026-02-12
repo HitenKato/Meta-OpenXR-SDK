@@ -27,8 +27,8 @@ Authors     :   Federico Schliemann
 
 #include "TinyUI.h"
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 #include <sstream>
 #include <iomanip>
 #include <fstream>
@@ -51,7 +51,7 @@ using OVR::Vector4f;
 
 namespace OVRFW {
 
-static const char* MenuDefinitionFile = R"menu_definition(
+static const char* menuDefinitionFile = R"menu_definition(
 itemParms {
   // panel
   VRMenuObjectParms {
@@ -115,9 +115,9 @@ class SimpleTargetMenu : public OVRFW::VRMenu {
         std::vector<uint8_t> buffer;
         std::vector<OVRFW::VRMenuObjectParms const*> itemParms;
 
-        size_t bufferLen = OVR::OVR_strlen(MenuDefinitionFile);
+        size_t bufferLen = OVR::OVR_strlen(menuDefinitionFile);
         buffer.resize(bufferLen + 1);
-        memcpy(buffer.data(), MenuDefinitionFile, bufferLen);
+        memcpy(buffer.data(), menuDefinitionFile, bufferLen);
         buffer[bufferLen] = '\0';
 
         OVRFW::ovrParseResult parseResult = OVRFW::VRMenuObject::ParseItemParms(
@@ -145,29 +145,29 @@ class SimpleTargetMenu : public OVRFW::VRMenu {
         DeletePointerArray(itemParms);
     }
 
-    virtual ~SimpleTargetMenu(){};
+    virtual ~SimpleTargetMenu() = default;
 };
 
 bool TinyUI::Init(
     const xrJava* context,
-    OVRFW::ovrFileSys* FileSys,
+    OVRFW::ovrFileSys* fileSys,
     bool updateColors /* = true */,
     int fontVertexBufferSize /* = 0 */) {
     const xrJava* java = context;
     UpdateColors = updateColors;
 
     /// Leftovers that aren't used
-    auto* SoundEffectPlayer = new OvrGuiSys::ovrDummySoundEffectPlayer();
-    if (nullptr == SoundEffectPlayer) {
+    auto* soundEffectPlayer = new OvrGuiSys::ovrDummySoundEffectPlayer();
+    if (nullptr == soundEffectPlayer) {
         ALOGE("Couldn't create SoundEffectPlayer");
         return false;
     }
-    auto* DebugLines = OvrDebugLines::Create();
-    if (nullptr == DebugLines) {
+    auto* debugLines = OvrDebugLines::Create();
+    if (nullptr == debugLines) {
         ALOGE("Couldn't create DebugLines");
         return false;
     }
-    DebugLines->Init();
+    debugLines->Init();
 
     /// Needed for FONTS
     Locale = ovrLocale::Create(*java->Env, java->ActivityObject, "default");
@@ -186,9 +186,9 @@ bool TinyUI::Init(
 
     if (fontVertexBufferSize > 0) {
         GuiSys->Init(
-            FileSys, *SoundEffectPlayer, fontName.c_str(), DebugLines, fontVertexBufferSize);
+            fileSys, *soundEffectPlayer, fontName.c_str(), debugLines, fontVertexBufferSize);
     } else { // Rely on default value for fontVertexBufferSize
-        GuiSys->Init(FileSys, *SoundEffectPlayer, fontName.c_str(), DebugLines);
+        GuiSys->Init(fileSys, *soundEffectPlayer, fontName.c_str(), debugLines);
     }
 
     return true;
@@ -413,7 +413,7 @@ void TinyUI::SetUnhandledClickHandler(const std::function<void(void)>& postHandl
 }
 
 void TinyUI::RemoveParentMenu(OVRFW::VRMenuObject* menuObject) {
-    auto menuObjectIter = std::find(AllElements.begin(), AllElements.end(), menuObject);
+    auto menuObjectIter = std::ranges::find(AllElements, menuObject);
     AllElements.erase(menuObjectIter);
 
     // Destroying the menu will destroy the corresponding VRMenuObjects as well

@@ -205,7 +205,7 @@ OvrGazeCursorLocal::OvrGazeCursorLocal()
 
 //==============================
 // OvrGazeCursorLocal::OvrGazeCursorLocal
-OvrGazeCursorLocal::~OvrGazeCursorLocal() {}
+OvrGazeCursorLocal::~OvrGazeCursorLocal() = default;
 
 //==============================
 // OvrGazeCursorLocal::
@@ -312,17 +312,17 @@ void OvrGazeCursorLocal::Shutdown() {
 // OvrGazeCursorLocal::UpdateDistance
 void OvrGazeCursorLocal::UpdateDistance(float const d, eGazeCursorStateType const state) {
     // ALOG( "OvrGazeCursorLocal::UpdateDistance %.4f", d );
-    if (d < Info.Distance) {
+    if (d < Info.distance) {
         // ALOG( "OvrGazeCursorLocal::UpdateDistance - new closest distace %.2f", d );
-        Info.Distance = d;
-        Info.State = state;
+        Info.distance = d;
+        Info.state = state;
     }
 }
 //==============================
 // OvrGazeCursorLocal::ForceDistance
 void OvrGazeCursorLocal::ForceDistance(float const d, eGazeCursorStateType const state) {
-    Info.Distance = d;
-    Info.State = state;
+    Info.distance = d;
+    Info.state = state;
 }
 
 //==============================
@@ -358,7 +358,7 @@ void OvrGazeCursorLocal::Frame(
     const Vector3f tracePos(traceMatrix.GetTranslation());
     const Vector3f traceFwd(GetViewMatrixForward(traceMatrix.Inverted()));
 
-    Vector3f position = tracePos + traceFwd * (Info.Distance - DistanceOffset);
+    Vector3f position = tracePos + traceFwd * (Info.distance - DistanceOffset);
 
     Matrix4f viewRot = Matrix4f::LookAtRH(viewPos, position, GetViewMatrixUp(viewMatrix));
 
@@ -389,7 +389,7 @@ void OvrGazeCursorLocal::Frame(
             Matrix4f& scatter = CursorScatterTransform[(CurrentTransform + i) % TRAIL_GHOSTS];
 
             // random point in circle
-            float rx, ry;
+            float rx = 0.0f, ry = 0.0f;
             while (true) {
                 rx = frand();
                 ry = frand();

@@ -27,7 +27,7 @@ Authors     :   John Carmack
 
 #include "SurfaceTexture.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "Misc/Log.h"
 #include "Egl.h"

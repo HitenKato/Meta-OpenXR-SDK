@@ -59,8 +59,10 @@ typedef enum SamplesLogPriority {
 void LogWithFilenameTag(const int priority, const char* filename, const char* fmt, ...);
 void VLogWithFilenameTag(const int priority, const char* filename, const char* fmt, va_list args);
 
-#define ALOGE(...) \
-    { LogWithFilenameTag(SAMPLES_LOG_ERROR, __FILE__, __VA_ARGS__); }
+#define ALOGE(...)                                                    \
+    {                                                                 \
+        LogWithFilenameTag(SAMPLES_LOG_ERROR, __FILE__, __VA_ARGS__); \
+    }
 
 #define ALOGE_FAIL(...)                                               \
     {                                                                 \
@@ -70,14 +72,20 @@ void VLogWithFilenameTag(const int priority, const char* filename, const char* f
 
 #if 1 // DEBUG
 
-#define ALOG(...) \
-    { LogWithFilenameTag(SAMPLES_LOG_INFO, __FILE__, __VA_ARGS__); }
+#define ALOG(...)                                                    \
+    {                                                                \
+        LogWithFilenameTag(SAMPLES_LOG_INFO, __FILE__, __VA_ARGS__); \
+    }
 
-#define ALOGV(...) \
-    { LogWithFilenameTag(SAMPLES_LOG_VERBOSE, __FILE__, __VA_ARGS__); }
+#define ALOGV(...)                                                      \
+    {                                                                   \
+        LogWithFilenameTag(SAMPLES_LOG_VERBOSE, __FILE__, __VA_ARGS__); \
+    }
 
-#define ALOGW(...) \
-    { LogWithFilenameTag(SAMPLES_LOG_WARN, __FILE__, __VA_ARGS__); }
+#define ALOGW(...)                                                   \
+    {                                                                \
+        LogWithFilenameTag(SAMPLES_LOG_WARN, __FILE__, __VA_ARGS__); \
+    }
 
 #else
 #define ALOGV(...)

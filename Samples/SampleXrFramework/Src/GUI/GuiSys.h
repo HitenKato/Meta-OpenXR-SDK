@@ -111,8 +111,9 @@ class OvrGuiSys {
 
     virtual void ResetMenuOrientations(OVR::Matrix4f const& viewMatrix) = 0;
 
-    virtual HitTestResult TestRayIntersection(const OVR::Vector3f& start, const OVR::Vector3f& dir)
-        const = 0;
+    [[nodiscard]] virtual HitTestResult TestRayIntersection(
+        const OVR::Vector3f& start,
+        const OVR::Vector3f& dir) const = 0;
 
     //-------------------------------------------------------------
     // Menu management
@@ -126,7 +127,7 @@ class OvrGuiSys {
     virtual VRMenu* GetMenu(char const* menuName) const = 0;
 
     // Return a list of all the menu names
-    virtual std::vector<std::string> GetAllMenuNames() const = 0;
+    [[nodiscard]] virtual std::vector<std::string> GetAllMenuNames() const = 0;
 
     // Opens a menu and places it in the active list
     virtual void OpenMenu(char const* name) = 0;
@@ -137,8 +138,8 @@ class OvrGuiSys {
     virtual void CloseMenu(VRMenu* menu, bool const closeInstantly) = 0;
 
     virtual bool IsMenuActive(char const* menuName) const = 0;
-    virtual bool IsAnyMenuActive() const = 0;
-    virtual bool IsAnyMenuOpen() const = 0;
+    [[nodiscard]] virtual bool IsAnyMenuActive() const = 0;
+    [[nodiscard]] virtual bool IsAnyMenuOpen() const = 0;
 
     virtual void ShowInfoText(float const duration, const char* fmt, ...) = 0;
     virtual void ShowInfoText(
@@ -154,16 +155,16 @@ class OvrGuiSys {
     virtual const void* GetContext() = 0;
     virtual ovrFileSys& GetFileSys() = 0;
     virtual OvrVRMenuMgr& GetVRMenuMgr() = 0;
-    virtual OvrVRMenuMgr const& GetVRMenuMgr() const = 0;
+    [[nodiscard]] virtual OvrVRMenuMgr const& GetVRMenuMgr() const = 0;
     virtual OvrGazeCursor& GetGazeCursor() = 0;
     virtual BitmapFont& GetDefaultFont() = 0;
-    virtual BitmapFont const& GetDefaultFont() const = 0;
+    [[nodiscard]] virtual BitmapFont const& GetDefaultFont() const = 0;
     virtual BitmapFontSurface& GetDefaultFontSurface() = 0;
     virtual OvrDebugLines& GetDebugLines() = 0;
     virtual SoundEffectPlayer& GetSoundEffectPlayer() = 0;
     virtual ovrTextureManager& GetTextureManager() = 0;
     virtual ovrReflection& GetReflection() = 0;
-    virtual ovrReflection const& GetReflection() const = 0;
+    [[nodiscard]] virtual ovrReflection const& GetReflection() const = 0;
 
    private:
     //----------------------------------------------------------

@@ -27,6 +27,8 @@ Authors     :   Federico Schliemann
 
 #include "AxisRenderer.h"
 
+#include <array>
+
 using OVR::Matrix4f;
 using OVR::Posef;
 using OVR::Quatf;
@@ -67,14 +69,14 @@ bool ovrAxisRenderer::Init(size_t count, float size) {
     AxisSize = size;
 
     /// Create Axis program
-    static ovrProgramParm AxisUniformParms[] = {
+    static constexpr auto AxisUniformParms = std::to_array<ovrProgramParm>({
         {.Name = "JointMatrices", .Type = ovrProgramParmType::BUFFER_UNIFORM},
-    };
+    });
     ProgAxis = GlProgram::Build(
         AxisVertexShaderSrc,
         AxisFragmentShaderSrc,
-        AxisUniformParms,
-        sizeof(AxisUniformParms) / sizeof(ovrProgramParm));
+        AxisUniformParms.data(),
+        AxisUniformParms.size());
 
     TransformMatrices.resize(Count, OVR::Matrix4f::Identity());
     InstancedBoneUniformBuffer.Create(

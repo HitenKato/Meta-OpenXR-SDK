@@ -27,7 +27,7 @@ Authors     :   John Carmack
 
 #include "SurfaceRender.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "Misc/Log.h"
 
@@ -420,7 +420,7 @@ ovrDrawCounters ovrSurfaceRender::RenderSurfaceList(
                 surfaceDef.geo.vertexBuffer,
                 surfaceDef.geo.primitiveType,
                 surfaceDef.geo.indexCount,
-                surfaceDef.geo.IndexType);
+                surfaceDef.geo.indexType);
         }
 
         // Bind all the vertex and element arrays
@@ -431,14 +431,14 @@ ovrDrawCounters ovrSurfaceRender::RenderSurfaceList(
                 GL(glDrawElementsInstanced(
                     surfaceDef.geo.primitiveType,
                     surfaceDef.geo.indexCount,
-                    surfaceDef.geo.IndexType,
+                    surfaceDef.geo.indexType,
                     nullptr,
                     surfaceDef.numInstances));
             } else {
                 GL(glDrawElements(
                     surfaceDef.geo.primitiveType,
                     surfaceDef.geo.indexCount,
-                    surfaceDef.geo.IndexType,
+                    surfaceDef.geo.indexType,
                     nullptr));
             }
         }

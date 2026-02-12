@@ -37,6 +37,6 @@ namespace OVRFW {
 // Reflection Data
 //=============================================================================================
 
-extern ovrTypeInfo TypeInfoList[];
+extern ovrTypeInfo TypeInfoList[]; // NOLINT(modernize-avoid-c-arrays)
 
 } // namespace OVRFW

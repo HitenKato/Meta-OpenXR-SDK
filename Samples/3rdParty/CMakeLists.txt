@@ -81,8 +81,8 @@ function(find_minizip)
 
     if(ANDROID)
         target_compile_options(minizip PRIVATE
-            $<$<COMPILE_LANGUAGE:C>:-Wno-unused-command-line-argument;-marm;-mfpu=neon>
-            $<$<COMPILE_LANGUAGE:CXX>:-Wno-unused-command-line-argument;-marm>
+            $<$<COMPILE_LANGUAGE:C>:-Wno-unused-command-line-argument;>
+            $<$<COMPILE_LANGUAGE:CXX>:-Wno-unused-command-line-argument;>
         )
         target_link_libraries(minizip z)
     elseif (WIN32)
@@ -114,7 +114,7 @@ function(find_openxr_loader)
         FetchContent_Declare(
             openxr
             GIT_REPOSITORY  https://github.com/KhronosGroup/OpenXR-SDK.git
-            GIT_TAG         release-1.1.51
+            GIT_TAG         release-1.1.53
             SOURCE_DIR      ${CMAKE_CURRENT_LIST_DIR}/openxr
         )
 

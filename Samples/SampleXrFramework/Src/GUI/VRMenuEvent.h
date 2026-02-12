@@ -28,6 +28,7 @@ Authors     :   Jonathan E. Wright
 #pragma once
 
 #include "VRMenuObject.h"
+#include <array>
 
 namespace OVRFW {
 
@@ -78,7 +79,7 @@ enum eEventDispatchType {
 // VRMenuEvent
 class VRMenuEvent {
    public:
-    static char const* EventTypeNames[VRMENU_EVENT_MAX];
+    static std::array<char const*, VRMENU_EVENT_MAX> EventTypeNames;
 
     VRMenuEvent()
         : EventType(VRMENU_EVENT_MAX), DispatchType(EVENT_DISPATCH_MAX), FloatValue(0.0f) {}

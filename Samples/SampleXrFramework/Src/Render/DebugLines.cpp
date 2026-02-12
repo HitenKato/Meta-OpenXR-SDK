@@ -125,7 +125,7 @@ class OvrDebugLinesLocal : public OvrDebugLines {
     bool Initialized;
     GlProgram LineProgram;
 
-    void RemoveExpired(const long long frameNum, DebugLines_t& lines);
+    static void RemoveExpired(const long long frameNum, DebugLines_t& lines);
 };
 
 //==============================

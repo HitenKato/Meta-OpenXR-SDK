@@ -47,12 +47,12 @@ using ContentFlags_t = OVR::BitFlagsT<eContentFlags>;
 // Structure that holds the result of a collision
 class OvrCollisionResult {
    public:
-    OvrCollisionResult() : t(FLT_MAX), uv(0.0f), TriIndex(-1) {}
+    OvrCollisionResult() : t(FLT_MAX), uv(0.0f), triIndex(-1) {}
 
     float t; // fraction along line where the intersection occurred
     OVR::Vector2f uv; // texture coordinate of intersection
-    std::int64_t TriIndex; // index of triangle hit (local to collider)
-    OVR::Vector2f Barycentric; // barycentric coordinates intersection
+    std::int64_t triIndex; // index of triangle hit (local to collider)
+    OVR::Vector2f barycentric; // barycentric coordinates intersection
 };
 
 //==============================================================
@@ -61,7 +61,7 @@ class OvrCollisionResult {
 class OvrCollisionPrimitive {
    public:
     OvrCollisionPrimitive() {}
-    OvrCollisionPrimitive(ContentFlags_t const contents) : Contents(contents) {}
+    OvrCollisionPrimitive(ContentFlags_t const contents) : contents_(contents) {}
     virtual ~OvrCollisionPrimitive();
 
     virtual bool IntersectRay(
@@ -94,18 +94,18 @@ class OvrCollisionPrimitive {
         OVR::Vector3f const& scale,
         bool const showNormals) const = 0;
 
-    ContentFlags_t GetContents() const {
-        return Contents;
+    [[nodiscard]] ContentFlags_t GetContents() const {
+        return contents_;
     }
     void SetContents(ContentFlags_t const contents) {
-        Contents = contents;
+        contents_ = contents;
     }
 
-    OVR::Bounds3f const& GetBounds() const {
-        return Bounds;
+    [[nodiscard]] OVR::Bounds3f const& GetBounds() const {
+        return bounds_;
     }
     void SetBounds(OVR::Bounds3f const& bounds) {
-        Bounds = bounds;
+        bounds_ = bounds;
     }
 
    protected:
@@ -117,8 +117,8 @@ class OvrCollisionPrimitive {
         float& t1) const;
 
    private:
-    ContentFlags_t Contents; // flags dictating what can hit this primitive
-    OVR::Bounds3f Bounds; // Axial-aligned bounds of the primitive
+    ContentFlags_t contents_; // flags dictating what can hit this primitive
+    OVR::Bounds3f bounds_; // Axial-aligned bounds of the primitive
 };
 
 //==============================================================
@@ -164,9 +164,9 @@ class OvrTriCollisionPrimitive : public OvrCollisionPrimitive {
         bool const showNormals) const override;
 
    private:
-    std::vector<OVR::Vector3f> Vertices; // vertices for all triangles
-    std::vector<TriangleIndex> Indices; // indices indicating which vertices make up each triangle
-    std::vector<OVR::Vector2f> UVs; // uvs for each vertex
+    std::vector<OVR::Vector3f> vertices_; // vertices for all triangles
+    std::vector<TriangleIndex> indices_; // indices indicating which vertices make up each triangle
+    std::vector<OVR::Vector2f> uvs_; // uvs for each vertex
 };
 
 } // namespace OVRFW

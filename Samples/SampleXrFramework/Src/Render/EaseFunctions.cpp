@@ -61,7 +61,7 @@ static Vector4f EaseFunc_Alpha_InOut_Quadratic(const Vector4f& c, const float t)
     return Vector4f(c.x, c.y, c.z, c.w * EaseInOut_Quadratic(t));
 }
 
-EaseFunction_t EaseFunctions[ovrEaseFunc::MAX] = {
+EaseFunction_t easeFunctions[ovrEaseFunc::MAX] = {
     EaseFunc_None,
     EaseFunc_InOut_Linear,
     EaseFunc_InOut_Cubic,

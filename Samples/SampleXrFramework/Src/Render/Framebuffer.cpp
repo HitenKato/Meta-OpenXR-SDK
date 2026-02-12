@@ -31,6 +31,7 @@ Copyright 	: 	Copyright 2015 Oculus VR, LLC. All Rights reserved.
 
 #include "Framebuffer.h"
 #include "Misc/Log.h"
+#include <array>
 #include <vector>
 
 #define OXR(func)                                        \
@@ -243,8 +244,8 @@ void ovrFramebuffer_SetNone() {
 
 void ovrFramebuffer_Resolve(ovrFramebuffer* frameBuffer) {
     // Discard the depth buffer, so the tiler won't need to write it back out to memory.
-    const GLenum depthAttachment[1] = {GL_DEPTH_ATTACHMENT};
-    glInvalidateFramebuffer(GL_DRAW_FRAMEBUFFER, 1, depthAttachment);
+    constexpr std::array<GLenum, 1> depthAttachment = {GL_DEPTH_ATTACHMENT};
+    glInvalidateFramebuffer(GL_DRAW_FRAMEBUFFER, 1, depthAttachment.data());
     // We now let the resolve happen implicitly.
 }
 

@@ -48,18 +48,18 @@ namespace OVRFW {
 //==============================
 // ovrLexer::ovrLexer
 ovrLexer::ovrLexer(const char* source, const size_t sourceLength, char const* punctuation)
-    : Source(source),
-      SourceLength(sourceLength),
-      p(Source),
-      Error(LEX_RESULT_OK),
-      Punctuation(nullptr) {
+    : source_(source),
+      sourceLength_(sourceLength),
+      p_(source_),
+      error_(LEX_RESULT_OK),
+      punctuation_(nullptr) {
     size_t len = punctuation == nullptr ? 0 : OVR::OVR_strlen(punctuation);
     if (len == 0) {
-        Punctuation = new char[16];
-        Punctuation[0] = '\0';
+        punctuation_ = new char[16];
+        punctuation_[0] = '\0';
     } else {
-        Punctuation = new char[len + 1];
-        OVR::OVR_strcpy(Punctuation, len + 1, punctuation);
+        punctuation_ = new char[len + 1];
+        OVR::OVR_strcpy(punctuation_, len + 1, punctuation);
     }
 }
 
@@ -95,9 +95,9 @@ ovrLexer::ovrLexer(ovrLexer&& other) {
 //==============================
 // ovrLexer::~ovrLexer
 ovrLexer::~ovrLexer() {
-    assert(Error == LEX_RESULT_OK || Error == LEX_RESULT_EOF);
-    delete Punctuation;
-    Punctuation = nullptr;
+    assert(error_ == LEX_RESULT_OK || error_ == LEX_RESULT_EOF);
+    delete punctuation_;
+    punctuation_ = nullptr;
 }
 
 //==============================
@@ -108,18 +108,18 @@ ovrLexer& ovrLexer::operator=(const ovrLexer& other) {
         return *this;
     }
 
-    Source = other.Source;
-    SourceLength = other.SourceLength;
-    p = other.p;
-    Error = other.Error;
+    source_ = other.source_;
+    sourceLength_ = other.sourceLength_;
+    p_ = other.p_;
+    error_ = other.error_;
 
-    size_t len = other.Punctuation == nullptr ? 0 : OVR::OVR_strlen(other.Punctuation);
+    size_t len = other.punctuation_ == nullptr ? 0 : OVR::OVR_strlen(other.punctuation_);
     if (len == 0) {
-        Punctuation = new char[16];
-        Punctuation[0] = '\0';
+        punctuation_ = new char[16];
+        punctuation_[0] = '\0';
     } else {
-        Punctuation = new char[len + 1];
-        OVR::OVR_strcpy(Punctuation, len + 1, other.Punctuation);
+        punctuation_ = new char[len + 1];
+        OVR::OVR_strcpy(punctuation_, len + 1, other.punctuation_);
     }
 
     return *this;
@@ -133,16 +133,16 @@ ovrLexer& ovrLexer::operator=(ovrLexer&& other) {
         return *this;
     }
 
-    Source = other.Source;
-    SourceLength = other.SourceLength;
-    p = other.p;
-    Error = other.Error;
-    Punctuation = other.Punctuation;
+    source_ = other.source_;
+    sourceLength_ = other.sourceLength_;
+    p_ = other.p_;
+    error_ = other.error_;
+    punctuation_ = other.punctuation_;
 
-    other.Source = nullptr;
-    other.SourceLength = 0;
-    other.p = nullptr;
-    other.Punctuation = nullptr;
+    other.source_ = nullptr;
+    other.sourceLength_ = 0;
+    other.p_ = nullptr;
+    other.punctuation_ = nullptr;
 
     return *this;
 }
@@ -181,7 +181,7 @@ bool ovrLexer::IsQuote(uint32_t const ch) {
 ovrLexer::ovrResult
 ovrLexer::SkipWhitespace(char const*& p, char const* source, size_t const sourceLength) {
     const char* cur = p; // copy p because we only want to advance if it is whitespace
-    uint32_t ch;
+    uint32_t ch = 0;
     for (;;) {
         if (p >= source + sourceLength) {
             return LEX_RESULT_EOF;
@@ -234,19 +234,19 @@ void ovrLexer::CopyResult(char const* buffer, char* token, size_t const maxToken
 //==============================
 // ovrLexer::PeekNextChar
 uint32_t ovrLexer::PeekNextChar() {
-    if (p >= Source + SourceLength) {
+    if (p_ >= source_ + sourceLength_) {
         return '\0';
     }
 
     // save state
-    ovrResult error = Error;
-    const char* tp = p;
+    ovrResult error = error_;
+    const char* tp = p_;
 
-    uint32_t ch = UTF8Util::DecodeNextChar(&p);
+    uint32_t ch = UTF8Util::DecodeNextChar(&p_);
 
     // restore state
-    Error = error;
-    p = tp;
+    error_ = error;
+    p_ = tp;
 
     return ch;
 }
@@ -254,13 +254,13 @@ uint32_t ovrLexer::PeekNextChar() {
 //==============================
 // ovrLexer::SkipToEndOfLine
 ovrLexer::ovrResult ovrLexer::SkipToEndOfLine() {
-    uint32_t ch;
+    uint32_t ch = 0;
     do {
-        if (p >= Source + SourceLength) {
+        if (p_ >= source_ + sourceLength_) {
             return LEX_RESULT_EOF;
         }
 
-        ch = UTF8Util::DecodeNextChar(&p);
+        ch = UTF8Util::DecodeNextChar(&p_);
     } while (ch != '\n' && ch != '\0');
 
     return LEX_RESULT_OK;
@@ -276,7 +276,7 @@ void ovrLexer::EmitCodePoint(
     ptrdiff_t& bufferOfs,
     size_t const bufferSize,
     char* token,
-    size_t const maxTokenSize) const {
+    size_t const maxTokenSize) {
     if (static_cast<size_t>(bufferOfs) < bufferSize) {
         UTF8Util::EncodeChar(buffer, &bufferOfs, ch);
     } else {
@@ -318,38 +318,38 @@ ovrLexer::ovrResult ovrLexer::NextToken(char* token, size_t const maxTokenSize) 
     size_t const BUFF_SIZE = 8192;
     char buffer[BUFF_SIZE];
 
-    SkipWhitespace(p, Source, SourceLength);
+    SkipWhitespace(p_, source_, sourceLength_);
 
     bool inQuotes = false;
     bool inComment = false;
     bool isPunc = false;
 
-    char const* lastp = p;
+    char const* lastp = p_;
 
     ptrdiff_t bufferOfs = 0;
     for (;;) {
-        if (p > Source + SourceLength) {
+        if (p_ > source_ + sourceLength_) {
             EmitCodePoint('\0', buffer, bufferOfs, BUFF_SIZE, token, maxTokenSize);
             CopyResult(buffer, token, maxTokenSize);
             return LEX_RESULT_EOF;
         }
 
-        lastp = p;
-        uint32_t ch = UTF8Util::DecodeNextChar(&p);
+        lastp = p_;
+        uint32_t ch = UTF8Util::DecodeNextChar(&p_);
 
         // exit if we just read whitespace or a null byte
         if (ch == '\0' || (!inQuotes && !inComment && IsWhitespace(ch))) {
             break;
         }
 
-        isPunc = IsPunctuation(Punctuation, ch);
+        isPunc = IsPunctuation(punctuation_, ch);
         if (inComment) {
             if (ch == '*' && PeekNextChar() == '/') {
                 inComment = false;
                 // consume the '/' character
-                ch = UTF8Util::DecodeNextChar(&p);
+                ch = UTF8Util::DecodeNextChar(&p_);
                 // skip any whitespace that may follow the comment
-                ovrResult res = SkipWhitespace(p, Source, SourceLength);
+                ovrResult res = SkipWhitespace(p_, source_, sourceLength_);
                 if (res != LEX_RESULT_OK) {
                     return res;
                 }
@@ -360,7 +360,7 @@ ovrLexer::ovrResult ovrLexer::NextToken(char* token, size_t const maxTokenSize) 
             if (ch == '\0') {
                 return LEX_RESULT_UNKNOWN_ESCAPE;
             }
-            UTF8Util::DecodeNextChar(&p); // consume the escape code
+            UTF8Util::DecodeNextChar(&p_); // consume the escape code
         } else if (!inQuotes && !inComment && isPunc) {
             if (ch == '/' && PeekNextChar() == '*') {
                 inComment = true;
@@ -368,14 +368,14 @@ ovrLexer::ovrResult ovrLexer::NextToken(char* token, size_t const maxTokenSize) 
             } else if (ch == '/' && PeekNextChar() == '/') {
                 SkipToEndOfLine();
                 // skip any whitespace that may start the next line
-                ovrResult res = SkipWhitespace(p, Source, SourceLength);
+                ovrResult res = SkipWhitespace(p_, source_, sourceLength_);
                 if (res != LEX_RESULT_OK) {
                     return res;
                 }
                 continue;
             } else if (bufferOfs > 0) {
                 // we're already in a token, undo the read of the punctuation and exit
-                p = lastp;
+                p_ = lastp;
                 break;
             } else {
                 // if this is the first character of a token, just emit the punctuation
@@ -413,14 +413,14 @@ ovrLexer::ovrResult ovrLexer::NextToken(char* token, size_t const maxTokenSize) 
 // ovrLexer::PeekToken
 ovrLexer::ovrResult ovrLexer::PeekToken(char* token, size_t const maxTokenSize) {
     // save state
-    ovrResult error = Error;
-    const char* tp = p;
+    ovrResult error = error_;
+    const char* tp = p_;
 
     ovrResult res = NextToken(token, maxTokenSize);
 
     // restore state
-    Error = error;
-    p = tp;
+    error_ = error;
+    p_ = tp;
 
     return res;
 }
@@ -692,9 +692,9 @@ ovrLexer::ovrResult ovrLexer::ParsePointer(unsigned char*& ptr, unsigned char* d
 }
 
 ovrLexer::ovrResult ovrLexer::ParseToEndOfLine(char* buffer, size_t const maxBufferSize) {
-    size_t remainingLen = SourceLength - (p - Source);
+    size_t remainingLen = sourceLength_ - (p_ - source_);
     if (maxBufferSize > remainingLen) {
-        memcpy(buffer, p, remainingLen);
+        memcpy(buffer, p_, remainingLen);
         buffer[remainingLen] = '\0';
         return LEX_RESULT_OK;
     }

@@ -30,7 +30,8 @@ Authors     :   Jonathan E. Wright
 #include "OVR_Math.h"
 #include "Misc/Log.h"
 
-#include <assert.h>
+#include <array>
+#include <cassert>
 
 namespace OVRFW {
 
@@ -41,29 +42,29 @@ namespace OVRFW {
 //==============================
 // Fader::Fader
 Fader::Fader(float const startAlpha)
-    : FadeState(FADE_NONE),
-      PrePauseState(FADE_NONE),
-      StartAlpha(startAlpha),
-      FadeAlpha(startAlpha) {}
+    : fadeState_(FADE_NONE),
+      prePauseState_(FADE_NONE),
+      startAlpha_(startAlpha),
+      fadeAlpha_(startAlpha) {}
 
 //==============================
 // Fader::Update
 void Fader::Update(float const fadeRate, double const deltaSeconds) {
-    if (FadeState > FADE_PAUSED && deltaSeconds > 0.0f) {
+    if (fadeState_ > FADE_PAUSED && deltaSeconds > 0.0f) {
         float const fadeDelta =
-            static_cast<float>(fadeRate * deltaSeconds) * (FadeState == FADE_IN ? 1.0f : -1.0f);
-        FadeAlpha += fadeDelta;
+            static_cast<float>(fadeRate * deltaSeconds) * (fadeState_ == FADE_IN ? 1.0f : -1.0f);
+        fadeAlpha_ += fadeDelta;
         assert(fabs(fadeDelta) > MATH_FLOAT_SMALLEST_NON_DENORMAL);
         if (fabs(fadeDelta) < MATH_FLOAT_SMALLEST_NON_DENORMAL) {
             ALOG("Fader::Update fabs( fadeDelta ) < MATH_FLOAT_SMALLEST_NON_DENORMAL !!!!");
         }
-        if (FadeAlpha < MATH_FLOAT_SMALLEST_NON_DENORMAL) {
-            FadeAlpha = 0.0f;
-            FadeState = FADE_NONE;
+        if (fadeAlpha_ < MATH_FLOAT_SMALLEST_NON_DENORMAL) {
+            fadeAlpha_ = 0.0f;
+            fadeState_ = FADE_NONE;
             // ALOG( "FadeState = FADE_NONE" );
-        } else if (FadeAlpha >= 1.0f - MATH_FLOAT_SMALLEST_NON_DENORMAL) {
-            FadeAlpha = 1.0f;
-            FadeState = FADE_NONE;
+        } else if (fadeAlpha_ >= 1.0f - MATH_FLOAT_SMALLEST_NON_DENORMAL) {
+            fadeAlpha_ = 1.0f;
+            fadeState_ = FADE_NONE;
             // ALOG( "FadeState = FADE_NONE" );
         }
         // ALOG( "fadeState = %s, fadeDelta = %.4f, fadeAlpha = %.4f", GetFadeStateName( FadeState
@@ -75,69 +76,70 @@ void Fader::Update(float const fadeRate, double const deltaSeconds) {
 // Fader::StartFadeIn
 void Fader::StartFadeIn() {
     // ALOG( "StartFadeIn" );
-    FadeState = FADE_IN;
+    fadeState_ = FADE_IN;
 }
 
 //==============================
 // Fader::StartFadeOut
 void Fader::StartFadeOut() {
     // ALOG( "StartFadeOut" );
-    FadeState = FADE_OUT;
+    fadeState_ = FADE_OUT;
 }
 
 //==============================
 // Fader::PauseFade
 void Fader::PauseFade() {
     // ALOG( "PauseFade" );
-    PrePauseState = FadeState;
-    FadeState = FADE_PAUSED;
+    prePauseState_ = fadeState_;
+    fadeState_ = FADE_PAUSED;
 }
 
 //==============================
 // Fader::UnPause
 void Fader::UnPause() {
-    FadeState = PrePauseState;
+    fadeState_ = prePauseState_;
 }
 
 //==============================
 // Fader::GetFadeStateName
-char const* Fader::GetFadeStateName(eFadeState const state) const {
-    char const* fadeStateNames[FADE_MAX] = {"FADE_NONE", "FADE_PAUSED", "FADE_IN", "FADE_OUT"};
+char const* Fader::GetFadeStateName(eFadeState const state) {
+    constexpr auto fadeStateNames =
+        std::to_array<const char*>({"FADE_NONE", "FADE_PAUSED", "FADE_IN", "FADE_OUT"});
     return fadeStateNames[state];
 }
 
 //==============================
 // Fader::Reset
 void Fader::Reset() {
-    FadeAlpha = StartAlpha;
+    fadeAlpha_ = startAlpha_;
 }
 
 //==============================
 // Fader::Reset
 void Fader::ForceFinish() {
-    FadeAlpha = FadeState == FADE_IN ? 1.0f : 0.0f;
-    FadeState = FADE_NONE;
+    fadeAlpha_ = fadeState_ == FADE_IN ? 1.0f : 0.0f;
+    fadeState_ = FADE_NONE;
 }
 
 //==============================
 // Fader::IsFadingInOrFadedIn
 bool Fader::IsFadingInOrFadedIn() const {
-    if (FadeState == FADE_PAUSED) {
-        return IsFadingInOrFadedIn(PrePauseState);
+    if (fadeState_ == FADE_PAUSED) {
+        return IsFadingInOrFadedIn(prePauseState_);
     }
-    return IsFadingInOrFadedIn(FadeState);
+    return IsFadingInOrFadedIn(fadeState_);
 }
 
 //==============================
 // Fader::IsFadingInOrFadedIn
 bool Fader::IsFadingInOrFadedIn(eFadeState const state) const {
-    switch (FadeState) {
+    switch (fadeState_) {
         case FADE_IN:
             return true;
         case FADE_OUT:
             return false;
         case FADE_NONE:
-            return FadeAlpha >= 1.0f;
+            return fadeAlpha_ >= 1.0f;
         default:
             assert(false); // this should never be called with state FADE_PAUSE
             return false;

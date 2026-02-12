@@ -29,6 +29,7 @@ Authors     :   John Carmack
 
 #include <stdlib.h>
 #include <algorithm>
+#include <array>
 
 #include "Misc/Log.h"
 
@@ -53,7 +54,7 @@ static float BoundsSortCullKey(const Bounds3f& bounds, const Matrix4f& mvp) {
     }
 
     // Not very efficient code...
-    Vector4f c[8];
+    std::array<Vector4f, 8> c;
     for (int i = 0; i < 8; i++) {
         Vector4f world;
         world.x = bounds.b[(i & 1)].x;
@@ -64,7 +65,7 @@ static float BoundsSortCullKey(const Bounds3f& bounds, const Matrix4f& mvp) {
         c[i] = mvp.Transform(world);
     }
 
-    int i;
+    int i = 0;
     for (i = 0; i < 8; i++) {
         if (c[i].x > -c[i].w) {
             break;
@@ -163,7 +164,7 @@ void BuildModelSurfaceList(
     const Matrix4f& projectionMatrix) {
     // A mobile GPU will be in trouble if it draws more than this.
     static const int MAX_DRAW_SURFACES = 1024;
-    bsort_t bsort[MAX_DRAW_SURFACES];
+    std::array<bsort_t, MAX_DRAW_SURFACES> bsort;
 
     const Matrix4f vpMatrix = projectionMatrix * viewMatrix;
 
@@ -239,7 +240,7 @@ void BuildModelSurfaceList(
                        inverseGlobalSkeletonTransform, globalTransform ); Matrix4f
                        localJointTransform;
 
-                                                if ( skin.inverseBindMatrices.size() > 0 )
+                                                if ( !skin.inverseBindMatrices.empty() )
                                                 {
                                                     Matrix4f::Multiply( &localJointTransform,
                        tempTransform, skin.inverseBindMatrices[j] );
@@ -299,7 +300,7 @@ void BuildModelSurfaceList(
     // IMPORTANT: use a stable sort so surfaces with identical bounds
     // will sort consistently from frame to frame, rather than randomly
     // as happens with qsort.
-    std::stable_sort(bsort, bsort + numSurfaces);
+    std::stable_sort(bsort.begin(), bsort.begin() + numSurfaces);
 
     // ----TODO_DRAWEYEVIEW : don't overwrite surfaces which may have already been added to the
     // surfaceList.

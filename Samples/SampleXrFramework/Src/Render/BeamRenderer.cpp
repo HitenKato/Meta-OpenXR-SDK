@@ -41,7 +41,7 @@ inline Vector3f GetViewMatrixPosition(Matrix4f const& m) {
 
 namespace OVRFW {
 
-static const char* BeamVertexSrc = R"glsl(
+static const char* beamVertexSrc = R"glsl(
 attribute highp vec4 Position;
 attribute lowp vec4 VertexColor;
 attribute highp vec2 TexCoord;
@@ -57,7 +57,7 @@ void main()
 }
 )glsl";
 
-static const char* TextureFragmentSrc = R"glsl(
+static const char* textureFragmentSrc = R"glsl(
 uniform sampler2D Texture0;
 
 varying lowp vec4 outColor;
@@ -69,7 +69,7 @@ void main()
 }
 )glsl";
 
-static const char* ParametricFragmentSrc = R"glsl(
+static const char* parametricFragmentSrc = R"glsl(
 precision highp float;
 
 varying lowp vec4 outColor;
@@ -117,11 +117,11 @@ void ovrBeamRenderer::Init(const int maxBeams, const bool depthTest) {
         };
         const int uniformCount = sizeof(uniformParms) / sizeof(OVRFW::ovrProgramParm);
         TextureProgram =
-            OVRFW::GlProgram::Build(BeamVertexSrc, TextureFragmentSrc, uniformParms, uniformCount);
+            OVRFW::GlProgram::Build(beamVertexSrc, textureFragmentSrc, uniformParms, uniformCount);
     }
     if (ParametricProgram.VertexShader == 0 || ParametricProgram.FragmentShader == 0) {
         ParametricProgram =
-            OVRFW::GlProgram::Build(BeamVertexSrc, ParametricFragmentSrc, nullptr, 0);
+            OVRFW::GlProgram::Build(beamVertexSrc, parametricFragmentSrc, nullptr, 0);
     }
 
     const int numVerts = maxBeams * 4;
@@ -389,7 +389,7 @@ void ovrBeamRenderer::FrameInternal(
 
         const float t = static_cast<float>(frame.PredictedDisplayTime - cur.StartTime);
 
-        const Vector4f color = EaseFunctions[cur.EaseFunc](cur.InitialColor, t / cur.LifeTime);
+        const Vector4f color = easeFunctions[cur.EaseFunc](cur.InitialColor, t / cur.LifeTime);
         const Vector2f uvOfs(0.0f);
 
         attr.position[quadIndex * 4 + 0] = cur.StartPos + cross;

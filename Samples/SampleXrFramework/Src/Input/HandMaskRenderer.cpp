@@ -284,14 +284,14 @@ void HandMaskRenderer::Init(bool leftHand) {
         {.Name="FadeIntensity", .Type=ovrProgramParmType::FLOAT},
     };
 
-    ProgHandMaskAlphaGradient = GlProgram::Build(
+    progHandMaskAlphaGradient_ = GlProgram::Build(
         "",
         VertexShaderSrc,
         "",
         FragmentShaderSrc,
         UniformParms,
         sizeof(UniformParms) / sizeof(ovrProgramParm));
-    ProgHandMaskBorderFade = GlProgram::Build(
+    progHandMaskBorderFade_ = GlProgram::Build(
         "#define USE_BORDER_FADE 1",
         VertexShaderSrc,
         "#define USE_BORDER_FADE 1",
@@ -300,27 +300,27 @@ void HandMaskRenderer::Init(bool leftHand) {
         sizeof(UniformParms) / sizeof(ovrProgramParm));
 
     /// Shader instance buffer
-    HandMaskMatrices.resize(MAX_JOINTS, OVR::Matrix4f::Identity());
-    HandMaskUniformBuffer.Create(
-        GLBUFFER_TYPE_UNIFORM, MAX_JOINTS * sizeof(Matrix4f), HandMaskMatrices.data());
+    handMaskMatrices_.resize(MAX_JOINTS, OVR::Matrix4f::Identity());
+    handMaskUniformBuffer_.Create(
+        GLBUFFER_TYPE_UNIFORM, MAX_JOINTS * sizeof(Matrix4f), handMaskMatrices_.data());
 
-    HandMaskColors.resize(MAX_JOINTS, OVR::Vector3f(0.0f,0.0f,0.0f));
-    HandColorUniformBuffer.Create(
-        GLBUFFER_TYPE_UNIFORM, MAX_JOINTS * sizeof(Vector3f), HandMaskColors.data());
+    handMaskColors_.resize(MAX_JOINTS, OVR::Vector3f(0.0f,0.0f,0.0f));
+    handColorUniformBuffer_.Create(
+        GLBUFFER_TYPE_UNIFORM, MAX_JOINTS * sizeof(Vector3f), handMaskColors_.data());
 
     /// Create surface definition
-    HandMaskSurfaceDef.surfaceName = leftHand ? "HandMaskSurfaceL" : "HandMaskSurfaceR";
-    HandMaskSurfaceDef.geo = BuildTesselatedQuad(1, 1, false);
-    HandMaskSurfaceDef.numInstances = 0;
+    handMaskSurfaceDef.surfaceName = leftHand ? "HandMaskSurfaceL" : "HandMaskSurfaceR";
+    handMaskSurfaceDef.geo = BuildTesselatedQuad(1, 1, false);
+    handMaskSurfaceDef.numInstances = 0;
     /// Build the graphics command
-    auto& gc = HandMaskSurfaceDef.graphicsCommand;
-    gc.Program = ProgHandMaskBorderFade;
-    gc.UniformData[0].Data = &HandMaskUniformBuffer;
-    gc.UniformData[1].Data = &HandColorUniformBuffer;
-    gc.UniformData[2].Data = &LayerBlend;
-    gc.UniformData[3].Data = &Falloff;
-    gc.UniformData[4].Data = &Intensity;
-    gc.UniformData[5].Data = &FadeIntensity;
+    auto& gc = handMaskSurfaceDef.graphicsCommand;
+    gc.Program = progHandMaskBorderFade_;
+    gc.UniformData[0].Data = &handMaskUniformBuffer_;
+    gc.UniformData[1].Data = &handColorUniformBuffer_;
+    gc.UniformData[2].Data = &layerBlend;
+    gc.UniformData[3].Data = &falloff;
+    gc.UniformData[4].Data = &intensity;
+    gc.UniformData[5].Data = &fadeIntensity;
     gc.GpuState.blendEnable = ovrGpuState::BLEND_ENABLE;
     gc.GpuState.blendMode = ovrGpuState::kGL_FUNC_REVERSE_SUBTRACT;
     gc.GpuState.blendSrc = ovrGpuState::kGL_SRC_ALPHA;
@@ -328,20 +328,20 @@ void HandMaskRenderer::Init(bool leftHand) {
     gc.GpuState.depthEnable = false;
     gc.GpuState.depthMaskEnable = false;
     /// Add surface
-    HandMaskSurface.surface = &(HandMaskSurfaceDef);
+    handMaskSurface_.surface = &(handMaskSurfaceDef);
 
     /// Set defaults
-    LayerBlend = 1.0f;
-    Falloff = 4.0;
-    Intensity = 15.0f;
-    FadeIntensity = 0.75f;
-    UseBorderFade = false;
-    BorderFadeSize = 0.01f;
-    AlphaMaskSize = 0.0175f;
-    RenderInverseSubtract = false;
+    layerBlend = 1.0f;
+    falloff = 4.0;
+    intensity = 15.0f;
+    fadeIntensity = 0.75f;
+    useBorderFade = false;
+    borderFadeSize = 0.01f;
+    alphaMaskSize = 0.0175f;
+    renderInverseSubtract = false;
 
     /// Set hand
-    IsLeftHand = leftHand;
+    isLeftHand_ = leftHand;
 }
 
 void HandMaskRenderer::Shutdown() {}
@@ -367,11 +367,11 @@ void HandMaskRenderer::Update(
 
     /// apply hand transform to the bones
     const Matrix4f matDeviceModel = Matrix4f(handPose);
-    const float particleSize = (UseBorderFade ? BorderFadeSize : AlphaMaskSize) * handSize;
+    const float particleSize = (useBorderFade ? borderFadeSize : alphaMaskSize) * handSize;
 
-    auto& gc = HandMaskSurfaceDef.graphicsCommand;
-    gc.Program = UseBorderFade ? ProgHandMaskBorderFade : ProgHandMaskAlphaGradient;
-    if (RenderInverseSubtract) {
+    auto& gc = handMaskSurfaceDef.graphicsCommand;
+    gc.Program = useBorderFade ? progHandMaskBorderFade_ : progHandMaskAlphaGradient_;
+    if (renderInverseSubtract) {
         gc.GpuState.blendMode = ovrGpuState::kGL_FUNC_REVERSE_SUBTRACT;
         gc.GpuState.blendSrc = ovrGpuState::kGL_SRC_ALPHA;
         gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
@@ -381,13 +381,13 @@ void HandMaskRenderer::Update(
         gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
     }
 
-    const OVR::Quatf q = (IsLeftHand ? cellAdjustL : cellAdjustR).Inverted();
+    const OVR::Quatf q = (isLeftHand_ ? cellAdjustL : cellAdjustR).Inverted();
     for (uint32_t i = 0; i < cells.size(); ++i) {
         const uint32_t parent = cellParents[i];
 
         /// convert the cells to the adjusted screen space from the initial
         /// space provided by design
-        Vector3f offset = IsLeftHand ? cells[i] * -1.0f : cells[i];
+        Vector3f offset = isLeftHand_ ? cells[i] * -1.0f : cells[i];
         offset.x *= -1.0f;
         offset = q.Rotate(offset);
         const Matrix4f cellOffset = Matrix4f::Translation(offset);
@@ -401,22 +401,22 @@ void HandMaskRenderer::Update(
         Matrix4f t = Matrix4f::CreateFromBasisVectors(normal, Vector3f(0.0f, 1.0f, 0.0f));
         t.SetTranslation(pos);
         t = t * Matrix4f::Scaling(particleSize);
-        HandMaskMatrices[i] = t.Transposed();
+        handMaskMatrices_[i] = t.Transposed();
 /// colorize mask for debug purposes
 #if 0
-        HandMaskColors[i] = cellColors[i];
+        handMaskColors_[i] = cellColors[i];
 #endif
     }
-    HandMaskSurface.modelMatrix = Matrix4f();
-    HandMaskSurfaceDef.numInstances = cells.size();
-    HandMaskUniformBuffer.Update(
-        HandMaskMatrices.size() * sizeof(Matrix4f), HandMaskMatrices.data());
-    HandColorUniformBuffer.Update(
-        HandMaskColors.size() * sizeof(Vector3f), HandMaskColors.data());
+    handMaskSurface_.modelMatrix = Matrix4f();
+    handMaskSurfaceDef.numInstances = cells.size();
+    handMaskUniformBuffer_.Update(
+        handMaskMatrices_.size() * sizeof(Matrix4f), handMaskMatrices_.data());
+    handColorUniformBuffer_.Update(
+        handMaskColors_.size() * sizeof(Vector3f), handMaskColors_.data());
 }
 
 void HandMaskRenderer::Render(std::vector<ovrDrawSurface>& surfaceList) {
-    surfaceList.push_back(HandMaskSurface);
+    surfaceList.push_back(handMaskSurface_);
 }
 
 } // namespace OVRFW

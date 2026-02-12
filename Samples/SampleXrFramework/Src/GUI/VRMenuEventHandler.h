@@ -56,13 +56,13 @@ class VRMenuEventHandler {
         menuHandle_t const rootHandle,
         std::vector<VRMenuEvent> const& events) const;
 
-    void InitComponents(std::vector<VRMenuEvent>& events);
-    void Opening(std::vector<VRMenuEvent>& events);
-    void Opened(std::vector<VRMenuEvent>& events);
-    void Closing(std::vector<VRMenuEvent>& events);
+    static void InitComponents(std::vector<VRMenuEvent>& events);
+    static void Opening(std::vector<VRMenuEvent>& events);
+    static void Opened(std::vector<VRMenuEvent>& events);
+    static void Closing(std::vector<VRMenuEvent>& events);
     void Closed(std::vector<VRMenuEvent>& events);
 
-    menuHandle_t GetFocusedHandle() const {
+    [[nodiscard]] menuHandle_t GetFocusedHandle() const {
         return FocusedHandle;
     }
 
@@ -74,17 +74,17 @@ class VRMenuEventHandler {
     ovrSoundLimiter UpSoundLimiter;
 
    private:
-    bool DispatchToComponents(
+    static bool DispatchToComponents(
         OvrGuiSys& guiSys,
         ovrApplFrameIn const& vrFrame,
         VRMenuEvent const& event,
-        VRMenuObject* receiver) const;
-    bool DispatchToPath(
+        VRMenuObject* receiver);
+    static bool DispatchToPath(
         OvrGuiSys& guiSys,
         ovrApplFrameIn const& vrFrame,
         VRMenuEvent const& event,
         std::vector<menuHandle_t> const& path,
-        bool const log) const;
+        bool const log);
     bool BroadcastEvent(
         OvrGuiSys& guiSys,
         ovrApplFrameIn const& vrFrame,

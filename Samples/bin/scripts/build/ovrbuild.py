@@ -16,19 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import argparse
-import hashlib
 import locale
 import os
 import shlex
-import shutil
 import sys
 import time
-import zipfile
-from shutil import rmtree
 from subprocess import PIPE, Popen
-from sys import argv, exit
-from time import sleep
-from xml.dom import minidom
+from sys import exit
 
 import util
 

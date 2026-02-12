@@ -125,8 +125,8 @@ int GetEncodeCharSize(uint32_t ucs_character) {
 }
 
 uint32_t DecodeNextChar_Advance0(const char** putf8Buffer) {
-    uint32_t uc;
-    char c;
+    uint32_t uc = 0;
+    char c = 0;
 
     // Security considerations:
     //

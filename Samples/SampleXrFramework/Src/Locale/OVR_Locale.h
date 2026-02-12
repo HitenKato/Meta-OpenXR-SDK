@@ -36,7 +36,7 @@ Authors     :   Jonathan E. Wright
 
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 
 #include "OVR_FileSys.h"

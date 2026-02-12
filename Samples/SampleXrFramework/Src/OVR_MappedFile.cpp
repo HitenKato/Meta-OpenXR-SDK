@@ -49,28 +49,28 @@ Authors     :   Chris Taylor
 
 namespace OVRFW {
 
-static uint32_t DEFAULT_ALLOCATION_GRANULARITY = 65536;
+static uint32_t defaultAllocationGranularity = 65536;
 
 static uint32_t GetAllocationGranularity() {
-    uint32_t alloc_gran = 0;
+    uint32_t allocGran = 0;
 
 #if defined(OVR_OS_WIN32)
 
     SYSTEM_INFO sys_info;
     GetSystemInfo(&sys_info);
-    alloc_gran = sys_info.dwAllocationGranularity;
+    allocGran = sys_info.dwAllocationGranularity;
 
 #elif defined(OVR_OS_MAC) || defined(OVR_OS_IPHONE)
 
-    alloc_gran = (uint32_t)getpagesize();
+    allocGran = (uint32_t)getpagesize();
 
 #elif defined(_SC_PAGE_SIZE)
 
-    alloc_gran = (uint32_t)sysconf(_SC_PAGE_SIZE);
+    allocGran = (uint32_t)sysconf(_SC_PAGE_SIZE);
 
 #endif
 
-    return (alloc_gran > 0) ? alloc_gran : DEFAULT_ALLOCATION_GRANULARITY;
+    return (allocGran > 0) ? allocGran : defaultAllocationGranularity;
 }
 
 /*
@@ -78,39 +78,39 @@ static uint32_t GetAllocationGranularity() {
 */
 
 MappedFile::MappedFile() {
-    Length = 0;
-    File = -1;
+    length_ = 0;
+    file_ = -1;
 }
 
 MappedFile::~MappedFile() {
     Close();
 }
 
-bool MappedFile::OpenRead(const char* path, bool read_ahead, bool no_cache) {
+bool MappedFile::OpenRead(const char* path, bool readAhead, bool noCache) {
     Close();
 
-    ReadOnly = true;
+    readOnly_ = true;
 
     // Don't allow private files to be read by other applications.
-    File = open(path, O_RDONLY);
+    file_ = open(path, O_RDONLY);
 
-    if (File == -1) {
+    if (file_ == -1) {
         return false;
     } else {
-        Length = lseek(File, 0, SEEK_END);
+        length_ = lseek(file_, 0, SEEK_END);
 
-        if (Length <= 0) {
+        if (length_ <= 0) {
             return false;
         } else {
 #if defined(F_RDAHEAD)
-            if (read_ahead) {
-                fcntl(File, F_RDAHEAD, 1);
+            if (readAhead) {
+                fcntl(file_, F_RDAHEAD, 1);
             }
 #endif
 
 #if defined(F_NOCACHE)
-            if (no_cache) {
-                fcntl(File, F_NOCACHE, 1);
+            if (noCache) {
+                fcntl(file_, F_NOCACHE, 1);
             }
 #endif
         }
@@ -122,20 +122,20 @@ bool MappedFile::OpenRead(const char* path, bool read_ahead, bool no_cache) {
 bool MappedFile::OpenWrite(const char* path, size_t size) {
     Close();
 
-    ReadOnly = false;
-    Length = size;
+    readOnly_ = false;
+    length_ = size;
 
     // Don't allow private files to be read or written by
     // other applications.
-    File = open(path, O_RDWR | O_CREAT | O_TRUNC, (mode_t)0660);
+    file_ = open(path, O_RDWR | O_CREAT | O_TRUNC, (mode_t)0660);
 
-    if (File == -1) {
+    if (file_ == -1) {
         return false;
     } else {
-        if (-1 == lseek(File, size - 1, SEEK_SET)) {
+        if (-1 == lseek(file_, size - 1, SEEK_SET)) {
             return false;
         } else {
-            if (1 != write(File, "", 1)) {
+            if (1 != write(file_, "", 1)) {
                 return false;
             }
         }
@@ -145,12 +145,12 @@ bool MappedFile::OpenWrite(const char* path, size_t size) {
 }
 
 void MappedFile::Close() {
-    if (File != -1) {
-        close(File);
-        File = -1;
+    if (file_ != -1) {
+        close(file_);
+        file_ = -1;
     }
 
-    Length = 0;
+    length_ = 0;
 }
 
 /*
@@ -158,11 +158,11 @@ void MappedFile::Close() {
 */
 
 MappedView::MappedView() {
-    Data = nullptr;
-    Length = 0;
-    Offset = 0;
-    File = nullptr;
-    Map = MAP_FAILED;
+    data_ = nullptr;
+    length_ = 0;
+    offset_ = 0;
+    file_ = nullptr;
+    map_ = MAP_FAILED;
 }
 
 MappedView::~MappedView() {
@@ -176,13 +176,13 @@ bool MappedView::Open(MappedFile* file) {
         return false;
     }
 
-    File = file;
+    file_ = file;
     return true;
 }
 
 uint8_t* MappedView::MapView(size_t offset, uint32_t length) {
     if (length == 0) {
-        length = static_cast<uint32_t>(File->GetLength());
+        length = static_cast<uint32_t>(file_->GetLength());
     }
 
     if (offset) {
@@ -198,33 +198,33 @@ uint8_t* MappedView::MapView(size_t offset, uint32_t length) {
     }
 
     int prot = PROT_READ;
-    if (!File->ReadOnly) {
+    if (!file_->readOnly_) {
         prot |= PROT_WRITE;
     }
 
     // Use MAP_PRIVATE so that memory is not exposed to other processes.
-    Map = mmap(nullptr, length, prot, MAP_PRIVATE, File->File, offset);
+    map_ = mmap(nullptr, length, prot, MAP_PRIVATE, file_->file_, offset);
 
-    if (Map == MAP_FAILED) {
+    if (map_ == MAP_FAILED) {
         return nullptr;
     }
 
-    Data = reinterpret_cast<uint8_t*>(Map);
+    data_ = reinterpret_cast<uint8_t*>(map_);
 
-    Offset = offset;
-    Length = length;
+    offset_ = offset;
+    length_ = length;
 
-    return Data;
+    return data_;
 }
 
 void MappedView::Close() {
-    if (Map != MAP_FAILED) {
-        munmap(Map, Length);
-        Map = MAP_FAILED;
+    if (map_ != MAP_FAILED) {
+        munmap(map_, length_);
+        map_ = MAP_FAILED;
     }
-    Data = nullptr;
-    Length = 0;
-    Offset = 0;
+    data_ = nullptr;
+    length_ = 0;
+    offset_ = 0;
 }
 
 } // namespace OVRFW

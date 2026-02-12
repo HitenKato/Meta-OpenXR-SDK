@@ -103,9 +103,9 @@ void ovrArmModel::Update(
     Posef& outPose) {
     Matrix4f eyeMatrix(headPose);
 
-    float eyeYaw;
-    float eyePitch;
-    float eyeRoll; // ya... like, seriously???
+    float eyeYaw = 0.0f;
+    float eyePitch = 0.0f;
+    float eyeRoll = 0.0f; // ya... like, seriously???
     eyeMatrix.ToEulerAngles<OVR::Axis_Y, OVR::Axis_X, OVR::Axis_Z, OVR::Rotate_CCW, OVR::Handed_R>(
         &eyeYaw, &eyePitch, &eyeRoll);
 
@@ -144,9 +144,9 @@ void ovrArmModel::Update(
         float const slerpFactor = 1.0f / 15.0f;
         const Quatf slerped = torsoRot.Slerp(constrainedTorsoRot, slerpFactor);
 
-        float y;
-        float p;
-        float r;
+        float y = 0.0f;
+        float p = 0.0f;
+        float r = 0.0f;
         slerped.GetYawPitchRoll(&y, &p, &r);
         return y;
     };
@@ -163,9 +163,9 @@ void ovrArmModel::Update(
 
     const float MAX_ROLL = MATH_FLOAT_PIOVER2;
     const float MIN_PITCH = MATH_FLOAT_PIOVER2 * 0.825f;
-    float remoteYaw;
-    float remotePitch;
-    float remoteRoll;
+    float remoteYaw = 0.0f;
+    float remotePitch = 0.0f;
+    float remoteRoll = 0.0f;
     remoteRot.GetYawPitchRoll(&remoteYaw, &remotePitch, &remoteRoll);
     if ((remoteRoll >= -MAX_ROLL && remoteRoll <= MAX_ROLL) ||
         (remotePitch <= -MIN_PITCH || remotePitch >= MIN_PITCH)) {

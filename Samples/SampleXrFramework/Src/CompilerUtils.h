@@ -29,7 +29,7 @@ Language    :   C++
 #pragma once
 
 // included here with the intention of implementing a custom assert macro later.
-#include <assert.h>
+#include <cassert>
 
 #ifndef OVR_UNUSED
 #define OVR_UNUSED(a) (void)(a)

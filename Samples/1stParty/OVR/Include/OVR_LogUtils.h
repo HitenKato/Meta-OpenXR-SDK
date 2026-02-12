@@ -159,6 +159,7 @@ inline void LogWithFileTag(const int prio, const char* fileTag, const char* fmt,
     // Calculate the length of the log message... if its too long __android_log_vprint() will clip
     // it!
     va_copy(ap2, ap);
+    // NOLINTNEXTLINE(modernize-use-nullptr) - This file is imported by C code.
     const int requiredLen = vsnprintf(NULL, 0, fmt, ap2);
     va_end(ap2);
     if (requiredLen < 0) {
@@ -230,7 +231,9 @@ inline void LogWithFileTag(const int prio, const char* fileTag, const char* fmt,
 // Please do not use this function. Be more explicit about the intended behavior, and use FAIL or
 // WARN instead.
 #define OVR_ERROR_CRASH_MOBILE_USE_WARN_OR_FAIL(...) \
-    { LogWithFileTag(0, __FILE__, __VA_ARGS__); }
+    {                                                \
+        LogWithFileTag(0, __FILE__, __VA_ARGS__);    \
+    }
 
 #define OVR_FAIL(...)                             \
     {                                             \
@@ -258,8 +261,10 @@ inline void LogWithFileTag(const int prio, const char* fileTag, const char* fmt,
 // but not on Windows. This was surprising to many devs and has led to multiple serious incidents.
 // Please do not use this function. Be more explicit about the intended behavior, and use FAIL or
 // WARN instead.
-#define OVR_ERROR_CRASH_MOBILE_USE_WARN_OR_FAIL(...) \
-    { (void)LogWithTag(ANDROID_LOG_ERROR, OVR_LOG_TAG, __VA_ARGS__); }
+#define OVR_ERROR_CRASH_MOBILE_USE_WARN_OR_FAIL(...)                   \
+    {                                                                  \
+        (void)LogWithTag(ANDROID_LOG_ERROR, OVR_LOG_TAG, __VA_ARGS__); \
+    }
 
 #define OVR_FAIL(...)                                                  \
     {                                                                  \
@@ -275,8 +280,10 @@ inline void LogWithFileTag(const int prio, const char* fileTag, const char* fmt,
 // but not on Windows. This was surprising to many devs and has led to multiple serious incidents.
 // Please do not use this function. Be more explicit about the intended behavior, and use FAIL or
 // WARN instead.
-#define OVR_ERROR_CRASH_MOBILE_USE_WARN_OR_FAIL(...) \
-    { LogWithFileTag(ANDROID_LOG_ERROR, __FILE__, __VA_ARGS__); }
+#define OVR_ERROR_CRASH_MOBILE_USE_WARN_OR_FAIL(...)              \
+    {                                                             \
+        LogWithFileTag(ANDROID_LOG_ERROR, __FILE__, __VA_ARGS__); \
+    }
 
 #define OVR_FAIL(...)                                             \
     {                                                             \
@@ -305,7 +312,8 @@ inline void LogWithFileTag(const int prio, const char* fileTag, const char* fmt,
 #define SPAM(...) LogWithTag(ANDROID_LOG_VERBOSE, "Spam", __VA_ARGS__)
 #else
 #define SPAM(...) \
-    {}
+    {             \
+    }
 #endif
 
 // TODO: we need a define for internal builds that will compile in assertion messages but not debug
@@ -389,7 +397,8 @@ static inline std::string ovrLogConvertPrintfToString(const char* format, ...) {
 #define OVR_LOG_BUILD_DEBUG(...) OVR_LOG(__VA_ARGS__)
 #else
 #define OVR_LOG_BUILD_DEBUG(...) \
-    {}
+    {                            \
+    }
 #endif // OVR_LOG_BUILD_DEBUG
 
 // logs only the first time to avoid spam

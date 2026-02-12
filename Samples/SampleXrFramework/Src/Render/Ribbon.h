@@ -42,7 +42,7 @@ class ovrRibbon {
     ovrRibbon(const ovrPointList& pointList, const float width, const OVR::Vector4f& color);
     ~ovrRibbon();
 
-    void AddPoint(ovrPointList& pointList, const OVR::Vector3f& point);
+    static void AddPoint(ovrPointList& pointList, const OVR::Vector3f& point);
     void Update(
         const ovrPointList& pointList,
         const OVR::Matrix4f& centerViewMatrix,
@@ -52,10 +52,10 @@ class ovrRibbon {
     void GenerateSurfaceList(std::vector<ovrDrawSurface>& surfaceList) const;
 
    private:
-    float HalfWidth;
-    OVR::Vector4f Color;
-    ovrSurfaceDef Surface;
-    GlTexture Texture;
+    float halfWidth_;
+    OVR::Vector4f color_;
+    ovrSurfaceDef surface_;
+    GlTexture texture_;
 };
 
 } // namespace OVRFW

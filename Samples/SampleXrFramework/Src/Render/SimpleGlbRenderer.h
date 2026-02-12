@@ -51,10 +51,10 @@ class SimpleGlbRenderer {
     void Shutdown();
     void Update(const OVR::Posef& pose);
     void Render(std::vector<ovrDrawSurface>& surfaceList);
-    bool IsInitialized() const {
+    [[nodiscard]] bool IsInitialized() const {
         return Initialized;
     }
-    std::vector<OVR::Matrix4f> GetDefaultPoseTransforms() const;
+    [[nodiscard]] std::vector<OVR::Matrix4f> GetDefaultPoseTransforms() const;
 
    public:
     OVR::Vector3f SpecularLightDirection;

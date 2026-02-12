@@ -151,8 +151,8 @@ void LoadModelFileTexture(
     ModelTexture tex;
     tex.name = textureName;
     tex.name = tex.name.substr(0, tex.name.rfind('.'));
-    int width;
-    int height;
+    int width = 0;
+    int height = 0;
     tex.texid = LoadTextureFromBuffer(
         textureName,
         (const uint8_t*)buffer,
@@ -247,11 +247,13 @@ struct zlib_mmap_opaque {
     int left;
 };
 
-static voidpf ZCALLBACK mmap_fopen_file_func(voidpf opaque, const char*, int) {
+static voidpf ZCALLBACK
+mmap_fopen_file_func(voidpf opaque, const char* /*unused*/, int /*unused*/) {
     return opaque;
 }
 
-static uLong ZCALLBACK mmap_fread_file_func(voidpf opaque, voidpf, void* buf, uLong size) {
+static uLong ZCALLBACK
+mmap_fread_file_func(voidpf opaque, voidpf /*unused*/, void* buf, uLong size) {
     zlib_mmap_opaque* state = (zlib_mmap_opaque*)opaque;
 
     if ((int)size <= 0 || state->left < (int)size) {
@@ -265,17 +267,22 @@ static uLong ZCALLBACK mmap_fread_file_func(voidpf opaque, voidpf, void* buf, uL
     return size;
 }
 
-static uLong ZCALLBACK mmap_fwrite_file_func(voidpf, voidpf, const void*, uLong) {
+static uLong ZCALLBACK mmap_fwrite_file_func(
+    voidpf /*unused*/,
+    voidpf /*unused*/,
+    const void* /*unused*/,
+    uLong /*unused*/) {
     return 0;
 }
 
-static long ZCALLBACK mmap_ftell_file_func(voidpf opaque, voidpf) {
+static long ZCALLBACK mmap_ftell_file_func(voidpf opaque, voidpf /*unused*/) {
     zlib_mmap_opaque* state = (zlib_mmap_opaque*)opaque;
 
     return state->len - state->left;
 }
 
-static long ZCALLBACK mmap_fseek_file_func(voidpf opaque, voidpf, uLong offset, int origin) {
+static long ZCALLBACK
+mmap_fseek_file_func(voidpf opaque, voidpf /*unused*/, uLong offset, int origin) {
     zlib_mmap_opaque* state = (zlib_mmap_opaque*)opaque;
 
     switch (origin) {
@@ -302,11 +309,11 @@ static long ZCALLBACK mmap_fseek_file_func(voidpf opaque, voidpf, uLong offset, 
     return 0;
 }
 
-static int ZCALLBACK mmap_fclose_file_func(voidpf, voidpf) {
+static int ZCALLBACK mmap_fclose_file_func(voidpf /*unused*/, voidpf /*unused*/) {
     return 0;
 }
 
-static int ZCALLBACK mmap_ferror_file_func(voidpf, voidpf) {
+static int ZCALLBACK mmap_ferror_file_func(voidpf /*unused*/, voidpf /*unused*/) {
     return 0;
 }
 
@@ -469,8 +476,8 @@ ModelFile* LoadModelFileFromOtherApplicationPackage(
     const char* nameInZip,
     const ModelGlPrograms& programs,
     const MaterialParms& materialParms) {
-    void* buffer;
-    int bufferLength;
+    void* buffer = nullptr;
+    int bufferLength = 0;
 
     ovr_ReadFileFromOtherApplicationPackage(zipFile, nameInZip, bufferLength, buffer);
     if (buffer == nullptr) {

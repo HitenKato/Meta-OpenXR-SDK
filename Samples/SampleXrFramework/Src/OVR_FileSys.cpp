@@ -105,7 +105,7 @@ bool ovrFileSys::GetPathIfValidPermission(
     const char* subfolder,
     permissionFlags_t permission,
     std::string& outPath) {
-    std::string storageBasePath = "";
+    std::string storageBasePath;
     // Hard-coding these values for now
     if (storageType == EST_SECONDARY_EXTERNAL_STORAGE && folderType == EFT_ROOT) {
         storageBasePath += "/sdcard/";
@@ -157,7 +157,7 @@ void ovrFileSys::PushBackSearchPathIfValid(
     ovrFolderType folderType,
     const char* subfolder,
     std::vector<std::string>& searchPaths) {
-    std::string storageBasePath = "";
+    std::string storageBasePath;
     if (storageType == EST_SECONDARY_EXTERNAL_STORAGE && folderType == EFT_ROOT) {
         storageBasePath += "/sdcard/";
     } else if (storageType == EST_PRIMARY_EXTERNAL_STORAGE && folderType == EFT_ROOT) {

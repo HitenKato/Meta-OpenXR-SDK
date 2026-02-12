@@ -46,11 +46,11 @@ class Fader {
 
     void Update(float const fadeRate, double const deltaSeconds);
 
-    float GetFadeAlpha() const {
-        return FadeAlpha;
+    [[nodiscard]] float GetFadeAlpha() const {
+        return fadeAlpha_;
     }
-    eFadeState GetFadeState() const {
-        return FadeState;
+    [[nodiscard]] eFadeState GetFadeState() const {
+        return fadeState_;
     }
 
     void StartFadeIn();
@@ -60,21 +60,21 @@ class Fader {
     void Reset();
     void ForceFinish();
     void SetFadeAlpha(float const fa) {
-        FadeAlpha = fa;
+        fadeAlpha_ = fa;
     }
 
-    char const* GetFadeStateName(eFadeState const state) const;
+    static char const* GetFadeStateName(eFadeState const state);
 
-    bool IsFadingInOrFadedIn() const;
-
-   private:
-    eFadeState FadeState;
-    eFadeState PrePauseState;
-    float StartAlpha;
-    float FadeAlpha;
+    [[nodiscard]] bool IsFadingInOrFadedIn() const;
 
    private:
-    bool IsFadingInOrFadedIn(eFadeState const state) const;
+    eFadeState fadeState_;
+    eFadeState prePauseState_;
+    float startAlpha_;
+    float fadeAlpha_;
+
+   private:
+    [[nodiscard]] bool IsFadingInOrFadedIn(eFadeState const state) const;
 };
 
 //==============================================================
@@ -84,7 +84,7 @@ class SineFader : public Fader {
    public:
     SineFader(float const startAlpha);
 
-    float GetFinalAlpha() const;
+    [[nodiscard]] float GetFinalAlpha() const;
 };
 
 } // namespace OVRFW

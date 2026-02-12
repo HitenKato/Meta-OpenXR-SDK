@@ -85,7 +85,7 @@ class VRMenu {
         MENUSTATE_MAX
     };
 
-    static char const* MenuStateNames[MENUSTATE_MAX];
+    static char const* menuStateNames[MENUSTATE_MAX];
 
     static VRMenuId_t GetRootId();
 
@@ -129,19 +129,19 @@ class VRMenu {
     void Close(OvrGuiSys& guiSys, bool const instant = false);
 
     bool IsOpen() const {
-        return CurMenuState == MENUSTATE_OPEN;
+        return curMenuState_ == MENUSTATE_OPEN;
     }
     bool IsOpenOrOpening() const {
-        return CurMenuState == MENUSTATE_OPEN || CurMenuState == MENUSTATE_OPENING ||
-            NextMenuState == MENUSTATE_OPEN || NextMenuState == MENUSTATE_OPENING;
+        return curMenuState_ == MENUSTATE_OPEN || curMenuState_ == MENUSTATE_OPENING ||
+            nextMenuState_ == MENUSTATE_OPEN || nextMenuState_ == MENUSTATE_OPENING;
     }
 
     bool IsClosed() const {
-        return CurMenuState == MENUSTATE_CLOSED;
+        return curMenuState_ == MENUSTATE_CLOSED;
     }
     bool IsClosedOrClosing() const {
-        return CurMenuState == MENUSTATE_CLOSED || CurMenuState == MENUSTATE_CLOSING ||
-            NextMenuState == MENUSTATE_CLOSED || NextMenuState == MENUSTATE_CLOSING;
+        return curMenuState_ == MENUSTATE_CLOSED || curMenuState_ == MENUSTATE_CLOSING ||
+            nextMenuState_ == MENUSTATE_CLOSED || nextMenuState_ == MENUSTATE_CLOSING;
     }
 
     void OnItemEvent(
@@ -150,33 +150,33 @@ class VRMenu {
         VRMenuId_t const itemId,
         class VRMenuEvent const& event);
 
-    virtual void OnJobCompleted(OvrGuiSys&, class ovrJob&) {}
+    virtual void OnJobCompleted(OvrGuiSys& /*unused*/, class ovrJob& /*unused*/) {}
 
     // Clients can query the current menu state but to change it they must use
     // SetNextMenuState() and allow the menu to switch states when it can.
     eMenuState GetCurMenuState() const {
-        return CurMenuState;
+        return curMenuState_;
     }
 
     // Returns the next menu state.
     eMenuState GetNextMenuState() const {
-        return NextMenuState;
+        return nextMenuState_;
     }
     // Sets the next menu state.  The menu will switch to that state at the next
     // opportunity.
     void SetNextMenuState(eMenuState const s) {
-        NextMenuState = s;
+        nextMenuState_ = s;
     }
 
     menuHandle_t GetRootHandle() const {
-        return RootHandle;
+        return rootHandle_;
     }
     menuHandle_t GetFocusedHandle() const;
     OVR::Posef const& GetMenuPose() const {
-        return MenuPose;
+        return menuPose_;
     }
     void SetMenuPose(OVR::Posef const& pose) {
-        MenuPose = pose;
+        menuPose_ = pose;
     }
 
     menuHandle_t HandleForName(OvrVRMenuMgr const& menuMgr, char const* name) const;
@@ -188,10 +188,10 @@ class VRMenu {
     VRMenuId_t IdForName(OvrGuiSys const& guiSys, char const* name) const;
 
     char const* GetName() const {
-        return Name.c_str();
+        return name_.c_str();
     }
     bool IsMenu(char const* menuName) const {
-        return OVR::OVR_stricmp(Name.c_str(), menuName) == 0;
+        return OVR::OVR_stricmp(name_.c_str(), menuName) == 0;
     }
 
     // Use an arbitrary view matrix. This is used when updating the menus and passing the current
@@ -203,10 +203,10 @@ class VRMenu {
     void ResetMenuOrientation(OVR::Matrix4f const& viewMatrix);
 
     VRMenuFlags_t const& GetFlags() const {
-        return Flags;
+        return flags_;
     }
     void SetFlags(VRMenuFlags_t const& flags) {
-        Flags = flags;
+        flags_ = flags;
     }
 
     OVR::Posef CalcMenuPosition(OVR::Matrix4f const& viewMatrix) const;
@@ -214,10 +214,10 @@ class VRMenu {
     OVR::Posef CalcMenuPositionOnHorizon(OVR::Matrix4f const& viewMatrix) const;
 
     float GetMenuDistance() const {
-        return MenuDistance;
+        return menuDistance_;
     }
     void SetMenuDistance(float const& menuDistance) {
-        MenuDistance = menuDistance;
+        menuDistance_ = menuDistance;
     }
 
     // Set the selected state of an object AND send an event for selection
@@ -232,26 +232,26 @@ class VRMenu {
 
    private:
     menuHandle_t
-        RootHandle; // handle to the menu's root item (to which all other items must be attached)
+        rootHandle_; // handle to the menu's root item (to which all other items must be attached)
 
-    eMenuState CurMenuState; // the current menu state
-    eMenuState NextMenuState; // the state the menu should move to next
+    eMenuState curMenuState_; // the current menu state
+    eMenuState nextMenuState_; // the state the menu should move to next
 
-    OVR::Posef MenuPose; // world-space position and orientation of this menu's root item
+    OVR::Posef menuPose_; // world-space position and orientation of this menu's root item
 
-    ovrSoundLimiter OpenSoundLimiter; // prevents the menu open sound from playing too often
-    ovrSoundLimiter CloseSoundLimiter; // prevents the menu close sound from playing too often
+    ovrSoundLimiter openSoundLimiter_; // prevents the menu open sound from playing too often
+    ovrSoundLimiter closeSoundLimiter_; // prevents the menu close sound from playing too often
 
-    VRMenuEventHandler* EventHandler;
-    std::vector<VRMenuEvent> PendingEvents; // events pending since the last frame
+    VRMenuEventHandler* eventHandler_;
+    std::vector<VRMenuEvent> pendingEvents_; // events pending since the last frame
 
-    std::string Name; // name of the menu
+    std::string name_; // name of the menu
 
-    VRMenuFlags_t Flags; // various flags that dictate menu behavior
-    float MenuDistance; // distance from eyes
-    bool IsInitialized; // true if Init was called
-    bool ComponentsInitialized; // true if init message has been sent to components
-    bool PostInitialized; // true if post init was run
+    VRMenuFlags_t flags_; // various flags that dictate menu behavior
+    float menuDistance_; // distance from eyes
+    bool isInitialized_; // true if Init was called
+    bool componentsInitialized_; // true if init message has been sent to components
+    bool postInitialized_; // true if post init was run
 
    private:
     // return true to continue with normal initialization (adding items) or false to skip.

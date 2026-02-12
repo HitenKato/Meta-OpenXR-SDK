@@ -27,7 +27,7 @@ Copyright   :   Copyright (c) Facebook Technologies, LLC and its affiliates. All
 #include "Model/ModelFile.h"
 #include "Model/ModelFileLoading.h"
 #include "Model/ModelDef.h"
-#include <string.h>
+#include <cstring>
 
 using OVR::Matrix4f;
 using OVR::Posef;

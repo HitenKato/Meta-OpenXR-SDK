@@ -105,7 +105,7 @@
 #endif
 
 #if !defined(OVR_ASSERT) // Android currently defines its own version of OVR_ASSERT() with logging
-#include <assert.h>
+#include <cassert>
 #define OVR_ASSERT assert
 #endif // !defined(OVR_ASSERT)
 
