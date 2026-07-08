@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/libktx-build/tools/ktxinfo",
+		"source" : "3rdParty/khronos/ktx_src/tools/ktxinfo"
+	}
+}

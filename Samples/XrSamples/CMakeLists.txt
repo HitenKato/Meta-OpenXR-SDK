@@ -19,8 +19,8 @@ file(GLOB children RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_D
 
 # Loop through the list of directories
 foreach(child ${children})
-    # If the current item is a directory
-    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${child})
+    # If the current item is a directory AND contains a CMakeLists.txt
+    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${child} AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${child}/CMakeLists.txt)
         # Add it as a subdirectory
         add_subdirectory(${child})
     endif()

@@ -1,0 +1,15 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+   "cmakeCommandArgs": "-DCMAKE_CXX_FLAGS=\"/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /EHsc /wd5287 /wd5272 /wd4005 /DWIN32 /DNOMINMAX\" -DCMAKE_C_FLAGS=\"/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX\"",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    }
+  ]
+}

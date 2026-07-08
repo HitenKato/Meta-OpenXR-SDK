@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/libktx-build/other_projects/fmt",
+		"source" : "3rdParty/khronos/ktx_src/other_projects/fmt"
+	}
+}

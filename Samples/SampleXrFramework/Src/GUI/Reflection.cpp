@@ -33,11 +33,11 @@ Authors     :   Jonathan E. Wright
 
 #include "OVR_TypesafeNumber.h"
 
-#if !defined(WIN32)
-#include <alloca.h>
-#else
+#ifdef _WIN32
 #include <malloc.h>
-#endif // !defined(WIN32)
+#else
+#include <alloca.h>
+#endif
 
 #include <cstdlib> // for strtoll
 
