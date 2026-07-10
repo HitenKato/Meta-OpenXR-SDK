@@ -417,113 +417,28 @@ public:
         // ---------------------------------
     }
 
-    // Update state
     virtual void Update(const OVRFW::ovrApplFrameIn& in) override {
-        
+
         // --- Bullet Physics の時間を進める ---
         if (dynamicsWorld_) {
             dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
         }
-        // -------------------------------------
-        // ▼今回追加: 箱の座標を取得して出力▼
+
+        // 箱の座標を取得して出力
         if (fallingCube_) {
             btTransform trans;
             fallingCube_->getMotionState()->getWorldTransform(trans);
-            // 物理演算された箱のY座標（高さ）をログに流す
-            ALOG("Cube Y Position: %f", trans.getOrigin().getY());
-        }
-        /// Update Input
-        {
-            /// Trigger Force
-            triggerForceL_ = GetActionStateFloat(triggerForceAction_, LeftHandPath).currentState;
-            triggerForceR_ = GetActionStateFloat(triggerForceAction_, RightHandPath).currentState;
-            /// TrackPad Force
-            trackpadForceL_ = GetActionStateFloat(trackpadForceAction_, LeftHandPath).currentState;
-            trackpadForceR_ = GetActionStateFloat(trackpadForceAction_, RightHandPath).currentState;
-            /// Stylus Force
-            stylusForceL_ = GetActionStateFloat(stylusForceAction_, LeftHandPath).currentState;
-            stylusForceR_ = GetActionStateFloat(stylusForceAction_, RightHandPath).currentState;
-            /// Trigger Curl
-            triggerCurlL_ = GetActionStateFloat(triggerCurlAction_, LeftHandPath).currentState;
-            triggerCurlR_ = GetActionStateFloat(triggerCurlAction_, RightHandPath).currentState;
-            /// Squeeze Curl
-            squeezeCurlL_ = GetActionStateFloat(triggerSlideAction_, LeftHandPath).currentState;
-            squeezeCurlR_ = GetActionStateFloat(triggerSlideAction_, RightHandPath).currentState;
-            /// Proximity
-            triggerProxL_ = GetActionStateBoolean(triggerProxAction_, LeftHandPath).currentState;
-            triggerProxR_ = GetActionStateBoolean(triggerProxAction_, RightHandPath).currentState;
-            thumbFBProxL_ = GetActionStateBoolean(thumbFbProxAction_, LeftHandPath).currentState;
-            thumbFBProxR_ = GetActionStateBoolean(thumbFbProxAction_, RightHandPath).currentState;
-            // same as above on touch plus
-            thumbMetaProxL_ =
-                GetActionStateBoolean(thumbMetaProxAction_, LeftHandPath).currentState;
-            thumbMetaProxR_ =
-                GetActionStateBoolean(thumbMetaProxAction_, RightHandPath).currentState;
-            /// Trigger Value
-            triggerValueL_ = GetActionStateBoolean(triggerValueAction_, LeftHandPath).currentState;
-            triggerValueR_ = GetActionStateBoolean(triggerValueAction_, RightHandPath).currentState;
-
-            /// Trigger Touch
-            triggerTouchL_ = GetActionStateBoolean(triggerTouchAction_, LeftHandPath).currentState;
-            triggerTouchR_ = GetActionStateBoolean(triggerTouchAction_, RightHandPath).currentState;
-            /// Squeeze Value
-            squeezeValueL_ = GetActionStateBoolean(squeezeValueAction_, LeftHandPath).currentState;
-            squeezeValueR_ = GetActionStateBoolean(squeezeValueAction_, RightHandPath).currentState;
+            // ALOG("Cube Y Position: %f", trans.getOrigin().getY()); // ログが重い場合はコメントアウト
         }
 
-        // we can only request haptic sample rate when the session is in focus
-        if (Focused) {
-            XrHapticActionInfo hai = {XR_TYPE_HAPTIC_ACTION_INFO, nullptr};
-            hai.action = mainHapticAction_;
-            hai.subactionPath = LeftHandPath;
-            OXR(xrGetDeviceSampleRateFB(Session, &hai, &leftDeviceSampleRate_));
-
-            hai.action = mainHapticAction_;
-            hai.subactionPath = RightHandPath;
-            OXR(xrGetDeviceSampleRateFB(Session, &hai, &rightDeviceSampleRate_));
-        }
-
-        // once per A button press
+        // --- 必要な入力の取得 ---
+        // 箱を出す、リセットするなどの操作のために基本的なボタン入力だけ取得しておきます
         const auto buttonA = GetActionStateBoolean(ButtonAAction);
-        if (buttonA.currentState == XR_TRUE && buttonA.changedSinceLastSync == XR_TRUE) {
-            // Trigger PCM haptics: simple sine wave
-            std::vector<float> sineWave =
-                createPCMSamples(157, std::size(constantIntensity), constantIntensity, ToXrTime(1));
-            VibrateControllerPCM(
-                mainHapticAction_, RightHandPath, sineWave.data(), sineWave.size(), 2000.0f);
-        }
-
-        // once per B button press
         const auto buttonB = GetActionStateBoolean(ButtonBAction);
-        if (buttonB.currentState == XR_TRUE && buttonB.changedSinceLastSync == XR_TRUE) {
-            // Trigger AE haptics
-            float aeBufferSimple[500]; // 1sec
-            for (int i = 0; i < 500; i++) {
-                aeBufferSimple[i] = 0.1;
-            }
-
-            VibrateControllerAmplitude(
-                mainHapticAction_,
-                RightHandPath,
-                aeBufferSimple,
-                std::size(aeBufferSimple),
-                0.002f * std::size(aeBufferSimple));
-        }
-
-        // once per X button press
         const auto buttonX = GetActionStateBoolean(ButtonXAction);
-        if (buttonX.currentState == XR_TRUE && buttonX.changedSinceLastSync == XR_TRUE) {
-            // Trigger Localized(thumb) haptics
-            VibrateController(thumbHapticAction_, LeftHandPath, 0.1f, 157.0f, 1.0f);
-        }
-
-        // once per Y button press
         const auto buttonY = GetActionStateBoolean(ButtonYAction);
-        if (buttonY.currentState == XR_TRUE && buttonY.changedSinceLastSync == XR_TRUE) {
-            // Trigger Localized(trigger) haptics
-            VibrateController(triggerHapticAction_, LeftHandPath, 0.1f, 157.0f, 1.0f);
-        }
 
+        // --- UIとコントローラーのトラッキング更新 ---
         ui_.HitTestDevices().clear();
 
         if (in.LeftRemoteTracked) {
@@ -537,191 +452,15 @@ public:
             ui_.AddHitTestRay(in.RightRemotePointPose, didPinch);
         }
 
-        /// Update labels
-        {
-            XrInteractionProfileState lIpState{XR_TYPE_INTERACTION_PROFILE_STATE};
-            OXR(xrGetCurrentInteractionProfile(Session, LeftHandPath, &lIpState));
-            XrInteractionProfileState rIpState{XR_TYPE_INTERACTION_PROFILE_STATE};
-            OXR(xrGetCurrentInteractionProfile(Session, LeftHandPath, &rIpState));
-
-            char lBuf[XR_MAX_PATH_LENGTH];
-            uint32_t written = 0;
-            if (lIpState.interactionProfile != XR_NULL_PATH) {
-                OXR(xrPathToString(
-                    Instance, lIpState.interactionProfile, XR_MAX_PATH_LENGTH, &written, lBuf));
-            }
-            if (written == 0) {
-                strcpy(lBuf, "<none>");
-            }
-
-            char rBuf[XR_MAX_PATH_LENGTH];
-            written = 0;
-            if (rIpState.interactionProfile != XR_NULL_PATH) {
-                OXR(xrPathToString(
-                    Instance, rIpState.interactionProfile, XR_MAX_PATH_LENGTH, &written, rBuf));
-            }
-            if (written == 0) {
-                strcpy(rBuf, "<none>");
-            }
-
-            std::stringstream ss;
-            ss << "Left IP: " << lBuf << std::endl;
-            ss << "Right IP: " << rBuf;
-            ipText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerForceL_;
-            triggerForceLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerForceR_;
-            triggerForceRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << trackpadForceL_;
-            trackpadForceLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << trackpadForceR_;
-            trackpadForceRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << stylusForceL_;
-            stylusForceLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << stylusForceR_;
-            stylusForceRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerCurlL_;
-            triggerCurlLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerCurlR_;
-            triggerCurlRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << squeezeCurlL_;
-            squeezeCurlLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << squeezeCurlR_;
-            squeezeCurlRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << "PCM Haptic\n[SR: ";
-            ss << std::setprecision(1) << std::fixed;
-            ss << leftDeviceSampleRate_.sampleRate << ", ";
-            ss << rightDeviceSampleRate_.sampleRate << "]";
-            pcmHapticText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerProxL_;
-            triggerProxLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerProxR_;
-            triggerProxRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << "_FB: " << thumbFBProxL_;
-            thumbFBProxLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << "_FB: " << thumbFBProxR_;
-            thumbFBProxRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << "_META: " << thumbMetaProxL_;
-            thumbMetaProxLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << "_META: " << thumbMetaProxR_;
-            thumbMetaProxRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerValueL_;
-            triggerValueLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerValueR_;
-            triggerValueRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerTouchL_;
-            triggerTouchLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << triggerTouchR_;
-            triggerTouchRText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << squeezeValueL_;
-            squeezeValueLText_->SetText(ss.str().c_str());
-        }
-        {
-            std::stringstream ss;
-            ss << std::setprecision(4) << std::fixed;
-            ss << squeezeValueR_;
-            squeezeValueRText_->SetText(ss.str().c_str());
-        }
-
-        /*
-         */
-
         ui_.Update(in);
         beamRenderer_.Update(in, ui_.HitTestDevices());
-
-        /// Add some deliberate lag to the app
-        if (delayUI_) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(150));
-        }
     }
 
     // Render eye buffers while running
     virtual void Render(const OVRFW::ovrApplFrameIn& in, OVRFW::ovrRendererOutput& out) override {
         /// Render UI
-        ui_.Render(in, out);
+        // ui_.Render(in, out); // UIは消したのでコメントアウト
+
         /// Render controllers
         if (in.LeftRemoteTracked) {
             controllerRenderL_.Render(out.Surfaces);
@@ -732,300 +471,50 @@ public:
 
         /// Render beams
         beamRenderer_.Render(in, out);
-    }
 
-    void EnumerateActions() {
-        // Enumerate actions
-        XrPath actionPathsBuffer[16];
-        char stringBuffer[256];
-        XrAction actionsToEnumerate[] = {
-            /// new actions
-            triggerForceAction_,
-            thumbMetaProxAction_,
-            trackpadForceAction_,
-            stylusForceAction_,
-            triggerCurlAction_,
-            triggerSlideAction_,
-            /// existing actions form base class
-            IndexTriggerAction,
-            GripTriggerAction,
-            triggerProxAction_,
-            thumbFbProxAction_,
-            triggerValueAction_,
-            triggerTouchAction_,
-            squeezeValueAction_,
-        };
-        for (size_t i = 0; i < sizeof(actionsToEnumerate) / sizeof(actionsToEnumerate[0]); ++i) {
-            XrBoundSourcesForActionEnumerateInfo enumerateInfo = {
-                XR_TYPE_BOUND_SOURCES_FOR_ACTION_ENUMERATE_INFO};
-            enumerateInfo.action = actionsToEnumerate[i];
+        // ▼今回追加：Bullet Physics の世界をVR空間に描画する▼
+        // out.Surfaces の数（通常は両目で2つ）だけ描画を繰り返す
+        for (int eye = 0; eye < out.NumSurfaces; ++eye) {
+            // 現在描画しようとしている目のカメラ情報（ProjectionとView行列）を取得
+            const OVRFW::ovrRendererOutput::ovrSurface& surf = out.Surfaces[eye];
 
-            // Get Count
-            uint32_t countOutput = 0;
-            OXR(xrEnumerateBoundSourcesForAction(
-                Session, &enumerateInfo, 0 /* request size */, &countOutput, nullptr));
-            ALOGV(
-                "xrEnumerateBoundSourcesForAction action=%lld count=%u",
-                (long long)enumerateInfo.action,
-                countOutput);
+            // OpenGLの行列計算モードを切り替え、カメラ情報をセット
+            glMatrixMode(GL_PROJECTION);
+            glLoadMatrixf((const GLfloat*)&surf.ProjectionMatrix);
 
-            if (countOutput < 16) {
-                OXR(xrEnumerateBoundSourcesForAction(
-                    Session, &enumerateInfo, 16, &countOutput, actionPathsBuffer));
-                for (uint32_t a = 0; a < countOutput; ++a) {
-                    XrInputSourceLocalizedNameGetInfo nameGetInfo = {
-                        XR_TYPE_INPUT_SOURCE_LOCALIZED_NAME_GET_INFO};
-                    nameGetInfo.sourcePath = actionPathsBuffer[a];
-                    nameGetInfo.whichComponents = XR_INPUT_SOURCE_LOCALIZED_NAME_USER_PATH_BIT |
-                        XR_INPUT_SOURCE_LOCALIZED_NAME_INTERACTION_PROFILE_BIT |
-                        XR_INPUT_SOURCE_LOCALIZED_NAME_COMPONENT_BIT;
+            glMatrixMode(GL_MODELVIEW);
+            glLoadMatrixf((const GLfloat*)&surf.ViewMatrix);
 
-                    uint32_t stringCount = 0u;
-                    OXR(xrGetInputSourceLocalizedName(
-                        Session, &nameGetInfo, 0, &stringCount, nullptr));
-                    if (stringCount < 256) {
-                        OXR(xrGetInputSourceLocalizedName(
-                            Session, &nameGetInfo, 256, &stringCount, stringBuffer));
-                        char pathStr[256];
-                        uint32_t strLen = 0;
-                        OXR(xrPathToString(
-                            Instance,
-                            actionPathsBuffer[a],
-                            (uint32_t)sizeof(pathStr),
-                            &strLen,
-                            pathStr));
-                        ALOGV(
-                            "Xr##  -> path = %lld `%s` -> `%s`",
-                            (long long)actionPathsBuffer[a],
-                            pathStr,
-                            stringBuffer);
-                    }
-                }
-            }
+            // 授業の utils.h にある描画関数を呼び出す！
+            // この中で、g_dynamicsworld (今回は dynamicsWorld_) の全オブジェクトがスキャンされ、
+            // GetOpenGLMatrix() で変換されたのち、DrawCubeVBO() などで描画されます。
+            glPushMatrix();
+
+            // ※注意: utils.h の DrawBulletObjects は g_dynamicsworld というグローバル変数を
+            // 参照する作りになっているため、もしこのクラス内で dynamicsWorld_ という名前で
+            // 作っている場合は、g_dynamicsworld = dynamicsWorld_; と代入しておく必要があります。
+            extern btDynamicsWorld* g_dynamicsworld;
+            g_dynamicsworld = dynamicsWorld_;
+
+            DrawBulletObjects();
+
+            glPopMatrix();
         }
+        // ▲ここまで▲
     }
 
-    void VibrateController(
-        const XrAction& action,
-        const XrPath& subactionPath,
-        float duration,
-        float frequency,
-        float amplitude) {
-        // fire haptics using output action
-        XrHapticVibration v{XR_TYPE_HAPTIC_VIBRATION, nullptr};
-        v.amplitude = amplitude;
-        v.duration = ToXrTime(duration);
-        v.frequency = frequency;
-        XrHapticActionInfo hai = {XR_TYPE_HAPTIC_ACTION_INFO, nullptr};
-        hai.action = action;
-        hai.subactionPath = subactionPath;
-        OXR(xrApplyHapticFeedback(Session, &hai, (const XrHapticBaseHeader*)&v));
-    }
 
-    void VibrateControllerAmplitude(
-        const XrAction& action,
-        const XrPath& subactionPath,
-        const float* envelope,
-        const size_t envelopeSize,
-        const float durationSecs) {
-        /// fill in the amplitude buffer
-        std::vector<float> amplitudes(envelope, envelope + envelopeSize);
-        // fire haptics using output action
-        XrHapticAmplitudeEnvelopeVibrationFB v{
-            XR_TYPE_HAPTIC_AMPLITUDE_ENVELOPE_VIBRATION_FB, nullptr};
-        v.duration = ToXrTime(durationSecs);
-        v.amplitudeCount = (uint32_t)envelopeSize;
-        v.amplitudes = amplitudes.data();
-        XrHapticActionInfo hai = {XR_TYPE_HAPTIC_ACTION_INFO, nullptr};
-        hai.action = action;
-        hai.subactionPath = subactionPath;
-        OXR(xrApplyHapticFeedback(Session, &hai, (const XrHapticBaseHeader*)&v));
-    }
-
-    void VibrateControllerPCM(
-        const XrAction& action,
-        const XrPath& subactionPath,
-        const float* buffer,
-        const size_t bufferSize,
-        float sampleRate) {
-        // stream and sleep on a separate thread,
-        // so that we don't lock up the entire app
-        std::thread t([action, subactionPath, buffer, bufferSize, sampleRate, this]() {
-        /// fill in the amplitude buffer
-        std::vector<float> pcmBuffer(bufferSize);
-        for (size_t i = 0; i < bufferSize; ++i) {
-            pcmBuffer[i] = buffer[i];
-        }
-        // fire haptics using output action
-        XrHapticPcmVibrationFB v{XR_TYPE_HAPTIC_PCM_VIBRATION_FB, nullptr};
-        v.sampleRate = sampleRate;
-        v.bufferSize = bufferSize;
-        v.buffer = pcmBuffer.data();
-        uint32_t samplesUsed = 0;
-        v.samplesConsumed = &samplesUsed;
-        v.append = XR_FALSE;
-        XrHapticActionInfo hai = {XR_TYPE_HAPTIC_ACTION_INFO, nullptr};
-        hai.action = action;
-        hai.subactionPath = subactionPath;
-        OXR(xrApplyHapticFeedback(Session, &hai, (const XrHapticBaseHeader*)&v));
-        samplesUsed = *(v.samplesConsumed);
-        ALOG("Initial Haptics PCM Buffer Count Output: %d", samplesUsed);
-        uint32_t totalSamplesUsed = samplesUsed;
-        while (totalSamplesUsed < bufferSize) {
-            ALOG("TotalSamplesUsed: %d", totalSamplesUsed);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            int newBufferSize = bufferSize - totalSamplesUsed;
-            pcmBuffer.resize(newBufferSize);
-            for (int i = 0; i < newBufferSize; ++i) {
-                pcmBuffer[i] = buffer[i + totalSamplesUsed];
-            }
-            v.bufferSize = newBufferSize;
-            v.buffer = pcmBuffer.data();
-            v.append = XR_TRUE;
-            OXR(xrApplyHapticFeedback(Session, &hai, (const XrHapticBaseHeader*)&v));
-            samplesUsed = *(v.samplesConsumed);
-            if (samplesUsed == 0) {
-                ALOG("No samples used; stopping logging.");
-                break;
-            }
-            totalSamplesUsed += samplesUsed;
-            ALOG("Haptics PCM Buffer Count Output: %d", *(v.samplesConsumed));
-        }
-        });
-        t.detach();
-    }
-
-    void VibrateControllerParametric(
-        const XrAction& action,
-        const XrPath& subactionPath)
-    {
-        if (!SupportsParametricHaptics()) {
-            return;
-        }
-
-        const std::vector<XrHapticParametricPointEXTX1> amplitudePoints{{
-            {0, 0.0}, {100000000, 1.0}, {270000000, 1.0}, {480000000, 0.7}, {750000000, 0.6},
-            {1000000000, 1.0}}};
-         const std::vector<XrHapticParametricPointEXTX1> frequencyPoints{{
-            {0, 1.0}, {1000000000, 0.0}}};
-         const std::vector<XrHapticParametricTransientEXTX1> transients{{
-            {600000000, 1.0, 1.0}}};
-
-        XrHapticParametricVibrationEXTX1 parametricVibration{
-            XR_TYPE_HAPTIC_PARAMETRIC_VIBRATION_EXTX1};
-        parametricVibration.amplitudePointCount = amplitudePoints.size();
-        parametricVibration.amplitudePoints = amplitudePoints.data();
-        parametricVibration.frequencyPointCount = frequencyPoints.size();
-        parametricVibration.frequencyPoints = frequencyPoints.data();
-        parametricVibration.transientCount = transients.size();
-        parametricVibration.transients = transients.data();
-        parametricVibration.minFrequencyHz = XR_FREQUENCY_UNSPECIFIED;
-        parametricVibration.maxFrequencyHz = XR_FREQUENCY_UNSPECIFIED;
-        parametricVibration.streamFrameType = XR_HAPTIC_PARAMETRIC_STREAM_FRAME_TYPE_NONE_EXTX1;
-        XrHapticActionInfo hapticActionInfo{XR_TYPE_HAPTIC_ACTION_INFO};
-        hapticActionInfo.action = action;
-        hapticActionInfo.subactionPath = subactionPath;
-        OXR(xrApplyHapticFeedback(
-            Session, &hapticActionInfo, reinterpret_cast<const XrHapticBaseHeader*>(&parametricVibration)));
-    }
-
-    void StopHapticEffect(const XrAction& action, const XrPath& subactionPath) {
-        XrHapticActionInfo hai = {XR_TYPE_HAPTIC_ACTION_INFO, nullptr};
-        hai.action = action;
-        hai.subactionPath = subactionPath;
-        OXR(xrStopHapticFeedback(Session, &hai));
-    }
 
    public:
    private:
+    // --- 必須の描画・UIシステム ---
     OVRFW::ControllerRenderer controllerRenderL_;
     OVRFW::ControllerRenderer controllerRenderR_;
     OVRFW::TinyUI ui_;
     OVRFW::SimpleBeamRenderer beamRenderer_;
     std::vector<OVRFW::ovrBeamRenderer::handle_t> beams_;
 
-    OVRFW::VRMenuObject* bigText_ = nullptr;
-    OVRFW::VRMenuObject* ipText_ = nullptr;
-    XrAction triggerForceAction_ = XR_NULL_HANDLE;
-    float triggerForceL_ = 0.0f;
-    float triggerForceR_ = 0.0f;
-    OVRFW::VRMenuObject* triggerForceLText_ = nullptr;
-    OVRFW::VRMenuObject* triggerForceRText_ = nullptr;
-
-    XrAction trackpadForceAction_ = XR_NULL_HANDLE;
-    float trackpadForceL_ = 0.0f;
-    float trackpadForceR_ = 0.0f;
-    OVRFW::VRMenuObject* trackpadForceLText_ = nullptr;
-    OVRFW::VRMenuObject* trackpadForceRText_ = nullptr;
-
-    XrAction stylusForceAction_ = XR_NULL_HANDLE;
-    float stylusForceL_ = 0.0f;
-    float stylusForceR_ = 0.0f;
-    OVRFW::VRMenuObject* stylusForceLText_ = nullptr;
-    OVRFW::VRMenuObject* stylusForceRText_ = nullptr;
-
-    XrAction triggerCurlAction_ = XR_NULL_HANDLE;
-    float triggerCurlL_ = 0.0f;
-    float triggerCurlR_ = 0.0f;
-    OVRFW::VRMenuObject* triggerCurlLText_ = nullptr;
-    OVRFW::VRMenuObject* triggerCurlRText_ = nullptr;
-
-    XrAction triggerSlideAction_ = XR_NULL_HANDLE;
-    float squeezeCurlL_ = 0.0f;
-    float squeezeCurlR_ = 0.0f;
-    OVRFW::VRMenuObject* squeezeCurlLText_ = nullptr;
-    OVRFW::VRMenuObject* squeezeCurlRText_ = nullptr;
-
-    XrDevicePcmSampleRateGetInfoFB rightDeviceSampleRate_{
-        XR_TYPE_DEVICE_PCM_SAMPLE_RATE_GET_INFO_FB};
-    XrDevicePcmSampleRateGetInfoFB leftDeviceSampleRate_{
-        XR_TYPE_DEVICE_PCM_SAMPLE_RATE_GET_INFO_FB};
-    OVRFW::VRMenuObject* pcmHapticText_ = nullptr;
-
-    XrAction mainHapticAction_ = XR_NULL_HANDLE;
-    XrAction triggerHapticAction_ = XR_NULL_HANDLE;
-    XrAction thumbHapticAction_ = XR_NULL_HANDLE;
-
-    // Proximity
-    XrAction triggerProxAction_ = XR_NULL_HANDLE;
-    bool triggerProxL_ = false;
-    bool triggerProxR_ = false;
-    OVRFW::VRMenuObject* triggerProxLText_ = nullptr;
-    OVRFW::VRMenuObject* triggerProxRText_ = nullptr;
-
-    XrAction thumbFbProxAction_ = XR_NULL_HANDLE;
-    bool thumbFBProxL_ = false;
-    bool thumbFBProxR_ = false;
-    OVRFW::VRMenuObject* thumbFBProxLText_ = nullptr;
-    OVRFW::VRMenuObject* thumbFBProxRText_ = nullptr;
-    XrAction thumbMetaProxAction_ = XR_NULL_HANDLE;
-    bool thumbMetaProxL_ = false;
-    bool thumbMetaProxR_ = false;
-    OVRFW::VRMenuObject* thumbMetaProxLText_ = nullptr;
-    OVRFW::VRMenuObject* thumbMetaProxRText_ = nullptr;
-
-    // Trigger Value
-    XrAction triggerValueAction_ = XR_NULL_HANDLE;
-    bool triggerValueL_ = false;
-    bool triggerValueR_ = false;
-    OVRFW::VRMenuObject* triggerValueLText_ = nullptr;
-    OVRFW::VRMenuObject* triggerValueRText_ = nullptr;
-
-    // Trigger Touch
-    XrAction triggerTouchAction_ = XR_NULL_HANDLE;
-    bool triggerTouchL_ = false;
-    bool triggerTouchR_ = false;
-    OVRFW::VRMenuObject* triggerTouchLText_ = nullptr;
-    OVRFW::VRMenuObject* triggerTouchRText_ = nullptr;
-
-    // Squeeze Value
-    XrAction squeezeValueAction_ = XR_NULL_HANDLE;
-    bool squeezeValueL_ = false;
-    bool squeezeValueR_ = false;
-    OVRFW::VRMenuObject* squeezeValueLText_ = nullptr;
-    OVRFW::VRMenuObject* squeezeValueRText_ = nullptr;
-
-    /// UI lag
+    // UIのラグシミュレーション（念のため残す）
     bool delayUI_ = false;
 
     // --- Bullet Physics 用の変数 ---
@@ -1034,7 +523,6 @@ public:
     btBroadphaseInterface* overlappingPairCache_;
     btSequentialImpulseConstraintSolver* solver_;
     btDiscreteDynamicsWorld* dynamicsWorld_;
-    // ---------------------------------
 
     btRigidBody* fallingCube_;
     btCollisionShape* boxShape_;
