@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty
+# Install script for directory: C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,15 +34,15 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-build/cmake_install.cmake")
-  include("C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/zlib-build/cmake_install.cmake")
-  include("C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/cmake_install.cmake")
+  include("C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-build/cmake_install.cmake")
+  include("C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/zlib-build/cmake_install.cmake")
+  include("C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/3rdParty/install_local_manifest.txt"
+  file(WRITE "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/3rdParty/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

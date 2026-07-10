@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
+#line 1 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
 #line 1 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\um\\winver.h"
 #line 1 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\shared\\winapifamily.h"
 
@@ -5781,8 +5781,8 @@
 
 #line 257 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\um\\winver.h"
 
-#line 2 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
-#line 1 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 2 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
+#line 1 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -5816,7 +5816,7 @@
 
 
 
-#line 1 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 1 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -5991,25 +5991,25 @@
 
 
 
-#line 176 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 176 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 179 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 179 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 182 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 182 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
-#line 187 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 187 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
 
-#line 194 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 194 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -6034,20 +6034,20 @@
 
 
 
-#line 219 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 219 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 222 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 222 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 225 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 225 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 228 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 228 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 232 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 232 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -6057,9 +6057,9 @@
 
 
 
-#line 242 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 242 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
-#line 244 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 244 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -6067,7 +6067,7 @@
 
 
 
-#line 252 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 252 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 #line 1 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\stddef.h"
 
 
@@ -7344,63 +7344,24 @@ typedef _Mbstatet mbstate_t;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-#line 660 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-        
-    #line 662 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-#line 663 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-
-
-
-
-#line 668 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-
-
-
-
-#line 673 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-    
-#line 675 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-
-
-
-#line 679 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
+#line 640 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
 
 
     
 
 
         typedef __time64_t time_t;
-    #line 686 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
-#line 687 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
+    #line 647 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
+#line 648 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
 
 
 
     
-#line 692 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
+#line 653 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
 
 
     typedef size_t rsize_t;
-#line 696 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
+#line 657 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h"
 
 
 
@@ -8873,22 +8834,13 @@ __pragma(pack(pop))
 
 #pragma warning(pop) 
 #line 65 "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\stddef.h"
-#line 253 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 253 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
      typedef size_t z_size_t;
 
 
-#line 257 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 257 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
-#line 259 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-
-
-
-
-
-
-
-#line 267 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 268 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 259 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -8896,8 +8848,17 @@ __pragma(pack(pop))
 
 
 
+#line 267 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 268 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
-#line 277 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+
+
+
+
+
+
+
+#line 277 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -8919,16 +8880,16 @@ __pragma(pack(pop))
 
 
 
-#line 299 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 300 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 299 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 300 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
 
-#line 307 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 308 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 307 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 308 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -8967,9 +8928,9 @@ __pragma(pack(pop))
 
 
 
-#line 347 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 348 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 349 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 347 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 348 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 349 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
    
 
 
@@ -8991,7 +8952,7 @@ __pragma(pack(pop))
 
 
 
-#line 371 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 371 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9003,25 +8964,25 @@ __pragma(pack(pop))
 
 
 
-#line 383 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 383 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
 
-#line 390 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 390 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
-#line 393 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 393 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 397 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 397 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 typedef unsigned char  Byte;  
-#line 401 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 401 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 typedef unsigned int   uInt;  
 typedef unsigned long  uLong; 
 
@@ -9030,7 +8991,7 @@ typedef unsigned long  uLong;
 
 
    typedef Byte   Bytef;
-#line 410 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 410 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 typedef char   charf;
 typedef int    intf;
 typedef uInt   uIntf;
@@ -9044,7 +9005,7 @@ typedef uLong  uLongf;
 
 
 
-#line 424 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 424 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 #line 1 "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\limits.h"
@@ -9124,21 +9085,21 @@ __pragma(pack(push, 8))
 __pragma(pack(pop))
 
 #pragma warning(pop) 
-#line 427 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 427 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
 
-#line 434 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 435 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 434 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 435 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
    typedef unsigned z_crc_t;
 
 
-#line 441 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 441 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9202,9 +9163,9 @@ __pragma(pack(pop))
 
 
 #pragma warning(pop) 
-#line 453 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 454 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 455 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 453 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 454 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 455 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9238,15 +9199,15 @@ __pragma(pack(push, 8))
 __pragma(pack(pop))
 
 #pragma warning(pop) 
-#line 459 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 460 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 461 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 459 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 460 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 461 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
-#line 466 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 467 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 466 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 467 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9256,18 +9217,18 @@ __pragma(pack(pop))
 
 
 
-#line 477 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 477 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
-#line 483 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 483 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 487 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 488 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 487 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 488 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9277,40 +9238,40 @@ __pragma(pack(pop))
 
 
 
-#line 498 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 499 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 498 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 499 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 503 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 503 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 507 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 507 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 511 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 511 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
 
-#line 517 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 517 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 521 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 521 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
-#line 525 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 525 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
 
-#line 530 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 531 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 530 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 531 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
 
 
@@ -9327,10 +9288,10 @@ __pragma(pack(pop))
 
 
 
-#line 548 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 548 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
 
-#line 550 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
-#line 35 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 550 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\_deps\\zlib-build\\zconf.h"
+#line 35 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -9907,7 +9868,7 @@ extern __declspec(dllimport) int  inflateEnd (z_streamp strm);
 
 
 extern __declspec(dllimport) int  deflateSetDictionary (z_streamp strm, const Bytef *dictionary, uInt dictLength);
-#line 613 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 613 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -9950,7 +9911,7 @@ extern __declspec(dllimport) int  deflateSetDictionary (z_streamp strm, const By
 
 
 extern __declspec(dllimport) int  deflateGetDictionary (z_streamp strm, Bytef *dictionary, uInt *dictLength);
-#line 657 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 657 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -9971,7 +9932,7 @@ extern __declspec(dllimport) int  deflateGetDictionary (z_streamp strm, Bytef *d
 
 
 extern __declspec(dllimport) int  deflateCopy (z_streamp dest, z_streamp source);
-#line 678 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 678 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10000,7 +9961,7 @@ extern __declspec(dllimport) int  deflateReset (z_streamp strm);
 
 
 extern __declspec(dllimport) int  deflateParams (z_streamp strm, int level, int strategy);
-#line 708 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 708 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10037,7 +9998,7 @@ extern __declspec(dllimport) int  deflateParams (z_streamp strm, int level, int 
 
 
 extern __declspec(dllimport) int  deflateTune (z_streamp strm, int good_length, int max_lazy, int nice_length, int max_chain);
-#line 748 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 748 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10051,7 +10012,7 @@ extern __declspec(dllimport) int  deflateTune (z_streamp strm, int good_length, 
 
 
 extern __declspec(dllimport) uLong  deflateBound (z_streamp strm, uLong sourceLen);
-#line 762 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 762 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10066,7 +10027,7 @@ extern __declspec(dllimport) uLong  deflateBound (z_streamp strm, uLong sourceLe
 
 
 extern __declspec(dllimport) int  deflatePending (z_streamp strm, unsigned *pending, int *bits);
-#line 778 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 778 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10080,7 +10041,7 @@ extern __declspec(dllimport) int  deflatePending (z_streamp strm, unsigned *pend
 
 
 extern __declspec(dllimport) int  deflatePrime (z_streamp strm, int bits, int value);
-#line 793 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 793 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10096,7 +10057,7 @@ extern __declspec(dllimport) int  deflatePrime (z_streamp strm, int bits, int va
 
 
 extern __declspec(dllimport) int  deflateSetHeader (z_streamp strm, gz_headerp head);
-#line 809 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 809 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10175,7 +10136,7 @@ extern __declspec(dllimport) int  deflateSetHeader (z_streamp strm, gz_headerp h
 
 
 extern __declspec(dllimport) int  inflateSetDictionary (z_streamp strm, const Bytef *dictionary, uInt dictLength);
-#line 889 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 889 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10197,7 +10158,7 @@ extern __declspec(dllimport) int  inflateSetDictionary (z_streamp strm, const By
 
 
 extern __declspec(dllimport) int  inflateGetDictionary (z_streamp strm, Bytef *dictionary, uInt *dictLength);
-#line 912 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 912 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10230,7 +10191,7 @@ extern __declspec(dllimport) int  inflateSync (z_streamp strm);
 
 
 extern __declspec(dllimport) int  inflateCopy (z_streamp dest, z_streamp source);
-#line 945 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 945 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10256,7 +10217,7 @@ extern __declspec(dllimport) int  inflateReset (z_streamp strm);
 
 
 extern __declspec(dllimport) int  inflateReset2 (z_streamp strm, int windowBits);
-#line 971 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 971 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10270,7 +10231,7 @@ extern __declspec(dllimport) int  inflateReset2 (z_streamp strm, int windowBits)
 
 
 extern __declspec(dllimport) int  inflatePrime (z_streamp strm, int bits, int value);
-#line 986 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 986 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10318,7 +10279,7 @@ extern __declspec(dllimport) long  inflateMark (z_streamp strm);
 
 
 extern __declspec(dllimport) int  inflateGetHeader (z_streamp strm, gz_headerp head);
-#line 1034 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1034 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10380,11 +10341,11 @@ extern __declspec(dllimport) int  inflateGetHeader (z_streamp strm, gz_headerp h
 
 
 typedef unsigned (*in_func) (void  *,  unsigned char  *  *);
-#line 1096 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1096 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 typedef int (*out_func) (void  *, unsigned char  *, unsigned);
 
 extern __declspec(dllimport) int  inflateBack (z_streamp strm, in_func in, void  *in_desc, out_func out, void  *out_desc);
-#line 1101 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1101 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10514,7 +10475,7 @@ extern __declspec(dllimport) uLong  zlibCompileFlags (void);
 
 
 extern __declspec(dllimport) int  compress (Bytef *dest, uLongf *destLen, const Bytef *source, uLong sourceLen);
-#line 1231 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1231 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10529,7 +10490,7 @@ extern __declspec(dllimport) int  compress (Bytef *dest, uLongf *destLen, const 
 
 
 extern __declspec(dllimport) int  compress2 (Bytef *dest, uLongf *destLen, const Bytef *source, uLong sourceLen, int level);
-#line 1247 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1247 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10551,7 +10512,7 @@ extern __declspec(dllimport) uLong  compressBound (uLong sourceLen);
 
 
 extern __declspec(dllimport) int  uncompress (Bytef *dest, uLongf *destLen, const Bytef *source, uLong sourceLen);
-#line 1269 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1269 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10569,7 +10530,7 @@ extern __declspec(dllimport) int  uncompress (Bytef *dest, uLongf *destLen, cons
 
 
 extern __declspec(dllimport) int  uncompress2 (Bytef *dest, uLongf *destLen, const Bytef *source, uLong *sourceLen);
-#line 1287 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1287 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10706,7 +10667,7 @@ extern __declspec(dllimport) int  gzread (gzFile file, voidp buf, unsigned len);
 
 
 extern __declspec(dllimport) z_size_t  gzfread (voidp buf, z_size_t size, z_size_t nitems, gzFile file);
-#line 1424 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1424 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10738,7 +10699,7 @@ extern __declspec(dllimport) int  gzwrite (gzFile file, voidpc buf, unsigned len
 
 
 extern __declspec(dllimport) z_size_t  gzfwrite (voidpc buf, z_size_t size, z_size_t nitems, gzFile file);
-#line 1456 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1456 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -10962,7 +10923,7 @@ extern __declspec(dllimport) void  gzclearerr (gzFile file);
 
 
 
-#line 1680 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1680 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
                         
 
@@ -10993,7 +10954,7 @@ extern __declspec(dllimport) uLong  adler32 (uLong adler, const Bytef *buf, uInt
 
 
 extern __declspec(dllimport) uLong  adler32_z (uLong adler, const Bytef *buf, z_size_t len);
-#line 1711 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1711 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11029,7 +10990,7 @@ extern __declspec(dllimport) uLong  crc32 (uLong crc, const Bytef *buf, uInt len
 
 
 extern __declspec(dllimport) uLong  crc32_z (uLong crc, const Bytef *buf, z_size_t len);
-#line 1747 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1747 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11065,15 +11026,15 @@ extern __declspec(dllimport) uLong  crc32_combine_op (uLong crc1, uLong crc2, uL
 
 
 extern __declspec(dllimport) int  deflateInit_ (z_streamp strm, int level, const char *version, int stream_size);
-#line 1783 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1783 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 extern __declspec(dllimport) int  inflateInit_ (z_streamp strm, const char *version, int stream_size);
-#line 1785 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1785 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 extern __declspec(dllimport) int  deflateInit2_ (z_streamp strm, int level, int method, int windowBits, int memLevel, int strategy, const char *version, int stream_size);
-#line 1789 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1789 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 extern __declspec(dllimport) int  inflateInit2_ (z_streamp strm, int windowBits, const char *version, int stream_size);
-#line 1791 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1791 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 extern __declspec(dllimport) int  inflateBackInit_ (z_streamp strm, int windowBits, unsigned char  *window, const char *version, int stream_size);
-#line 1795 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1795 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11102,7 +11063,7 @@ extern __declspec(dllimport) int  inflateBackInit_ (z_streamp strm, int windowBi
 
 
 
-#line 1824 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1824 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11126,7 +11087,7 @@ extern __declspec(dllimport) int  gzgetc_ (gzFile file);
 
 
 
-#line 1848 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1848 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11171,7 +11132,7 @@ extern __declspec(dllimport) int  gzgetc_ (gzFile file);
 
 
 
-#line 1893 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1893 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
    extern __declspec(dllimport) gzFile  gzopen (const char *, const char *);
    extern __declspec(dllimport) long  gzseek (gzFile, long, int);
    extern __declspec(dllimport) long  gztell (gzFile);
@@ -11179,7 +11140,7 @@ extern __declspec(dllimport) int  gzgetc_ (gzFile file);
    extern __declspec(dllimport) uLong  adler32_combine (uLong, uLong, long);
    extern __declspec(dllimport) uLong  crc32_combine (uLong, uLong, long);
    extern __declspec(dllimport) uLong  crc32_combine_gen (long);
-#line 1901 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1901 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
@@ -11187,7 +11148,7 @@ extern __declspec(dllimport) int  gzgetc_ (gzFile file);
 
 
 
-#line 1909 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1909 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 extern __declspec(dllimport) const char   *  zError           (int);
@@ -11200,27 +11161,27 @@ extern __declspec(dllimport) int             inflateResetKeep (z_streamp);
 extern __declspec(dllimport) int             deflateResetKeep (z_streamp);
 
 extern __declspec(dllimport) gzFile          gzopen_w (const wchar_t *path, const char *mode);
-#line 1922 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
-#line 1923 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1922 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1923 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 extern __declspec(dllimport) int             gzvprintf (gzFile file, const char *format, va_list va);
-#line 1928 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
-#line 1929 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
-#line 1930 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1928 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1929 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 1930 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
 
 
 
 
 
-#line 1936 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
-#line 3 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
+#line 1936 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\../zlib.h"
+#line 3 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
 
 
 
 
 1		VERSIONINFO	MOVEABLE IMPURE LOADONCALL DISCARDABLE
-#line 9 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
+#line 9 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
   FILEVERSION		1,2,13,0
   PRODUCTVERSION	1,2,13,0
   FILEFLAGSMASK		0x0000003FL
@@ -11228,7 +11189,7 @@ extern __declspec(dllimport) int             gzvprintf (gzFile file, const char 
   FILEFLAGS		1
 
 
-#line 17 "C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
+#line 17 "C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\3rdParty\\zlib\\win32\\zlib1.rc"
   FILEOS		0x00000004L
   FILETYPE		0x00000002L
   FILESUBTYPE		0	

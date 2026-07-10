@@ -1,0 +1,1859 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						24,
+						25
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "3rdParty",
+					"childIndexes" : 
+					[
+						2,
+						18,
+						19
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-3rdParty-Debug-c8338fe821208b2f08a6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "3rdParty",
+					"targetIndexes" : 
+					[
+						47,
+						57
+					]
+				},
+				{
+					"build" : "_deps/libktx-build",
+					"childIndexes" : 
+					[
+						3,
+						4,
+						6,
+						7,
+						14
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.libktx-build-Debug-36ad7bc5d61f7d4df117.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						35,
+						40,
+						41,
+						48
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/interface/basisu_c_binding",
+					"jsonFile" : "directory-_deps.libktx-build.interface.basisu_c_binding-Debug-48eb6a96db384ea30642.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/interface/basisu_c_binding",
+					"targetIndexes" : 
+					[
+						49
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/lib/astc-encoder",
+					"childIndexes" : 
+					[
+						5
+					],
+					"jsonFile" : "directory-_deps.libktx-build.lib.astc-encoder-Debug-dcdbe65fafb3a1e98be2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "3rdParty/khronos/ktx_src/lib/astc-encoder"
+				},
+				{
+					"build" : "_deps/libktx-build/lib/astc-encoder/Source",
+					"jsonFile" : "directory-_deps.libktx-build.lib.astc-encoder.Source-Debug-46ec79ae88fd93c9f4a5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 3,
+					"source" : "3rdParty/khronos/ktx_src/lib/astc-encoder/Source",
+					"targetIndexes" : 
+					[
+						28
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/other_projects/fmt",
+					"jsonFile" : "directory-_deps.libktx-build.other_projects.fmt-Debug-56279afd80ba480ee502.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.1"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 4,
+					"source" : "3rdParty/khronos/ktx_src/other_projects/fmt",
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools",
+					"childIndexes" : 
+					[
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.libktx-build.tools-Debug-7953cd8f37a783e4dc8e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools"
+				},
+				{
+					"build" : "_deps/libktx-build/tools/imageio",
+					"jsonFile" : "directory-_deps.libktx-build.tools.imageio-Debug-4d35a107d795301da42c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/imageio",
+					"targetIndexes" : 
+					[
+						34
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktx2check",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktx2check-Debug-0d08b29cb40703ca44c3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktx2check",
+					"targetIndexes" : 
+					[
+						36,
+						37
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktx2ktx2",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktx2ktx2-Debug-169176fac8b40b968867.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktx2ktx2",
+					"targetIndexes" : 
+					[
+						38,
+						39
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktxinfo",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktxinfo-Debug-fc123e660ad9be30dae9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktxinfo",
+					"targetIndexes" : 
+					[
+						42,
+						43
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktxsc",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktxsc-Debug-dabcac927b168e309bb8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktxsc",
+					"targetIndexes" : 
+					[
+						44,
+						45
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/toktx",
+					"jsonFile" : "directory-_deps.libktx-build.tools.toktx-Debug-6fe22f898d0d5119357e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/toktx",
+					"targetIndexes" : 
+					[
+						60,
+						61
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests",
+					"childIndexes" : 
+					[
+						15,
+						16,
+						17
+					],
+					"jsonFile" : "directory-_deps.libktx-build.tests-Debug-43d31afbb2960e2436ef.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests",
+					"targetIndexes" : 
+					[
+						59,
+						64
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/gtest",
+					"jsonFile" : "directory-_deps.libktx-build.tests.gtest-Debug-74456f4cfef6df57f8d2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/gtest",
+					"targetIndexes" : 
+					[
+						33
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/transcodetests",
+					"jsonFile" : "directory-_deps.libktx-build.tests.transcodetests-Debug-c808083aff9ad54fe840.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/transcodetests",
+					"targetIndexes" : 
+					[
+						50,
+						62
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/streamtests",
+					"jsonFile" : "directory-_deps.libktx-build.tests.streamtests-Debug-2103db451e9d65a79280.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/streamtests",
+					"targetIndexes" : 
+					[
+						58
+					]
+				},
+				{
+					"build" : "_deps/zlib-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.zlib-build-Debug-16a0a65d44f86f212c81.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.4.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 5,
+					"source" : "3rdParty/zlib",
+					"targetIndexes" : 
+					[
+						30,
+						46,
+						82,
+						83
+					]
+				},
+				{
+					"build" : "_deps/openxr-build",
+					"childIndexes" : 
+					[
+						20,
+						22
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build-Debug-c338739779e7a56b2719.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr",
+					"targetIndexes" : 
+					[
+						63
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/include",
+					"childIndexes" : 
+					[
+						21
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.include-Debug-d5fce660bf79e5232c89.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/include"
+				},
+				{
+					"build" : "_deps/openxr-build/include/openxr",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.include.openxr-Debug-a43f9641330caad60006.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 20,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/include/openxr",
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/src",
+					"childIndexes" : 
+					[
+						23
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.src-Debug-840c7ae45669b73c4bc1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/src",
+					"targetIndexes" : 
+					[
+						65,
+						66
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/src/loader",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.src.loader-Debug-2adc4b387d06fec65400.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 22,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/src/loader",
+					"targetIndexes" : 
+					[
+						51
+					]
+				},
+				{
+					"build" : "SampleXrFramework",
+					"jsonFile" : "directory-SampleXrFramework-Debug-4e8740f19b7b30284e00.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "SampleXrFramework",
+					"targetIndexes" : 
+					[
+						52,
+						53
+					]
+				},
+				{
+					"build" : "XrSamples",
+					"childIndexes" : 
+					[
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46
+					],
+					"jsonFile" : "directory-XrSamples-Debug-581ce16cf2236db7658f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XrSamples"
+				},
+				{
+					"build" : "XrSamples/BulletProject1",
+					"jsonFile" : "directory-XrSamples.BulletProject1-Debug-e4d8cd99370f184a7912.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 7,
+					"source" : "XrSamples/BulletProject1",
+					"targetIndexes" : 
+					[
+						29
+					]
+				},
+				{
+					"build" : "XrSamples/XrBodyFaceEyeSocial",
+					"jsonFile" : "directory-XrSamples.XrBodyFaceEyeSocial-Debug-85eab16b87191463ee7a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 8,
+					"source" : "XrSamples/XrBodyFaceEyeSocial",
+					"targetIndexes" : 
+					[
+						67
+					]
+				},
+				{
+					"build" : "XrSamples/XrColocationDiscovery",
+					"jsonFile" : "directory-XrSamples.XrColocationDiscovery-Debug-593294cf3d50dd936541.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 9,
+					"source" : "XrSamples/XrColocationDiscovery",
+					"targetIndexes" : 
+					[
+						68
+					]
+				},
+				{
+					"build" : "XrSamples/XrColorSpaceFB",
+					"jsonFile" : "directory-XrSamples.XrColorSpaceFB-Debug-8df4c52b2f3369cfa02b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 10,
+					"source" : "XrSamples/XrColorSpaceFB",
+					"targetIndexes" : 
+					[
+						78
+					]
+				},
+				{
+					"build" : "XrSamples/XrCompositor_NativeActivity",
+					"jsonFile" : "directory-XrSamples.XrCompositor_NativeActivity-Debug-0ab8e4e9e40ec809bd91.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 11,
+					"source" : "XrSamples/XrCompositor_NativeActivity"
+				},
+				{
+					"build" : "XrSamples/XrControllers",
+					"jsonFile" : "directory-XrSamples.XrControllers-Debug-53c11c962d277ae5cc06.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 12,
+					"source" : "XrSamples/XrControllers",
+					"targetIndexes" : 
+					[
+						69
+					]
+				},
+				{
+					"build" : "XrSamples/XrDynamicObjects",
+					"jsonFile" : "directory-XrSamples.XrDynamicObjects-Debug-15c80b0326f9a63865b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 13,
+					"source" : "XrSamples/XrDynamicObjects",
+					"targetIndexes" : 
+					[
+						70
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandDataSource",
+					"jsonFile" : "directory-XrSamples.XrHandDataSource-Debug-89bf9f36a4f011d490d9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 14,
+					"source" : "XrSamples/XrHandDataSource",
+					"targetIndexes" : 
+					[
+						71
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandTrackingWideMotionMode",
+					"jsonFile" : "directory-XrSamples.XrHandTrackingWideMotionMode-Debug-c5952d854736571156e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 15,
+					"source" : "XrSamples/XrHandTrackingWideMotionMode",
+					"targetIndexes" : 
+					[
+						73
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandsAndControllers",
+					"jsonFile" : "directory-XrSamples.XrHandsAndControllers-Debug-1a9dca9af982d6984c9c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 16,
+					"source" : "XrSamples/XrHandsAndControllers",
+					"targetIndexes" : 
+					[
+						79
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandsFB",
+					"jsonFile" : "directory-XrSamples.XrHandsFB-Debug-3650844d2cd8223843b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 17,
+					"source" : "XrSamples/XrHandsFB",
+					"targetIndexes" : 
+					[
+						72
+					]
+				},
+				{
+					"build" : "XrSamples/XrInput",
+					"jsonFile" : "directory-XrSamples.XrInput-Debug-bd9c303cce467e34952c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 18,
+					"source" : "XrSamples/XrInput",
+					"targetIndexes" : 
+					[
+						80
+					]
+				},
+				{
+					"build" : "XrSamples/XrMicrogestures",
+					"jsonFile" : "directory-XrSamples.XrMicrogestures-Debug-05dbf3fe9c18855ae1ad.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 19,
+					"source" : "XrSamples/XrMicrogestures",
+					"targetIndexes" : 
+					[
+						74
+					]
+				},
+				{
+					"build" : "XrSamples/XrOverlayKeyboard",
+					"jsonFile" : "directory-XrSamples.XrOverlayKeyboard-Debug-6c997f92f15f5112102a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 20,
+					"source" : "XrSamples/XrOverlayKeyboard",
+					"targetIndexes" : 
+					[
+						75
+					]
+				},
+				{
+					"build" : "XrSamples/XrPassthrough",
+					"jsonFile" : "directory-XrSamples.XrPassthrough-Debug-e2774e66a74c5e1bae31.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 21,
+					"source" : "XrSamples/XrPassthrough",
+					"targetIndexes" : 
+					[
+						76
+					]
+				},
+				{
+					"build" : "XrSamples/XrPassthroughOcclusion",
+					"jsonFile" : "directory-XrSamples.XrPassthroughOcclusion-Debug-f2646b95f4d055901597.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 22,
+					"source" : "XrSamples/XrPassthroughOcclusion",
+					"targetIndexes" : 
+					[
+						77
+					]
+				},
+				{
+					"build" : "XrSamples/XrSceneModel",
+					"jsonFile" : "directory-XrSamples.XrSceneModel-Debug-ceb316a61b7d3333949b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 23,
+					"source" : "XrSamples/XrSceneModel",
+					"targetIndexes" : 
+					[
+						54
+					]
+				},
+				{
+					"build" : "XrSamples/XrSceneSharing",
+					"jsonFile" : "directory-XrSamples.XrSceneSharing-Debug-3050c5686e8910ecd2d2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 24,
+					"source" : "XrSamples/XrSceneSharing",
+					"targetIndexes" : 
+					[
+						55
+					]
+				},
+				{
+					"build" : "XrSamples/XrSpaceWarp",
+					"jsonFile" : "directory-XrSamples.XrSpaceWarp-Debug-dbabbcd4bce6b78aa011.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 25,
+					"source" : "XrSamples/XrSpaceWarp"
+				},
+				{
+					"build" : "XrSamples/XrSpatialAnchor",
+					"jsonFile" : "directory-XrSamples.XrSpatialAnchor-Debug-70691f6263d3a65dce61.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 26,
+					"source" : "XrSamples/XrSpatialAnchor",
+					"targetIndexes" : 
+					[
+						56
+					]
+				},
+				{
+					"build" : "XrSamples/XrVirtualKeyboard",
+					"jsonFile" : "directory-XrSamples.XrVirtualKeyboard-Debug-c92355f72b757cde284e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 27,
+					"source" : "XrSamples/XrVirtualKeyboard",
+					"targetIndexes" : 
+					[
+						81
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						24,
+						25
+					],
+					"name" : "MetaOpenXRSDK",
+					"targetIndexes" : 
+					[
+						47,
+						52,
+						53,
+						57
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						2,
+						3,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					],
+					"name" : "KTX-Software",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						48,
+						49,
+						50,
+						58,
+						59,
+						60,
+						61,
+						62,
+						64
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "astcencoder",
+					"parentIndex" : 1
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "astcenc-avx2",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						28
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "FMT",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						18
+					],
+					"name" : "zlib",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						30,
+						46,
+						82,
+						83
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19,
+						20,
+						21,
+						22,
+						23
+					],
+					"name" : "OPENXR",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						32,
+						51,
+						63,
+						65,
+						66
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						26
+					],
+					"name" : "bulletproject1",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						29
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						27
+					],
+					"name" : "xrbodyfaceeyesocial",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						67
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						28
+					],
+					"name" : "xrcolocationdiscovery",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						68
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						29
+					],
+					"name" : "xrsamples_xrcolorspacefb",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						78
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						30
+					],
+					"name" : "xrcompositor",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						31
+					],
+					"name" : "xrcontrollers",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						69
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						32
+					],
+					"name" : "xrdynamicobjects",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						70
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						33
+					],
+					"name" : "xrhanddatasource",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						71
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						34
+					],
+					"name" : "xrhandtrackingwidemotionmode",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						73
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						35
+					],
+					"name" : "xrsamples_xrhands_and_controllers",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						79
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						36
+					],
+					"name" : "xrhandsfb",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						72
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						37
+					],
+					"name" : "xrsamples_xrinput",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						80
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						38
+					],
+					"name" : "xrmicrogestures",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						74
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						39
+					],
+					"name" : "xroverlaykeyboard",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						75
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						40
+					],
+					"name" : "xrpassthrough",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						76
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						41
+					],
+					"name" : "xrpassthroughocclusion",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						77
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						42
+					],
+					"name" : "scenemodel",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						54
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						43
+					],
+					"name" : "scenesharing",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						55
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						44
+					],
+					"name" : "xrspacewarp",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						45
+					],
+					"name" : "spatialanchor",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						56
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						46
+					],
+					"name" : "xrvirtualkeyboard",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						81
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Continuous::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Continuous-Debug-e81736d715ebe4e27e86.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousBuild-Debug-2a0906e3ee52fc8aa259.json",
+					"name" : "ContinuousBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousConfigure-Debug-f4d63bb937f11df25490.json",
+					"name" : "ContinuousConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousCoverage-Debug-7b2fc40d4f2c02d93c75.json",
+					"name" : "ContinuousCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousMemCheck-Debug-c3a7316ccfb602e9561d.json",
+					"name" : "ContinuousMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousStart-Debug-52c620b04ad9d3c1750c.json",
+					"name" : "ContinuousStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousSubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousSubmit-Debug-22701cd550d3a9c8e6c3.json",
+					"name" : "ContinuousSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousTest-Debug-cbd2c602ab0415206c94.json",
+					"name" : "ContinuousTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousUpdate-Debug-c495669b38f99059418d.json",
+					"name" : "ContinuousUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Experimental::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Experimental-Debug-92ebce7944f3786b1b4b.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalBuild-Debug-926ac7c5f17136ecfd8a.json",
+					"name" : "ExperimentalBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalConfigure-Debug-e20cc2cb6547c73b29a9.json",
+					"name" : "ExperimentalConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalCoverage-Debug-031804eb8a79c18400a5.json",
+					"name" : "ExperimentalCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalMemCheck-Debug-4a6e3f23f8f08b65f175.json",
+					"name" : "ExperimentalMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalStart-Debug-4e3eb6a7e72213c090a9.json",
+					"name" : "ExperimentalStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalSubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalSubmit-Debug-5bf7e86ffd039b8f12ce.json",
+					"name" : "ExperimentalSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalTest-Debug-9af6a733031fee9666be.json",
+					"name" : "ExperimentalTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalUpdate-Debug-a5990845f57cf8804a62.json",
+					"name" : "ExperimentalUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Nightly::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Nightly-Debug-6381526416138ed6a3d3.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyBuild-Debug-8c7f7884f2518d26c1f2.json",
+					"name" : "NightlyBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyConfigure-Debug-ab94d926aeb6af2d10d7.json",
+					"name" : "NightlyConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyCoverage-Debug-9773b9c4800bf0c7c130.json",
+					"name" : "NightlyCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyMemCheck-Debug-167eb8fb22e86a944a9b.json",
+					"name" : "NightlyMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyMemoryCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyMemoryCheck-Debug-150700df5144da38a999.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyStart-Debug-66f8c0a792eb47e5fa16.json",
+					"name" : "NightlyStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlySubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlySubmit-Debug-486bf31d194ab5a452a9.json",
+					"name" : "NightlySubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyTest-Debug-31d783cae3a75da78ea2.json",
+					"name" : "NightlyTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyUpdate-Debug-9f9cc2e3081d6eab4bbc.json",
+					"name" : "NightlyUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "astcenc-avx2-static::@917f8ad2c3382a3cd159",
+					"jsonFile" : "target-astcenc-avx2-static-Debug-772cba06263da21ae7e6.json",
+					"name" : "astcenc-avx2-static",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 26,
+					"id" : "bulletproject1::@7d3064ba128e26b64f1b",
+					"jsonFile" : "target-bulletproject1-Debug-1af28b7864a5ac5361fe.json",
+					"name" : "bulletproject1",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "example::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-example-Debug-146255ab3c22ed0c1547.json",
+					"name" : "example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "fmt::@1506242f70dbcb7a5cbf",
+					"jsonFile" : "target-fmt-Debug-65fb39b8e60e740fe3e5.json",
+					"name" : "fmt",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 21,
+					"id" : "generate_openxr_header::@ee2418eca024665d80f8",
+					"jsonFile" : "target-generate_openxr_header-Debug-8a0f340c6aee6422c8ba.json",
+					"name" : "generate_openxr_header",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "gtest::@514e735eed8b8073e47d",
+					"jsonFile" : "target-gtest-Debug-f8978fce83da0ce06d23.json",
+					"name" : "gtest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "imageio::@ff504eb183f5072281ef",
+					"jsonFile" : "target-imageio-Debug-145dde427cd8b6f7cbf6.json",
+					"name" : "imageio",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx-Debug-72ede7e2ff9306bea906.json",
+					"name" : "ktx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "ktx2check::@860fc932a472e0bb01a2",
+					"jsonFile" : "target-ktx2check-Debug-d91871e4076721f4dea4.json",
+					"name" : "ktx2check",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "ktx2check_version::@860fc932a472e0bb01a2",
+					"jsonFile" : "target-ktx2check_version-Debug-d1b0f4b317c32810ee1c.json",
+					"name" : "ktx2check_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "ktx2ktx2::@b24b5042453064b7b8d6",
+					"jsonFile" : "target-ktx2ktx2-Debug-e64ab75dd220b61a46e6.json",
+					"name" : "ktx2ktx2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "ktx2ktx2_version::@b24b5042453064b7b8d6",
+					"jsonFile" : "target-ktx2ktx2_version-Debug-5a7552aac7975274d5a8.json",
+					"name" : "ktx2ktx2_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx_read::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx_read-Debug-e492ee372ae7709789e0.json",
+					"name" : "ktx_read",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx_version::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx_version-Debug-4591d130f7beb5996a0e.json",
+					"name" : "ktx_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "ktxinfo::@b3d31ad6ae48f43b442d",
+					"jsonFile" : "target-ktxinfo-Debug-568af661b6aa4eb671b3.json",
+					"name" : "ktxinfo",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "ktxinfo_version::@b3d31ad6ae48f43b442d",
+					"jsonFile" : "target-ktxinfo_version-Debug-6560555377fb6ae2cdd8.json",
+					"name" : "ktxinfo_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "ktxsc::@f984ad63d48ffc1cf295",
+					"jsonFile" : "target-ktxsc-Debug-b301321b8d978410cfd2.json",
+					"name" : "ktxsc",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "ktxsc_version::@f984ad63d48ffc1cf295",
+					"jsonFile" : "target-ktxsc_version-Debug-efcd001914e43a9ecef4.json",
+					"name" : "ktxsc_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "minigzip::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-minigzip-Debug-657b8aa6866eb81c40b0.json",
+					"name" : "minigzip",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minizip::@39354e54008c9e693a7e",
+					"jsonFile" : "target-minizip-Debug-b24b3fb57e109a1e4d75.json",
+					"name" : "minizip",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "objUtil::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-objUtil-Debug-79c4133ad5aa66943e07.json",
+					"name" : "objUtil",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "obj_basisu_cbind::@bba359c3394ef200acc9",
+					"jsonFile" : "target-obj_basisu_cbind-Debug-626d16e1fd6852e9eba3.json",
+					"name" : "obj_basisu_cbind",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "obj_tmp_basisu::@c613dad60b210cd4cebc",
+					"jsonFile" : "target-obj_tmp_basisu-Debug-1fb497131a8afe6fff8a.json",
+					"name" : "obj_tmp_basisu",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 23,
+					"id" : "openxr_loader::@e4e27c090dc7d2a04b67",
+					"jsonFile" : "target-openxr_loader-Debug-f6509112409a1c800348.json",
+					"name" : "openxr_loader",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "samplecommon_win32gl::@e4f153922b2cebb3c0ac",
+					"jsonFile" : "target-samplecommon_win32gl-Debug-e014f6e05579f00b564f.json",
+					"name" : "samplecommon_win32gl",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "samplexrframework::@e4f153922b2cebb3c0ac",
+					"jsonFile" : "target-samplexrframework-Debug-1b03e6bbc7f43254ffab.json",
+					"name" : "samplexrframework",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 42,
+					"id" : "scenemodel::@bc8e8471bcaa603e757e",
+					"jsonFile" : "target-scenemodel-Debug-360fc9d11ef23067667d.json",
+					"name" : "scenemodel",
+					"projectIndex" : 23
+				},
+				{
+					"directoryIndex" : 43,
+					"id" : "scenesharing::@59417289ce42d33ec209",
+					"jsonFile" : "target-scenesharing-Debug-431a88c6cd57101d7f4e.json",
+					"name" : "scenesharing",
+					"projectIndex" : 24
+				},
+				{
+					"directoryIndex" : 45,
+					"id" : "spatialanchor::@428a5f97bd7c89f4890f",
+					"jsonFile" : "target-spatialanchor-Debug-aeac04969bb0e72ae5ee.json",
+					"name" : "spatialanchor",
+					"projectIndex" : 26
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "stb::@39354e54008c9e693a7e",
+					"jsonFile" : "target-stb-Debug-e0bda197a0a1c8bcd9e1.json",
+					"name" : "stb",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "streamtests::@5582a86a123f71a9656c",
+					"jsonFile" : "target-streamtests-Debug-8626c2879c6f23e35a4f.json",
+					"name" : "streamtests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "texturetests::@e540ffaa27064c9f86b1",
+					"jsonFile" : "target-texturetests-Debug-cf226c8e6f26f465c456.json",
+					"name" : "texturetests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "toktx::@a8754739ff076b047a69",
+					"jsonFile" : "target-toktx-Debug-fadc2d8c8772d4dee8db.json",
+					"name" : "toktx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "toktx_version::@a8754739ff076b047a69",
+					"jsonFile" : "target-toktx_version-Debug-1239792111c2d5bb770d.json",
+					"name" : "toktx_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "transcodetests::@c613dad60b210cd4cebc",
+					"jsonFile" : "target-transcodetests-Debug-09d3690eaccae268b48f.json",
+					"name" : "transcodetests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "uninstall::@bdbf71f83d2ac1e3e7fb",
+					"jsonFile" : "target-uninstall-Debug-83f0d1c08d8221be7004.json",
+					"name" : "uninstall",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "unittests::@e540ffaa27064c9f86b1",
+					"jsonFile" : "target-unittests-Debug-21f0a06ee3aa6bf2f8d5.json",
+					"name" : "unittests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "xr_common_generated_files::@aca70d126e7d148c8b20",
+					"jsonFile" : "target-xr_common_generated_files-Debug-368e898cd04e17d82ad3.json",
+					"name" : "xr_common_generated_files",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "xr_global_generated_files::@aca70d126e7d148c8b20",
+					"jsonFile" : "target-xr_global_generated_files-Debug-ebf900f152bcff42fe20.json",
+					"name" : "xr_global_generated_files",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 27,
+					"id" : "xrbodyfaceeyesocial::@db920e32e2694a1fa3f2",
+					"jsonFile" : "target-xrbodyfaceeyesocial-Debug-556dd02db355baa07ba3.json",
+					"name" : "xrbodyfaceeyesocial",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 28,
+					"id" : "xrcolocationdiscovery::@5f746c8d8bea85e398a0",
+					"jsonFile" : "target-xrcolocationdiscovery-Debug-11e870d7d583ca83fc64.json",
+					"name" : "xrcolocationdiscovery",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 31,
+					"id" : "xrcontrollers::@8ca6cba7cccb09a4e0b9",
+					"jsonFile" : "target-xrcontrollers-Debug-b6d68bc277003c7531a5.json",
+					"name" : "xrcontrollers",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 32,
+					"id" : "xrdynamicobjects::@07e3229ee15e566b50fe",
+					"jsonFile" : "target-xrdynamicobjects-Debug-c86d6e5bca4b4903bc14.json",
+					"name" : "xrdynamicobjects",
+					"projectIndex" : 13
+				},
+				{
+					"directoryIndex" : 33,
+					"id" : "xrhanddatasource::@ace2759cdb7129e01f28",
+					"jsonFile" : "target-xrhanddatasource-Debug-43f2ea28516e6e2cbbeb.json",
+					"name" : "xrhanddatasource",
+					"projectIndex" : 14
+				},
+				{
+					"directoryIndex" : 36,
+					"id" : "xrhandsfb::@d73ec3e76df5a2d8ba8f",
+					"jsonFile" : "target-xrhandsfb-Debug-a84d7e97f5eb11a398e0.json",
+					"name" : "xrhandsfb",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 34,
+					"id" : "xrhandtrackingwidemotionmode::@f2c914f79ad74330a56b",
+					"jsonFile" : "target-xrhandtrackingwidemotionmode-Debug-ac1238b71efef27dcd76.json",
+					"name" : "xrhandtrackingwidemotionmode",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 38,
+					"id" : "xrmicrogestures::@52f19c73340ddf9ab7ed",
+					"jsonFile" : "target-xrmicrogestures-Debug-fb425fa234f21f26dbd9.json",
+					"name" : "xrmicrogestures",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 39,
+					"id" : "xroverlaykeyboard::@6c103482568e13d69c6b",
+					"jsonFile" : "target-xroverlaykeyboard-Debug-b4ec59cb58275b659bc9.json",
+					"name" : "xroverlaykeyboard",
+					"projectIndex" : 20
+				},
+				{
+					"directoryIndex" : 40,
+					"id" : "xrpassthrough::@89285dc1df59cbe575a5",
+					"jsonFile" : "target-xrpassthrough-Debug-6961f4d56435ac1f7809.json",
+					"name" : "xrpassthrough",
+					"projectIndex" : 21
+				},
+				{
+					"directoryIndex" : 41,
+					"id" : "xrpassthroughocclusion::@34e60645c8376b3c2691",
+					"jsonFile" : "target-xrpassthroughocclusion-Debug-552576ad3dc7ebe8c478.json",
+					"name" : "xrpassthroughocclusion",
+					"projectIndex" : 22
+				},
+				{
+					"directoryIndex" : 29,
+					"id" : "xrsamples_xrcolorspacefb::@538a8b13479bb8cedd7d",
+					"jsonFile" : "target-xrsamples_xrcolorspacefb-Debug-d067ae65eb3095269435.json",
+					"name" : "xrsamples_xrcolorspacefb",
+					"projectIndex" : 10
+				},
+				{
+					"directoryIndex" : 35,
+					"id" : "xrsamples_xrhands_and_controllers::@86038cf38698a351ba98",
+					"jsonFile" : "target-xrsamples_xrhands_and_controllers-Debug-ec02e2fd290d9967d8cd.json",
+					"name" : "xrsamples_xrhands_and_controllers",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 37,
+					"id" : "xrsamples_xrinput::@51fd480b305ec3b3494b",
+					"jsonFile" : "target-xrsamples_xrinput-Debug-559607a4b05fa3fd6025.json",
+					"name" : "xrsamples_xrinput",
+					"projectIndex" : 18
+				},
+				{
+					"directoryIndex" : 46,
+					"id" : "xrvirtualkeyboard::@0fef9b2768f8ae50c973",
+					"jsonFile" : "target-xrvirtualkeyboard-Debug-1b7c3acbda1efc27345f.json",
+					"name" : "xrvirtualkeyboard",
+					"projectIndex" : 27
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "zlib::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-zlib-Debug-b93b9dd8bb9bcf038ea4.json",
+					"name" : "zlib",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "zlibstatic::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-zlibstatic-Debug-edeaab8a57c83008e44c.json",
+					"name" : "zlibstatic",
+					"projectIndex" : 5
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug",
+		"source" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

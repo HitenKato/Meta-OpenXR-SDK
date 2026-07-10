@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate-complete.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate-complete.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-build.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-build.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-configure.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-configure.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-download.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-download.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-install.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-install.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-mkdir.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-patch.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-patch.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-test.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-test.rule"
 		},
 		{
-			"file" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-update.rule"
+			"file" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-update.rule"
 		}
 	],
 	"target" : 
