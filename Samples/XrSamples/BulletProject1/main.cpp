@@ -13,7 +13,6 @@
 // --- Bullet Physics のインクルード ---
 #include <btBulletDynamicsCommon.h>
 // -------------------------------------
-
 #include "Input/SkeletonRenderer.h"
 #include "Input/ControllerRenderer.h"
 #include "Input/TinyUI.h"
@@ -24,7 +23,7 @@ class XrControllersApp : public OVRFW::XrApp {
 public:
     XrControllersApp() : OVRFW::XrApp() {
         // 背景色はお好みで変更可能です（R, G, B, A）
-        BackgroundColor = OVR::Vector4f(0.60f, 0.95f, 0.4f, 1.0f);
+        BackgroundColor = OVR::Vector4f(1.00f, 0.95f, 0.00f, 1.0f);
         OpenXRVersion = XR_API_VERSION_1_0;
     }
 
@@ -46,9 +45,8 @@ public:
         //    …/input/trigger/slide
         //    …/output/trigger_haptic
         //    …/output/thumb_haptic
-
+        ああああ
         XrPath handSubactionPaths[2] = {LeftHandPath, RightHandPath};
-
         trackpadForceAction_ = CreateAction(
             BaseActionSet,
             XR_ACTION_TYPE_FLOAT_INPUT,

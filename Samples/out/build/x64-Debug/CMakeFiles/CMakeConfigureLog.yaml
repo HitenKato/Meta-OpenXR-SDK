@@ -23,11 +23,11 @@ events:
       
       The output was:
       0
-      Microsoft(R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+      Microsoft(R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       CMakeCCompilerId.c
-      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Microsoft (R) Incremental Linker Version 14.44.35213.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       /out:CMakeCCompilerId.exe 
@@ -39,7 +39,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CompilerIdC/CMakeCCompilerId.exe
+        C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CompilerIdC/CMakeCCompilerId.exe
       
   -
     kind: "message-v1"
@@ -51,7 +51,7 @@ events:
     message: |
       Detecting C compiler /showIncludes prefix:
         main.c
-        メモ: インクルード ファイル:  C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
+        メモ: インクルード ファイル:  C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "メモ: インクルード ファイル:  "
   -
@@ -69,11 +69,11 @@ events:
       
       The output was:
       0
-      Microsoft(R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+      Microsoft(R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       CMakeCXXCompilerId.cpp
-      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Microsoft (R) Incremental Linker Version 14.44.35213.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       /out:CMakeCXXCompilerId.exe 
@@ -85,7 +85,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CompilerIdCXX/CMakeCXXCompilerId.exe
+        C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/3.31.6-msvc6/CompilerIdCXX/CMakeCXXCompilerId.exe
       
   -
     kind: "message-v1"
@@ -97,7 +97,7 @@ events:
     message: |
       Detecting CXX compiler /showIncludes prefix:
         main.c
-        メモ: インクルード ファイル:  C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
+        メモ: インクルード ファイル:  C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "メモ: インクルード ファイル:  "
   -
@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-a10ai7"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-a10ai7"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-f2433y"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-f2433y"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -119,11 +119,11 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-a10ai7'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-f2433y'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_09f1b
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_09f1b.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_09f1b.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_09f1b.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_09f1b.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_09f1b.exe /implib:cmTC_09f1b.lib /pdb:cmTC_09f1b.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_3bb47
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_3bb47.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_3bb47.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_3bb47.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_3bb47.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_3bb47.exe /implib:cmTC_3bb47.lib /pdb:cmTC_3bb47.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -136,7 +136,7 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'C': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        linker tool for 'C': C:/PROGRA~1/MIB055~1/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
         implicit libs: []
         implicit objs: []
         implicit dirs: []
@@ -151,8 +151,8 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:19 (project)"
     message: |
-      Running the C compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
-      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Running the C compiler's linker: "C:/PROGRA~1/MIB055~1/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35213.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
   -
     kind: "try_compile-v1"
@@ -163,8 +163,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xijg9z"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xijg9z"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4slbi2"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4slbi2"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /EHsc /wd5287 /wd5272 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -174,11 +174,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xijg9z'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4slbi2'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_22183
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /EHsc /wd5287 /wd5272 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_22183.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_22183.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_22183.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_22183.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_22183.exe /implib:cmTC_22183.lib /pdb:cmTC_22183.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_58eba
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /EHsc /wd5287 /wd5272 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_58eba.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_58eba.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_58eba.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_58eba.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_58eba.exe /implib:cmTC_58eba.lib /pdb:cmTC_58eba.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -191,7 +191,7 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'CXX': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        linker tool for 'CXX': C:/PROGRA~1/MIB055~1/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
         implicit libs: []
         implicit objs: []
         implicit dirs: []
@@ -206,8 +206,8 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:19 (project)"
     message: |
-      Running the CXX compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
-      Microsoft (R) Incremental Linker Version 14.44.35228.0
+      Running the CXX compiler's linker: "C:/PROGRA~1/MIB055~1/2022/COMMUN~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35213.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
   -
     kind: "try_compile-v1"
@@ -221,24 +221,24 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-p6ymaq"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-p6ymaq"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ahz2mm"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ahz2mm"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-p6ymaq'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ahz2mm'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_0b6a7
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_0b6a7.dir\\src.c.obj /FdCMakeFiles\\cmTC_0b6a7.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-p6ymaq\\src.c
-        FAILED: CMakeFiles/cmTC_0b6a7.dir/src.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_0b6a7.dir\\src.c.obj /FdCMakeFiles\\cmTC_0b6a7.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-p6ymaq\\src.c
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-p6ymaq\\src.c(1): fatal error C1083: include ファイルを開けません。'pthread.h':No such file or directory
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_eaeb9
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_eaeb9.dir\\src.c.obj /FdCMakeFiles\\cmTC_eaeb9.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ahz2mm\\src.c
+        FAILED: CMakeFiles/cmTC_eaeb9.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_eaeb9.dir\\src.c.obj /FdCMakeFiles\\cmTC_eaeb9.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ahz2mm\\src.c
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ahz2mm\\src.c(1): fatal error C1083: include ファイルを開けません。'pthread.h':No such file or directory
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -253,25 +253,25 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-lxuxh8"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-lxuxh8"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-klk6rh"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-klk6rh"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
     buildResult:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-lxuxh8'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-klk6rh'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_5f80e
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_5f80e.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_5f80e.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-lxuxh8\\CheckFunctionExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_5f80e.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_5f80e.dir\\CheckFunctionExists.c.obj  /out:cmTC_5f80e.exe /implib:cmTC_5f80e.lib /pdb:cmTC_5f80e.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_5f80e.exe 
-        C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_5f80e.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_5f80e.dir\\CheckFunctionExists.c.obj  /out:cmTC_5f80e.exe /implib:cmTC_5f80e.lib /pdb:cmTC_5f80e.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_5f80e.dir\\CheckFunctionExists.c.obj /out:cmTC_5f80e.exe /implib:cmTC_5f80e.lib /pdb:cmTC_5f80e.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_5f80e.dir/intermediate.manifest CMakeFiles\\cmTC_5f80e.dir/manifest.res" failed (exit code 1104) with the following output:
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_ef053
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_ef053.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_ef053.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-klk6rh\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_ef053.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_ef053.dir\\CheckFunctionExists.c.obj  /out:cmTC_ef053.exe /implib:cmTC_ef053.lib /pdb:cmTC_ef053.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_ef053.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_ef053.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_ef053.dir\\CheckFunctionExists.c.obj  /out:cmTC_ef053.exe /implib:cmTC_ef053.lib /pdb:cmTC_ef053.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_ef053.dir\\CheckFunctionExists.c.obj /out:cmTC_ef053.exe /implib:cmTC_ef053.lib /pdb:cmTC_ef053.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_ef053.dir/intermediate.manifest CMakeFiles\\cmTC_ef053.dir/manifest.res" failed (exit code 1104) with the following output:
         LINK : fatal error LNK1104: ファイル 'pthreads.lib' を開くことができません。\x0d
         ninja: build stopped: subcommand failed.
         
@@ -287,25 +287,25 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-iwqrcj"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-iwqrcj"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-9prazo"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-9prazo"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/cmake/modules/"
     buildResult:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-iwqrcj'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-9prazo'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_004dd
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_004dd.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_004dd.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-iwqrcj\\CheckFunctionExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_004dd.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_004dd.dir\\CheckFunctionExists.c.obj  /out:cmTC_004dd.exe /implib:cmTC_004dd.lib /pdb:cmTC_004dd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_004dd.exe 
-        C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_004dd.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_004dd.dir\\CheckFunctionExists.c.obj  /out:cmTC_004dd.exe /implib:cmTC_004dd.lib /pdb:cmTC_004dd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_004dd.dir\\CheckFunctionExists.c.obj /out:cmTC_004dd.exe /implib:cmTC_004dd.lib /pdb:cmTC_004dd.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_004dd.dir/intermediate.manifest CMakeFiles\\cmTC_004dd.dir/manifest.res" failed (exit code 1104) with the following output:
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_df1fc
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_df1fc.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_df1fc.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-9prazo\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_df1fc.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_df1fc.dir\\CheckFunctionExists.c.obj  /out:cmTC_df1fc.exe /implib:cmTC_df1fc.lib /pdb:cmTC_df1fc.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_df1fc.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_df1fc.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_df1fc.dir\\CheckFunctionExists.c.obj  /out:cmTC_df1fc.exe /implib:cmTC_df1fc.lib /pdb:cmTC_df1fc.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_df1fc.dir\\CheckFunctionExists.c.obj /out:cmTC_df1fc.exe /implib:cmTC_df1fc.lib /pdb:cmTC_df1fc.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_df1fc.dir/intermediate.manifest CMakeFiles\\cmTC_df1fc.dir/manifest.res" failed (exit code 1104) with the following output:
         LINK : fatal error LNK1104: ファイル 'pthread.lib' を開くことができません。\x0d
         ninja: build stopped: subcommand failed.
         
@@ -318,8 +318,8 @@ events:
     checks:
       - "Looking for sys/types.h"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hd9jsy"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hd9jsy"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yah81t"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yah81t"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -328,11 +328,11 @@ events:
       variable: "HAVE_SYS_TYPES_H"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hd9jsy'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yah81t'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_b4be7
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_b4be7.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_b4be7.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-hd9jsy\\CheckIncludeFile.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_b4be7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_b4be7.dir\\CheckIncludeFile.c.obj  /out:cmTC_b4be7.exe /implib:cmTC_b4be7.lib /pdb:cmTC_b4be7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_79048
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_79048.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_79048.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-yah81t\\CheckIncludeFile.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_79048.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_79048.dir\\CheckIncludeFile.c.obj  /out:cmTC_79048.exe /implib:cmTC_79048.lib /pdb:cmTC_79048.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -343,8 +343,8 @@ events:
     checks:
       - "Looking for stdint.h"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ixn2ja"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ixn2ja"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ue9fks"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ue9fks"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -353,11 +353,11 @@ events:
       variable: "HAVE_STDINT_H"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ixn2ja'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ue9fks'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_5da00
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_5da00.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_5da00.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ixn2ja\\CheckIncludeFile.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_5da00.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_5da00.dir\\CheckIncludeFile.c.obj  /out:cmTC_5da00.exe /implib:cmTC_5da00.lib /pdb:cmTC_5da00.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_346e9
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_346e9.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_346e9.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ue9fks\\CheckIncludeFile.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_346e9.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_346e9.dir\\CheckIncludeFile.c.obj  /out:cmTC_346e9.exe /implib:cmTC_346e9.lib /pdb:cmTC_346e9.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -368,8 +368,8 @@ events:
     checks:
       - "Looking for stddef.h"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ka7aku"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ka7aku"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3mh7m2"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3mh7m2"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -378,11 +378,11 @@ events:
       variable: "HAVE_STDDEF_H"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-ka7aku'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3mh7m2'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_4c1dd
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_4c1dd.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_4c1dd.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-ka7aku\\CheckIncludeFile.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_4c1dd.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_4c1dd.dir\\CheckIncludeFile.c.obj  /out:cmTC_4c1dd.exe /implib:cmTC_4c1dd.lib /pdb:cmTC_4c1dd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_324e7
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_324e7.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_324e7.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-3mh7m2\\CheckIncludeFile.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_324e7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_324e7.dir\\CheckIncludeFile.c.obj  /out:cmTC_324e7.exe /implib:cmTC_324e7.lib /pdb:cmTC_324e7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -394,25 +394,25 @@ events:
     checks:
       - "Check size of off64_t"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-oc1aca"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-oc1aca"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-kfhckc"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-kfhckc"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
     buildResult:
       variable: "HAVE_OFF64_T"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-oc1aca'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-kfhckc'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_7e7f2
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_7e7f2.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_7e7f2.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c
-        FAILED: CMakeFiles/cmTC_7e7f2.dir/OFF64_T.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_7e7f2.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_7e7f2.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c(29): error C2065: 'off64_t': 定義されていない識別子です。
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c(30): error C2065: 'off64_t': 定義されていない識別子です。
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c(31): error C2065: 'off64_t': 定義されていない識別子です。
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c(32): error C2065: 'off64_t': 定義されていない識別子です。
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-oc1aca\\OFF64_T.c(33): error C2065: 'off64_t': 定義されていない識別子です。
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_f5aa4
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_f5aa4.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_f5aa4.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c
+        FAILED: CMakeFiles/cmTC_f5aa4.dir/OFF64_T.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_f5aa4.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_f5aa4.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c(29): error C2065: 'off64_t': 定義されていない識別子です。
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c(30): error C2065: 'off64_t': 定義されていない識別子です。
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c(31): error C2065: 'off64_t': 定義されていない識別子です。
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c(32): error C2065: 'off64_t': 定義されていない識別子です。
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-kfhckc\\OFF64_T.c(33): error C2065: 'off64_t': 定義されていない識別子です。
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -424,24 +424,24 @@ events:
     checks:
       - "Looking for fseeko"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9oq65"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9oq65"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-83f1wq"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-83f1wq"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
     buildResult:
       variable: "HAVE_FSEEKO"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9oq65'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-83f1wq'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_a32b7
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=fseeko /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_a32b7.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_a32b7.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-s9oq65\\CheckFunctionExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_a32b7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a32b7.dir\\CheckFunctionExists.c.obj  /out:cmTC_a32b7.exe /implib:cmTC_a32b7.lib /pdb:cmTC_a32b7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_a32b7.exe 
-        C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_a32b7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a32b7.dir\\CheckFunctionExists.c.obj  /out:cmTC_a32b7.exe /implib:cmTC_a32b7.lib /pdb:cmTC_a32b7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a32b7.dir\\CheckFunctionExists.c.obj /out:cmTC_a32b7.exe /implib:cmTC_a32b7.lib /pdb:cmTC_a32b7.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_a32b7.dir/intermediate.manifest CMakeFiles\\cmTC_a32b7.dir/manifest.res" failed (exit code 1120) with the following output:
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_2ab15
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=fseeko /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_2ab15.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_2ab15.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-83f1wq\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_2ab15.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_2ab15.dir\\CheckFunctionExists.c.obj  /out:cmTC_2ab15.exe /implib:cmTC_2ab15.lib /pdb:cmTC_2ab15.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_2ab15.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_2ab15.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_2ab15.dir\\CheckFunctionExists.c.obj  /out:cmTC_2ab15.exe /implib:cmTC_2ab15.lib /pdb:cmTC_2ab15.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_2ab15.dir\\CheckFunctionExists.c.obj /out:cmTC_2ab15.exe /implib:cmTC_2ab15.lib /pdb:cmTC_2ab15.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_2ab15.dir/intermediate.manifest CMakeFiles\\cmTC_2ab15.dir/manifest.res" failed (exit code 1120) with the following output:
         CheckFunctionExists.c.obj : error LNK2019: 未解決の外部シンボル fseeko が関数 main で参照されました
-        cmTC_a32b7.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
+        cmTC_2ab15.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -453,8 +453,8 @@ events:
     checks:
       - "Looking for unistd.h"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-q9upt2"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-q9upt2"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-512fwn"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-512fwn"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -463,13 +463,13 @@ events:
       variable: "Z_HAVE_UNISTD_H"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-q9upt2'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-512fwn'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_38eab
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_38eab.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_38eab.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-q9upt2\\CheckIncludeFile.c
-        FAILED: CMakeFiles/cmTC_38eab.dir/CheckIncludeFile.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_38eab.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_38eab.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-q9upt2\\CheckIncludeFile.c
-        C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-q9upt2\\CheckIncludeFile.c(1): fatal error C1083: include ファイルを開けません。'unistd.h':No such file or directory
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_e2fea
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_e2fea.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_e2fea.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-512fwn\\CheckIncludeFile.c
+        FAILED: CMakeFiles/cmTC_e2fea.dir/CheckIncludeFile.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_e2fea.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_e2fea.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-512fwn\\CheckIncludeFile.c
+        C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-512fwn\\CheckIncludeFile.c(1): fatal error C1083: include ファイルを開けません。'unistd.h':No such file or directory
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -481,26 +481,26 @@ events:
     checks:
       - "Looking for secure_getenv"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-idcuic"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-idcuic"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9chpo"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9chpo"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
       CMAKE_POSITION_INDEPENDENT_CODE: "ON"
     buildResult:
       variable: "HAVE_SECURE_GETENV"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-idcuic'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-s9chpo'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_8b68a
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=secure_getenv /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_8b68a.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_8b68a.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-idcuic\\CheckFunctionExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_8b68a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b68a.dir\\CheckFunctionExists.c.obj  /out:cmTC_8b68a.exe /implib:cmTC_8b68a.lib /pdb:cmTC_8b68a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_8b68a.exe 
-        C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_8b68a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b68a.dir\\CheckFunctionExists.c.obj  /out:cmTC_8b68a.exe /implib:cmTC_8b68a.lib /pdb:cmTC_8b68a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b68a.dir\\CheckFunctionExists.c.obj /out:cmTC_8b68a.exe /implib:cmTC_8b68a.lib /pdb:cmTC_8b68a.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_8b68a.dir/intermediate.manifest CMakeFiles\\cmTC_8b68a.dir/manifest.res" failed (exit code 1120) with the following output:
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_e9134
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=secure_getenv /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_e9134.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_e9134.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-s9chpo\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_e9134.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_e9134.dir\\CheckFunctionExists.c.obj  /out:cmTC_e9134.exe /implib:cmTC_e9134.lib /pdb:cmTC_e9134.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_e9134.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_e9134.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_e9134.dir\\CheckFunctionExists.c.obj  /out:cmTC_e9134.exe /implib:cmTC_e9134.lib /pdb:cmTC_e9134.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_e9134.dir\\CheckFunctionExists.c.obj /out:cmTC_e9134.exe /implib:cmTC_e9134.lib /pdb:cmTC_e9134.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_e9134.dir/intermediate.manifest CMakeFiles\\cmTC_e9134.dir/manifest.res" failed (exit code 1120) with the following output:
         CheckFunctionExists.c.obj : error LNK2019: 未解決の外部シンボル secure_getenv が関数 main で参照されました
-        cmTC_8b68a.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
+        cmTC_e9134.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -512,26 +512,26 @@ events:
     checks:
       - "Looking for __secure_getenv"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t16imr"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t16imr"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-dl2pkj"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-dl2pkj"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
       CMAKE_POSITION_INDEPENDENT_CODE: "ON"
     buildResult:
       variable: "HAVE___SECURE_GETENV"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t16imr'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-dl2pkj'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_8b62a
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=__secure_getenv /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_8b62a.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_8b62a.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-t16imr\\CheckFunctionExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_8b62a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b62a.dir\\CheckFunctionExists.c.obj  /out:cmTC_8b62a.exe /implib:cmTC_8b62a.lib /pdb:cmTC_8b62a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_8b62a.exe 
-        C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_8b62a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b62a.dir\\CheckFunctionExists.c.obj  /out:cmTC_8b62a.exe /implib:cmTC_8b62a.lib /pdb:cmTC_8b62a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_8b62a.dir\\CheckFunctionExists.c.obj /out:cmTC_8b62a.exe /implib:cmTC_8b62a.lib /pdb:cmTC_8b62a.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_8b62a.dir/intermediate.manifest CMakeFiles\\cmTC_8b62a.dir/manifest.res" failed (exit code 1120) with the following output:
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_21157
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX -DCHECK_FUNCTION_EXISTS=__secure_getenv /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_21157.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_21157.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-dl2pkj\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_21157.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_21157.dir\\CheckFunctionExists.c.obj  /out:cmTC_21157.exe /implib:cmTC_21157.lib /pdb:cmTC_21157.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_21157.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_21157.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_21157.dir\\CheckFunctionExists.c.obj  /out:cmTC_21157.exe /implib:cmTC_21157.lib /pdb:cmTC_21157.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_21157.dir\\CheckFunctionExists.c.obj /out:cmTC_21157.exe /implib:cmTC_21157.lib /pdb:cmTC_21157.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_21157.dir/intermediate.manifest CMakeFiles\\cmTC_21157.dir/manifest.res" failed (exit code 1120) with the following output:
         CheckFunctionExists.c.obj : error LNK2019: 未解決の外部シンボル __secure_getenv が関数 main で参照されました
-        cmTC_8b62a.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
+        cmTC_21157.exe : fatal error LNK1120: 1 件の未解決の外部参照\x0d
         ninja: build stopped: subcommand failed.
         
       exitCode: 1
@@ -544,23 +544,23 @@ events:
     checks:
       - "Looking for timespec_get"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-zpje1m"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-zpje1m"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0dhvnu"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0dhvnu"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
       CMAKE_POSITION_INDEPENDENT_CODE: "ON"
     buildResult:
       variable: "HAVE_TIMESPEC"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-zpje1m'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0dhvnu'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_99d78
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_99d78.dir\\CheckSymbolExists.c.obj /FdCMakeFiles\\cmTC_99d78.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-zpje1m\\CheckSymbolExists.c
-        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_99d78.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_99d78.dir\\CheckSymbolExists.c.obj  /out:cmTC_99d78.exe /implib:cmTC_99d78.lib /pdb:cmTC_99d78.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_854db
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_854db.dir\\CheckSymbolExists.c.obj /FdCMakeFiles\\cmTC_854db.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-0dhvnu\\CheckSymbolExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_854db.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_854db.dir\\CheckSymbolExists.c.obj  /out:cmTC_854db.exe /implib:cmTC_854db.lib /pdb:cmTC_854db.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -573,24 +573,24 @@ events:
     checks:
       - "Performing Test HAVE_MISSING_PROTOTYPES"
     directories:
-      source: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-x07ayi"
-      binary: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-x07ayi"
+      source: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-edn7he"
+      binary: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-edn7he"
     cmakeVariables:
       CMAKE_C_FLAGS: "/D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/cmake;C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/src/external/sanitizers-cmake/cmake"
       CMAKE_POSITION_INDEPENDENT_CODE: "ON"
     buildResult:
       variable: "HAVE_MISSING_PROTOTYPES"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-x07ayi'
+        Change Dir: 'C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-edn7he'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_04231
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_MISSING_PROTOTYPES  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1   -Wmissing-prototypes /showIncludes /FoCMakeFiles\\cmTC_04231.dir\\src.c.obj /FdCMakeFiles\\cmTC_04231.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-x07ayi\\src.c
-        FAILED: CMakeFiles/cmTC_04231.dir/src.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_MISSING_PROTOTYPES  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1   -Wmissing-prototypes /showIncludes /FoCMakeFiles\\cmTC_04231.dir\\src.c.obj /FdCMakeFiles\\cmTC_04231.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-x07ayi\\src.c
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_ce2d5
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_MISSING_PROTOTYPES  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1   -Wmissing-prototypes /showIncludes /FoCMakeFiles\\cmTC_ce2d5.dir\\src.c.obj /FdCMakeFiles\\cmTC_ce2d5.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-edn7he\\src.c
+        FAILED: CMakeFiles/cmTC_ce2d5.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_MISSING_PROTOTYPES  /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /wd5287 /wd4005 /DWIN32 /DNOMINMAX  /MDd /Zi /Ob0 /Od /RTC1   -Wmissing-prototypes /showIncludes /FoCMakeFiles\\cmTC_ce2d5.dir\\src.c.obj /FdCMakeFiles\\cmTC_ce2d5.dir\\ /FS -c C:\\Users\\hiten\\source\\repos\\HitenKato\\Meta-OpenXR-SDK\\Samples\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-edn7he\\src.c
         cl : コマンド ライン error D8021 : 数値型引数 '/Wmissing-prototypes' は無効です。
         ninja: build stopped: subcommand failed.
         

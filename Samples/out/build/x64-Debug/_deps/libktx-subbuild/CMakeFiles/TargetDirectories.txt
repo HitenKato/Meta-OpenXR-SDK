@@ -1,3 +1,3 @@
-C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.dir
-C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/edit_cache.dir
-C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/rebuild_cache.dir
+C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.dir
+C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/rebuild_cache.dir
