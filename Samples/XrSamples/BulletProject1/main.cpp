@@ -1,58 +1,18 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
- *
- * Licensed under the Oculus SDK License Agreement (the "License");
- * you may not use the Oculus SDK except in compliance with the License,
- * which is provided at the time of installation or download, or which
- * otherwise accompanies this software in either electronic or hard copy form.
- *
- * You may obtain a copy of the License at
- * https://developer.oculus.com/licenses/oculussdk/
- *
- * Unless required by applicable law or agreed to in writing, the Oculus SDK
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/*******************************************************************************
-
-Filename    :   Main.cpp
-Content     :   OpenXR sample app to showcase the use of controller and haptics extensions
-Created     :   Dec 2020
-Authors     :   -
-Language    :   C++
-
-*******************************************************************************/
-
 #include <cstdint>
 #include <cstdio>
 #include <algorithm>
 #include <openxr/openxr.h>
-
-#include <meta_openxr_preview/extx1_haptic_parametric.h>
-
 #include <sstream>
 #include <iomanip>
 #include <thread>
 #include <chrono>
 
 #include "XrApp.h"
-
+#include "utils.h" // 授業の便利関数
 
 // --- Bullet Physics のインクルード ---
 #include <btBulletDynamicsCommon.h>
 // -------------------------------------
-
-/// Haptic effects
-const float kScrollBuffer[]{1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1};
-float reducingIntensity[]{1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1};
-float increasingIntensity[]{0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1};
-float constantIntensity[]{0.5};
-
-// PCM Haptic API
-PFN_xrGetDeviceSampleRateFB xrGetDeviceSampleRateFB = nullptr;
 
 #include "Input/SkeletonRenderer.h"
 #include "Input/ControllerRenderer.h"
@@ -60,69 +20,16 @@ PFN_xrGetDeviceSampleRateFB xrGetDeviceSampleRateFB = nullptr;
 #include "Input/AxisRenderer.h"
 #include "Render/SimpleBeamRenderer.h"
 
-
 class XrControllersApp : public OVRFW::XrApp {
-   public:
+public:
     XrControllersApp() : OVRFW::XrApp() {
+        // 背景色はお好みで変更可能です（R, G, B, A）
         BackgroundColor = OVR::Vector4f(0.60f, 0.95f, 0.4f, 1.0f);
         OpenXRVersion = XR_API_VERSION_1_0;
     }
 
-    /**
-Function to create PCM samples from an array of amplitudes, frequency and duration
-**/
-    std::vector<float>
-    createPCMSamples(float freq, int amplitudeCount, float* amplitudes, float durationSecs) {
-        int numSamples = static_cast<int>(
-            2000 * FromXrTime(durationSecs)); // samples consumed per sec * duration in secs
-
-        // Initialize result
-        std::vector<float> result(numSamples);
-
-        // Init data for sample loop
-        float srcSample = 0;
-        float srcStep = static_cast<float>(amplitudeCount) / numSamples;
-        float currentCycle = 0.0;
-        float dt = 1.0 / 2000;
-
-        // Compute samples
-        for (int i = 0; i < numSamples; i++) {
-            float intPart; // trash
-            const float cycleTime = std::modf(currentCycle, &intPart);
-            int srcIdx = static_cast<int>(srcSample);
-            float srcAmplitude = amplitudes[srcIdx];
-
-            // Compute sample value
-            float base = std::sin(cycleTime * M_PI * 2.0);
-            float sample = base * srcAmplitude;
-            result[i] = sample;
-
-            // Step
-            currentCycle += freq * dt;
-            srcSample += srcStep;
-        }
-        return result;
-    }
-
-    bool SupportsParametricHaptics() {
-        XrSystemHapticParametricPropertiesEXTX1 systemHapticParametricProperties{XR_TYPE_SYSTEM_HAPTIC_PARAMETRIC_PROPERTIES_EXTX1};
-        XrSystemProperties systemProperties = {XR_TYPE_SYSTEM_PROPERTIES, &systemHapticParametricProperties};
-        OXR(xrGetSystemProperties(Instance, GetSystemId(), &systemProperties));
-        if (systemHapticParametricProperties.supportsParametricHaptics == XR_FALSE) {
-            ALOGE("System does not support parametric haptics");
-            return false;
-        }
-        return true;
-    }
-
-    // Returns a list of OpenXr extensions needed for this app
-    virtual std::vector<const char*> GetExtensions() override {
-        std::vector<const char*> extensions = XrApp::GetExtensions();
-        extensions.push_back(XR_FB_HAPTIC_AMPLITUDE_ENVELOPE_EXTENSION_NAME);
-        extensions.push_back(XR_FB_HAPTIC_PCM_EXTENSION_NAME);
-        extensions.push_back(XR_EXTX1_HAPTIC_PARAMETRIC_EXTENSION_NAME);
-                return extensions;
-    }
+    // GetExtensions() は基底クラス(XrApp)の標準機能だけで十分なため、関数ごと丸ごと削除しました。
+    // 同様に createPCMSamples と SupportsParametricHaptics も削除しました。
 
     // Returns a map from interaction profile paths to vectors of suggested bindings.
     // xrSuggestInteractionProfileBindings() is called once for each interaction profile path in the
@@ -408,381 +315,18 @@ Function to create PCM samples from an array of amplitudes, frequency and durati
 
     // Must return true if the application initializes successfully.
     virtual bool AppInit(const xrJava* context) override {
+        // UIシステムの初期化は今後のために残す
         if (false == ui_.Init(context, GetFileSys())) {
             ALOG("TinyUI::Init FAILED.");
             return false;
         }
 
-        /// Hook up extensions
+        // --- Bullet Physics の初期化をここで行うことも可能ですが、
+        // --- 空間のセットアップなどは SessionInit() で行うのが通例です。
 
-        /// Build UI
-        bigText_ =
-            ui_.AddLabel("OpenXR Controllers Sample", {0.0f, -0.8f, -1.9f}, {1300.0f, 100.0f});
-
-        OVR::Vector2f size = {200.0f, 100.0f};
-        OVR::Vector3f position = {+0.0f, 0.5f, -1.9f};
-        OVR::Vector3f positionL = {-0.4f, 0.5f, -1.9f};
-        OVR::Vector3f positionR = {+0.4f, 0.5f, -1.9f};
-        const float dh = 0.2f;
-        position.y += dh;
-        positionL.y += dh;
-        positionR.y += dh;
-        ui_.AddLabel("Trigger Force", position, size);
-        triggerForceLText_ = ui_.AddLabel("trf L 0.0", positionL, size);
-        triggerForceRText_ = ui_.AddLabel("trf R 0.0", positionR, size);
-        position.y += dh;
-        positionL.y += dh;
-        positionR.y += dh;
-        ui_.AddLabel("Track Force", position, size);
-        trackpadForceLText_ = ui_.AddLabel("tf L 0.0", positionL, size);
-        trackpadForceRText_ = ui_.AddLabel("tf R 0.0", positionR, size);
-        position.y += dh;
-        positionL.y += dh;
-        positionR.y += dh;
-        ui_.AddLabel("Stylus Force", position, size);
-        stylusForceLText_ = ui_.AddLabel("tf L 0.0", positionL, size);
-        stylusForceRText_ = ui_.AddLabel("tf R 0.0", positionR, size);
-        position.y += dh;
-        positionL.y += dh;
-        positionR.y += dh;
-        ui_.AddLabel("Trigger Curl", position, size);
-        triggerCurlLText_ = ui_.AddLabel("tf L 0.0", positionL, size);
-        triggerCurlRText_ = ui_.AddLabel("tf R 0.0", positionR, size);
-        position.y += dh;
-        positionL.y += dh;
-        positionR.y += dh;
-        ui_.AddLabel("Trigger Slide", position, size);
-        squeezeCurlLText_ = ui_.AddLabel("tf L 0.0", positionL, size);
-        squeezeCurlRText_ = ui_.AddLabel("tf R 0.0", positionR, size);
-        // Proximity
-        positionL.y += dh;
-        positionR.y += dh;
-        position.y += dh;
-        ui_.AddLabel("Trigger Prox", position, size);
-        triggerProxLText_ = ui_.AddLabel("trProx L 0.0", positionL, size);
-        triggerProxRText_ = ui_.AddLabel("trProx R 0.0", positionR, size);
-
-        positionL.y += dh * 3 / 4.0f;
-        positionR.y += dh * 3 / 4.0f;
-        position.y += dh;
-        ui_.AddLabel("Thumb Prox", position, size);
-        const OVR::Vector2f halfSize{size.x, size.y / 2.0f};
-        thumbFBProxLText_ = ui_.AddLabel("_FB: 0", positionL, halfSize);
-        thumbFBProxRText_ = ui_.AddLabel("_FB: 0", positionR, halfSize);
-        positionL.y += dh / 2.0;
-        positionR.y += dh / 2.0;
-        thumbMetaProxLText_ = ui_.AddLabel("_META: 0", positionL, halfSize);
-        thumbMetaProxRText_ = ui_.AddLabel("_META: 0", positionR, halfSize);
-
-        positionL.y += dh * 3 / 4.0f;
-        positionR.y += dh * 3 / 4.0f;
-        position.y += dh;
-        ui_.AddLabel("Trigger Value", position, size);
-        triggerValueLText_ = ui_.AddLabel("trVal L 0.0", positionL, size);
-        triggerValueRText_ = ui_.AddLabel("trVal R 0.0", positionR, size);
-
-        positionL.y += dh;
-        positionR.y += dh;
-        position.y += dh;
-        ui_.AddLabel("Trigger Touch", position, size);
-        triggerTouchLText_ = ui_.AddLabel("trTouch L 0.0", positionL, size);
-        triggerTouchRText_ = ui_.AddLabel("trTouch R 0.0", positionR, size);
-
-        positionL.y += dh;
-        positionR.y += dh;
-        position.y += dh;
-        ui_.AddLabel("Squeeze Value", position, size);
-        squeezeValueLText_ = ui_.AddLabel("sqVal L 0.0", positionL, size);
-        squeezeValueRText_ = ui_.AddLabel("sqVal R 0.0", positionR, size);
-
-        ipText_ = ui_.AddLabel("Interaction Profiles", {0.0f, 0.5f, -1.9f}, {600.0f, 100.0f});
-
-        ui_.AddButton("Haptic Main S", {-0.8f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(
-                mainHapticAction_, LeftHandPath, XR_MIN_HAPTIC_DURATION, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Main S", {+0.8f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(
-                mainHapticAction_, RightHandPath, XR_MIN_HAPTIC_DURATION, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Main M", {-1.2f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(mainHapticAction_, LeftHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Main M", {+1.2f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(mainHapticAction_, RightHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Main L", {-1.6f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(mainHapticAction_, LeftHandPath, 1.0f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Main L", {+1.6f, 0.5f, -1.9f}, size, [this]() {
-            VibrateController(mainHapticAction_, RightHandPath, 1.0f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Trigger", {-0.8f, 0.7f, -1.9f}, size, [this]() {
-            VibrateController(triggerHapticAction_, LeftHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Trigger", {+0.8f, 0.7f, -1.9f}, size, [this]() {
-            VibrateController(triggerHapticAction_, RightHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Thumb", {-0.8f, 0.9f, -1.9f}, size, [this]() {
-            VibrateController(thumbHapticAction_, LeftHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        ui_.AddButton("Haptic Thumb", {+0.8f, 0.9f, -1.9f}, size, [this]() {
-            VibrateController(thumbHapticAction_, RightHandPath, 0.1f, 157.0f, 1.0f);
-        });
-        position.y += dh;
-        ui_.AddToggleButton("Lag On", "Lag Off", &delayUI_, position, size);
-
-        // Left Hand
-        const float sampleDurationBuffered = 0.002f; // 2ms
-        position = {-1.2f, 0.7f, -1.9f};
-        ui_.AddButton("AE Scroll", position, size, [this, sampleDurationBuffered]() {
-            VibrateControllerAmplitude(
-                mainHapticAction_,
-                LeftHandPath,
-                kScrollBuffer,
-                std::size(kScrollBuffer),
-                sampleDurationBuffered * std::size(kScrollBuffer));
-        });
-        position.x -= 0.4f;
-        float aeBufferSimple[500]; // 1sec
-        for (int i = 0; i < 500; i++) {
-            aeBufferSimple[i] = 0.1;
-        }
-        ui_.AddButton("AE 0.5s\n(Downsample)", position, size, [this, aeBufferSimple]() {
-            VibrateControllerAmplitude(
-                mainHapticAction_, LeftHandPath, aeBufferSimple, std::size(aeBufferSimple), 0.5f);
-        });
-
-        position.x -= 0.4f;
-        ui_.AddButton("Parametric", position, size, [this] {
-            VibrateControllerParametric(mainHapticAction_, LeftHandPath);
-        });
-
-        // Right Hand
-        position = {+1.2f, 0.7f, -1.9f};
-        ui_.AddButton("AE Scroll", position, size, [this, sampleDurationBuffered]() {
-            VibrateControllerAmplitude(
-                mainHapticAction_,
-                RightHandPath,
-                kScrollBuffer,
-                std::size(kScrollBuffer),
-                sampleDurationBuffered * std::size(kScrollBuffer));
-        });
-        position.x += 0.4f;
-        float aeBufferSingle[2] = {1, 0.5f};
-        ui_.AddButton("AE 1s (Upsample)", position, size, [this, aeBufferSingle]() {
-            VibrateControllerAmplitude(
-                mainHapticAction_, RightHandPath, aeBufferSingle, std::size(aeBufferSingle), 1.0f);
-        });
-
-        position.x += 0.4f;
-        ui_.AddButton("Parametric", position, size, [this] {
-            VibrateControllerParametric(mainHapticAction_, RightHandPath);
-        });
-
-        position = {+0.0f, 0.5f, -1.9f};
-        position.y -= dh;
-        pcmHapticText_ = ui_.AddLabel("PCM Haptic\n[SR: 0.0]", position, size);
-
-        float pcmBufferSimple[5000];
-        for (int i = 0; i < 5000; i++) {
-            if (i < 2500) {
-                pcmBufferSimple[i] = 0.8f;
-            } else {
-                pcmBufferSimple[i] = -0.8f;
-            }
-        }
-        // Right Controller
-        position.x += 0.4f;
-        float sampleRate = 2000.0f;
-        std::vector<float> decayingSineWave =
-            createPCMSamples(40, std::size(reducingIntensity), reducingIntensity, ToXrTime(2));
-
-        ui_.AddButton(
-            "Decaying sine\nwave", position, size, [this, decayingSineWave, sampleRate]() {
-                VibrateControllerPCM(
-                    mainHapticAction_,
-                    RightHandPath,
-                    decayingSineWave.data(),
-                    decayingSineWave.size(),
-                    sampleRate);
-            });
-
-        auto copyReducingSineWave =
-            createPCMSamples(40, std::size(reducingIntensity), reducingIntensity, ToXrTime(1));
-        auto copyIncreasingSineWave =
-            createPCMSamples(40, std::size(increasingIntensity), increasingIntensity, ToXrTime(1));
-
-        std::vector<float> decayingSineWaveLong;
-        for (int i = 0; i < 5; ++i) {
-            decayingSineWaveLong.insert(
-                decayingSineWaveLong.end(),
-                copyReducingSineWave.begin(),
-                copyReducingSineWave.end());
-            decayingSineWaveLong.insert(
-                decayingSineWaveLong.end(),
-                copyIncreasingSineWave.begin(),
-                copyIncreasingSineWave.end());
-        }
-
-        position.x += 0.4f;
-        ui_.AddButton(
-            "Long wave (10s)", position, size, [this, decayingSineWaveLong, sampleRate]() {
-                VibrateControllerPCM(
-                    mainHapticAction_,
-                    RightHandPath,
-                    decayingSineWaveLong.data(),
-                    decayingSineWaveLong.size(),
-                    sampleRate);
-            });
-
-        std::vector<float> sineWave =
-            createPCMSamples(157, std::size(constantIntensity), constantIntensity, ToXrTime(1));
-
-        position.x += 0.4f;
-        ui_.AddButton("Wave 1s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, RightHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        position.x += 0.4f;
-        sampleRate = 1000.0f;
-        ui_.AddButton("Upsampled Wave\n2s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, RightHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        position.x += 0.4f;
-        sampleRate = 4000.0f;
-        ui_.AddButton("Downsampled\nWave\n0.5s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, RightHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        // Left Controller
-        position.x -= 2.4f;
-        sampleRate = 2000.0f;
-
-        ui_.AddButton(
-            "Decaying sine\nwave 1s", position, size, [this, decayingSineWave, sampleRate]() {
-                VibrateControllerPCM(
-                    mainHapticAction_,
-                    LeftHandPath,
-                    decayingSineWave.data(),
-                    decayingSineWave.size(),
-                    sampleRate);
-            });
-
-        position.x -= 0.4f;
-        ui_.AddButton(
-            "Long wave (10s)", position, size, [this, decayingSineWaveLong, sampleRate]() {
-                VibrateControllerPCM(
-                    mainHapticAction_,
-                    LeftHandPath,
-                    decayingSineWaveLong.data(),
-                    decayingSineWaveLong.size(),
-                    sampleRate);
-            });
-
-        position.x -= 0.4f;
-        // 2s Sine wave
-        float singleIntensity[]{1};
-        sineWave = createPCMSamples(157, std::size(singleIntensity), singleIntensity, ToXrTime(2));
-
-        ui_.AddButton("Wave 2s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, LeftHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        position.x -= 0.4f;
-        sampleRate = 1500.0f;
-        ui_.AddButton("Upsampled Wave\n2.67s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, LeftHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        position.x -= 0.4f;
-        sampleRate = 3000.0f;
-        ui_.AddButton("Downsampled\nWave\n1.3s", position, size, [this, sineWave, sampleRate]() {
-            VibrateControllerPCM(
-                mainHapticAction_, LeftHandPath, sineWave.data(), sineWave.size(), sampleRate);
-        });
-
-        // Playing haptics on both controllers by passing XR_NULL_PATH in subActionPath
-        position = {+0.0f, +0.1f, -1.9f};
-        ui_.AddButton("Haptic Main (both)", position, size, [this]() {
-            VibrateController(mainHapticAction_, XR_NULL_PATH, 1.0f, 157.0f, 0.5f);
-        });
-        OXR(xrGetInstanceProcAddr(
-            GetInstance(),
-            "xrGetDeviceSampleRateFB",
-            (PFN_xrVoidFunction*)(&xrGetDeviceSampleRateFB)));
-
-        // both triggers
-        position.x -= 0.4f;
-        ui_.AddButton("Thumb (2s, both)", position, size, [this]() {
-            VibrateController(thumbHapticAction_, XR_NULL_PATH, 2.0f, 157.0f, 0.25f);
-        });
-        // both grips
-        position.x -= 0.4f;
-        ui_.AddButton("Trigger (2s, both)", position, size, [this]() {
-            VibrateController(triggerHapticAction_, XR_NULL_PATH, 2.0f, 157.0f, 0.25f);
-        });
-        position = {+0.0f, 0.1f, -1.9f};
-        position.x += 0.4f;
-        ui_.AddButton("Thumb (2s, right)", position, size, [this]() {
-            VibrateController(thumbHapticAction_, RightHandPath, 2.0f, 157.0f, 0.25f);
-        });
-        // both grips
-        position.x += 0.4f;
-        ui_.AddButton("Trigger (2s, right)", position, size, [this]() {
-            VibrateController(triggerHapticAction_, RightHandPath, 2.0f, 157.0f, 0.25f);
-        });
-
-        position = {+0.0f, -0.1f, -1.9f};
-        ui_.AddButton("Stop BOTH Main", position, size, [this]() {
-            StopHapticEffect(mainHapticAction_, XR_NULL_PATH);
-        });
-
-        position.x -= 0.4f;
-        ui_.AddButton("Stop Left Main", position, size, [this]() {
-            StopHapticEffect(mainHapticAction_, LeftHandPath);
-        });
-
-        position.x += 2 * 0.4f;
-        ui_.AddButton("Stop Right Main", position, size, [this]() {
-            StopHapticEffect(mainHapticAction_, RightHandPath);
-        });
-
-        position = {+0.0f, -0.3f, -1.9f};
-        ui_.AddButton("Stop BOTH Thumb", position, size, [this]() {
-            StopHapticEffect(thumbHapticAction_, XR_NULL_PATH);
-        });
-
-        position.x -= 0.4f;
-        ui_.AddButton("Stop Left Thumb", position, size, [this]() {
-            StopHapticEffect(thumbHapticAction_, LeftHandPath);
-        });
-
-        position.x += 2 * 0.4f;
-        ui_.AddButton("Stop Right Thumb", position, size, [this]() {
-            StopHapticEffect(thumbHapticAction_, RightHandPath);
-        });
-
-        position = {+0.0f, -0.5f, -1.9f};
-        ui_.AddButton("Stop BOTH Trigger", position, size, [this]() {
-            StopHapticEffect(triggerHapticAction_, XR_NULL_PATH);
-        });
-        
-        position.x -= 0.4f;
-        ui_.AddButton("Stop Left Trigger", position, size, [this]() {
-            StopHapticEffect(triggerHapticAction_, LeftHandPath);
-        });
-
-        position.x += 2 * 0.4f;
-        ui_.AddButton("Stop Right Trigger", position, size, [this]() {
-            StopHapticEffect(triggerHapticAction_, RightHandPath);
-        });
+        // --- デバッグ用のラベルを1つだけ残す（不要ならこれも消してOK） ---
+        bigText_ = ui_.AddLabel("Bullet Physics Test", { 0.0f, 0.0f, -2.0f }, { 1000.0f, 100.0f });
+        // -----------------------------------------------------------------
 
         return true;
     }
@@ -820,7 +364,28 @@ Function to create PCM samples from an array of amplitudes, frequency and durati
         dynamicsWorld_->setGravity(btVector3(0, -9.8f, 0)); // 重力を設定
         ALOG("Bullet Physics World Initialized!");
         // --------------------------------
+        // 
+        // 1. 箱の形を作る（XYZそれぞれ幅1m。Bulletでは半分のサイズを指定するため0.5f）
+        boxShape_ = new btBoxShape(btVector3(0.5f, 0.5f, 0.5f));
 
+        // 2. 初期位置を設定（目の前2m、高さ3mの空中に配置）
+        btTransform startTransform;
+        startTransform.setIdentity();
+        startTransform.setOrigin(btVector3(0.0f, 3.0f, -2.0f));
+
+        // 3. 質量（1kg）と慣性を設定
+        btScalar mass(1.0f);
+        btVector3 localInertia(0, 0, 0);
+        boxShape_->calculateLocalInertia(mass, localInertia);
+
+        // 4. 剛体（RigidBody）を作成してワールドに追加
+        btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
+        btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape_, localInertia);
+        fallingCube_ = new btRigidBody(rbInfo);
+
+        dynamicsWorld_->addRigidBody(fallingCube_);
+        ALOG("Bullet Box Added to World!");
+        // --------------------------------
         return true;
     }
 
@@ -830,6 +395,17 @@ Function to create PCM samples from an array of amplitudes, frequency and durati
         beamRenderer_.Shutdown();
 
         // --- Bullet Physics の後片付け ---
+        // ▼今回追加: ワールドから箱を取り除き、メモリを解放▼
+        if (fallingCube_) {
+            dynamicsWorld_->removeRigidBody(fallingCube_);
+            delete fallingCube_->getMotionState();
+            delete fallingCube_;
+            fallingCube_ = nullptr;
+        }
+        if (boxShape_) {
+            delete boxShape_;
+            boxShape_ = nullptr;
+        }
         if (dynamicsWorld_) {
             delete dynamicsWorld_;
             delete solver_;
@@ -849,7 +425,13 @@ Function to create PCM samples from an array of amplitudes, frequency and durati
             dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
         }
         // -------------------------------------
-        
+        // ▼今回追加: 箱の座標を取得して出力▼
+        if (fallingCube_) {
+            btTransform trans;
+            fallingCube_->getMotionState()->getWorldTransform(trans);
+            // 物理演算された箱のY座標（高さ）をログに流す
+            ALOG("Cube Y Position: %f", trans.getOrigin().getY());
+        }
         /// Update Input
         {
             /// Trigger Force
@@ -1452,6 +1034,10 @@ Function to create PCM samples from an array of amplitudes, frequency and durati
     btBroadphaseInterface* overlappingPairCache_;
     btSequentialImpulseConstraintSolver* solver_;
     btDiscreteDynamicsWorld* dynamicsWorld_;
+    // ---------------------------------
+
+    btRigidBody* fallingCube_;
+    btCollisionShape* boxShape_;
     // ---------------------------------
 };
 

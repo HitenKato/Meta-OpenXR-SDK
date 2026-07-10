@@ -1,0 +1,14 @@
+# Visual Studio関連のキャッシュ・ユーザー設定
+.vs/
+*.user
+*.suo
+
+# CMakeのビルド出力フォルダ（VSが自動生成するフォルダ）
+out/
+build/
+bin/
+
+# コンパイルの中間ファイルなど
+*.obj
+*.pdb
+*.ilk

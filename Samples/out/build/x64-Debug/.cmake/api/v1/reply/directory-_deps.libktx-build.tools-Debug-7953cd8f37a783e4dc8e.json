@@ -1,0 +1,93 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"3rdParty/khronos/ktx_src/tools/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "tools",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/ktx2check.exe"
+			],
+			"targetId" : "ktx2check::@860fc932a472e0bb01a2",
+			"targetIndex" : 36,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "tools",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/ktx2ktx2.exe"
+			],
+			"targetId" : "ktx2ktx2::@b24b5042453064b7b8d6",
+			"targetIndex" : 38,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "tools",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/ktxinfo.exe"
+			],
+			"targetId" : "ktxinfo::@b3d31ad6ae48f43b442d",
+			"targetIndex" : 42,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "tools",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/ktxsc.exe"
+			],
+			"targetId" : "ktxsc::@f984ad63d48ffc1cf295",
+			"targetIndex" : 44,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "tools",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Debug/toktx.exe"
+			],
+			"targetId" : "toktx::@a8754739ff076b047a69",
+			"targetIndex" : 60,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/libktx-build/tools",
+		"source" : "3rdParty/khronos/ktx_src/tools"
+	}
+}
