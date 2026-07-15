@@ -26,7 +26,7 @@ if(ANDROID)
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-u ANativeActivity_onCreate")
 elseif(WIN32)
     add_definitions(-D_USE_MATH_DEFINES)
-    add_executable(${PROJECT_NAME} ${SRC_FILES})
+    add_executable(${PROJECT_NAME} ${SRC_FILES} "Src/utils.h")
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
         COMMAND "${CMAKE_COMMAND}" -E copy_directory
         "${CMAKE_CURRENT_LIST_DIR}/assets"
