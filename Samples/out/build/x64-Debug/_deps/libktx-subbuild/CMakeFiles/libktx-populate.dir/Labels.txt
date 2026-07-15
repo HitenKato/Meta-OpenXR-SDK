@@ -1,14 +1,14 @@
 # Target labels
  libktx-populate
 # Source files and their labels
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate-complete.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-build.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-configure.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-download.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-install.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-mkdir.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-patch.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-test.rule
-C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-update.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/CMakeFiles/libktx-populate-complete.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-build.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-configure.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-download.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-install.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-mkdir.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-patch.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-test.rule
+C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/libktx-subbuild/libktx-populate-prefix/src/libktx-populate-stamp/libktx-populate-update.rule

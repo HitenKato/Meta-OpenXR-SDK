@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr
+# Install script for directory: C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,19 +34,19 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Headers" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/openxr" TYPE FILE FILES
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_platform_defines.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_loader_negotiation.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_platform.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection_structs.h"
-    "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection_parent_structs.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_platform_defines.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_loader_negotiation.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_platform.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection_structs.h"
+    "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include/openxr/openxr_reflection_parent_structs.h"
     )
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/include/openxr/install_local_manifest.txt"
+  file(WRITE "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/include/openxr/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

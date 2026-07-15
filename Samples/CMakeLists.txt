@@ -23,8 +23,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# ▼ これを追加！（VS2022の細かすぎる警告を黙らせる魔法の呪文） ▼
-add_compile_options(/wd5287)
+
 
 add_subdirectory(3rdParty)
 add_subdirectory(SampleXrFramework)

@@ -57,9 +57,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/inc")
 # 2. コンパイル済みのライブラリ (.lib) をリンクする (Windows環境のみ)
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE
-        "${BULLET_SHARED_DIR}/lib/BulletDynamics_vs2010_x64_release.lib"
-        "${BULLET_SHARED_DIR}/lib/BulletCollision_vs2010_x64_release.lib"
-        "${BULLET_SHARED_DIR}/lib/BulletSoftBody_vs2010_x64_release.lib"
-        "${BULLET_SHARED_DIR}/lib/LinearMath_vs2010_x64_release.lib"
+        "${BULLET_SHARED_DIR}/lib/BulletDynamics_vs2010_x64_debug.lib"
+        "${BULLET_SHARED_DIR}/lib/BulletCollision_vs2010_x64_debug.lib"
+        "${BULLET_SHARED_DIR}/lib/BulletSoftBody_vs2010_x64_debug.lib"
+        "${BULLET_SHARED_DIR}/lib/LinearMath_vs2010_x64_debug.lib"
     )
 endif()
