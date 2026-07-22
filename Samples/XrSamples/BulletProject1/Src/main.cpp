@@ -1,10 +1,10 @@
-#define _HAS_STD_BYTE 0    // WindowsのbyteとC++のbyteの衝突を防ぐ魔法の呪文
+#define _HAS_STD_BYTE 0    // WindowsのbyteとC++のbyteの衝突を防ぐ
 #define NOMINMAX           // min/max関数の衝突を防ぐ
 
-#include <windows.h>       // 衝突を防ぐため、一番最初にWindows設定を読み込む        // 授業の便利関数 (glew.hを含むためこの位置に置く)
-
+#include <windows.h>
 #include <cstdint>
 #include <cstdio>
+// ... (以降そのまま)
 #include <algorithm>
 #include <openxr/openxr.h>
 #include <sstream>
@@ -27,8 +27,16 @@
 
 class XrControllersApp : public OVRFW::XrApp {
 public:
-    XrControllersApp() : OVRFW::XrApp() {
-        // 背景色はお好みで変更可能です（R, G, B, A）
+    XrControllersApp()
+        : OVRFW::XrApp(),
+        collisionConfiguration_(nullptr),
+        dispatcher_(nullptr),
+        overlappingPairCache_(nullptr),
+        solver_(nullptr),
+        dynamicsWorld_(nullptr),
+        fallingCube_(nullptr),
+        boxShape_(nullptr) {
+        // 背景色
         BackgroundColor = OVR::Vector4f(1.00f, 0.95f, 0.00f, 1.0f);
         OpenXRVersion = XR_API_VERSION_1_0;
     }
@@ -117,34 +125,52 @@ public:
 
 
         // --- Bullet Physics の初期化 ---
+        ALOG("Step 1: Creating CollisionConfiguration");
         collisionConfiguration_ = new btDefaultCollisionConfiguration();
+
+        ALOG("Step 2: Creating Dispatcher");
         dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
-        overlappingPairCache_ = new btDbvtBroadphase();
+
+        ALOG("Step 3: Creating Broadphase");
+        overlappingPairCache_ = new btDbvtBroadphase(); // 元の動的ツリーで全く問題ありません
+
+        ALOG("Step 4: Creating Solver");
         solver_ = new btSequentialImpulseConstraintSolver();
+
+        ALOG("Step 5: Creating DynamicsWorld");
         dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
-        dynamicsWorld_->setGravity(btVector3(0, -9.8f, 0)); // 重力を設定
+
+        ALOG("Step 6: Setting Gravity");
+        dynamicsWorld_->setGravity(btVector3(0.0f, -9.8f, 0.0f));
+
         ALOG("Bullet Physics World Initialized!");
-        // --------------------------------
-        // 
-        // 1. 箱の形を作る（XYZそれぞれ幅1m。Bulletでは半分のサイズを指定するため0.5f）
+
+        // 1. 箱の形状
+        ALOG("Step 7: Creating BoxShape");
         boxShape_ = new btBoxShape(btVector3(0.5f, 0.5f, 0.5f));
 
-        // 2. 初期位置を設定（目の前2m、高さ3mの空中に配置）
+        // 2. 初期位置の設定
+        ALOG("Step 8: Setting Transform");
         btTransform startTransform;
         startTransform.setIdentity();
         startTransform.setOrigin(btVector3(0.0f, 3.0f, -2.0f));
 
-        // 3. 質量（1kg）と慣性を設定
+        // 3. 質量と慣性の計算
+        ALOG("Step 9: Calculating Inertia");
         btScalar mass(1.0f);
-        btVector3 localInertia(0, 0, 0);
+        btVector3 localInertia(0.0f, 0.0f, 0.0f);
         boxShape_->calculateLocalInertia(mass, localInertia);
 
-        // 4. 剛体（RigidBody）を作成してワールドに追加
+        // 4. MotionState と RigidBody の作成（スタックのままでOK）
+        ALOG("Step 10: Creating MotionState and RigidBody");
         btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
         btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape_, localInertia);
         fallingCube_ = new btRigidBody(rbInfo);
 
+        // 5. ワールドに追加
+        ALOG("Step 11: Adding RigidBody to World");
         dynamicsWorld_->addRigidBody(fallingCube_);
+
         ALOG("Bullet Box Added to World!");
         // --------------------------------
         return true;

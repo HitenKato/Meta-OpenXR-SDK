@@ -50,7 +50,7 @@ unset(_cmake_expected_targets)
 add_library(OpenXR::openxr_loader STATIC IMPORTED)
 
 set_target_properties(OpenXR::openxr_loader PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include;C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include;C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/include"
   INTERFACE_LINK_LIBRARIES "Threads::Threads;OpenXR::headers;advapi32"
 )
 
@@ -58,14 +58,14 @@ set_target_properties(OpenXR::openxr_loader PROPERTIES
 add_library(OpenXR::headers INTERFACE IMPORTED)
 
 set_target_properties(OpenXR::headers PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include"
 )
 
 # Import target "OpenXR::openxr_loader" for configuration "Debug"
 set_property(TARGET OpenXR::openxr_loader APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(OpenXR::openxr_loader PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "C;CXX;RC"
-  IMPORTED_LOCATION_DEBUG "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/src/loader/openxr_loaderd.lib"
+  IMPORTED_LOCATION_DEBUG "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Debug/_deps/openxr-build/src/loader/openxr_loaderd.lib"
   )
 
 # This file does not depend on other imported targets which have
