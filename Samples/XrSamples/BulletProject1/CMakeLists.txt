@@ -1,6 +1,4 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-# (省略: ライセンス文)
 
 project(bulletproject1)
 
@@ -8,25 +6,24 @@ if(NOT TARGET OpenXR::openxr_loader)
     find_package(OpenXR REQUIRED)
 endif()
 
+# 1. Bulletのソースコード (.cpp) を自動収集
+set(BULLET_SHARED_DIR "${CMAKE_CURRENT_LIST_DIR}/shared")
+
+file(GLOB_RECURSE BULLET_SOURCES
+    "${BULLET_SHARED_DIR}/src/*.cpp"
+    "${BULLET_SHARED_DIR}/inc/*.cpp"
+)
+
 file(GLOB_RECURSE SRC_FILES
     Src/*.c
     Src/*.cpp
 )
 
-if(ANDROID)
-    add_library(${PROJECT_NAME} MODULE ${SRC_FILES})
-    target_include_directories(${PROJECT_NAME} PUBLIC ${ANDROID_NDK}/sources/android/native_app_glue)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        android
-        EGL
-        GLESv3
-        log
-        ktx
-    )
-    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-u ANativeActivity_onCreate")
-elseif(WIN32)
+if(WIN32)
     add_definitions(-D_USE_MATH_DEFINES)
-    add_executable(${PROJECT_NAME} ${SRC_FILES} "Src/utils.h")
+    # Bulletのソースコードをターゲットに組み込む
+    add_executable(${PROJECT_NAME} ${SRC_FILES} ${BULLET_SOURCES} "Src/utils.h")
+    
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
         COMMAND "${CMAKE_COMMAND}" -E copy_directory
         "${CMAKE_CURRENT_LIST_DIR}/assets"
@@ -42,24 +39,9 @@ endif()
 
 # Common across platforms
 target_include_directories(${PROJECT_NAME} PRIVATE Src)
+target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/inc")
+target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/src")
+
 target_link_libraries(${PROJECT_NAME} PRIVATE samplexrframework)
 
-
-# ==========================================
-# Bullet Physics Integration
-# ==========================================
-# Bulletの共有フォルダのパスを相対パスで定義
-set(BULLET_SHARED_DIR "${CMAKE_CURRENT_LIST_DIR}/shared")
-
-# 1. ヘッダーファイル (.h) の場所をプロジェクトに教える
-target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/inc")
-
-# 2. コンパイル済みのライブラリ (.lib) をリンクする (Windows環境のみ)
-if(WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        "${BULLET_SHARED_DIR}/lib/BulletDynamics_vs2010_x64_debug.lib"
-        "${BULLET_SHARED_DIR}/lib/BulletCollision_vs2010_x64_debug.lib"
-        "${BULLET_SHARED_DIR}/lib/BulletSoftBody_vs2010_x64_debug.lib"
-        "${BULLET_SHARED_DIR}/lib/LinearMath_vs2010_x64_debug.lib"
-    )
-endif()
+# ※ 旧.libの target_link_libraries 記述はすべて削除します

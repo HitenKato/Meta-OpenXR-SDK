@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/libktx-build/interface/basisu_c_binding",
+		"source" : "3rdParty/khronos/ktx_src/interface/basisu_c_binding"
+	}
+}

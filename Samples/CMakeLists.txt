@@ -23,8 +23,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
+if(MSVC)
+    # 警告をエラーとして扱わない（/WX を打ち消す）
+    add_compile_options(/WX-)
+    # 細かすぎる非推奨警告・変換警告を無視
+    add_compile_options(/wd5272 /wd5287 /wd4996)
+endif()
 
 add_subdirectory(3rdParty)
+# ...以降の既存コードはそのまま...
 add_subdirectory(SampleXrFramework)
 add_subdirectory(XrSamples)
