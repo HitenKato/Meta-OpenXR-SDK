@@ -6,12 +6,17 @@ if(NOT TARGET OpenXR::openxr_loader)
     find_package(OpenXR REQUIRED)
 endif()
 
-# 1. Bulletのソースコード (.cpp) を自動収集
+# Bullet の必要な主要モジュール (CPU版) の .cpp のみを限定して自動収集
 set(BULLET_SHARED_DIR "${CMAKE_CURRENT_LIST_DIR}/shared")
 
 file(GLOB_RECURSE BULLET_SOURCES
-    "${BULLET_SHARED_DIR}/src/*.cpp"
-    "${BULLET_SHARED_DIR}/inc/*.cpp"
+    "${BULLET_SHARED_DIR}/src/BulletCollision/*.cpp"
+    "${BULLET_SHARED_DIR}/src/BulletDynamics/*.cpp"
+    "${BULLET_SHARED_DIR}/src/LinearMath/*.cpp"
+    # ※もし src ではなく inc 側にソースがある場合は以下
+    "${BULLET_SHARED_DIR}/inc/BulletCollision/*.cpp"
+    "${BULLET_SHARED_DIR}/inc/BulletDynamics/*.cpp"
+    "${BULLET_SHARED_DIR}/inc/LinearMath/*.cpp"
 )
 
 file(GLOB_RECURSE SRC_FILES
@@ -21,7 +26,6 @@ file(GLOB_RECURSE SRC_FILES
 
 if(WIN32)
     add_definitions(-D_USE_MATH_DEFINES)
-    # Bulletのソースコードをターゲットに組み込む
     add_executable(${PROJECT_NAME} ${SRC_FILES} ${BULLET_SOURCES} "Src/utils.h")
     
     add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
@@ -37,11 +41,9 @@ if(WIN32)
         VERBATIM)
 endif()
 
-# Common across platforms
+# インクルードパスの設定
 target_include_directories(${PROJECT_NAME} PRIVATE Src)
 target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/inc")
 target_include_directories(${PROJECT_NAME} PRIVATE "${BULLET_SHARED_DIR}/src")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE samplexrframework)
-
-# ※ 旧.libの target_link_libraries 記述はすべて削除します
