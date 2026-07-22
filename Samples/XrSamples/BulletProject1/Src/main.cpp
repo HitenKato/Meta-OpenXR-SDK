@@ -47,16 +47,18 @@ public:
         dynamicsWorld_(nullptr),
         fallingCube_(nullptr),
         boxShape_(nullptr),
-        physicsBoxUI_(nullptr) {
+        groundRigidBody_(nullptr),
+        groundShape_(nullptr),
+        physicsBoxUI_(nullptr),
+        groundUI_(nullptr) {
 
-        // VR空間のクリア（背景）カラーを設定 (RGBA: 黄色)
-        BackgroundColor = OVR::Vector4f(1.00f, 0.95f, 0.00f, 1.0f);
+        // ▼ 変更：VR空間の背景色を「灰色 (Dark Gray)」に設定 (RGBA: R=0.2, G=0.2, B=0.2, A=1.0)
+        BackgroundColor = OVR::Vector4f(0.20f, 0.20f, 0.20f, 1.0f);
         OpenXRVersion = XR_API_VERSION_1_0;
     }
 
     // ------------------------------------------------------------------------
     // 入力アクションのマッピング設定 (GetSuggestedBindings)
-    // Questコントローラーの各ボタンやスティックの入力をOpenXRのアクションに割り当てる
     // ------------------------------------------------------------------------
     std::unordered_map<XrPath, std::vector<XrActionSuggestedBinding>> GetSuggestedBindings(XrInstance instance) override {
         XrPath touchInteractionProfile = XR_NULL_PATH;
@@ -67,25 +69,18 @@ public:
         OXR(xrStringToPath(instance, "/interaction_profiles/meta/touch_plus_controller", &touchPlusInteractionProfile));
 
         std::vector<XrActionSuggestedBinding> baseTouchBindings{};
-        // ポーズ（位置・回転）トラッキング
         baseTouchBindings.emplace_back(ActionSuggestedBinding(AimPoseAction, "/user/hand/left/input/aim/pose"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(AimPoseAction, "/user/hand/right/input/aim/pose"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(GripPoseAction, "/user/hand/left/input/grip/pose"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(GripPoseAction, "/user/hand/right/input/grip/pose"));
-
-        // アナログスティック
         baseTouchBindings.emplace_back(ActionSuggestedBinding(JoystickAction, "/user/hand/left/input/thumbstick"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(JoystickAction, "/user/hand/right/input/thumbstick"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(thumbstickClickAction, "/user/hand/left/input/thumbstick/click"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(thumbstickClickAction, "/user/hand/right/input/thumbstick/click"));
-
-        // トリガー＆グリップ
         baseTouchBindings.emplace_back(ActionSuggestedBinding(IndexTriggerAction, "/user/hand/left/input/trigger/value"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(IndexTriggerAction, "/user/hand/right/input/trigger/value"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(GripTriggerAction, "/user/hand/left/input/squeeze/value"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(GripTriggerAction, "/user/hand/right/input/squeeze/value"));
-
-        // ボタン類
         baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonAAction, "/user/hand/right/input/a/click"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonBAction, "/user/hand/right/input/b/click"));
         baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonXAction, "/user/hand/left/input/x/click"));
@@ -101,7 +96,6 @@ public:
 
     // ------------------------------------------------------------------------
     // アプリケーション初期化 (AppInit)
-    // プログラム起動時に1度だけ呼ばれる（描画・UIシステムの初期化など）
     // ------------------------------------------------------------------------
     virtual bool AppInit(const xrJava* context) override {
         // VR用UIフレームワーク (TinyUI) の初期化
@@ -110,9 +104,12 @@ public:
             return false;
         }
 
-        // 物理演算された箱の位置に重ねて表示するためのラベル(UIパネル)を作成
-        // 初期位置: X=0m, Y=3m, Z=-2m（前方2m、高さ3m）
-        physicsBoxUI_ = ui_.AddLabel("Physics Box", { 0.0f, 3.0f, -2.0f }, { 500.0f, 500.0f });
+        // 物理演算された箱の位置に重ねるラベルパネル
+        physicsBoxUI_ = ui_.AddLabel("Physics Box", { 0.0f, 3.0f, -2.0f }, { 400.0f, 400.0f });
+
+        // ▼ 追加：床の位置を目視で確認するための「FLOOR」ラベルパネル
+        groundUI_ = ui_.AddLabel("=== FLOOR ===", { 0.0f, 0.0f, -2.0f }, { 1000.0f, 200.0f });
+
         return true;
     }
 
@@ -126,13 +123,10 @@ public:
 
     // ------------------------------------------------------------------------
     // VRセッション開始時初期化 (SessionInit)
-    // ヘッドセットが接続され、VR空間の追跡が始まったタイミングで実行される
     // ------------------------------------------------------------------------
     virtual bool SessionInit() override {
-        // VR空間の基準座標系を LocalSpace（頭位置基準）に設定
         CurrentSpace = LocalSpace;
 
-        // 左右のコントローラー描画モデルの初期化
         if (false == controllerRenderL_.Init(true)) {
             ALOG("AppInit::Init L controller renderer FAILED.");
             return false;
@@ -142,47 +136,66 @@ public:
             return false;
         }
 
-        // コントローラーから伸びるビーム（光線）描画の初期化
         beamRenderer_.Init(GetFileSys(), nullptr, OVR::Vector4f(1.0f), 1.0f);
 
         // --------------------------------------------------------------------
         // Bullet Physics ワールドの構築
         // --------------------------------------------------------------------
-        // 衝突判定の設定・ディスパッチャ・広域アルゴリズム・ソルバーの構築
         collisionConfiguration_ = new btDefaultCollisionConfiguration();
         dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
         overlappingPairCache_ = new btDbvtBroadphase();
         solver_ = new btSequentialImpulseConstraintSolver();
 
-        // 物理ワールドの生成
         dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
-
-        // 重力を設定 (Y軸負の方向へ -9.8 m/s^2)
-        dynamicsWorld_->setGravity(btVector3(0.0f, -9.8f, 0.0f));
+        dynamicsWorld_->setGravity(btVector3(0.0f, -9.8f, 0.0f)); // 重力 (-9.8 m/s^2)
         ALOG("Bullet Physics World Initialized!");
 
         // --------------------------------------------------------------------
-        // 物理オブジェクト（落下する箱）の追加
+        // ▼ 追加：物理オブジェクト（1. 静的な「床」）の追加
         // --------------------------------------------------------------------
-        // 1. 形状の定義（幅1m x 高さ1m x 奥行1m -> 半径 0.5m のボックス）
-        boxShape_ = new btBoxShape(btVector3(0.5f, 0.5f, 0.5f));
+        // 上向き（法線ベクトル: (0, 1, 0)）で、原点からの距離が 0.0m の無限平面
+        groundShape_ = new btStaticPlaneShape(btVector3(0.0f, 1.0f, 0.0f), 0.0f);
 
-        // 2. 初期トランスフォーム（位置と回転）の設定
+        btTransform groundTransform;
+        groundTransform.setIdentity();
+        groundTransform.setOrigin(btVector3(0.0f, 0.0f, 0.0f)); // 足元の高さ(Y=0)に設置
+
+        // 静的オブジェクト（動かない物体）のため、質量 mass = 0.0kg に設定
+        btScalar groundMass(0.0f);
+        btVector3 groundLocalInertia(0.0f, 0.0f, 0.0f);
+
+        btDefaultMotionState* groundMotionState = new btDefaultMotionState(groundTransform);
+        btRigidBody::btRigidBodyConstructionInfo groundRbInfo(groundMass, groundMotionState, groundShape_, groundLocalInertia);
+        groundRigidBody_ = new btRigidBody(groundRbInfo);
+
+        // 床の跳ね返り係数(Restitution)と摩擦係数(Friction)を設定
+        groundRigidBody_->setRestitution(0.5f); // 50% の跳ね返り
+        groundRigidBody_->setFriction(0.8f);    // 滑り止め（摩擦）
+
+        dynamicsWorld_->addRigidBody(groundRigidBody_);
+        ALOG("Bullet Ground Plane Added to World!");
+
+        // --------------------------------------------------------------------
+        // 物理オブジェクト（2. 落下する「箱」）の追加
+        // --------------------------------------------------------------------
+        boxShape_ = new btBoxShape(btVector3(0.5f, 0.5f, 0.5f)); // 幅1m x 高さ1m x 奥行1m
+
         btTransform startTransform;
         startTransform.setIdentity();
-        startTransform.setOrigin(btVector3(0.0f, 3.0f, -2.0f)); // 頭上3m、前方2m
+        startTransform.setOrigin(btVector3(0.0f, 3.0f, -2.0f)); // 高さを3m、前方を2mに設定
 
-        // 3. 質量と慣性モーメントの計算
-        btScalar mass(1.0f); // 質量 1kg
+        btScalar mass(1.0f); // 質量 1.0kg（動体）
         btVector3 localInertia(0.0f, 0.0f, 0.0f);
         boxShape_->calculateLocalInertia(mass, localInertia);
 
-        // 4. MotionState (位置追跡用) と RigidBody (剛体) の生成
         btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
         btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape_, localInertia);
         fallingCube_ = new btRigidBody(rbInfo);
 
-        // 5. 剛体を物理ワールドに追加
+        // 箱の跳ね返り係数(Restitution)と摩擦係数(Friction)を設定
+        fallingCube_->setRestitution(0.5f); // 床とぶつかった時に跳ね返る
+        fallingCube_->setFriction(0.8f);
+
         dynamicsWorld_->addRigidBody(fallingCube_);
         ALOG("Bullet Box Added to World!");
 
@@ -191,14 +204,13 @@ public:
 
     // ------------------------------------------------------------------------
     // VRセッション終了処理 (SessionEnd)
-    // メモリリーク（解放忘れ）を防ぐための後片付け
     // ------------------------------------------------------------------------
     virtual void SessionEnd() override {
         controllerRenderL_.Shutdown();
         controllerRenderR_.Shutdown();
         beamRenderer_.Shutdown();
 
-        // 物理オブジェクトの破棄
+        // 箱の破棄
         if (fallingCube_) {
             dynamicsWorld_->removeRigidBody(fallingCube_);
             delete fallingCube_->getMotionState();
@@ -210,7 +222,19 @@ public:
             boxShape_ = nullptr;
         }
 
-        // 物理ワールドの破棄（生成の逆順で解放）
+        // ▼ 追加：床の破棄
+        if (groundRigidBody_) {
+            dynamicsWorld_->removeRigidBody(groundRigidBody_);
+            delete groundRigidBody_->getMotionState();
+            delete groundRigidBody_;
+            groundRigidBody_ = nullptr;
+        }
+        if (groundShape_) {
+            delete groundShape_;
+            groundShape_ = nullptr;
+        }
+
+        // 物理ワールドの破棄
         if (dynamicsWorld_) {
             delete dynamicsWorld_;
             delete solver_;
@@ -225,32 +249,59 @@ public:
     // 毎フレームの物理・位置計算更新 (Update)
     // ------------------------------------------------------------------------
     virtual void Update(const OVRFW::ovrApplFrameIn& in) override {
-        // 1. 物理シミュレーションを1ステップ進める (時間の経過を計算)
+        // 1. 物理シミュレーションを1ステップ進める
         if (dynamicsWorld_) {
             dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
         }
 
-        // 2. 物理演算された箱の位置・回転を取得し、VR空間の描画オブジェクト(UIパネル)に同期
+        // --- 必要な入力の取得 ---
+        const auto stateA = GetActionStateBoolean(ButtonAAction);
+        bool isButtonAPressed = (stateA.isActive && stateA.currentState == XR_TRUE);
+
+        // ▼ 簡易デバッグログを追加 ▼
+        if (isButtonAPressed) {
+            ALOG("A Button is Pressed!");
+        }
+        // ▲ ここまで ▲
+
+        // ▼ 追加：Aボタンを押した瞬間、箱を上空にリセットして斜めに落とす！ ▼
+        static bool prevButtonA = false; // 前フレームのボタン状態（連打防止）
+
+        // 判定には変換した bool 変数を使います
+        if (isButtonAPressed && !prevButtonA && fallingCube_) {
+            btTransform trans;
+            trans.setIdentity();
+            trans.setOrigin(btVector3(0.0f, 3.0f, -2.0f)); // 再び頭上3m、前方2mへ
+
+            // そのまま落とすと真っ直ぐ止まるので、X, Y, Z軸にランダムな傾きをつける
+            btQuaternion quat;
+            quat.setEuler(0.8f, 0.5f, 0.3f);
+            trans.setRotation(quat);
+
+            // 座標と回転を物理エンジンに強制上書き
+            fallingCube_->setWorldTransform(trans);
+            fallingCube_->getMotionState()->setWorldTransform(trans);
+
+            // 落下速度と回転速度をゼロにリセット
+            fallingCube_->setLinearVelocity(btVector3(0, 0, 0));
+            fallingCube_->setAngularVelocity(btVector3(0, 0, 0));
+            fallingCube_->clearForces();
+        }
+        prevButtonA = isButtonAPressed; // 記録するのも bool 変数にします
+
+        // 2. 物理演算された「箱」の座標をUIパネルに同期
         if (fallingCube_ && physicsBoxUI_) {
             btTransform trans;
             fallingCube_->getMotionState()->getWorldTransform(trans);
 
-            // Bulletの座標・回転(btTransform) を Meta OpenXR用の姿勢(OVR::Posef) に変換
             OVR::Posef pose;
             pose.Translation = OVR::Vector3f(trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z());
             pose.Rotation = OVR::Quatf(trans.getRotation().x(), trans.getRotation().y(), trans.getRotation().z(), trans.getRotation().w());
 
-            // UIパネルの位置・傾きを物理オブジェクトの計算結果に追従させる
             physicsBoxUI_->SetLocalPose(pose);
         }
 
-        // 3. コントローラーのボタン入力取得（今後の拡張用）
-        const auto buttonA = GetActionStateBoolean(ButtonAAction);
-        const auto buttonB = GetActionStateBoolean(ButtonBAction);
-        const auto buttonX = GetActionStateBoolean(ButtonXAction);
-        const auto buttonY = GetActionStateBoolean(ButtonYAction);
-
-        // 4. UIのレイキャスト（光線判定）およびコントローラー描画位置の更新
+        // 3. 入力処理およびコントローラーのトラッキング更新
         ui_.HitTestDevices().clear();
 
         if (in.LeftRemoteTracked) {
@@ -272,10 +323,8 @@ public:
     // 毎フレームの描画処理 (Render)
     // ------------------------------------------------------------------------
     virtual void Render(const OVRFW::ovrApplFrameIn& in, OVRFW::ovrRendererOutput& out) override {
-        // UIパネルの描画（位置が物理演算と同期しているため、箱のように動いて見える）
         ui_.Render(in, out);
 
-        // 左右のコントローラーの描画
         if (in.LeftRemoteTracked) {
             controllerRenderL_.Render(out.Surfaces);
         }
@@ -283,7 +332,6 @@ public:
             controllerRenderR_.Render(out.Surfaces);
         }
 
-        // コントローラー光線の描画
         beamRenderer_.Render(in, out);
     }
 
@@ -297,19 +345,24 @@ private:
     bool delayUI_ = false;
 
     // --- Bullet Physics用メンバ変数 ---
-    btDefaultCollisionConfiguration* collisionConfiguration_; // 衝突判定の詳細設定
-    btCollisionDispatcher* dispatcher_;                      // 衝突判定の分配管理
-    btBroadphaseInterface* overlappingPairCache_;             // 広域の当たり判定キャッシュ
-    btSequentialImpulseConstraintSolver* solver_;            // 物理制約・拘束ソルバー
-    btDiscreteDynamicsWorld* dynamicsWorld_;                  // 物理シミュレーションワールド本体
+    btDefaultCollisionConfiguration* collisionConfiguration_;
+    btCollisionDispatcher* dispatcher_;
+    btBroadphaseInterface* overlappingPairCache_;
+    btSequentialImpulseConstraintSolver* solver_;
+    btDiscreteDynamicsWorld* dynamicsWorld_;
 
-    // 物理オブジェクト
-    btRigidBody* fallingCube_;                               // 落下する箱の剛体ポインタ
-    btCollisionShape* boxShape_;                             // 箱の形状ポインタ
+    // 物理オブジェクト (箱)
+    btRigidBody* fallingCube_;
+    btCollisionShape* boxShape_;
+
+    // ▼ 追加：物理オブジェクト (床)
+    btRigidBody* groundRigidBody_;
+    btCollisionShape* groundShape_;
 
     // VR空間上の見た目用オブジェクト
-    OVRFW::VRMenuObject* physicsBoxUI_;                     // 箱の位置に重ねるUIパネル
+    OVRFW::VRMenuObject* physicsBoxUI_;
+    OVRFW::VRMenuObject* groundUI_; // ▼ 追加：床位置の標識パネル
 };
 
-// OpenXRエントリーポイント（メイン関数の生成）
+// OpenXRエントリーポイント
 ENTRY_POINT(XrControllersApp)
