@@ -1,10 +1,10 @@
 // ============================================================================
 // プリプロセッサマクロ定義 (マクロ・型衝突防止)
 // ============================================================================
-#define _HAS_STD_BYTE 0    // Windows SDKの「byte」と C++17 <cstddef> の型衝突を防止
-#define NOMINMAX           // <windows.h> 内の min/max マクロ定義を無効化
+#define _HAS_STD_BYTE 0
+#define NOMINMAX
 
-#include <windows.h>       // 一番最初に読み込む
+#include <windows.h>
 #include <cstdint>
 #include <cstdio>
 #include <algorithm>
@@ -23,7 +23,6 @@
 #include "Input/AxisRenderer.h"
 #include "Render/SimpleBeamRenderer.h"
 
-// ▼ 追加：3D図形描画のためのヘッダーをインクルード
 #include "Render/GeometryRenderer.h"
 #include "Render/GeometryBuilder.h"
 
@@ -39,68 +38,19 @@ public:
         fallingCube_(nullptr),
         boxShape_(nullptr),
         groundRigidBody_(nullptr),
-        groundShape_(nullptr) {
+        groundShape_(nullptr),
+        leftHandRb_(nullptr),
+        rightHandRb_(nullptr),
+        handShape_(nullptr) {
 
-        // 背景色（ダークグレー）
         BackgroundColor = OVR::Vector4f(0.20f, 0.20f, 0.20f, 1.0f);
         OpenXRVersion = XR_API_VERSION_1_0;
     }
 
-    std::unordered_map<XrPath, std::vector<XrActionSuggestedBinding>> GetSuggestedBindings(XrInstance instance) override {
-        XrPath touchInteractionProfile = XR_NULL_PATH;
-        OXR(xrStringToPath(instance, "/interaction_profiles/meta/touch_controller_quest_2", &touchInteractionProfile));
-        XrPath touchProInteractionProfile = XR_NULL_PATH;
-        OXR(xrStringToPath(instance, "/interaction_profiles/meta/touch_pro_controller", &touchProInteractionProfile));
-        XrPath touchPlusInteractionProfile = XR_NULL_PATH;
-        OXR(xrStringToPath(instance, "/interaction_profiles/meta/touch_plus_controller", &touchPlusInteractionProfile));
-
-        std::vector<XrActionSuggestedBinding> baseTouchBindings{};
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(AimPoseAction, "/user/hand/left/input/aim/pose"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(AimPoseAction, "/user/hand/right/input/aim/pose"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(GripPoseAction, "/user/hand/left/input/grip/pose"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(GripPoseAction, "/user/hand/right/input/grip/pose"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(JoystickAction, "/user/hand/left/input/thumbstick"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(JoystickAction, "/user/hand/right/input/thumbstick"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(thumbstickClickAction, "/user/hand/left/input/thumbstick/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(thumbstickClickAction, "/user/hand/right/input/thumbstick/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(IndexTriggerAction, "/user/hand/left/input/trigger/value"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(IndexTriggerAction, "/user/hand/right/input/trigger/value"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(GripTriggerAction, "/user/hand/left/input/squeeze/value"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(GripTriggerAction, "/user/hand/right/input/squeeze/value"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonAAction, "/user/hand/right/input/a/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonBAction, "/user/hand/right/input/b/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonXAction, "/user/hand/left/input/x/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonYAction, "/user/hand/left/input/y/click"));
-        baseTouchBindings.emplace_back(ActionSuggestedBinding(ButtonMenuAction, "/user/hand/left/input/menu/click"));
-
-        std::unordered_map<XrPath, std::vector<XrActionSuggestedBinding>> allSuggestedBindings;
-        allSuggestedBindings[touchInteractionProfile] = baseTouchBindings;
-        allSuggestedBindings[touchProInteractionProfile] = baseTouchBindings;
-        allSuggestedBindings[touchPlusInteractionProfile] = baseTouchBindings;
-        return allSuggestedBindings;
-    }
-
     virtual bool AppInit(const xrJava* context) override {
         if (false == ui_.Init(context, GetFileSys())) {
-            ALOG("TinyUI::Init FAILED.");
             return false;
         }
-
-        // --------------------------------------------------------------------
-        // ▼ 追加：3D描画用モデルの生成 (GeometryBuilderを使用)
-        // --------------------------------------------------------------------
-        // 1. 落下する箱の描画設定（オレンジ色）
-        OVRFW::GeometryBuilder boxBuilder;
-        boxBuilder.Add(OVRFW::BuildUnitCubeDescriptor(), OVRFW::GeometryBuilder::kInvalidIndex, { 1.0f, 0.5f, 0.0f, 1.0f });
-        boxRenderer_.Init(boxBuilder.ToGeometryDescriptor());
-        boxRenderer_.SetScale({ 1.0f, 1.0f, 1.0f }); // 1m x 1m x 1m
-
-        // 2. 床の描画設定（濃いグレー）
-        OVRFW::GeometryBuilder floorBuilder;
-        floorBuilder.Add(OVRFW::BuildUnitCubeDescriptor(), OVRFW::GeometryBuilder::kInvalidIndex, { 0.3f, 0.3f, 0.3f, 1.0f });
-        floorRenderer_.Init(floorBuilder.ToGeometryDescriptor());
-        floorRenderer_.SetScale({ 10.0f, 0.1f, 10.0f }); // 10m x 0.1m x 10m の広大な板にスケール
-
         return true;
     }
 
@@ -111,22 +61,41 @@ public:
         ui_.Shutdown();
     }
 
+    // キネマティック（手）用の剛体を生成するヘルパー関数
+    btRigidBody* CreateKinematicBody(btCollisionShape* shape) {
+        btTransform startTransform;
+        startTransform.setIdentity();
+        btDefaultMotionState* motionState = new btDefaultMotionState(startTransform);
+        btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, motionState, shape, btVector3(0, 0, 0));
+        btRigidBody* body = new btRigidBody(rbInfo);
+
+        // プログラムから強制的に座標を動かすためのキネマティック設定
+        body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+        body->setActivationState(DISABLE_DEACTIVATION);
+        return body;
+    }
+
     virtual bool SessionInit() override {
         CurrentSpace = LocalSpace;
 
-        if (false == controllerRenderL_.Init(true)) {
-            ALOG("AppInit::Init L controller renderer FAILED.");
-            return false;
-        }
-        if (false == controllerRenderR_.Init(false)) {
-            ALOG("AppInit::Init R controller renderer FAILED.");
-            return false;
-        }
+        if (false == controllerRenderL_.Init(true)) return false;
+        if (false == controllerRenderR_.Init(false)) return false;
         beamRenderer_.Init(GetFileSys(), nullptr, OVR::Vector4f(1.0f), 1.0f);
 
-        // --------------------------------------------------------------------
-        // Bullet Physics ワールドの構築
-        // --------------------------------------------------------------------
+        // --- 3Dモデル（描画用オブジェクト）の生成 ---
+        OVRFW::GeometryBuilder boxBuilder;
+        boxBuilder.Add(OVRFW::BuildUnitCubeDescriptor(), OVRFW::GeometryBuilder::kInvalidIndex, { 1.0f, 0.5f, 0.0f, 1.0f });
+        boxRenderer_.ChannelControl = OVR::Vector4f(1, 1, 1, 1);
+        boxRenderer_.Init(boxBuilder.ToGeometryDescriptor());
+        boxRenderer_.SetScale({ 1.0f, 1.0f, 1.0f });
+
+        OVRFW::GeometryBuilder floorBuilder;
+        floorBuilder.Add(OVRFW::BuildUnitCubeDescriptor(), OVRFW::GeometryBuilder::kInvalidIndex, { 0.3f, 0.3f, 0.3f, 1.0f });
+        floorRenderer_.ChannelControl = OVR::Vector4f(1, 1, 1, 1);
+        floorRenderer_.Init(floorBuilder.ToGeometryDescriptor());
+        floorRenderer_.SetScale({ 10.0f, 0.1f, 10.0f });
+
+        // --- Bullet Physics ワールドの構築 ---
         collisionConfiguration_ = new btDefaultCollisionConfiguration();
         dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
         overlappingPairCache_ = new btDbvtBroadphase();
@@ -135,39 +104,36 @@ public:
         dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
         dynamicsWorld_->setGravity(btVector3(0.0f, -9.8f, 0.0f));
 
-        // 1. 静的な「床」の追加
+        // 1. 静的な「床」
         groundShape_ = new btStaticPlaneShape(btVector3(0.0f, 1.0f, 0.0f), 0.0f);
         btTransform groundTransform;
         groundTransform.setIdentity();
-        groundTransform.setOrigin(btVector3(0.0f, 0.0f, 0.0f));
-
-        btScalar groundMass(0.0f); // 質量0＝動かない
-        btVector3 groundLocalInertia(0.0f, 0.0f, 0.0f);
-        btDefaultMotionState* groundMotionState = new btDefaultMotionState(groundTransform);
-        btRigidBody::btRigidBodyConstructionInfo groundRbInfo(groundMass, groundMotionState, groundShape_, groundLocalInertia);
+        groundTransform.setOrigin(btVector3(0.0f, -1.5f, 0.0f));
+        btRigidBody::btRigidBodyConstructionInfo groundRbInfo(0.0f, new btDefaultMotionState(groundTransform), groundShape_, btVector3(0, 0, 0));
         groundRigidBody_ = new btRigidBody(groundRbInfo);
-
-        groundRigidBody_->setRestitution(0.6f); // 60% の跳ね返り
+        groundRigidBody_->setRestitution(0.6f);
         groundRigidBody_->setFriction(0.8f);
         dynamicsWorld_->addRigidBody(groundRigidBody_);
 
-        // 2. 落下する「箱」の追加
+        // 2. 落下する「箱」
         boxShape_ = new btBoxShape(btVector3(0.5f, 0.5f, 0.5f));
         btTransform startTransform;
         startTransform.setIdentity();
-        startTransform.setOrigin(btVector3(0.0f, 3.0f, -2.0f));
-
-        btScalar mass(1.0f);
-        btVector3 localInertia(0.0f, 0.0f, 0.0f);
-        boxShape_->calculateLocalInertia(mass, localInertia);
-
-        btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-        btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, boxShape_, localInertia);
+        startTransform.setOrigin(btVector3(0.0f, 1.5f, -2.0f));
+        btVector3 localInertia(0, 0, 0);
+        boxShape_->calculateLocalInertia(1.0f, localInertia);
+        btRigidBody::btRigidBodyConstructionInfo rbInfo(1.0f, new btDefaultMotionState(startTransform), boxShape_, localInertia);
         fallingCube_ = new btRigidBody(rbInfo);
-
-        fallingCube_->setRestitution(0.6f); // 床とぶつかった時に跳ね返る
+        fallingCube_->setRestitution(0.6f);
         fallingCube_->setFriction(0.8f);
         dynamicsWorld_->addRigidBody(fallingCube_);
+
+        // 3. 左右の手の当たり判定（半径10cmの見えない球）
+        handShape_ = new btSphereShape(0.1f);
+        leftHandRb_ = CreateKinematicBody(handShape_);
+        rightHandRb_ = CreateKinematicBody(handShape_);
+        dynamicsWorld_->addRigidBody(leftHandRb_);
+        dynamicsWorld_->addRigidBody(rightHandRb_);
 
         return true;
     }
@@ -177,49 +143,154 @@ public:
         controllerRenderR_.Shutdown();
         beamRenderer_.Shutdown();
 
-        if (fallingCube_) {
-            dynamicsWorld_->removeRigidBody(fallingCube_);
-            delete fallingCube_->getMotionState();
-            delete fallingCube_;
-            fallingCube_ = nullptr;
-        }
-        if (boxShape_) { delete boxShape_; boxShape_ = nullptr; }
+        // 拘束（グラブ）の解除
+        if (leftGrabConstraint_) { dynamicsWorld_->removeConstraint(leftGrabConstraint_); delete leftGrabConstraint_; }
+        if (rightGrabConstraint_) { dynamicsWorld_->removeConstraint(rightGrabConstraint_); delete rightGrabConstraint_; }
 
-        if (groundRigidBody_) {
-            dynamicsWorld_->removeRigidBody(groundRigidBody_);
-            delete groundRigidBody_->getMotionState();
-            delete groundRigidBody_;
-            groundRigidBody_ = nullptr;
-        }
+        auto safeDeleteBody = [&](btRigidBody*& body) {
+            if (body) {
+                dynamicsWorld_->removeRigidBody(body);
+                delete body->getMotionState();
+                delete body;
+                body = nullptr;
+            }
+            };
+        safeDeleteBody(fallingCube_);
+        safeDeleteBody(groundRigidBody_);
+        safeDeleteBody(leftHandRb_);
+        safeDeleteBody(rightHandRb_);
+
+        if (boxShape_) { delete boxShape_; boxShape_ = nullptr; }
         if (groundShape_) { delete groundShape_; groundShape_ = nullptr; }
+        if (handShape_) { delete handShape_; handShape_ = nullptr; }
 
         if (dynamicsWorld_) {
-            delete dynamicsWorld_;
-            delete solver_;
-            delete overlappingPairCache_;
-            delete dispatcher_;
-            delete collisionConfiguration_;
+            delete dynamicsWorld_; delete solver_; delete overlappingPairCache_; delete dispatcher_; delete collisionConfiguration_;
             dynamicsWorld_ = nullptr;
         }
     }
 
     virtual void Update(const OVRFW::ovrApplFrameIn& in) override {
-        // 1. 物理シミュレーションを1ステップ進める
-        if (dynamicsWorld_) {
-            dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
+        // ---------------------------------------------------------
+        // 1. 視点移動と回転 (Locomotion)
+        // ---------------------------------------------------------
+        if (std::abs(in.RightRemoteJoystick.x) > 0.1f) {
+            playerYaw_ -= in.RightRemoteJoystick.x * 2.0f * in.DeltaSeconds;
+        }
+        OVR::Quatf yawQuat(OVR::Vector3f(0, 1, 0), playerYaw_);
+
+        if (std::abs(in.LeftRemoteJoystick.x) > 0.1f || std::abs(in.LeftRemoteJoystick.y) > 0.1f) {
+            OVR::Vector3f forward = yawQuat.Rotate(OVR::Vector3f(0, 0, -1)); // 修正：Transform -> Rotate
+            OVR::Vector3f right = yawQuat.Rotate(OVR::Vector3f(1, 0, 0));    // 修正：Transform -> Rotate
+            playerPosition_ += (forward * in.LeftRemoteJoystick.y + right * in.LeftRemoteJoystick.x) * 3.0f * in.DeltaSeconds;
+        }
+        playerPose_ = OVR::Posef(yawQuat, playerPosition_);
+
+        // ---------------------------------------------------------
+        // 2. 左右の手のワールド座標計算と物理剛体の更新
+        // ---------------------------------------------------------
+        OVR::Posef leftWorldPose = playerPose_ * in.LeftRemotePose;
+        OVR::Posef rightWorldPose = playerPose_ * in.RightRemotePose;
+
+        btTransform leftTrans;
+        leftTrans.setOrigin(btVector3(leftWorldPose.Translation.x, leftWorldPose.Translation.y, leftWorldPose.Translation.z));
+        leftTrans.setRotation(btQuaternion(leftWorldPose.Rotation.x, leftWorldPose.Rotation.y, leftWorldPose.Rotation.z, leftWorldPose.Rotation.w));
+        leftHandRb_->getMotionState()->setWorldTransform(leftTrans);
+        leftHandRb_->setWorldTransform(leftTrans);
+
+        btTransform rightTrans;
+        rightTrans.setOrigin(btVector3(rightWorldPose.Translation.x, rightWorldPose.Translation.y, rightWorldPose.Translation.z));
+        rightTrans.setRotation(btQuaternion(rightWorldPose.Rotation.x, rightWorldPose.Rotation.y, rightWorldPose.Rotation.z, rightWorldPose.Rotation.w));
+        rightHandRb_->getMotionState()->setWorldTransform(rightTrans);
+        rightHandRb_->setWorldTransform(rightTrans);
+
+        // ---------------------------------------------------------
+        // 3. Bullet 6自由度拘束（Constraint）を用いたグラブ処理
+        // ---------------------------------------------------------
+        bool gripLeft = in.LeftRemoteGripTrigger > 0.5f;
+        bool gripRight = in.RightRemoteGripTrigger > 0.5f;
+
+        btTransform boxTrans;
+        fallingCube_->getMotionState()->getWorldTransform(boxTrans);
+        OVR::Vector3f boxPos(boxTrans.getOrigin().x(), boxTrans.getOrigin().y(), boxTrans.getOrigin().z());
+
+        float grabRadius = 3.4f; // ★空振りを防ぐため、判定半径を40cmに拡大
+
+        // --- 左手グラブ ---
+        if (gripLeft && !leftGrabConstraint_ && !rightGrabConstraint_) {
+            if ((boxPos - leftWorldPose.Translation).Length() < grabRadius) {
+                // 掴んだ瞬間に手と箱の「相対位置」を計算し、6自由度拘束(Constraint)でガッチリ固定する
+                btTransform frameInHand = leftHandRb_->getWorldTransform().inverse() * fallingCube_->getWorldTransform();
+                btTransform frameInBox = btTransform::getIdentity();
+
+                leftGrabConstraint_ = new btGeneric6DofConstraint(*leftHandRb_, *fallingCube_, frameInHand, frameInBox, true);
+
+                // 自由度をすべて0にして完全固定（ボンドでくっつけた状態）
+                leftGrabConstraint_->setLinearLowerLimit(btVector3(0, 0, 0));
+                leftGrabConstraint_->setLinearUpperLimit(btVector3(0, 0, 0));
+                leftGrabConstraint_->setAngularLowerLimit(btVector3(0, 0, 0));
+                leftGrabConstraint_->setAngularUpperLimit(btVector3(0, 0, 0));
+
+                dynamicsWorld_->addConstraint(leftGrabConstraint_, true);
+                fallingCube_->activate(true);
+            }
+        }
+        else if (!gripLeft && leftGrabConstraint_) {
+            // 左手から離す（拘束を破壊）
+            dynamicsWorld_->removeConstraint(leftGrabConstraint_);
+            delete leftGrabConstraint_;
+            leftGrabConstraint_ = nullptr;
+            fallingCube_->activate(true);
+
+            // 手の速度を箱に与えて投げる
+            OVR::Vector3f vel = (leftWorldPose.Translation - leftHandPrevPos_) / std::max(in.DeltaSeconds, 0.001f);
+            fallingCube_->setLinearVelocity(btVector3(vel.x, vel.y, vel.z));
         }
 
-        // --- Aボタンで箱をリセットしてバウンドさせる ---
-        const auto stateA = GetActionStateBoolean(ButtonAAction);
-        bool isButtonAPressed = (stateA.isActive && stateA.currentState == XR_TRUE);
-        static bool prevButtonA = false;
+        // --- 右手グラブ ---
+        if (gripRight && !rightGrabConstraint_ && !leftGrabConstraint_) {
+            if ((boxPos - rightWorldPose.Translation).Length() < grabRadius) {
+                btTransform frameInHand = rightHandRb_->getWorldTransform().inverse() * fallingCube_->getWorldTransform();
+                btTransform frameInBox = btTransform::getIdentity();
 
-        if (isButtonAPressed && !prevButtonA && fallingCube_) {
+                rightGrabConstraint_ = new btGeneric6DofConstraint(*rightHandRb_, *fallingCube_, frameInHand, frameInBox, true);
+                rightGrabConstraint_->setLinearLowerLimit(btVector3(0, 0, 0));
+                rightGrabConstraint_->setLinearUpperLimit(btVector3(0, 0, 0));
+                rightGrabConstraint_->setAngularLowerLimit(btVector3(0, 0, 0));
+                rightGrabConstraint_->setAngularUpperLimit(btVector3(0, 0, 0));
+
+                dynamicsWorld_->addConstraint(rightGrabConstraint_, true);
+                fallingCube_->activate(true);
+            }
+        }
+        else if (!gripRight && rightGrabConstraint_) {
+            // 右手から離す
+            dynamicsWorld_->removeConstraint(rightGrabConstraint_);
+            delete rightGrabConstraint_;
+            rightGrabConstraint_ = nullptr;
+            fallingCube_->activate(true);
+
+            OVR::Vector3f vel = (rightWorldPose.Translation - rightHandPrevPos_) / std::max(in.DeltaSeconds, 0.001f);
+            fallingCube_->setLinearVelocity(btVector3(vel.x, vel.y, vel.z));
+        }
+
+        // ---------------------------------------------------------
+        // 4. Aボタン/トリガーで箱の位置をリセット
+        // ---------------------------------------------------------
+        bool isTriggerPressed = (in.RightRemoteIndexTrigger > 0.5f);
+        bool isButtonAPressed = (in.AllButtons & OVRFW::ovrApplFrameIn::kButtonA) != 0;
+        static bool prevAction = false;
+        bool currentAction = isTriggerPressed || isButtonAPressed;
+
+        if (currentAction && !prevAction && fallingCube_) {
+            // 掴んでいる最中にリセットされた場合は拘束を強制解除する
+            if (leftGrabConstraint_) { dynamicsWorld_->removeConstraint(leftGrabConstraint_); delete leftGrabConstraint_; leftGrabConstraint_ = nullptr; }
+            if (rightGrabConstraint_) { dynamicsWorld_->removeConstraint(rightGrabConstraint_); delete rightGrabConstraint_; rightGrabConstraint_ = nullptr; }
+
             btTransform trans;
             trans.setIdentity();
-            trans.setOrigin(btVector3(0.0f, 3.0f, -2.0f));
+            trans.setOrigin(btVector3(0.0f, 1.5f, -2.0f));
 
-            // ランダムな傾きをつける
             btQuaternion quat;
             quat.setEuler(0.8f, 0.5f, 0.3f);
             trans.setRotation(quat);
@@ -229,41 +300,38 @@ public:
             fallingCube_->setLinearVelocity(btVector3(0, 0, 0));
             fallingCube_->setAngularVelocity(btVector3(0, 0, 0));
             fallingCube_->clearForces();
+            fallingCube_->activate(true);
         }
-        prevButtonA = isButtonAPressed;
+        prevAction = currentAction;
 
-        // 2. 物理演算された座標を3D描画モデル(GeometryRenderer)に同期
-        if (fallingCube_) {
-            btTransform trans;
-            fallingCube_->getMotionState()->getWorldTransform(trans);
-
-            OVR::Posef pose;
-            pose.Translation = OVR::Vector3f(trans.getOrigin().x(), trans.getOrigin().y(), trans.getOrigin().z());
-            pose.Rotation = OVR::Quatf(trans.getRotation().x(), trans.getRotation().y(), trans.getRotation().z(), trans.getRotation().w());
-
-            boxRenderer_.SetPose(pose);
-            boxRenderer_.Update();
+        // ---------------------------------------------------------
+        // 5. 物理エンジンの更新と描画モデルへの同期
+        // ---------------------------------------------------------
+        if (dynamicsWorld_) {
+            dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
         }
 
-        // 床の描画位置の更新
-        // （0.1mの厚さを持つキューブを潰しているため、Y軸方向に -0.05m 下げて上面を物理の0.0mに合わせる）
-        OVR::Posef floorPose = OVR::Posef::Identity();
-        floorPose.Translation = { 0.0f, -0.05f, 0.0f };
-        floorRenderer_.SetPose(floorPose);
+        fallingCube_->getMotionState()->getWorldTransform(boxTrans);
+        OVR::Posef boxWorldPose(
+            OVR::Quatf(boxTrans.getRotation().x(), boxTrans.getRotation().y(), boxTrans.getRotation().z(), boxTrans.getRotation().w()),
+            OVR::Vector3f(boxTrans.getOrigin().x(), boxTrans.getOrigin().y(), boxTrans.getOrigin().z())
+        );
+        boxRenderer_.SetPose(playerPose_.Inverted() * boxWorldPose);
+        boxRenderer_.Update();
+
+        OVR::Posef floorWorldPose = OVR::Posef::Identity();
+        floorWorldPose.Translation = { 0.0f, -1.55f, 0.0f };
+        floorRenderer_.SetPose(playerPose_.Inverted() * floorWorldPose);
         floorRenderer_.Update();
 
-        // 3. 入力処理およびコントローラーのトラッキング更新
+        // 過去の座標を保存（投げる速度の計算用）
+        leftHandPrevPos_ = leftWorldPose.Translation;
+        rightHandPrevPos_ = rightWorldPose.Translation;
+
+        // --- コントローラー描画の更新 ---
         ui_.HitTestDevices().clear();
-        if (in.LeftRemoteTracked) {
-            controllerRenderL_.Update(in.LeftRemotePose);
-            const bool didPinch = in.LeftRemoteIndexTrigger > 0.25f;
-            ui_.AddHitTestRay(in.LeftRemotePointPose, didPinch);
-        }
-        if (in.RightRemoteTracked) {
-            controllerRenderR_.Update(in.RightRemotePose);
-            const bool didPinch = in.RightRemoteIndexTrigger > 0.25f;
-            ui_.AddHitTestRay(in.RightRemotePointPose, didPinch);
-        }
+        if (in.LeftRemoteTracked) controllerRenderL_.Update(in.LeftRemotePose);
+        if (in.RightRemoteTracked) controllerRenderR_.Update(in.RightRemotePose);
 
         ui_.Update(in);
         beamRenderer_.Update(in, ui_.HitTestDevices());
@@ -272,16 +340,11 @@ public:
     virtual void Render(const OVRFW::ovrApplFrameIn& in, OVRFW::ovrRendererOutput& out) override {
         ui_.Render(in, out);
 
-        // ▼ 追加：3Dの箱と床を描画リストに追加！
         boxRenderer_.Render(out.Surfaces);
         floorRenderer_.Render(out.Surfaces);
 
-        if (in.LeftRemoteTracked) {
-            controllerRenderL_.Render(out.Surfaces);
-        }
-        if (in.RightRemoteTracked) {
-            controllerRenderR_.Render(out.Surfaces);
-        }
+        if (in.LeftRemoteTracked) controllerRenderL_.Render(out.Surfaces);
+        if (in.RightRemoteTracked) controllerRenderR_.Render(out.Surfaces);
         beamRenderer_.Render(in, out);
     }
 
@@ -290,24 +353,36 @@ private:
     OVRFW::ControllerRenderer controllerRenderR_;
     OVRFW::TinyUI ui_;
     OVRFW::SimpleBeamRenderer beamRenderer_;
-    std::vector<OVRFW::ovrBeamRenderer::handle_t> beams_;
 
-    // ▼ 追加：3D描画用レンダラー
     OVRFW::GeometryRenderer boxRenderer_;
     OVRFW::GeometryRenderer floorRenderer_;
 
-    // --- Bullet Physics用メンバ変数 ---
+    // --- Bullet Physics ---
     btDefaultCollisionConfiguration* collisionConfiguration_;
     btCollisionDispatcher* dispatcher_;
     btBroadphaseInterface* overlappingPairCache_;
     btSequentialImpulseConstraintSolver* solver_;
     btDiscreteDynamicsWorld* dynamicsWorld_;
 
-    // 物理オブジェクト
     btRigidBody* fallingCube_;
     btCollisionShape* boxShape_;
     btRigidBody* groundRigidBody_;
     btCollisionShape* groundShape_;
+
+    // コントローラーの物理判定と拘束（グラブ）用
+    btRigidBody* leftHandRb_;
+    btRigidBody* rightHandRb_;
+    btCollisionShape* handShape_;
+    btGeneric6DofConstraint* leftGrabConstraint_ = nullptr;
+    btGeneric6DofConstraint* rightGrabConstraint_ = nullptr;
+
+    // --- ロコモーション用変数 ---
+    OVR::Posef playerPose_ = OVR::Posef::Identity();
+    float playerYaw_ = 0.0f;
+    OVR::Vector3f playerPosition_ = { 0.0f, 0.0f, 0.0f };
+
+    OVR::Vector3f leftHandPrevPos_;
+    OVR::Vector3f rightHandPrevPos_;
 };
 
 ENTRY_POINT(XrControllersApp)
