@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "XrSamples/XrHandsAndControllers/xrsamples_xrhands_and_controllers.exe"
+			"path" : "XrSamples/XrHandsFB/xrhandsfb.exe"
 		},
 		{
-			"path" : "XrSamples/XrHandsAndControllers/xrsamples_xrhands_and_controllers.pdb"
+			"path" : "XrSamples/XrHandsFB/xrhandsfb.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -23,7 +23,7 @@
 		],
 		"files" : 
 		[
-			"XrSamples/XrHandsAndControllers/CMakeLists.txt",
+			"XrSamples/XrHandsFB/CMakeLists.txt",
 			"SampleXrFramework/CMakeLists.txt",
 			"3rdParty/CMakeLists.txt",
 			"3rdParty/khronos/ktx_src/CMakeLists.txt",
@@ -212,7 +212,7 @@
 			[
 				{
 					"backtrace" : 20,
-					"path" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/XrHandsAndControllers/Src"
+					"path" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/XrHandsFB/Src"
 				},
 				{
 					"backtrace" : 2,
@@ -286,10 +286,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -297,11 +294,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "minizip::@39354e54008c9e693a7e"
+			"id" : "stb::@39354e54008c9e693a7e"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "stb::@39354e54008c9e693a7e"
+			"id" : "minizip::@39354e54008c9e693a7e"
 		},
 		{
 			"backtrace" : 2,
@@ -332,7 +329,7 @@
 			"id" : "samplecommon_win32gl::@e4f153922b2cebb3c0ac"
 		}
 	],
-	"id" : "xrsamples_xrhands_and_controllers::@86038cf38698a351ba98",
+	"id" : "xrhandsfb::@d73ec3e76df5a2d8ba8f",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -412,12 +409,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "xrsamples_xrhands_and_controllers",
-	"nameOnDisk" : "xrsamples_xrhands_and_controllers.exe",
+	"name" : "xrhandsfb",
+	"nameOnDisk" : "xrhandsfb.exe",
 	"paths" : 
 	{
-		"build" : "XrSamples/XrHandsAndControllers",
-		"source" : "XrSamples/XrHandsAndControllers"
+		"build" : "XrSamples/XrHandsFB",
+		"source" : "XrSamples/XrHandsFB"
 	},
 	"sourceGroups" : 
 	[
@@ -425,10 +422,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -437,25 +431,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrHandsAndControllers/Src/ActionSetDisplayPanel.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrHandsAndControllers/Src/EnvironmentRenderer.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrHandsAndControllers/Src/SkyboxRenderer.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrHandsAndControllers/Src/main.cpp",
+			"path" : "XrSamples/XrHandsFB/Src/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

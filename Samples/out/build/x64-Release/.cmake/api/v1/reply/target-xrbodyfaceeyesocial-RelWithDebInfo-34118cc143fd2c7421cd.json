@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "XrSamples/XrVirtualKeyboard/xrvirtualkeyboard.exe"
+			"path" : "XrSamples/XrBodyFaceEyeSocial/xrbodyfaceeyesocial.exe"
 		},
 		{
-			"path" : "XrSamples/XrVirtualKeyboard/xrvirtualkeyboard.pdb"
+			"path" : "XrSamples/XrBodyFaceEyeSocial/xrbodyfaceeyesocial.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -23,7 +23,7 @@
 		],
 		"files" : 
 		[
-			"XrSamples/XrVirtualKeyboard/CMakeLists.txt",
+			"XrSamples/XrBodyFaceEyeSocial/CMakeLists.txt",
 			"SampleXrFramework/CMakeLists.txt",
 			"3rdParty/CMakeLists.txt",
 			"3rdParty/khronos/ktx_src/CMakeLists.txt",
@@ -212,7 +212,7 @@
 			[
 				{
 					"backtrace" : 20,
-					"path" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/XrVirtualKeyboard/Src"
+					"path" : "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/XrBodyFaceEyeSocial/Src"
 				},
 				{
 					"backtrace" : 2,
@@ -286,10 +286,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -297,11 +294,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "minizip::@39354e54008c9e693a7e"
+			"id" : "stb::@39354e54008c9e693a7e"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "stb::@39354e54008c9e693a7e"
+			"id" : "minizip::@39354e54008c9e693a7e"
 		},
 		{
 			"backtrace" : 2,
@@ -332,7 +329,7 @@
 			"id" : "samplecommon_win32gl::@e4f153922b2cebb3c0ac"
 		}
 	],
-	"id" : "xrvirtualkeyboard::@0fef9b2768f8ae50c973",
+	"id" : "xrbodyfaceeyesocial::@db920e32e2694a1fa3f2",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -412,12 +409,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "xrvirtualkeyboard",
-	"nameOnDisk" : "xrvirtualkeyboard.exe",
+	"name" : "xrbodyfaceeyesocial",
+	"nameOnDisk" : "xrbodyfaceeyesocial.exe",
 	"paths" : 
 	{
-		"build" : "XrSamples/XrVirtualKeyboard",
-		"source" : "XrSamples/XrVirtualKeyboard"
+		"build" : "XrSamples/XrBodyFaceEyeSocial",
+		"source" : "XrSamples/XrBodyFaceEyeSocial"
 	},
 	"sourceGroups" : 
 	[
@@ -425,10 +422,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -437,25 +431,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrVirtualKeyboard/Src/VirtualKeyboardModelRenderer.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrVirtualKeyboard/Src/XrRenderModelHelper.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrVirtualKeyboard/Src/XrVirtualKeyboardHelper.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "XrSamples/XrVirtualKeyboard/Src/main.cpp",
+			"path" : "XrSamples/XrBodyFaceEyeSocial/Src/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
