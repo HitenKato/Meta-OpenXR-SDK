@@ -19,17 +19,17 @@ project(libktx-populate NONE)
 # Pass through things we've already detected in the main project to avoid
 # paying the cost of redetecting them again in ExternalProject_Add()
 set(GIT_EXECUTABLE [==[C:/Program Files/Git/cmd/git.exe]==])
-set(GIT_VERSION_STRING [==[2.53.0.windows.3]==])
+set(GIT_VERSION_STRING [==[2.55.0.windows.2]==])
 set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
-  [==[C:/Program Files/Git/cmd/git.exe;2.53.0.windows.3]==]
+  [==[C:/Program Files/Git/cmd/git.exe;2.55.0.windows.2]==]
 )
 
 
 include(ExternalProject)
 ExternalProject_Add(libktx-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/KhronosGroup/KTX-Software.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v4.2.1"
-                    SOURCE_DIR          "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src"
-                    BINARY_DIR          "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/libktx-build"
+                    SOURCE_DIR          "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src"
+                    BINARY_DIR          "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/libktx-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""
