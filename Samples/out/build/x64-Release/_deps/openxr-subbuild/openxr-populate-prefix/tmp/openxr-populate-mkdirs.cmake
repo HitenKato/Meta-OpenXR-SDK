@@ -6,22 +6,22 @@ cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
 # If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
 # existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
 # would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr")
-  file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/3rdParty/openxr")
+if(NOT EXISTS "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr")
+  file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr")
 endif()
 file(MAKE_DIRECTORY
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-build"
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix"
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/tmp"
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp"
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src"
-  "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-build"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/tmp"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src"
+  "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-subbuild/openxr-populate-prefix/src/openxr-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

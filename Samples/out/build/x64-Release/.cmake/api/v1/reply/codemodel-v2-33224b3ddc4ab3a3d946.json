@@ -1,0 +1,1859 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						24,
+						25
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "3rdParty",
+					"childIndexes" : 
+					[
+						2,
+						18,
+						19
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-3rdParty-RelWithDebInfo-c8338fe821208b2f08a6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "3rdParty",
+					"targetIndexes" : 
+					[
+						47,
+						57
+					]
+				},
+				{
+					"build" : "_deps/libktx-build",
+					"childIndexes" : 
+					[
+						3,
+						4,
+						6,
+						7,
+						14
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.libktx-build-RelWithDebInfo-53fd29414af0f36c3da8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						35,
+						40,
+						41,
+						48
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/interface/basisu_c_binding",
+					"jsonFile" : "directory-_deps.libktx-build.interface.basisu_c_binding-RelWithDebInfo-48eb6a96db384ea30642.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/interface/basisu_c_binding",
+					"targetIndexes" : 
+					[
+						49
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/lib/astc-encoder",
+					"childIndexes" : 
+					[
+						5
+					],
+					"jsonFile" : "directory-_deps.libktx-build.lib.astc-encoder-RelWithDebInfo-dcdbe65fafb3a1e98be2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "3rdParty/khronos/ktx_src/lib/astc-encoder"
+				},
+				{
+					"build" : "_deps/libktx-build/lib/astc-encoder/Source",
+					"jsonFile" : "directory-_deps.libktx-build.lib.astc-encoder.Source-RelWithDebInfo-46ec79ae88fd93c9f4a5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 3,
+					"source" : "3rdParty/khronos/ktx_src/lib/astc-encoder/Source",
+					"targetIndexes" : 
+					[
+						28
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/other_projects/fmt",
+					"jsonFile" : "directory-_deps.libktx-build.other_projects.fmt-RelWithDebInfo-56279afd80ba480ee502.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.1"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 4,
+					"source" : "3rdParty/khronos/ktx_src/other_projects/fmt",
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools",
+					"childIndexes" : 
+					[
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.libktx-build.tools-RelWithDebInfo-3bd0212c40ae10be5fa7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools"
+				},
+				{
+					"build" : "_deps/libktx-build/tools/imageio",
+					"jsonFile" : "directory-_deps.libktx-build.tools.imageio-RelWithDebInfo-4d35a107d795301da42c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/imageio",
+					"targetIndexes" : 
+					[
+						34
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktx2check",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktx2check-RelWithDebInfo-0d08b29cb40703ca44c3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktx2check",
+					"targetIndexes" : 
+					[
+						36,
+						37
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktx2ktx2",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktx2ktx2-RelWithDebInfo-169176fac8b40b968867.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktx2ktx2",
+					"targetIndexes" : 
+					[
+						38,
+						39
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktxinfo",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktxinfo-RelWithDebInfo-fc123e660ad9be30dae9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktxinfo",
+					"targetIndexes" : 
+					[
+						42,
+						43
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/ktxsc",
+					"jsonFile" : "directory-_deps.libktx-build.tools.ktxsc-RelWithDebInfo-dabcac927b168e309bb8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/ktxsc",
+					"targetIndexes" : 
+					[
+						44,
+						45
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tools/toktx",
+					"jsonFile" : "directory-_deps.libktx-build.tools.toktx-RelWithDebInfo-6fe22f898d0d5119357e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tools/toktx",
+					"targetIndexes" : 
+					[
+						60,
+						61
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests",
+					"childIndexes" : 
+					[
+						15,
+						16,
+						17
+					],
+					"jsonFile" : "directory-_deps.libktx-build.tests-RelWithDebInfo-43d31afbb2960e2436ef.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests",
+					"targetIndexes" : 
+					[
+						59,
+						64
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/gtest",
+					"jsonFile" : "directory-_deps.libktx-build.tests.gtest-RelWithDebInfo-74456f4cfef6df57f8d2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/gtest",
+					"targetIndexes" : 
+					[
+						33
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/transcodetests",
+					"jsonFile" : "directory-_deps.libktx-build.tests.transcodetests-RelWithDebInfo-c808083aff9ad54fe840.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/transcodetests",
+					"targetIndexes" : 
+					[
+						50,
+						62
+					]
+				},
+				{
+					"build" : "_deps/libktx-build/tests/streamtests",
+					"jsonFile" : "directory-_deps.libktx-build.tests.streamtests-RelWithDebInfo-2103db451e9d65a79280.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 1,
+					"source" : "3rdParty/khronos/ktx_src/tests/streamtests",
+					"targetIndexes" : 
+					[
+						58
+					]
+				},
+				{
+					"build" : "_deps/zlib-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.zlib-build-RelWithDebInfo-82e157c53d71561e487b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.4.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 5,
+					"source" : "3rdParty/zlib",
+					"targetIndexes" : 
+					[
+						30,
+						46,
+						82,
+						83
+					]
+				},
+				{
+					"build" : "_deps/openxr-build",
+					"childIndexes" : 
+					[
+						20,
+						22
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build-RelWithDebInfo-c338739779e7a56b2719.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr",
+					"targetIndexes" : 
+					[
+						63
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/include",
+					"childIndexes" : 
+					[
+						21
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.include-RelWithDebInfo-d5fce660bf79e5232c89.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/include"
+				},
+				{
+					"build" : "_deps/openxr-build/include/openxr",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.include.openxr-RelWithDebInfo-a43f9641330caad60006.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 20,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/include/openxr",
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/src",
+					"childIndexes" : 
+					[
+						23
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.src-RelWithDebInfo-840c7ae45669b73c4bc1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/src",
+					"targetIndexes" : 
+					[
+						65,
+						66
+					]
+				},
+				{
+					"build" : "_deps/openxr-build/src/loader",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.openxr-build.src.loader-RelWithDebInfo-4cf6b99708dd8a935f37.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 22,
+					"projectIndex" : 6,
+					"source" : "3rdParty/openxr/src/loader",
+					"targetIndexes" : 
+					[
+						51
+					]
+				},
+				{
+					"build" : "SampleXrFramework",
+					"jsonFile" : "directory-SampleXrFramework-RelWithDebInfo-4e8740f19b7b30284e00.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "SampleXrFramework",
+					"targetIndexes" : 
+					[
+						52,
+						53
+					]
+				},
+				{
+					"build" : "XrSamples",
+					"childIndexes" : 
+					[
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46
+					],
+					"jsonFile" : "directory-XrSamples-RelWithDebInfo-581ce16cf2236db7658f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XrSamples"
+				},
+				{
+					"build" : "XrSamples/BulletProject1",
+					"jsonFile" : "directory-XrSamples.BulletProject1-RelWithDebInfo-e4d8cd99370f184a7912.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 7,
+					"source" : "XrSamples/BulletProject1",
+					"targetIndexes" : 
+					[
+						29
+					]
+				},
+				{
+					"build" : "XrSamples/XrBodyFaceEyeSocial",
+					"jsonFile" : "directory-XrSamples.XrBodyFaceEyeSocial-RelWithDebInfo-85eab16b87191463ee7a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 8,
+					"source" : "XrSamples/XrBodyFaceEyeSocial",
+					"targetIndexes" : 
+					[
+						67
+					]
+				},
+				{
+					"build" : "XrSamples/XrColocationDiscovery",
+					"jsonFile" : "directory-XrSamples.XrColocationDiscovery-RelWithDebInfo-593294cf3d50dd936541.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 9,
+					"source" : "XrSamples/XrColocationDiscovery",
+					"targetIndexes" : 
+					[
+						68
+					]
+				},
+				{
+					"build" : "XrSamples/XrColorSpaceFB",
+					"jsonFile" : "directory-XrSamples.XrColorSpaceFB-RelWithDebInfo-8df4c52b2f3369cfa02b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 10,
+					"source" : "XrSamples/XrColorSpaceFB",
+					"targetIndexes" : 
+					[
+						78
+					]
+				},
+				{
+					"build" : "XrSamples/XrCompositor_NativeActivity",
+					"jsonFile" : "directory-XrSamples.XrCompositor_NativeActivity-RelWithDebInfo-0ab8e4e9e40ec809bd91.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 11,
+					"source" : "XrSamples/XrCompositor_NativeActivity"
+				},
+				{
+					"build" : "XrSamples/XrControllers",
+					"jsonFile" : "directory-XrSamples.XrControllers-RelWithDebInfo-53c11c962d277ae5cc06.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 12,
+					"source" : "XrSamples/XrControllers",
+					"targetIndexes" : 
+					[
+						69
+					]
+				},
+				{
+					"build" : "XrSamples/XrDynamicObjects",
+					"jsonFile" : "directory-XrSamples.XrDynamicObjects-RelWithDebInfo-15c80b0326f9a63865b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 13,
+					"source" : "XrSamples/XrDynamicObjects",
+					"targetIndexes" : 
+					[
+						70
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandDataSource",
+					"jsonFile" : "directory-XrSamples.XrHandDataSource-RelWithDebInfo-89bf9f36a4f011d490d9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 14,
+					"source" : "XrSamples/XrHandDataSource",
+					"targetIndexes" : 
+					[
+						71
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandTrackingWideMotionMode",
+					"jsonFile" : "directory-XrSamples.XrHandTrackingWideMotionMode-RelWithDebInfo-c5952d854736571156e9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 15,
+					"source" : "XrSamples/XrHandTrackingWideMotionMode",
+					"targetIndexes" : 
+					[
+						73
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandsAndControllers",
+					"jsonFile" : "directory-XrSamples.XrHandsAndControllers-RelWithDebInfo-1a9dca9af982d6984c9c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 16,
+					"source" : "XrSamples/XrHandsAndControllers",
+					"targetIndexes" : 
+					[
+						79
+					]
+				},
+				{
+					"build" : "XrSamples/XrHandsFB",
+					"jsonFile" : "directory-XrSamples.XrHandsFB-RelWithDebInfo-3650844d2cd8223843b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 17,
+					"source" : "XrSamples/XrHandsFB",
+					"targetIndexes" : 
+					[
+						72
+					]
+				},
+				{
+					"build" : "XrSamples/XrInput",
+					"jsonFile" : "directory-XrSamples.XrInput-RelWithDebInfo-bd9c303cce467e34952c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 18,
+					"source" : "XrSamples/XrInput",
+					"targetIndexes" : 
+					[
+						80
+					]
+				},
+				{
+					"build" : "XrSamples/XrMicrogestures",
+					"jsonFile" : "directory-XrSamples.XrMicrogestures-RelWithDebInfo-05dbf3fe9c18855ae1ad.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 19,
+					"source" : "XrSamples/XrMicrogestures",
+					"targetIndexes" : 
+					[
+						74
+					]
+				},
+				{
+					"build" : "XrSamples/XrOverlayKeyboard",
+					"jsonFile" : "directory-XrSamples.XrOverlayKeyboard-RelWithDebInfo-6c997f92f15f5112102a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 20,
+					"source" : "XrSamples/XrOverlayKeyboard",
+					"targetIndexes" : 
+					[
+						75
+					]
+				},
+				{
+					"build" : "XrSamples/XrPassthrough",
+					"jsonFile" : "directory-XrSamples.XrPassthrough-RelWithDebInfo-e2774e66a74c5e1bae31.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 21,
+					"source" : "XrSamples/XrPassthrough",
+					"targetIndexes" : 
+					[
+						76
+					]
+				},
+				{
+					"build" : "XrSamples/XrPassthroughOcclusion",
+					"jsonFile" : "directory-XrSamples.XrPassthroughOcclusion-RelWithDebInfo-f2646b95f4d055901597.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 22,
+					"source" : "XrSamples/XrPassthroughOcclusion",
+					"targetIndexes" : 
+					[
+						77
+					]
+				},
+				{
+					"build" : "XrSamples/XrSceneModel",
+					"jsonFile" : "directory-XrSamples.XrSceneModel-RelWithDebInfo-ceb316a61b7d3333949b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 23,
+					"source" : "XrSamples/XrSceneModel",
+					"targetIndexes" : 
+					[
+						54
+					]
+				},
+				{
+					"build" : "XrSamples/XrSceneSharing",
+					"jsonFile" : "directory-XrSamples.XrSceneSharing-RelWithDebInfo-3050c5686e8910ecd2d2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 24,
+					"source" : "XrSamples/XrSceneSharing",
+					"targetIndexes" : 
+					[
+						55
+					]
+				},
+				{
+					"build" : "XrSamples/XrSpaceWarp",
+					"jsonFile" : "directory-XrSamples.XrSpaceWarp-RelWithDebInfo-dbabbcd4bce6b78aa011.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 25,
+					"source" : "XrSamples/XrSpaceWarp"
+				},
+				{
+					"build" : "XrSamples/XrSpatialAnchor",
+					"jsonFile" : "directory-XrSamples.XrSpatialAnchor-RelWithDebInfo-70691f6263d3a65dce61.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 26,
+					"source" : "XrSamples/XrSpatialAnchor",
+					"targetIndexes" : 
+					[
+						56
+					]
+				},
+				{
+					"build" : "XrSamples/XrVirtualKeyboard",
+					"jsonFile" : "directory-XrSamples.XrVirtualKeyboard-RelWithDebInfo-c92355f72b757cde284e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"parentIndex" : 25,
+					"projectIndex" : 27,
+					"source" : "XrSamples/XrVirtualKeyboard",
+					"targetIndexes" : 
+					[
+						81
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						24,
+						25
+					],
+					"name" : "MetaOpenXRSDK",
+					"targetIndexes" : 
+					[
+						47,
+						52,
+						53,
+						57
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						2,
+						3,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					],
+					"name" : "KTX-Software",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						48,
+						49,
+						50,
+						58,
+						59,
+						60,
+						61,
+						62,
+						64
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "astcencoder",
+					"parentIndex" : 1
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "astcenc-avx2",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						28
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "FMT",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						18
+					],
+					"name" : "zlib",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						30,
+						46,
+						82,
+						83
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19,
+						20,
+						21,
+						22,
+						23
+					],
+					"name" : "OPENXR",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						32,
+						51,
+						63,
+						65,
+						66
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						26
+					],
+					"name" : "bulletproject1",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						29
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						27
+					],
+					"name" : "xrbodyfaceeyesocial",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						67
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						28
+					],
+					"name" : "xrcolocationdiscovery",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						68
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						29
+					],
+					"name" : "xrsamples_xrcolorspacefb",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						78
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						30
+					],
+					"name" : "xrcompositor",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						31
+					],
+					"name" : "xrcontrollers",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						69
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						32
+					],
+					"name" : "xrdynamicobjects",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						70
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						33
+					],
+					"name" : "xrhanddatasource",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						71
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						34
+					],
+					"name" : "xrhandtrackingwidemotionmode",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						73
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						35
+					],
+					"name" : "xrsamples_xrhands_and_controllers",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						79
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						36
+					],
+					"name" : "xrhandsfb",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						72
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						37
+					],
+					"name" : "xrsamples_xrinput",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						80
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						38
+					],
+					"name" : "xrmicrogestures",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						74
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						39
+					],
+					"name" : "xroverlaykeyboard",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						75
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						40
+					],
+					"name" : "xrpassthrough",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						76
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						41
+					],
+					"name" : "xrpassthroughocclusion",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						77
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						42
+					],
+					"name" : "scenemodel",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						54
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						43
+					],
+					"name" : "scenesharing",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						55
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						44
+					],
+					"name" : "xrspacewarp",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						45
+					],
+					"name" : "spatialanchor",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						56
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						46
+					],
+					"name" : "xrvirtualkeyboard",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						81
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "Continuous::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Continuous-RelWithDebInfo-3520eba32ff2f1d9a7f8.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousBuild-RelWithDebInfo-f7e301d04fc009a546cb.json",
+					"name" : "ContinuousBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousConfigure-RelWithDebInfo-99779986113676f9635f.json",
+					"name" : "ContinuousConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousCoverage-RelWithDebInfo-389c038b717ac3a33ff3.json",
+					"name" : "ContinuousCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousMemCheck-RelWithDebInfo-37e1078cfa9fbae93d25.json",
+					"name" : "ContinuousMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousStart-RelWithDebInfo-bdb0ff3b6994f38c94bd.json",
+					"name" : "ContinuousStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousSubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousSubmit-RelWithDebInfo-00e2e3719360fd018493.json",
+					"name" : "ContinuousSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousTest-RelWithDebInfo-67e8a0756f8c32230087.json",
+					"name" : "ContinuousTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ContinuousUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ContinuousUpdate-RelWithDebInfo-fd21a938c9f3cafba27c.json",
+					"name" : "ContinuousUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Experimental::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Experimental-RelWithDebInfo-8afdee25436105bed2c3.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalBuild-RelWithDebInfo-1d2d0bf46d6df9f698c3.json",
+					"name" : "ExperimentalBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalConfigure-RelWithDebInfo-235d355e58e0091cbb98.json",
+					"name" : "ExperimentalConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalCoverage-RelWithDebInfo-7bf9bcd0de6fc9761866.json",
+					"name" : "ExperimentalCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalMemCheck-RelWithDebInfo-b7481d24144acbd50c8f.json",
+					"name" : "ExperimentalMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalStart-RelWithDebInfo-a4b3537e23967809c331.json",
+					"name" : "ExperimentalStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalSubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalSubmit-RelWithDebInfo-c9a1eb73073ea7f38f55.json",
+					"name" : "ExperimentalSubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalTest-RelWithDebInfo-0d797a2fb63e5000ea1c.json",
+					"name" : "ExperimentalTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ExperimentalUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ExperimentalUpdate-RelWithDebInfo-66c02f000f85e36d78bf.json",
+					"name" : "ExperimentalUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Nightly::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-Nightly-RelWithDebInfo-5a2a8ddd57451a3f9e74.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyBuild::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyBuild-RelWithDebInfo-bb8f94baaa699c1f1782.json",
+					"name" : "NightlyBuild",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyConfigure::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyConfigure-RelWithDebInfo-bd47423121d14dceab52.json",
+					"name" : "NightlyConfigure",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyCoverage::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyCoverage-RelWithDebInfo-8842cad1e88151dad0e0.json",
+					"name" : "NightlyCoverage",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyMemCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyMemCheck-RelWithDebInfo-052641c22f848f4e7557.json",
+					"name" : "NightlyMemCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyMemoryCheck::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyMemoryCheck-RelWithDebInfo-850746396ef8549b4201.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyStart::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyStart-RelWithDebInfo-1f424469f44762bdcdad.json",
+					"name" : "NightlyStart",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlySubmit::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlySubmit-RelWithDebInfo-0810e953f186ac69638e.json",
+					"name" : "NightlySubmit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyTest::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyTest-RelWithDebInfo-1551a2eebd5a70aae7e7.json",
+					"name" : "NightlyTest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "NightlyUpdate::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-NightlyUpdate-RelWithDebInfo-17d502bf3ce77ed0ea4c.json",
+					"name" : "NightlyUpdate",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "astcenc-avx2-static::@917f8ad2c3382a3cd159",
+					"jsonFile" : "target-astcenc-avx2-static-RelWithDebInfo-b19ab6cad60d09f63238.json",
+					"name" : "astcenc-avx2-static",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 26,
+					"id" : "bulletproject1::@7d3064ba128e26b64f1b",
+					"jsonFile" : "target-bulletproject1-RelWithDebInfo-01eed8391af3976f2816.json",
+					"name" : "bulletproject1",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "example::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-example-RelWithDebInfo-af53f8fa2a13d2c71e14.json",
+					"name" : "example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "fmt::@1506242f70dbcb7a5cbf",
+					"jsonFile" : "target-fmt-RelWithDebInfo-3a709e40c4daad5db91c.json",
+					"name" : "fmt",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 21,
+					"id" : "generate_openxr_header::@ee2418eca024665d80f8",
+					"jsonFile" : "target-generate_openxr_header-RelWithDebInfo-8a0f340c6aee6422c8ba.json",
+					"name" : "generate_openxr_header",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "gtest::@514e735eed8b8073e47d",
+					"jsonFile" : "target-gtest-RelWithDebInfo-6e9a8fe44a92ef8c4466.json",
+					"name" : "gtest",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "imageio::@ff504eb183f5072281ef",
+					"jsonFile" : "target-imageio-RelWithDebInfo-dea44b8f05721f9086a4.json",
+					"name" : "imageio",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx-RelWithDebInfo-9ceb888222fcc2a6d147.json",
+					"name" : "ktx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "ktx2check::@860fc932a472e0bb01a2",
+					"jsonFile" : "target-ktx2check-RelWithDebInfo-f3288fcef41cd96edba0.json",
+					"name" : "ktx2check",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "ktx2check_version::@860fc932a472e0bb01a2",
+					"jsonFile" : "target-ktx2check_version-RelWithDebInfo-cda6c9d167eea0da8952.json",
+					"name" : "ktx2check_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "ktx2ktx2::@b24b5042453064b7b8d6",
+					"jsonFile" : "target-ktx2ktx2-RelWithDebInfo-9d4c1da3e711ab2cecd4.json",
+					"name" : "ktx2ktx2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "ktx2ktx2_version::@b24b5042453064b7b8d6",
+					"jsonFile" : "target-ktx2ktx2_version-RelWithDebInfo-8dfca97dbd35ef130ac6.json",
+					"name" : "ktx2ktx2_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx_read::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx_read-RelWithDebInfo-c2a26d45d81f0c311317.json",
+					"name" : "ktx_read",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ktx_version::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-ktx_version-RelWithDebInfo-7871588eb96788c9c96b.json",
+					"name" : "ktx_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "ktxinfo::@b3d31ad6ae48f43b442d",
+					"jsonFile" : "target-ktxinfo-RelWithDebInfo-ea7c6cb62c75c90a6f95.json",
+					"name" : "ktxinfo",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "ktxinfo_version::@b3d31ad6ae48f43b442d",
+					"jsonFile" : "target-ktxinfo_version-RelWithDebInfo-0a0fc4a42d44a70be333.json",
+					"name" : "ktxinfo_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "ktxsc::@f984ad63d48ffc1cf295",
+					"jsonFile" : "target-ktxsc-RelWithDebInfo-8caa7fade58319d8090e.json",
+					"name" : "ktxsc",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "ktxsc_version::@f984ad63d48ffc1cf295",
+					"jsonFile" : "target-ktxsc_version-RelWithDebInfo-e2b165256b45f40d85be.json",
+					"name" : "ktxsc_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "minigzip::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-minigzip-RelWithDebInfo-455ad568b4ec4c200b52.json",
+					"name" : "minigzip",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minizip::@39354e54008c9e693a7e",
+					"jsonFile" : "target-minizip-RelWithDebInfo-92c8fefbf63fea86a399.json",
+					"name" : "minizip",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "objUtil::@ed5937bb8cc3aa207f62",
+					"jsonFile" : "target-objUtil-RelWithDebInfo-f57c00feae8361cf8039.json",
+					"name" : "objUtil",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "obj_basisu_cbind::@bba359c3394ef200acc9",
+					"jsonFile" : "target-obj_basisu_cbind-RelWithDebInfo-7b6def8c505e5ca7f9a5.json",
+					"name" : "obj_basisu_cbind",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "obj_tmp_basisu::@c613dad60b210cd4cebc",
+					"jsonFile" : "target-obj_tmp_basisu-RelWithDebInfo-d0d321ea3fe564fc8a1b.json",
+					"name" : "obj_tmp_basisu",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 23,
+					"id" : "openxr_loader::@e4e27c090dc7d2a04b67",
+					"jsonFile" : "target-openxr_loader-RelWithDebInfo-acbc98cc6290b24ab564.json",
+					"name" : "openxr_loader",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "samplecommon_win32gl::@e4f153922b2cebb3c0ac",
+					"jsonFile" : "target-samplecommon_win32gl-RelWithDebInfo-4e9a469518be5181350e.json",
+					"name" : "samplecommon_win32gl",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "samplexrframework::@e4f153922b2cebb3c0ac",
+					"jsonFile" : "target-samplexrframework-RelWithDebInfo-069ed317c42b38e15c95.json",
+					"name" : "samplexrframework",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 42,
+					"id" : "scenemodel::@bc8e8471bcaa603e757e",
+					"jsonFile" : "target-scenemodel-RelWithDebInfo-91e05ed3b724420b9eb6.json",
+					"name" : "scenemodel",
+					"projectIndex" : 23
+				},
+				{
+					"directoryIndex" : 43,
+					"id" : "scenesharing::@59417289ce42d33ec209",
+					"jsonFile" : "target-scenesharing-RelWithDebInfo-1d768f325577fc97defd.json",
+					"name" : "scenesharing",
+					"projectIndex" : 24
+				},
+				{
+					"directoryIndex" : 45,
+					"id" : "spatialanchor::@428a5f97bd7c89f4890f",
+					"jsonFile" : "target-spatialanchor-RelWithDebInfo-ef046b389879c0d3900c.json",
+					"name" : "spatialanchor",
+					"projectIndex" : 26
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "stb::@39354e54008c9e693a7e",
+					"jsonFile" : "target-stb-RelWithDebInfo-c1d6d4e90ed538bc78f6.json",
+					"name" : "stb",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "streamtests::@5582a86a123f71a9656c",
+					"jsonFile" : "target-streamtests-RelWithDebInfo-8f2cc232d328fe17a0af.json",
+					"name" : "streamtests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "texturetests::@e540ffaa27064c9f86b1",
+					"jsonFile" : "target-texturetests-RelWithDebInfo-7e252250c83bc82d28f3.json",
+					"name" : "texturetests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "toktx::@a8754739ff076b047a69",
+					"jsonFile" : "target-toktx-RelWithDebInfo-d23c3e60f638a34a0917.json",
+					"name" : "toktx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "toktx_version::@a8754739ff076b047a69",
+					"jsonFile" : "target-toktx_version-RelWithDebInfo-6ee9fcd98e09dc2044be.json",
+					"name" : "toktx_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "transcodetests::@c613dad60b210cd4cebc",
+					"jsonFile" : "target-transcodetests-RelWithDebInfo-4f192e59c2c00608efaa.json",
+					"name" : "transcodetests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "uninstall::@bdbf71f83d2ac1e3e7fb",
+					"jsonFile" : "target-uninstall-RelWithDebInfo-bdcc2728e42c2334f246.json",
+					"name" : "uninstall",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "unittests::@e540ffaa27064c9f86b1",
+					"jsonFile" : "target-unittests-RelWithDebInfo-d286e16a18fe0b1a9ee1.json",
+					"name" : "unittests",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "xr_common_generated_files::@aca70d126e7d148c8b20",
+					"jsonFile" : "target-xr_common_generated_files-RelWithDebInfo-368e898cd04e17d82ad3.json",
+					"name" : "xr_common_generated_files",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "xr_global_generated_files::@aca70d126e7d148c8b20",
+					"jsonFile" : "target-xr_global_generated_files-RelWithDebInfo-ebf900f152bcff42fe20.json",
+					"name" : "xr_global_generated_files",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 27,
+					"id" : "xrbodyfaceeyesocial::@db920e32e2694a1fa3f2",
+					"jsonFile" : "target-xrbodyfaceeyesocial-RelWithDebInfo-bf627aa0bbba3fbbe73f.json",
+					"name" : "xrbodyfaceeyesocial",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 28,
+					"id" : "xrcolocationdiscovery::@5f746c8d8bea85e398a0",
+					"jsonFile" : "target-xrcolocationdiscovery-RelWithDebInfo-101e3faf80c765aec0ce.json",
+					"name" : "xrcolocationdiscovery",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 31,
+					"id" : "xrcontrollers::@8ca6cba7cccb09a4e0b9",
+					"jsonFile" : "target-xrcontrollers-RelWithDebInfo-2d367a10cede5ceebabc.json",
+					"name" : "xrcontrollers",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 32,
+					"id" : "xrdynamicobjects::@07e3229ee15e566b50fe",
+					"jsonFile" : "target-xrdynamicobjects-RelWithDebInfo-9b47ca2609754a9db01a.json",
+					"name" : "xrdynamicobjects",
+					"projectIndex" : 13
+				},
+				{
+					"directoryIndex" : 33,
+					"id" : "xrhanddatasource::@ace2759cdb7129e01f28",
+					"jsonFile" : "target-xrhanddatasource-RelWithDebInfo-e8c9e1f72bd7cd727d48.json",
+					"name" : "xrhanddatasource",
+					"projectIndex" : 14
+				},
+				{
+					"directoryIndex" : 36,
+					"id" : "xrhandsfb::@d73ec3e76df5a2d8ba8f",
+					"jsonFile" : "target-xrhandsfb-RelWithDebInfo-82426098f0d2c2cf480d.json",
+					"name" : "xrhandsfb",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 34,
+					"id" : "xrhandtrackingwidemotionmode::@f2c914f79ad74330a56b",
+					"jsonFile" : "target-xrhandtrackingwidemotionmode-RelWithDebInfo-1af0e431b9b97f011add.json",
+					"name" : "xrhandtrackingwidemotionmode",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 38,
+					"id" : "xrmicrogestures::@52f19c73340ddf9ab7ed",
+					"jsonFile" : "target-xrmicrogestures-RelWithDebInfo-26842030703ae5cb4821.json",
+					"name" : "xrmicrogestures",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 39,
+					"id" : "xroverlaykeyboard::@6c103482568e13d69c6b",
+					"jsonFile" : "target-xroverlaykeyboard-RelWithDebInfo-a587b9d691554c89b802.json",
+					"name" : "xroverlaykeyboard",
+					"projectIndex" : 20
+				},
+				{
+					"directoryIndex" : 40,
+					"id" : "xrpassthrough::@89285dc1df59cbe575a5",
+					"jsonFile" : "target-xrpassthrough-RelWithDebInfo-f29d99e12acfc81be81e.json",
+					"name" : "xrpassthrough",
+					"projectIndex" : 21
+				},
+				{
+					"directoryIndex" : 41,
+					"id" : "xrpassthroughocclusion::@34e60645c8376b3c2691",
+					"jsonFile" : "target-xrpassthroughocclusion-RelWithDebInfo-6a7fb8eb86d78cc27b4d.json",
+					"name" : "xrpassthroughocclusion",
+					"projectIndex" : 22
+				},
+				{
+					"directoryIndex" : 29,
+					"id" : "xrsamples_xrcolorspacefb::@538a8b13479bb8cedd7d",
+					"jsonFile" : "target-xrsamples_xrcolorspacefb-RelWithDebInfo-678ff82eec7afbbcb5a2.json",
+					"name" : "xrsamples_xrcolorspacefb",
+					"projectIndex" : 10
+				},
+				{
+					"directoryIndex" : 35,
+					"id" : "xrsamples_xrhands_and_controllers::@86038cf38698a351ba98",
+					"jsonFile" : "target-xrsamples_xrhands_and_controllers-RelWithDebInfo-004a7a00739f3cb02c9c.json",
+					"name" : "xrsamples_xrhands_and_controllers",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 37,
+					"id" : "xrsamples_xrinput::@51fd480b305ec3b3494b",
+					"jsonFile" : "target-xrsamples_xrinput-RelWithDebInfo-1e72bafd905fbafbfb75.json",
+					"name" : "xrsamples_xrinput",
+					"projectIndex" : 18
+				},
+				{
+					"directoryIndex" : 46,
+					"id" : "xrvirtualkeyboard::@0fef9b2768f8ae50c973",
+					"jsonFile" : "target-xrvirtualkeyboard-RelWithDebInfo-12cf4e686453364a858e.json",
+					"name" : "xrvirtualkeyboard",
+					"projectIndex" : 27
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "zlib::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-zlib-RelWithDebInfo-9e2332de3915bc6f9c75.json",
+					"name" : "zlib",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "zlibstatic::@c9556b0b6bf47963f9da",
+					"jsonFile" : "target-zlibstatic-RelWithDebInfo-a9f07b700c43edde0453.json",
+					"name" : "zlibstatic",
+					"projectIndex" : 5
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release",
+		"source" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

@@ -1,8 +1,8 @@
-prefix=C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Release
-exec_prefix=C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Release
-libdir=C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib
-sharedlibdir=C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib
-includedir=C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/out/install/x64-Release/include
+prefix=C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release
+exec_prefix=C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release
+libdir=C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib
+sharedlibdir=C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib
+includedir=C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/include
 
 Name: zlib
 Description: zlib compression library
