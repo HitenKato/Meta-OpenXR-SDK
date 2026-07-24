@@ -95,7 +95,6 @@ public:
 
     // ------------------------------------------------------------------------
     // [Bullet] クリーンアップ（メモリ解放）処理
-    // C++における物理エンジンの利用では、確保したメモリの明示的な解放が必須です。
     // ------------------------------------------------------------------------
     virtual void AppShutdown(const xrJava* context) override {
         floorRenderer_.Shutdown();
@@ -117,11 +116,6 @@ public:
             if (t.glbRenderer) { t.glbRenderer->Shutdown(); delete t.glbRenderer; }
             if (t.fallbackRenderer) { t.fallbackRenderer->Shutdown(); delete t.fallbackRenderer; }
         }
-
-        // --- 物理オブジェクトの解放 ---
-        // ※ 通常のBulletアプリケーションでは、ここで dynamicsWorld_ 内の全ての
-        // RigidBody と Constraint、Shape を delete します。
-        // （本プログラムではプロトタイプにつき、一部簡略化しています）
 
         OVRFW::XrApp::AppShutdown(context);
         ui_.Shutdown();
@@ -158,35 +152,20 @@ public:
         beamRenderer_.Init(GetFileSys(), nullptr, OVR::Vector4f(1.0f), 1.0f);
 
         // --- 1. 物理演算の基本セットアップ ---
-        // Bullet Physicsを動かすために必要な5つの必須コンポーネントを初期化します。
-
-        // 1-1. 衝突設定（メモリ割り当て等の基本設定）
         collisionConfiguration_ = new btDefaultCollisionConfiguration();
-
-        // 1-2. ディスパッチャ（衝突アルゴリズムの選択と実行を担当）
         dispatcher_ = new btCollisionDispatcher(collisionConfiguration_);
-
-        // 1-3. ブロードフェーズ（大まかな衝突判定(AABB)を行い、計算を高速化）
         overlappingPairCache_ = new btDbvtBroadphase();
-
-        // 1-4. ソルバ（物理法則に基づき、力や拘束、反発などを計算して位置を更新）
         solver_ = new btSequentialImpulseConstraintSolver();
-
-        // 1-5. 物理ワールド（上記4つを統合した世界）
         dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
-
-        // 重力の設定（Y軸下方向に -9.8 m/s^2）
         dynamicsWorld_->setGravity(btVector3(0.0f, -9.8f, 0.0f));
 
         // --- 2. 床（地面）の生成 ---
-        // btStaticPlaneShape は無限に広がる平面のコライダーです。
         groundShape_ = new btStaticPlaneShape(btVector3(0, 1, 0), 0.0f);
         btTransform groundTrans; groundTrans.setIdentity(); groundTrans.setOrigin(btVector3(0, -1.5f, 0));
 
-        // 質量(mass)を 0.0f にすることで「静的剛体（絶対に動かない物体）」になります。
         groundRigidBody_ = new btRigidBody(0.0f, new btDefaultMotionState(groundTrans), groundShape_, btVector3(0, 0, 0));
-        groundRigidBody_->setRestitution(0.6f); // 反発係数（0=弾まない, 1=100%弾む）
-        groundRigidBody_->setFriction(0.8f);    // 摩擦係数（滑りにくさ）
+        groundRigidBody_->setRestitution(0.6f);
+        groundRigidBody_->setFriction(0.8f);
         dynamicsWorld_->addRigidBody(groundRigidBody_);
 
         // 描画用の床
@@ -212,6 +191,7 @@ public:
         if (!basketGlbBuffer_.empty()) {
             basketGlbRenderer_ = new OVRFW::SimpleGlbRenderer();
             if (basketGlbRenderer_->Init(basketGlbBuffer_)) {
+                // C++の機能で明るさをMAXにする
                 basketGlbRenderer_->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
             }
             else {
@@ -235,18 +215,14 @@ public:
                 float py = 0.0f + row * 0.45f;
                 float pz = -4.0f;
 
-                // BulletのBoxShapeは「各軸の半径（幅の半分）」を指定します。
                 btBoxShape* shape = new btBoxShape(btVector3(0.2f, 0.2f, 0.025f));
                 btTransform trans; trans.setIdentity(); trans.setOrigin(btVector3(px, py, pz));
 
-                // 動的剛体（質量 > 0）のため、慣性テンソル（回転のしにくさ）を計算します。
                 btVector3 inertia(0, 0, 0);
                 float mass = 1.0f;
                 shape->calculateLocalInertia(mass, inertia);
                 btRigidBody* body = new btRigidBody(mass, new btDefaultMotionState(trans), shape, inertia);
 
-                // ヒンジ拘束（btHingeConstraint）の追加
-                // 下辺を軸として、奥へ 90度 (M_PI/2) だけ倒れるように制限をかけます。
                 btHingeConstraint* hinge = new btHingeConstraint(*body, btVector3(0, -0.2f, 0), btVector3(-1.0f, 0.0f, 0.0f));
                 hinge->setLimit(0.0f, M_PI / 2.0f);
 
@@ -262,6 +238,7 @@ public:
                 if (hasPanelGlb) {
                     item.glbRenderer = new OVRFW::SimpleGlbRenderer();
                     if (item.glbRenderer->Init(panelGlbBuffer)) {
+                        // C++の機能で明るさをMAXにする
                         item.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
                     }
                     else {
@@ -303,12 +280,12 @@ public:
         if (treeGlbBuffer_.empty()) treeGlbBuffer_ = ReadFileBuffer("../../../../XrSamples/BulletProject1/assets/tree.glb");
         if (treeGlbBuffer_.empty()) treeGlbBuffer_ = ReadFileBuffer("C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/assets/tree.glb");
 
-        // ★修正：木のX座標を ±1.5f から ±3.0f に広げて遠くに配置
+        // ★修正：木のX座標を ±4.0f 程度に広げ、Z座標も散らして配置
         std::vector<OVR::Vector3f> treePositions = {
-            { -3.0f, -1.55f, -1.5f }, // 左手前
-            {  3.0f, -1.55f, -1.5f }, // 右手前
-            { -3.0f, -1.55f, -3.0f }, // 左奥
-            {  3.0f, -1.55f, -3.0f }  // 右奥
+            { -4.0f, -1.55f, -1.0f }, // 左手前
+            {  4.0f, -1.55f, -1.0f }, // 右手前
+            { -4.5f, -1.55f, -3.5f }, // 左奥
+            {  4.5f, -1.55f, -3.5f }  // 右奥
         };
 
         for (const auto& pos : treePositions) {
@@ -319,6 +296,7 @@ public:
             if (!treeGlbBuffer_.empty()) {
                 tree.glbRenderer = new OVRFW::SimpleGlbRenderer();
                 if (tree.glbRenderer->Init(treeGlbBuffer_)) {
+                    // C++の機能で明るさをMAXにする
                     tree.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
                 }
                 else {
@@ -362,6 +340,7 @@ public:
         if (!ballGlbBuffer_.empty()) {
             ball.glbRenderer = new OVRFW::SimpleGlbRenderer();
             if (ball.glbRenderer->Init(ballGlbBuffer_)) {
+                // C++の機能で明るさをMAXにする
                 ball.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
             }
             else {
@@ -465,7 +444,6 @@ public:
 
         // --------------------------------------------------------------------
         // [Bullet] シミュレーションの進行 (Step Simulation)
-        // 引数: 経過時間, 最大サブステップ数
         // --------------------------------------------------------------------
         if (dynamicsWorld_) {
             dynamicsWorld_->stepSimulation(in.DeltaSeconds, 10);
