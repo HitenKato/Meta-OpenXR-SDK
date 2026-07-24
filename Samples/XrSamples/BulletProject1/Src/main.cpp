@@ -303,11 +303,12 @@ public:
         if (treeGlbBuffer_.empty()) treeGlbBuffer_ = ReadFileBuffer("../../../../XrSamples/BulletProject1/assets/tree.glb");
         if (treeGlbBuffer_.empty()) treeGlbBuffer_ = ReadFileBuffer("C:/Users/hiten/source/repos/HitenKato/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/assets/tree.glb");
 
+        // ★修正：木のX座標を ±1.5f から ±3.0f に広げて遠くに配置
         std::vector<OVR::Vector3f> treePositions = {
-            { -1.5f, -1.55f, -1.5f }, // 左手前
-            {  1.5f, -1.55f, -1.5f }, // 右手前
-            { -1.5f, -1.55f, -3.0f }, // 左奥
-            {  1.5f, -1.55f, -3.0f }  // 右奥
+            { -3.0f, -1.55f, -1.5f }, // 左手前
+            {  3.0f, -1.55f, -1.5f }, // 右手前
+            { -3.0f, -1.55f, -3.0f }, // 左奥
+            {  3.0f, -1.55f, -3.0f }  // 右奥
         };
 
         for (const auto& pos : treePositions) {
