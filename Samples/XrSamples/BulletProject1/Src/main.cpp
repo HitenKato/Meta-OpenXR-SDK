@@ -330,6 +330,10 @@ public:
         ballShape->calculateLocalInertia(0.2f, inertia);
         btRigidBody* body = new btRigidBody(0.2f, new btDefaultMotionState(trans), ballShape, inertia);
         body->setRestitution(0.8f); // 弾みやすくする
+        // ボールが自身の半径(5cm)以上を1フレームで移動しそうな場合にCCDを有効化する
+        body->setCcdMotionThreshold(0.05f);
+        // 軌跡の判定に使う球の半径（実際の半径0.05fより少し小さめにするのが安全な仕様です）
+        body->setCcdSweptSphereRadius(0.04f);
         dynamicsWorld_->addRigidBody(body);
 
         BallItem ball;

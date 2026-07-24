@@ -107,25 +107,11 @@ lowp vec3 multiply( lowp mat3 m, lowp vec3 v )
 
 void main()
 {
-  lowp vec3 eyeDir = normalize( oEye.xyz );
-  lowp vec3 Normal = normalize( oNormal );
-
-  lowp vec3 reflectionDir = dot( eyeDir, Normal ) * 2.0 * Normal - eyeDir;
+  // テクスチャの色をそのまま取得
   lowp vec4 diffuse = texture2D( Texture0, oTexCoord );
-  lowp vec3 ambientValue = diffuse.xyz * AmbientLightColor;
-
-  lowp float nDotL = max( dot( Normal , SpecularLightDirection ), 0.0 );
-  lowp vec3 diffuseValue = diffuse.xyz * SpecularLightColor * nDotL;
-
-  lowp float specularPower = 1.0f - diffuse.a;
-  specularPower = specularPower * specularPower;
-
-  lowp vec3 H = normalize( SpecularLightDirection + eyeDir );
-  lowp float nDotH = max( dot( Normal, H ), 0.0 );
-  lowp float specularIntensity = pow( nDotH, 64.0f * ( specularPower ) ) * specularPower;
-  lowp vec3 specularValue = specularIntensity * SpecularLightColor;
-
-  lowp vec3 controllerColor = diffuseValue + ambientValue + specularValue;
+  
+  // 影や反射の計算をすべて無視し、テクスチャの色 × 環境光（明るさ調整用）だけにする
+  lowp vec3 controllerColor = diffuse.xyz * AmbientLightColor;
 
   float alphaBlendFactor = max(diffuse.w, AlphaBlend) * Opacity;
 
@@ -233,19 +219,22 @@ bool SimpleGlbRenderer::Init(
     jointsBuffer->UnmapBuffer();
 
     for (auto& model : RenderModel->Models) {
-        auto& gc = model.surfaces[0].surfaceDef.graphicsCommand;
-        gc.UniformData[0].Data = &gc.Textures[0];
-        gc.UniformData[1].Data = &SpecularLightDirection;
-        gc.UniformData[2].Data = &SpecularLightColor;
-        gc.UniformData[3].Data = &AmbientLightColor;
-        gc.UniformData[4].Data = &Opacity;
-        gc.UniformData[5].Data = &AlphaBlendFactor;
-        gc.UniformData[6].Data = jointsBuffer.get();
-        gc.GpuState.depthEnable = gc.GpuState.depthMaskEnable = true;
-        gc.GpuState.blendEnable = ovrGpuState::BLEND_ENABLE;
-        gc.GpuState.blendMode = ovrGpuState::kGL_FUNC_ADD;
-        gc.GpuState.blendSrc = ovrGpuState::kGL_ONE;
-        gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
+        // ★修正：surfaces[0]だけでなく、すべてのマテリアルに設定を適用する
+        for (auto& surface : model.surfaces) {
+            auto& gc = surface.surfaceDef.graphicsCommand;
+            gc.UniformData[0].Data = &gc.Textures[0];
+            gc.UniformData[1].Data = &SpecularLightDirection;
+            gc.UniformData[2].Data = &SpecularLightColor;
+            gc.UniformData[3].Data = &AmbientLightColor;
+            gc.UniformData[4].Data = &Opacity;
+            gc.UniformData[5].Data = &AlphaBlendFactor;
+            gc.UniformData[6].Data = jointsBuffer.get();
+            gc.GpuState.depthEnable = gc.GpuState.depthMaskEnable = true;
+            gc.GpuState.blendEnable = ovrGpuState::BLEND_ENABLE;
+            gc.GpuState.blendMode = ovrGpuState::kGL_FUNC_ADD;
+            gc.GpuState.blendSrc = ovrGpuState::kGL_ONE;
+            gc.GpuState.blendDst = ovrGpuState::kGL_ONE_MINUS_SRC_ALPHA;
+        }
     }
 
     /// Set defaults
