@@ -9,7 +9,8 @@
 #include <cstdio>
 #include <algorithm>
 #include <vector>
-#include <memory> 
+#include <memory>
+#include <fstream> // ファイル読み込み用
 #include <openxr/openxr.h>
 #include <sstream>
 
@@ -22,6 +23,9 @@
 #include "Render/GeometryRenderer.h"
 #include "Render/GeometryBuilder.h"
 
+// ★追加：GLBモデルを描画するためのヘッダー
+#include "SimpleGlbRenderer.h"
+
 // ----------------------------------------------------------------------------
 // 各種オブジェクトを管理するための構造体
 // ----------------------------------------------------------------------------
@@ -29,14 +33,18 @@ struct BallItem {
     btRigidBody* body;
     btCollisionShape* shape;
     OVRFW::GeometryRenderer* renderer;
-    float lifeTime; // ★追加：ボールの寿命（自動削除用）
+    float lifeTime;
 };
 
 struct PanelItem {
     btRigidBody* body;
     btCollisionShape* shape;
     btHingeConstraint* hinge;
-    OVRFW::GeometryRenderer* renderer;
+
+    // ★追加：GLBモデル用のレンダラーと、読み込み失敗時用の代替レンダラー
+    OVRFW::SimpleGlbRenderer* glbRenderer;
+    OVRFW::GeometryRenderer* fallbackRenderer;
+
     bool isKnockedDown;
     btVector3 initialPos;
 };
@@ -57,10 +65,22 @@ public:
         OpenXRVersion = XR_API_VERSION_1_0;
     }
 
+    // --- バイナリファイルを読み込むヘルパー関数 ---
+    std::vector<uint8_t> ReadFileBuffer(const std::string& path) {
+        std::vector<uint8_t> buffer;
+        std::ifstream file(path, std::ios::binary | std::ios::ate);
+        if (file) {
+            std::streamsize size = file.tellg();
+            file.seekg(0, std::ios::beg);
+            buffer.resize(size);
+            file.read((char*)buffer.data(), size);
+        }
+        return buffer;
+    }
+
     virtual bool AppInit(const xrJava* context) override {
         if (!ui_.Init(context, GetFileSys())) return false;
 
-        // ★修正：スコアボードを的の真上（Y=2.0m, Z=-4.0m）に固定配置（電光掲示板風）
         scoreLabel_ = ui_.AddLabel("SCORE: 0", { 0.0f, 2.0f, -4.0f }, { 800.0f, 200.0f });
         return true;
     }
@@ -69,7 +89,13 @@ public:
         floorRenderer_.Shutdown();
         if (spawnAreaRenderer_) { spawnAreaRenderer_->Shutdown(); delete spawnAreaRenderer_; spawnAreaRenderer_ = nullptr; }
         for (auto& b : balls_) { b.renderer->Shutdown(); delete b.renderer; }
-        for (auto& p : panels_) { p.renderer->Shutdown(); delete p.renderer; }
+
+        // ★修正：パネルのレンダラー解放処理
+        for (auto& p : panels_) {
+            if (p.glbRenderer) { p.glbRenderer->Shutdown(); delete p.glbRenderer; }
+            if (p.fallbackRenderer) { p.fallbackRenderer->Shutdown(); delete p.fallbackRenderer; }
+        }
+
         for (auto& f : frames_) { f.renderer->Shutdown(); delete f.renderer; }
         OVRFW::XrApp::AppShutdown(context);
         ui_.Shutdown();
@@ -125,15 +151,26 @@ public:
         dynamicsWorld_->addRigidBody(leftHandRb_);
         dynamicsWorld_->addRigidBody(rightHandRb_);
 
-        // 3. ボールの無限湧きエリア（★さらに50cm下げる）
+        // 3. ボールの無限湧きエリア
         spawnAreaPos_ = { 0.6f, 0.0f, -0.5f };
         spawnAreaRenderer_ = CreateBoxRenderer({ spawnAreaSize_, spawnAreaSize_, spawnAreaSize_ }, { 0.0f, 1.0f, 0.5f, 0.3f });
+
+        // ★追加：GLBファイルの読み込み（パスが見つかるまでフォールバック探索）
+        std::vector<uint8_t> panelGlbBuffer = ReadFileBuffer("assets/panel_strike_out.glb");
+        if (panelGlbBuffer.empty()) {
+            panelGlbBuffer = ReadFileBuffer("../../../../XrSamples/BulletProject1/assets/panel_strike_out.glb");
+        }
+        if (panelGlbBuffer.empty()) {
+            // 絶対パスでの最終フォールバック
+            panelGlbBuffer = ReadFileBuffer("C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/assets/panel_strike_out.glb");
+        }
+        bool hasGlb = !panelGlbBuffer.empty();
 
         // 4. ストラックアウトの「的（パネル）」の生成
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 float px = (col - 1) * 0.45f;
-                float py = 0.0f + row * 0.45f; // ★さらに50cm下げる
+                float py = 0.0f + row * 0.45f;
                 float pz = -4.0f;
 
                 btBoxShape* shape = new btBoxShape(btVector3(0.2f, 0.2f, 0.025f));
@@ -142,7 +179,6 @@ public:
                 shape->calculateLocalInertia(1.0f, inertia);
                 btRigidBody* body = new btRigidBody(1.0f, new btDefaultMotionState(trans), shape, inertia);
 
-                // 奥へ倒れるヒンジ拘束
                 btHingeConstraint* hinge = new btHingeConstraint(*body, btVector3(0, -0.2f, 0), btVector3(-1.0f, 0.0f, 0.0f));
                 hinge->setLimit(0.0f, M_PI / 2.0f);
 
@@ -151,9 +187,20 @@ public:
 
                 PanelItem item;
                 item.body = body; item.shape = shape; item.hinge = hinge;
-                item.renderer = CreateBoxRenderer({ 0.4f, 0.4f, 0.05f }, { 1.0f, 1.0f, 1.0f, 1.0f });
                 item.isKnockedDown = false;
                 item.initialPos = btVector3(px, py, pz);
+
+                // ★追加：GLBが読み込めていればSimpleGlbRendererを、ダメなら従来の箱を生成
+                item.glbRenderer = nullptr;
+                item.fallbackRenderer = nullptr;
+                if (hasGlb) {
+                    item.glbRenderer = new OVRFW::SimpleGlbRenderer();
+                    item.glbRenderer->Init(panelGlbBuffer);
+                }
+                else {
+                    item.fallbackRenderer = CreateBoxRenderer({ 0.4f, 0.4f, 0.05f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+                }
+
                 panels_.push_back(item);
             }
         }
@@ -169,7 +216,6 @@ public:
             item.renderer = CreateBoxRenderer(size, { 0.2f, 0.2f, 0.2f, 1.0f });
             frames_.push_back(item);
             };
-        // ★さらに50cm下げる
         CreateFrame({ -0.75f,  0.45f, -4.05f }, { 0.1f,  1.4f, 0.2f }); // 左枠
         CreateFrame({ 0.75f,  0.45f, -4.05f }, { 0.1f,  1.4f, 0.2f }); // 右枠
         CreateFrame({ 0.0f,   1.20f, -4.05f }, { 1.6f,  0.1f, 0.2f }); // 上枠
@@ -194,7 +240,7 @@ public:
         BallItem ball;
         ball.body = body; ball.shape = ballShape;
         ball.renderer = CreateBoxRenderer({ 0.1f, 0.1f, 0.1f }, { 1.0f, 0.5f, 0.0f, 1.0f });
-        ball.lifeTime = 6.0f; // ★ボールの寿命を6秒に設定
+        ball.lifeTime = 6.0f;
         balls_.push_back(ball);
         return body;
     }
@@ -283,7 +329,11 @@ public:
                 if (std::abs(panel.hinge->getHingeAngle()) > 0.5f) {
                     panel.isKnockedDown = true;
                     currentScore_ += 10;
-                    panel.renderer->DiffuseColor = OVR::Vector4f(1.0f, 0.2f, 0.2f, 1.0f);
+
+                    // ★修正：GLBの環境光を赤くして「当たった」ことを表現
+                    if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 0.2f, 0.2f);
+                    if (panel.fallbackRenderer) panel.fallbackRenderer->DiffuseColor = OVR::Vector4f(1.0f, 0.2f, 0.2f, 1.0f);
+
                     char buf[64];
                     sprintf(buf, "SCORE: %d", currentScore_);
                     scoreLabel_->SetText(buf);
@@ -292,7 +342,6 @@ public:
             if (panel.isKnockedDown) knockedDownCount++;
         }
 
-        // ★追加：全部倒したらクリア表示
         if (knockedDownCount == 9 && currentScore_ == 90) {
             scoreLabel_->SetText("PERFECT CLEAR!");
         }
@@ -315,7 +364,10 @@ public:
 
             for (auto& panel : panels_) {
                 panel.isKnockedDown = false;
-                panel.renderer->DiffuseColor = OVR::Vector4f(1.0f, 1.0f, 1.0f, 1.0f);
+                // 色を元に戻す
+                if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(0.15f, 0.15f, 0.15f);
+                if (panel.fallbackRenderer) panel.fallbackRenderer->DiffuseColor = OVR::Vector4f(1.0f, 1.0f, 1.0f, 1.0f);
+
                 btTransform t; t.setIdentity(); t.setOrigin(panel.initialPos);
                 panel.body->setWorldTransform(t); panel.body->getMotionState()->setWorldTransform(t);
                 panel.body->setLinearVelocity(btVector3(0, 0, 0)); panel.body->setAngularVelocity(btVector3(0, 0, 0));
@@ -324,14 +376,12 @@ public:
         }
         prevA = isButtonAPressed;
 
-        // --- 7. ★追加：ボールの自動削除（ガベージコレクション） ---
+        // --- 7. ボールの自動削除 ---
         for (auto it = balls_.begin(); it != balls_.end(); ) {
-            // 掴まれていないボールの寿命を減らす
             if (it->body != leftGrabBody_ && it->body != rightGrabBody_) {
                 it->lifeTime -= in.DeltaSeconds;
             }
 
-            // 寿命が尽きたら物理ワールドから削除してメモリ解放
             if (it->lifeTime < 0.0f) {
                 dynamicsWorld_->removeRigidBody(it->body);
                 delete it->body->getMotionState(); delete it->body; delete it->shape;
@@ -344,17 +394,34 @@ public:
         }
 
         // --- 8. 描画用モデルの座標同期 ---
-        auto UpdateRenderer = [&](OVRFW::GeometryRenderer* renderer, btRigidBody* body) {
-            btTransform t; body->getMotionState()->getWorldTransform(t);
+        for (auto& ball : balls_) {
+            btTransform t; ball.body->getMotionState()->getWorldTransform(t);
             OVR::Posef pose(OVR::Quatf(t.getRotation().x(), t.getRotation().y(), t.getRotation().z(), t.getRotation().w()),
                 OVR::Vector3f(t.getOrigin().x(), t.getOrigin().y(), t.getOrigin().z()));
-            renderer->SetPose(playerPose_.Inverted() * pose);
-            renderer->Update();
-            };
+            ball.renderer->SetPose(playerPose_.Inverted() * pose);
+            ball.renderer->Update();
+        }
 
-        for (auto& ball : balls_) UpdateRenderer(ball.renderer, ball.body);
-        for (auto& panel : panels_) UpdateRenderer(panel.renderer, panel.body);
-        for (auto& frame : frames_) UpdateRenderer(frame.renderer, frame.body);
+        for (auto& panel : panels_) {
+            btTransform t; panel.body->getMotionState()->getWorldTransform(t);
+            OVR::Posef pose(OVR::Quatf(t.getRotation().x(), t.getRotation().y(), t.getRotation().z(), t.getRotation().w()),
+                OVR::Vector3f(t.getOrigin().x(), t.getOrigin().y(), t.getOrigin().z()));
+            OVR::Posef relativePose = playerPose_.Inverted() * pose;
+
+            if (panel.glbRenderer) panel.glbRenderer->Update(relativePose);
+            if (panel.fallbackRenderer) {
+                panel.fallbackRenderer->SetPose(relativePose);
+                panel.fallbackRenderer->Update();
+            }
+        }
+
+        for (auto& frame : frames_) {
+            btTransform t; frame.body->getMotionState()->getWorldTransform(t);
+            OVR::Posef pose(OVR::Quatf(t.getRotation().x(), t.getRotation().y(), t.getRotation().z(), t.getRotation().w()),
+                OVR::Vector3f(t.getOrigin().x(), t.getOrigin().y(), t.getOrigin().z()));
+            frame.renderer->SetPose(playerPose_.Inverted() * pose);
+            frame.renderer->Update();
+        }
 
         OVR::Posef floorWorldPose = OVR::Posef::Identity();
         floorWorldPose.Translation = { 0.0f, -1.55f, 0.0f };
@@ -377,14 +444,18 @@ public:
     }
 
     virtual void Render(const OVRFW::ovrApplFrameIn& in, OVRFW::ovrRendererOutput& out) override {
-        // UIの描画（スコアボードが的の上に描画される）
         ui_.Render(in, out);
 
         floorRenderer_.Render(out.Surfaces);
         if (spawnAreaRenderer_) spawnAreaRenderer_->Render(out.Surfaces);
 
         for (auto& ball : balls_) ball.renderer->Render(out.Surfaces);
-        for (auto& panel : panels_) panel.renderer->Render(out.Surfaces);
+
+        for (auto& panel : panels_) {
+            if (panel.glbRenderer) panel.glbRenderer->Render(out.Surfaces);
+            if (panel.fallbackRenderer) panel.fallbackRenderer->Render(out.Surfaces);
+        }
+
         for (auto& frame : frames_) frame.renderer->Render(out.Surfaces);
 
         if (in.LeftRemoteTracked) controllerRenderL_.Render(out.Surfaces);

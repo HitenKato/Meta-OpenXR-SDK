@@ -1,0 +1,1695 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "XrSamples/BulletProject1/bulletproject1.exe"
+		},
+		{
+			"path" : "XrSamples/BulletProject1/bulletproject1.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"find_minizip",
+			"add_dependencies",
+			"add_compile_options",
+			"add_definitions",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"XrSamples/BulletProject1/CMakeLists.txt",
+			"SampleXrFramework/CMakeLists.txt",
+			"3rdParty/CMakeLists.txt",
+			"3rdParty/khronos/ktx_src/CMakeLists.txt",
+			"3rdParty/openxr/src/loader/CMakeLists.txt",
+			"3rdParty/openxr/include/openxr/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 29,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 51,
+				"parent" : 3
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 138,
+				"parent" : 5
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 93,
+				"parent" : 6
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 3,
+				"line" : 934,
+				"parent" : 8
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 245,
+				"parent" : 10
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 133,
+				"parent" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 132,
+				"parent" : 3
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 5,
+				"line" : 128,
+				"parent" : 14
+			},
+			{
+				"file" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 6,
+				"line" : 28,
+				"parent" : 16
+			},
+			{
+				"command" : 4,
+				"file" : 6,
+				"line" : 30,
+				"parent" : 16
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 28,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 45,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 46,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 47,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++17"
+				},
+				{
+					"backtrace" : 17,
+					"fragment" : "/WX-"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "/wd5272"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "/wd5287"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "/wd4996"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "/wd4267"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "BASISU_NO_ITERATOR_DEBUG_LEVEL"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "KHRONOS_STATIC"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "KTX_FEATURE_KTX1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "KTX_FEATURE_KTX2"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "KTX_FEATURE_WRITE"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "XR_OS_WINDOWS=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "XR_USE_GRAPHICS_API_OPENGL=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "XR_USE_PLATFORM_WIN32=1"
+				},
+				{
+					"backtrace" : 19,
+					"define" : "_USE_MATH_DEFINES"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 20,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/Src"
+				},
+				{
+					"backtrace" : 21,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/shared/inc"
+				},
+				{
+					"backtrace" : 22,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/XrSamples/BulletProject1/shared/src"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/Src"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../1stParty/OVR/Include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../1stParty/utilities/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../3rdParty/khronos/openxr/OpenXR-SDK/src/common"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../../OpenXR"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/minizip/src"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/zlib"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/zlib-build"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/stb/src"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/khronos/ktx_src/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/3rdParty/openxr/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/build/x64-Release/_deps/openxr-build/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../3rdParty/glext"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../1stParty/utilities/include/vulkan"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/SampleXrFramework/../1stParty/utilities/include/utils"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "stb::@39354e54008c9e693a7e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "minizip::@39354e54008c9e693a7e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "ktx::@ed5937bb8cc3aa207f62"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "astcenc-avx2-static::@917f8ad2c3382a3cd159"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "zlibstatic::@c9556b0b6bf47963f9da"
+		},
+		{
+			"backtrace" : 15,
+			"id" : "generate_openxr_header::@ee2418eca024665d80f8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "openxr_loader::@e4e27c090dc7d2a04b67"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "samplecommon_win32gl::@e4f153922b2cebb3c0ac"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "samplexrframework::@e4f153922b2cebb3c0ac"
+		}
+	],
+	"id" : "bulletproject1::@7d3064ba128e26b64f1b",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "SampleXrFramework\\samplexrframework.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "3rdParty\\minizip.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "_deps\\zlib-build\\zlibstatic.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "3rdParty\\stb.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "_deps\\libktx-build\\ktx.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "_deps\\libktx-build\\lib\\astc-encoder\\Source\\astcenc-avx2-static.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "_deps\\openxr-build\\src\\loader\\openxr_loader.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "advapi32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "SampleXrFramework\\samplecommon_win32gl.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "opengl32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "gdi32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "user32.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "bulletproject1",
+	"nameOnDisk" : "bulletproject1.exe",
+	"paths" : 
+	{
+		"build" : "XrSamples/BulletProject1",
+		"source" : "XrSamples/BulletProject1"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				154
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/Src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btAxisSweep3.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btBroadphaseProxy.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btDbvt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btDbvtBroadphase.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btDispatcher.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btOverlappingPairCache.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btQuantizedBvh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/BroadphaseCollision/btSimpleBroadphase.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/SphereTriangleDetector.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btBox2dBox2dCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btBoxBoxCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btBoxBoxDetector.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCollisionDispatcher.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCollisionDispatcherMt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCollisionObject.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCollisionWorld.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCollisionWorldImporter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btCompoundCompoundCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btConvex2dConvex2dAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btConvexConcaveCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btConvexPlaneCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btGhostObject.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btHashedSimplePairCache.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btInternalEdgeUtility.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btManifoldResult.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btSimulationIslandManager.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btSphereBoxCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btSphereTriangleCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionDispatch/btUnionFind.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btBox2dShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btBoxShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btCapsuleShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btCollisionShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btCompoundShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConcaveShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConeShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvex2dShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexHullShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexInternalShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexPointCloudShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexPolyhedron.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btCylinderShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btEmptyShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btMiniSDF.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btMinkowskiSumShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btMultiSphereShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btMultimaterialTriangleMeshShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btOptimizedBvh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btPolyhedralConvexShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btSdfCollisionShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btShapeHull.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btSphereShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btStaticPlaneShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btStridingMeshInterface.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTetrahedronShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleBuffer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleCallback.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleIndexVertexMaterialArray.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleMesh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btTriangleMeshShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/CollisionShapes/btUniformScalingShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btContactProcessing.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btGImpactBvh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btGImpactQuantizedBvh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btGImpactShape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btGenericPoolAllocator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/btTriangleShapeEx.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/gim_box_set.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/gim_contact.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/gim_memory.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/Gimpact/gim_tri_collision.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btContinuousConvexCollision.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btConvexCast.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btGjkConvexCast.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btGjkEpa2.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btGjkPairDetector.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btPolyhedralContactClipping.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btRaycastCallback.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btSubSimplexConvexCast.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Character/btKinematicCharacterController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btBatchedConstraints.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btConeTwistConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btContactConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btFixedConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btGearConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btHinge2Constraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btHingeConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btNNCGConstraintSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolverMt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btSliderConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btSolve2LinearConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btTypedConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/ConstraintSolver/btUniversalConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Dynamics/btDiscreteDynamicsWorldMt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Dynamics/btRigidBody.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Dynamics/btSimpleDynamicsWorld.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Dynamics/btSimulationIslandManagerMt.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBody.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyConstraintSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyDynamicsWorld.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyFixedConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyGearConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyJointLimitConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyJointMotor.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyMLCPConstraintSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodyPoint2Point.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodySliderConstraint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodySphericalJointLimit.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Featherstone/btMultiBodySphericalJointMotor.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/MLCPSolvers/btDantzigLCP.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/MLCPSolvers/btLemkeAlgorithm.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/MLCPSolvers/btMLCPSolver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Vehicle/btRaycastVehicle.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/BulletDynamics/Vehicle/btWheelInfo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/TaskScheduler/btTaskScheduler.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/TaskScheduler/btThreadSupportPosix.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/TaskScheduler/btThreadSupportWin32.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btAlignedAllocator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btConvexHull.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btConvexHullComputer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btGeometryUtil.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btPolarDecomposition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btQuickprof.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btReducedVector.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btSerializer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btSerializer64.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btThreads.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "XrSamples/BulletProject1/shared/inc/LinearMath/btVector3.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "XrSamples/BulletProject1/Src/utils.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

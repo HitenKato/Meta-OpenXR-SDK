@@ -1,0 +1,119 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"3rdParty/zlib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 178,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 184,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 187,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 190,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib",
+			"paths" : 
+			[
+				"_deps/zlib-build/zlib.lib"
+			],
+			"targetId" : "zlib::@c9556b0b6bf47963f9da",
+			"targetIndex" : 82,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/bin",
+			"paths" : 
+			[
+				"_deps/zlib-build/zlib.dll"
+			],
+			"targetId" : "zlib::@c9556b0b6bf47963f9da",
+			"targetIndex" : 82,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/lib",
+			"paths" : 
+			[
+				"_deps/zlib-build/zlibstatic.lib"
+			],
+			"targetId" : "zlibstatic::@c9556b0b6bf47963f9da",
+			"targetIndex" : 83,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/include",
+			"paths" : 
+			[
+				"out/build/x64-Release/_deps/zlib-build/zconf.h",
+				"3rdParty/zlib/zlib.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/share/man/man3",
+			"paths" : 
+			[
+				"3rdParty/zlib/zlib.3"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "C:/Users/hiten/source/repos/Meta-OpenXR-SDK/Samples/out/install/x64-Release/share/pkgconfig",
+			"paths" : 
+			[
+				"out/build/x64-Release/_deps/zlib-build/zlib.pc"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/zlib-build",
+		"source" : "3rdParty/zlib"
+	}
+}
