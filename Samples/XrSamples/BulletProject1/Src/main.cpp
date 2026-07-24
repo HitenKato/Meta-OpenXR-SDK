@@ -190,12 +190,22 @@ public:
                 item.isKnockedDown = false;
                 item.initialPos = btVector3(px, py, pz);
 
-                // ★追加：GLBが読み込めていればSimpleGlbRendererを、ダメなら従来の箱を生成
+                // ★修正：GLBが読み込めていればSimpleGlbRendererを、ダメなら従来の箱を生成
                 item.glbRenderer = nullptr;
                 item.fallbackRenderer = nullptr;
                 if (hasGlb) {
                     item.glbRenderer = new OVRFW::SimpleGlbRenderer();
-                    item.glbRenderer->Init(panelGlbBuffer);
+                    bool loaded = item.glbRenderer->Init(panelGlbBuffer); // 読み込み成功かをチェック
+
+                    if (loaded) {
+                        item.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
+                    }
+                    else {
+                        // 失敗時は破棄して代替の箱を出す
+                        delete item.glbRenderer;
+                        item.glbRenderer = nullptr;
+                        item.fallbackRenderer = CreateBoxRenderer({ 0.4f, 0.4f, 0.05f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+                    }
                 }
                 else {
                     item.fallbackRenderer = CreateBoxRenderer({ 0.4f, 0.4f, 0.05f }, { 1.0f, 1.0f, 1.0f, 1.0f });
@@ -330,9 +340,9 @@ public:
                     panel.isKnockedDown = true;
                     currentScore_ += 10;
 
-                    // ★修正：GLBの環境光を赤くして「当たった」ことを表現
-                    if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 0.2f, 0.2f);
-                    if (panel.fallbackRenderer) panel.fallbackRenderer->DiffuseColor = OVR::Vector4f(1.0f, 0.2f, 0.2f, 1.0f);
+                    // ▼ 修正：当たった時は、明るく鮮やかな赤色に発光させる
+                    if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 0.3f, 0.3f);
+                    if (panel.fallbackRenderer) panel.fallbackRenderer->DiffuseColor = OVR::Vector4f(1.0f, 0.3f, 0.3f, 1.0f);
 
                     char buf[64];
                     sprintf(buf, "SCORE: %d", currentScore_);
@@ -364,11 +374,12 @@ public:
 
             for (auto& panel : panels_) {
                 panel.isKnockedDown = false;
-                // 色を元に戻す
-                if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(0.15f, 0.15f, 0.15f);
+                // 色を元に戻す（明るさMAXの状態を維持する）
+                if (panel.glbRenderer) panel.glbRenderer->AmbientLightColor = OVR::Vector3f(1.0f, 1.0f, 1.0f);
                 if (panel.fallbackRenderer) panel.fallbackRenderer->DiffuseColor = OVR::Vector4f(1.0f, 1.0f, 1.0f, 1.0f);
 
                 btTransform t; t.setIdentity(); t.setOrigin(panel.initialPos);
+                // ... 省略 ...
                 panel.body->setWorldTransform(t); panel.body->getMotionState()->setWorldTransform(t);
                 panel.body->setLinearVelocity(btVector3(0, 0, 0)); panel.body->setAngularVelocity(btVector3(0, 0, 0));
                 panel.body->clearForces(); panel.body->activate(true);
