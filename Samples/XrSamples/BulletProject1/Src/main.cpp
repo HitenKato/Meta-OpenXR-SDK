@@ -24,7 +24,7 @@
 #include "Render/GeometryBuilder.h"
 
 // ★追加：GLBモデルを描画するためのヘッダー
-#include "SimpleGlbRenderer.h"
+#include "Render/SimpleGlbRenderer.h"
 
 // ----------------------------------------------------------------------------
 // 各種オブジェクトを管理するための構造体
